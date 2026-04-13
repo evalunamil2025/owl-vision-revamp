@@ -8,14 +8,14 @@ export const personalServices = [
   { icon: Car, label: "Auto Insurance", href: "/auto-insurance", desc: "Protect your vehicle and your peace of mind.", image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80" },
   { icon: Home, label: "Home Insurance", href: "/home-insurance", desc: "Safeguard your biggest investment.", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80" },
   { icon: Heart, label: "Life Insurance", href: "/life-insurance", desc: "Protect those who matter most.", image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&q=80" },
-  { icon: Flame, label: "Flood Insurance", href: "/flood-insurance", desc: "Don't let water damage catch you off guard.", image: "https://images.unsplash.com/photo-1547683905-f686c993c4de?w=800&q=80" },
+  { icon: Flame, label: "Flood Insurance", href: "/flood-insurance", desc: "Don't let water damage catch you off guard.", image: "https://images.unsplash.com/photo-1446824505046-e43605ffb17f?w=800&q=80" },
   { icon: Anchor, label: "Boat & Watercraft", href: "/boat-insurance", desc: "Enjoy the water worry-free.", image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" },
   { icon: Bike, label: "Motorcycle", href: "/motorcycle-insurance", desc: "Ride with the right coverage.", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" },
   { icon: Truck, label: "RV Insurance", href: "/rv-insurance", desc: "Adventures protected.", image: "https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=800&q=80" },
   { icon: ShieldCheck, label: "Renters Insurance", href: "/renters-insurance", desc: "Your belongings deserve protection.", image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80" },
-  { icon: Building, label: "Landlord Insurance", href: "/landlord-insurance", desc: "Protect your rental investment.", image: "https://images.unsplash.com/photo-1580587771525-0b372b0b6ba6?w=800&q=80" },
+  { icon: Building, label: "Landlord Insurance", href: "/landlord-insurance", desc: "Protect your rental investment.", image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80" },
   { icon: Home, label: "Mobile Home", href: "/mobile-home-insurance", desc: "Coverage designed for your home type.", image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80" },
-  { icon: Umbrella, label: "Personal Umbrella", href: "/personal-umbrella", desc: "Extra protection when you need it.", image: "https://images.unsplash.com/photo-1516914943479-89db7d9e7f3b?w=800&q=80" },
+  { icon: Umbrella, label: "Personal Umbrella", href: "/personal-umbrella", desc: "Extra protection when you need it.", image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" },
 ];
 
 export const businessServices = [
