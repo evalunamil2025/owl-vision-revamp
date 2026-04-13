@@ -34,31 +34,31 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="space-y-4">
-            <img src={logo} alt="Bringas Insurance Group" className="h-14 w-auto brightness-0 invert" />
+            <img src={logo} alt="Bringas Insurance Group" className="h-16 w-auto brightness-0 invert" />
             <p className="text-sm text-primary-foreground/70 leading-relaxed">
               We Bring You Insurance Solutions. Your trusted independent insurance agency serving families and businesses.
             </p>
             <div className="flex items-center gap-2 text-sm text-primary-foreground/80">
-              <Phone className="w-4 h-4 text-brand-green-light flex-shrink-0" />
-              <a href="tel:+14254057111" className="hover:text-brand-green-light transition-colors">(425) 405-7111</a>
+              <Phone className="w-4 h-4 text-accent-light flex-shrink-0" strokeWidth={1.8} />
+              <a href="tel:+14254057111" className="hover:text-accent-light transition-colors duration-200">(425) 405-7111</a>
             </div>
             <div className="flex items-center gap-2 text-sm text-primary-foreground/80">
-              <Mail className="w-4 h-4 text-brand-green-light flex-shrink-0" />
-              <a href="mailto:info@bringasinsurance.com" className="hover:text-brand-green-light transition-colors">info@bringasinsurance.com</a>
+              <Mail className="w-4 h-4 text-accent-light flex-shrink-0" strokeWidth={1.8} />
+              <a href="mailto:info@bringasinsurance.com" className="hover:text-accent-light transition-colors duration-200">info@bringasinsurance.com</a>
             </div>
             <div className="flex items-start gap-2 text-sm text-primary-foreground/80">
-              <MapPin className="w-4 h-4 text-brand-green-light flex-shrink-0 mt-0.5" />
+              <MapPin className="w-4 h-4 text-accent-light flex-shrink-0 mt-0.5" strokeWidth={1.8} />
               <span>Serving Washington State</span>
             </div>
           </div>
 
           {/* Personal */}
           <div>
-            <h4 className="font-heading font-semibold text-sm uppercase tracking-wider mb-4 text-brand-green-light">Personal Insurance</h4>
+            <h4 className="font-heading font-bold text-sm uppercase tracking-wider mb-4 text-accent-light">Personal Insurance</h4>
             <ul className="space-y-2">
               {personalLinks.map(l => (
                 <li key={l.href}>
-                  <Link to={l.href} className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">{l.label}</Link>
+                  <Link to={l.href} className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-200">{l.label}</Link>
                 </li>
               ))}
             </ul>
@@ -66,11 +66,11 @@ const Footer = () => {
 
           {/* Business */}
           <div>
-            <h4 className="font-heading font-semibold text-sm uppercase tracking-wider mb-4 text-brand-green-light">Business Insurance</h4>
+            <h4 className="font-heading font-bold text-sm uppercase tracking-wider mb-4 text-accent-light">Business Insurance</h4>
             <ul className="space-y-2">
               {businessLinks.map(l => (
                 <li key={l.href}>
-                  <Link to={l.href} className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">{l.label}</Link>
+                  <Link to={l.href} className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-200">{l.label}</Link>
                 </li>
               ))}
             </ul>
@@ -78,10 +78,10 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-heading font-semibold text-sm uppercase tracking-wider mb-4 text-brand-green-light">Company</h4>
+            <h4 className="font-heading font-bold text-sm uppercase tracking-wider mb-4 text-accent-light">Company</h4>
             <ul className="space-y-2">
-              <li><Link to="/about" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">About Us</Link></li>
-              <li><Link to="/quote" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Get a Quote</Link></li>
+              <li><Link to="/about" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-200">About Us</Link></li>
+              <li><Link to="/quote" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-200">Get a Quote</Link></li>
             </ul>
             <div className="mt-8">
               <p className="text-xs text-primary-foreground/50">Hablamos Español</p>
