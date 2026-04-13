@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Phone } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, ShieldCheck, Briefcase, Info, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/bringas-insurance-logo.png";
 
@@ -32,72 +32,160 @@ const businessLinks = [
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const isActive = (href: string) => location.pathname === href;
 
   return (
-    <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border/50 shadow-brand">
-      <div className="container mx-auto flex items-center justify-between h-20 lg:h-24 px-4">
-        {/* Logo — large and imposing */}
-        <Link to="/" className="flex-shrink-0">
-          <img src={logo} alt="Bringas Insurance Group" className="h-10 lg:h-14 w-auto" />
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/95 backdrop-blur-md py-2 shadow-lg" : "bg-white py-4"
+      }`}
+    >
+      <div className="container mx-auto flex items-center justify-between px-4">
+        {/* Logo */}
+        <Link to="/" className="flex-shrink-0 transition-transform hover:scale-105">
+          <img src={logo} alt="Bringas Insurance Group" className="h-10 lg:h-14 w-auto object-contain" />
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-1">
-          <Link to="/" className={`px-4 py-2 rounded-lg text-sm font-heading font-bold transition-colors duration-300 ${isActive("/") ? "text-secondary" : "text-primary hover:text-secondary"}`}>
+        <nav className="hidden lg:flex items-center gap-2">
+          <Link
+            to="/"
+            className={`px-4 py-2 text-sm font-bold transition-all ${
+              isActive("/") ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
+            }`}
+          >
             Home
           </Link>
 
-          {/* Personal Dropdown */}
-          <div className="relative" onMouseEnter={() => setActiveDropdown("personal")} onMouseLeave={() => setActiveDropdown(null)}>
-            <button className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-heading font-bold transition-colors duration-300 ${activeDropdown === "personal" ? "text-secondary" : "text-primary hover:text-secondary"}`}>
-              Personal <ChevronDown className="w-3.5 h-3.5" />
+          {/* Mega Menú Personal */}
+          <div
+            className="relative group"
+            onMouseEnter={() => setActiveDropdown("personal")}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <button
+              className={`flex items-center gap-1 px-4 py-2 text-sm font-bold transition-all ${
+                activeDropdown === "personal" ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
+              }`}
+            >
+              Personal{" "}
+              <ChevronDown
+                className={`w-4 h-4 transition-transform ${activeDropdown === "personal" ? "rotate-180" : ""}`}
+              />
             </button>
             <AnimatePresence>
               {activeDropdown === "personal" && (
-                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} transition={{ duration: 0.15 }}
-                  className="absolute top-full left-0 mt-1 w-56 bg-card rounded-xl shadow-brand-xl border border-border/50 py-2 z-50">
-                  {personalLinks.map(l => (
-                    <Link key={l.href} to={l.href} className="block px-4 py-2.5 text-sm font-body text-foreground hover:text-secondary hover:bg-muted transition-colors duration-200">{l.label}</Link>
-                  ))}
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 15 }}
+                  className="absolute top-full -left-20 mt-2 w-[600px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 z-50 overflow-hidden"
+                >
+                  <div className="grid grid-cols-2 gap-x-8 gap-y-2">
+                    <div className="col-span-2 mb-4 flex items-center gap-2 text-[#00a651] font-bold text-xs uppercase tracking-widest">
+                      <ShieldCheck className="w-4 h-4" /> Protection for your family
+                    </div>
+                    {personalLinks.map((l) => (
+                      <Link
+                        key={l.href}
+                        to={l.href}
+                        className="group flex items-center justify-between px-3 py-2 text-sm text-slate-600 hover:text-[#0079c2] hover:bg-blue-50 rounded-xl transition-all"
+                      >
+                        {l.label}
+                        <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all" />
+                      </Link>
+                    ))}
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
-          {/* Business Dropdown */}
-          <div className="relative" onMouseEnter={() => setActiveDropdown("business")} onMouseLeave={() => setActiveDropdown(null)}>
-            <button className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-heading font-bold transition-colors duration-300 ${activeDropdown === "business" ? "text-secondary" : "text-primary hover:text-secondary"}`}>
-              Business <ChevronDown className="w-3.5 h-3.5" />
+          {/* Mega Menú Business */}
+          <div
+            className="relative group"
+            onMouseEnter={() => setActiveDropdown("business")}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <button
+              className={`flex items-center gap-1 px-4 py-2 text-sm font-bold transition-all ${
+                activeDropdown === "business" ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
+              }`}
+            >
+              Business{" "}
+              <ChevronDown
+                className={`w-4 h-4 transition-transform ${activeDropdown === "business" ? "rotate-180" : ""}`}
+              />
             </button>
             <AnimatePresence>
               {activeDropdown === "business" && (
-                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} transition={{ duration: 0.15 }}
-                  className="absolute top-full left-0 mt-1 w-56 bg-card rounded-xl shadow-brand-xl border border-border/50 py-2 z-50">
-                  {businessLinks.map(l => (
-                    <Link key={l.href} to={l.href} className="block px-4 py-2.5 text-sm font-body text-foreground hover:text-secondary hover:bg-muted transition-colors duration-200">{l.label}</Link>
-                  ))}
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 15 }}
+                  className="absolute top-full -left-20 mt-2 w-[600px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 z-50"
+                >
+                  <div className="grid grid-cols-2 gap-x-8 gap-y-2">
+                    <div className="col-span-2 mb-4 flex items-center gap-2 text-[#00a651] font-bold text-xs uppercase tracking-widest">
+                      <Briefcase className="w-4 h-4" /> Commercial Solutions
+                    </div>
+                    {businessLinks.map((l) => (
+                      <Link
+                        key={l.href}
+                        to={l.href}
+                        className="group flex items-center justify-between px-3 py-2 text-sm text-slate-600 hover:text-[#0079c2] hover:bg-blue-50 rounded-xl transition-all"
+                      >
+                        {l.label}
+                        <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all" />
+                      </Link>
+                    ))}
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
-          <Link to="/about" className={`px-4 py-2 rounded-lg text-sm font-heading font-bold transition-colors duration-300 ${isActive("/about") ? "text-secondary" : "text-primary hover:text-secondary"}`}>
+          <Link
+            to="/about"
+            className={`px-4 py-2 text-sm font-bold transition-all ${
+              isActive("/about") ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
+            }`}
+          >
             About
           </Link>
         </nav>
 
-        {/* CTA + Mobile Toggle */}
-        <div className="flex items-center gap-3">
-          <a href="tel:+14254057111" className="hidden sm:flex items-center gap-2 text-sm font-heading font-bold text-primary hover:text-secondary transition-colors duration-300">
-            <Phone className="w-4 h-4" strokeWidth={2} /> (425) 405-7111
+        {/* Action Area */}
+        <div className="flex items-center gap-4">
+          <a href="tel:+14254057111" className="hidden sm:flex flex-col items-end group">
+            <span className="text-[10px] uppercase text-slate-400 font-bold group-hover:text-[#00a651] transition-colors">
+              Call an Agent
+            </span>
+            <span className="flex items-center gap-1 text-sm font-bold text-[#0079c2]">
+              <Phone className="w-3.5 h-3.5 text-[#00a651]" /> (425) 405-7111
+            </span>
           </a>
-          <Link to="/quote" className="hidden lg:inline-flex btn-primary text-sm px-5 py-2.5">
+
+          <Link
+            to="/quote"
+            className="hidden lg:inline-flex bg-[#00a651] hover:bg-[#0079c2] text-white font-bold text-sm px-6 py-3 rounded-full transition-all shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-95"
+          >
             Get a Quote
           </Link>
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 text-primary">
+
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="lg:hidden p-2 rounded-xl bg-slate-50 text-[#0079c2] hover:bg-blue-100 transition-all"
+          >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
@@ -106,19 +194,54 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="lg:hidden overflow-hidden bg-card border-t border-border/50">
-            <div className="container mx-auto px-4 py-4 space-y-1">
-              <Link to="/" onClick={() => setMobileOpen(false)} className="block px-4 py-3 rounded-lg text-sm font-heading font-bold text-primary hover:bg-muted">Home</Link>
-              <p className="px-4 pt-3 pb-1 text-xs font-heading font-bold text-primary uppercase tracking-wider">Personal Insurance</p>
-              {personalLinks.map(l => (
-                <Link key={l.href} to={l.href} onClick={() => setMobileOpen(false)} className="block px-4 py-2.5 text-sm text-foreground hover:text-secondary hover:bg-muted rounded-lg">{l.label}</Link>
-              ))}
-              <p className="px-4 pt-3 pb-1 text-xs font-heading font-bold text-primary uppercase tracking-wider">Business Insurance</p>
-              {businessLinks.map(l => (
-                <Link key={l.href} to={l.href} onClick={() => setMobileOpen(false)} className="block px-4 py-2.5 text-sm text-foreground hover:text-secondary hover:bg-muted rounded-lg">{l.label}</Link>
-              ))}
-              <Link to="/about" onClick={() => setMobileOpen(false)} className="block px-4 py-3 rounded-lg text-sm font-heading font-bold text-primary hover:bg-muted">About</Link>
-              <Link to="/quote" onClick={() => setMobileOpen(false)} className="block px-4 py-3 rounded-xl btn-primary text-sm text-center mt-2">Get a Quote</Link>
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 100 }}
+            className="fixed inset-0 top-20 bg-white z-[60] lg:hidden overflow-y-auto"
+          >
+            <div className="p-6 space-y-6">
+              <div className="space-y-2">
+                <p className="text-[#00a651] font-bold text-xs uppercase tracking-widest px-2">Navigation</p>
+                <Link
+                  to="/"
+                  onClick={() => setMobileOpen(false)}
+                  className="block p-3 text-lg font-bold text-slate-800 bg-slate-50 rounded-xl"
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/about"
+                  onClick={() => setMobileOpen(false)}
+                  className="block p-3 text-lg font-bold text-slate-800 bg-slate-50 rounded-xl"
+                >
+                  About Us
+                </Link>
+              </div>
+
+              <div className="space-y-2">
+                <p className="text-[#00a651] font-bold text-xs uppercase tracking-widest px-2">Personal Insurance</p>
+                <div className="grid grid-cols-1 gap-1">
+                  {personalLinks.map((l) => (
+                    <Link
+                      key={l.href}
+                      to={l.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="p-3 text-sm font-medium text-slate-600 border-b border-slate-50"
+                    >
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <Link
+                to="/quote"
+                onClick={() => setMobileOpen(false)}
+                className="block w-full py-4 bg-[#0079c2] text-white text-center font-bold rounded-2xl shadow-lg"
+              >
+                Get a Quote Now
+              </Link>
             </div>
           </motion.div>
         )}
