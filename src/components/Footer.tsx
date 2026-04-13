@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, ArrowUpRight, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import logo from "@/assets/bringas-insurance-logo.png";
 
 const personalLinks = [
