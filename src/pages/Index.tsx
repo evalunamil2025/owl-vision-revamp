@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/home/Hero";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import PersonalInsurance from "@/components/home/PersonalInsurance";
+import MidCTA from "@/components/home/MidCTA";
 import BusinessInsurance from "@/components/home/BusinessInsurance";
 import Mission from "@/components/home/Mission";
 import Community from "@/components/home/Community";
@@ -15,6 +16,7 @@ const Index = () => {
       <Hero />
       <WhyChooseUs />
       <PersonalInsurance />
+      <MidCTA />
       <BusinessInsurance />
       <Community />
       <Mission />
