@@ -58,7 +58,7 @@ const Community = () => {
           >
             <Languages className="w-4 h-4 text-white" />
             <span className="text-white font-['Josefin_Sans'] text-xs font-bold uppercase tracking-[0.2em]">
-              Orgullo Bilingüe
+              Bilingual Pride
             </span>
           </motion.div>
 
