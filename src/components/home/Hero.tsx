@@ -5,52 +5,118 @@ import mascot from "@/assets/owlie-mascot.png";
 import heroBg from "@/assets/seattle-hero-bg.jpg";
 
 const Hero = () => {
+  // Variantes para animar los elementos de texto en cascada
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.215, 0.61, 0.355, 1] },
+    },
+  };
+
   return (
-    <section className="relative text-primary-foreground overflow-hidden min-h-[600px] lg:min-h-[700px]">
-      {/* Background image with zoom effect */}
+    <section className="relative text-primary-foreground overflow-hidden min-h-[650px] lg:min-h-[800px] flex items-center">
+      {/* Background con efecto Zoom mejorado (Ken Burns) */}
       <motion.div
         className="absolute inset-0 z-0"
-        initial={{ scale: 1.1 }}
+        initial={{ scale: 1.25 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 12, ease: "easeOut" }}
+        transition={{ duration: 20, ease: "linear" }}
       >
-        <img
-          src={heroBg}
-          alt=""
-          className="w-full h-full object-cover"
-        />
+        <img src={heroBg} alt="" className="w-full h-full object-cover object-center" />
       </motion.div>
 
-      {/* Blue overlay */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-br from-[#015093]/85 via-[#0079c2]/75 to-[#015093]/85" />
+      {/* Overlay Azul más oscuro y profundo */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#002d4a]/95 via-[#0079c2]/80 to-transparent" />
 
-      {/* Pattern overlay */}
-      <div className="absolute inset-0 z-[2] owl-pattern opacity-10" />
+      {/* Pattern sutil */}
+      <div className="absolute inset-0 z-[2] owl-pattern opacity-[0.07]" />
 
-      <div className="container mx-auto px-4 py-20 sm:py-28 lg:py-32 relative z-10">
+      <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-sm font-heading font-semibold text-primary-foreground/90 mb-6">
-              🦉 Independent Insurance Agency
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-6 text-white">
-              Insurance that <span className="text-accent-light">protects</span> what you love
-            </h1>
-            <p className="text-lg text-primary-foreground/80 font-body leading-relaxed mb-8 max-w-lg">
-              Family • Home • Auto • Business — We compare multiple carriers to bring you the coverage that truly fits your life. No boring paperwork, just real solutions.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/quote" className="btn-primary">
-                Get Your Free Quote <ArrowRight className="w-4 h-4" />
+          {/* Contenido de Texto con Stagger */}
+          <motion.div variants={containerVariants} initial="hidden" animate="visible">
+            <motion.span
+              variants={itemVariants}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-bold text-white mb-8 tracking-wide"
+            >
+              <span className="flex h-2 w-2 rounded-full bg-[#00a651] animate-pulse" />
+              OWLIE IS HERE • INDEPENDENT INSURANCE AGENCY
+            </motion.span>
+
+            <motion.h1
+              variants={itemVariants}
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 text-white"
+            >
+              Insurance that <br />
+              <span className="text-[#00a651]">protects</span> what <br className="hidden sm:block" />
+              you love
+            </motion.h1>
+
+            <motion.p
+              variants={itemVariants}
+              className="text-lg sm:text-xl text-white/80 font-medium leading-relaxed mb-10 max-w-xl"
+            >
+              Family • Home • Auto • Business — We compare multiple carriers to find the perfect fit. Real protection,
+              no complications.
+            </motion.p>
+
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-5">
+              <Link
+                to="/quote"
+                className="bg-[#00a651] hover:bg-white hover:text-[#0079c2] text-white px-8 py-4 rounded-full font-bold transition-all flex items-center gap-2 shadow-xl hover:shadow-[#00a651]/20 active:scale-95"
+              >
+                Get Your Free Quote <ArrowRight className="w-5 h-5" />
               </Link>
-              <a href="tel:+14254057111" className="btn-outline border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
-                <Phone className="w-4 h-4" strokeWidth={2} /> (425) 405-7111
+
+              <a
+                href="tel:+14254057111"
+                className="bg-white/5 hover:bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold transition-all flex items-center gap-2 active:scale-95"
+              >
+                <Phone className="w-5 h-5 text-[#00a651]" strokeWidth={3} /> (425) 405-7111
               </a>
-            </div>
+            </motion.div>
           </motion.div>
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }}
-            className="hidden lg:flex justify-center">
-            <img src={mascot} alt="Owlie - Bringas Insurance mascot" className="w-72 xl:w-80 drop-shadow-2xl" />
+
+          {/* Mascota con efecto de flotación y entrada suave */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, x: 50 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{
+              duration: 1,
+              delay: 0.8,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="hidden lg:flex justify-center relative"
+          >
+            {/* Resplandor detrás de la mascota para profundidad */}
+            <div className="absolute inset-0 bg-[#00a651]/20 blur-[120px] rounded-full" />
+
+            <motion.img
+              src={mascot}
+              alt="Owlie Mascot"
+              className="w-80 xl:w-[400px] drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)] relative z-10"
+              animate={{
+                y: [0, -20, 0],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
           </motion.div>
         </div>
       </div>
