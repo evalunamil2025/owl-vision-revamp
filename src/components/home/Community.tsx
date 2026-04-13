@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 import { motion, Variants } from "framer-motion";
-import { ArrowRight, Globe2 } from "lucide-react";
+import { ArrowRight, Languages } from "lucide-react";
 
 const Community = () => {
   const containerVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, scale: 0.95 },
     visible: {
       opacity: 1,
-      y: 0,
+      scale: 1,
       transition: {
         duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
       },
     },
   };
@@ -26,12 +26,22 @@ const Community = () => {
   };
 
   return (
-    <section className="relative py-24 overflow-hidden bg-[#0079c2]">
-      {/* Elementos decorativos de fondo */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[20%] -right-[10%] w-[500px] h-[500px] bg-[#00a651] rounded-full blur-[120px] opacity-40" />
-        <div className="absolute -bottom-[20%] -left-[10%] w-[500px] h-[500px] bg-[#005296] rounded-full blur-[120px] opacity-60" />
+    <section className="relative py-28 overflow-hidden bg-[#00a651]">
+      {/* Patrón de fondo orgánico para dar textura */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
       </div>
+
+      {/* Luces ambientales para profundidad */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/20 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#0079c2]/30 rounded-full blur-[120px]" />
 
       <div className="container mx-auto max-w-5xl px-4 relative z-10">
         <motion.div
@@ -39,52 +49,49 @@ const Community = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-[3rem] p-8 md:p-16 text-center shadow-2xl"
+          className="text-center"
         >
-          {/* Icono Flotante Superior */}
+          {/* Badge superior */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white shadow-lg mb-8 text-[#00a651]"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-8"
           >
-            <Globe2 className="w-8 h-8" />
+            <Languages className="w-4 h-4 text-white" />
+            <span className="text-white font-['Josefin_Sans'] text-xs font-bold uppercase tracking-[0.2em]">
+              Orgullo Bilingüe
+            </span>
           </motion.div>
 
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-['Josefin_Sans'] font-bold mb-6 text-white tracking-tight"
+            className="text-4xl md:text-6xl font-['Josefin_Sans'] font-bold mb-8 text-white tracking-tight"
           >
             Nuestra Comunidad Hispana
           </motion.h2>
 
-          <motion.p
-            variants={itemVariants}
-            className="text-white/90 font-body text-xl leading-relaxed max-w-3xl mx-auto mb-8 font-light"
-          >
-            We're bilingual and understand that serving the Hispanic community requires authenticity and warmth. We
-            communicate with respect and joy in both Spanish and English, so you feel at home.
-          </motion.p>
+          <motion.div variants={itemVariants} className="max-w-3xl mx-auto space-y-6">
+            <p className="text-white font-body text-xl md:text-2xl leading-relaxed font-light">
+              We're bilingual and understand that serving the Hispanic community requires authenticity and warmth. We
+              communicate with respect and joy in both Spanish and English, so you feel at home.
+            </p>
 
-          {/* Separador elegante */}
-          <motion.div
-            variants={itemVariants}
-            className="w-24 h-1 bg-[#00a651] mx-auto mb-8 rounded-full shadow-[0_0_15px_rgba(0,166,81,0.5)]"
-          />
+            <div className="py-8">
+              <div className="w-16 h-1 bg-white/30 mx-auto rounded-full" />
+            </div>
 
-          <motion.p
-            variants={itemVariants}
-            className="text-white/60 text-sm font-body mb-10 tracking-wide uppercase italic"
-          >
-            Latinos represent nearly one in five Americans, with purchasing power exceeding $2.8 trillion by 2026.
-          </motion.p>
+            <p className="text-white/70 text-base font-body max-w-xl mx-auto italic">
+              Latinos represent nearly one in five Americans, with purchasing power exceeding $2.8 trillion by 2026.
+            </p>
+          </motion.div>
 
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="mt-12">
             <Link
               to="/quote"
-              className="group inline-flex items-center gap-3 px-10 py-4 rounded-2xl bg-white text-[#0079c2] font-['Josefin_Sans'] font-bold text-lg transition-all duration-300 hover:bg-[#00a651] hover:text-white hover:shadow-[0_15px_30px_rgba(0,0,0,0.2)] hover:-translate-y-1"
+              className="group inline-flex items-center gap-4 px-12 py-5 rounded-2xl bg-white text-[#00a651] font-['Josefin_Sans'] font-bold text-lg transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:-translate-y-1 active:scale-95"
             >
               Let's Talk
-              <div className="w-8 h-8 rounded-full bg-[#0079c2]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[#00a651] text-white transition-transform group-hover:translate-x-1">
+                <ArrowRight className="w-4 h-4" />
               </div>
             </Link>
           </motion.div>
