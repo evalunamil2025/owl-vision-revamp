@@ -27,7 +27,7 @@ const Community = () => {
 
   return (
     <section className="relative py-28 overflow-hidden bg-[#00a651]">
-      {/* Patrón de fondo orgánico para dar textura */}
+      {/* Background texture pattern */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <defs>
@@ -39,7 +39,7 @@ const Community = () => {
         </svg>
       </div>
 
-      {/* Luces ambientales para profundidad */}
+      {/* Ambient lights for depth */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/20 rounded-full blur-[120px]" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#0079c2]/30 rounded-full blur-[120px]" />
 
@@ -51,14 +51,14 @@ const Community = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          {/* Badge superior */}
+          {/* Top badge */}
           <motion.div
             variants={itemVariants}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-8"
           >
             <Languages className="w-4 h-4 text-white" />
             <span className="text-white font-['Josefin_Sans'] text-xs font-bold uppercase tracking-[0.2em]">
-              Orgullo Bilingüe
+              Bilingual Pride
             </span>
           </motion.div>
 
@@ -66,7 +66,7 @@ const Community = () => {
             variants={itemVariants}
             className="text-4xl md:text-6xl font-['Josefin_Sans'] font-bold mb-8 text-white tracking-tight"
           >
-            Nuestra Comunidad Hispana
+            Our Hispanic Community
           </motion.h2>
 
           <motion.div variants={itemVariants} className="max-w-3xl mx-auto space-y-6">
