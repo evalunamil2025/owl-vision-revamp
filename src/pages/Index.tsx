@@ -16,8 +16,8 @@ const Index = () => {
       <WhyChooseUs />
       <PersonalInsurance />
       <BusinessInsurance />
-      <Mission />
       <Community />
+      <Mission />
       <FinalCTA />
       <Footer />
     </div>
