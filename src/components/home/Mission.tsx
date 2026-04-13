@@ -2,7 +2,7 @@ import { motion, Variants } from "framer-motion";
 import mascot from "@/assets/owlie-mascot.png";
 
 const Mission = () => {
-  // Animaciones para el texto
+  // Text animations
   const containerVariants: Variants = {
     hidden: { opacity: 0, x: -20 },
     visible: {
@@ -14,12 +14,12 @@ const Mission = () => {
 
   return (
     <section className="relative py-24 bg-white overflow-hidden">
-      {/* Decoración de fondo sutil */}
+      {/* Subtle background decoration */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-[#f8fafc] -skew-x-12 translate-x-1/4 pointer-events-none" />
 
       <div className="container mx-auto max-w-6xl px-4 relative z-10">
         <div className="grid md:grid-cols-12 gap-12 items-center">
-          {/* Columna de Texto (Ocupa 7 de 12 columnas) */}
+          {/* Text Column (7 of 12 columns) */}
           <motion.div
             className="md:col-span-7"
             initial="hidden"
@@ -50,10 +50,10 @@ const Mission = () => {
             </div>
           </motion.div>
 
-          {/* Columna de Mascota (Ocupa 5 de 12 columnas) */}
+          {/* Mascot Column (5 of 12 columns) */}
           <div className="md:col-span-5 flex justify-center items-center">
             <div className="relative">
-              {/* Círculo de fondo con efecto Glow */}
+              {/* Background glow circle */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -61,7 +61,7 @@ const Mission = () => {
                 className="absolute inset-0 bg-gradient-to-br from-[#00a651]/10 to-[#0079c2]/10 rounded-full blur-2xl scale-110"
               />
 
-              {/* Contenedor de la mascota */}
+              {/* Mascot container */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -82,13 +82,13 @@ const Mission = () => {
                   }}
                 />
 
-                {/* Badge flotante decorativo */}
+                {/* Floating decorative badge */}
                 <div className="absolute -top-4 -right-4 w-14 h-14 bg-[#00a651] rounded-2xl flex items-center justify-center text-white shadow-lg rotate-12 group">
                   <span className="text-xl">✨</span>
                 </div>
               </motion.div>
 
-              {/* Elemento decorativo inferior */}
+              {/* Bottom decorative element */}
               <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-[#0079c2]/5 rounded-full -z-10 blur-xl" />
             </div>
           </div>

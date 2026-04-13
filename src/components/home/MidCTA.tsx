@@ -99,7 +99,7 @@ const MidCTA = () => {
               className="absolute -top-4 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:-left-6 md:top-0 z-20 bg-white rounded-2xl px-5 py-3 shadow-lg max-w-[230px] text-center"
             >
               <p className="text-sm font-semibold text-[#015093] font-['Josefin_Sans'] leading-snug">
-                ¿No sabes cuál necesitas? Yo te ayudo a descubrirlo 🦉
+                Not sure which one you need? I'll help you figure it out 🦉
               </p>
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 rounded-sm shadow-sm" />
             </motion.div>

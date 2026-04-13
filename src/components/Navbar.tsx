@@ -41,7 +41,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between h-20 lg:h-24 px-4">
         {/* Logo — large and imposing */}
         <Link to="/" className="flex-shrink-0">
-          <img src={logo} alt="Bringas Insurance Group" className="h-16 lg:h-20 w-auto" />
+          <img src={logo} alt="Bringas Insurance Group" className="h-10 lg:h-14 w-auto" />
         </Link>
 
         {/* Desktop Nav */}
