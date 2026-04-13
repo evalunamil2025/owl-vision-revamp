@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+        heading: ['"Josefin Sans"', 'system-ui', 'sans-serif'],
         body: ['"DM Sans"', 'system-ui', 'sans-serif'],
       },
       colors: {
@@ -53,12 +53,10 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         brand: {
-          navy: "hsl(var(--brand-navy))",
-          "navy-deep": "hsl(var(--brand-navy-deep))",
+          blue: "hsl(var(--brand-blue))",
+          "blue-deep": "hsl(var(--brand-blue-deep))",
           green: "hsl(var(--brand-green))",
-          "green-light": "hsl(var(--brand-green-light))",
-          warm: "hsl(var(--brand-warm))",
-          "warm-accent": "hsl(var(--brand-warm-accent))",
+          "green-deep": "hsl(var(--brand-green-deep))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
@@ -77,9 +75,9 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        'brand': '0 4px 6px -1px rgba(1, 80, 147, 0.04), 0 2px 4px -1px rgba(1, 80, 147, 0.03)',
-        'brand-lg': '0 20px 25px -5px rgba(1, 80, 147, 0.08), 0 10px 10px -5px rgba(1, 80, 147, 0.04)',
-        'brand-xl': '0 25px 50px -12px rgba(1, 80, 147, 0.12)',
+        'brand': '0 4px 12px rgba(0, 121, 194, 0.06)',
+        'brand-lg': '0 10px 20px rgba(0, 121, 194, 0.1)',
+        'brand-xl': '0 20px 40px rgba(0, 121, 194, 0.15)',
       },
       keyframes: {
         "accordion-down": {

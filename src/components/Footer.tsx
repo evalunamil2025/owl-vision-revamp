@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
-import logo from "@/assets/bringas-logo.png";
+import logo from "@/assets/bringas-insurance-logo.png";
 
 const personalLinks = [
   { label: "Auto Insurance", href: "/auto-insurance" },
@@ -29,25 +29,25 @@ const businessLinks = [
 
 const Footer = () => {
   return (
-    <footer className="gradient-navy text-primary-foreground">
+    <footer className="gradient-blue text-primary-foreground">
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="space-y-4">
             <img src={logo} alt="Bringas Insurance Group" className="h-16 w-auto brightness-0 invert" />
-            <p className="text-sm text-primary-foreground/70 leading-relaxed">
+            <p className="text-sm text-primary-foreground/70 font-body leading-relaxed">
               We Bring You Insurance Solutions. Your trusted independent insurance agency serving families and businesses.
             </p>
             <div className="flex items-center gap-2 text-sm text-primary-foreground/80">
-              <Phone className="w-4 h-4 text-accent-light flex-shrink-0" strokeWidth={1.8} />
+              <Phone className="w-4 h-4 text-accent-light flex-shrink-0" strokeWidth={2} />
               <a href="tel:+14254057111" className="hover:text-accent-light transition-colors duration-200">(425) 405-7111</a>
             </div>
             <div className="flex items-center gap-2 text-sm text-primary-foreground/80">
-              <Mail className="w-4 h-4 text-accent-light flex-shrink-0" strokeWidth={1.8} />
+              <Mail className="w-4 h-4 text-accent-light flex-shrink-0" strokeWidth={2} />
               <a href="mailto:info@bringasinsurance.com" className="hover:text-accent-light transition-colors duration-200">info@bringasinsurance.com</a>
             </div>
             <div className="flex items-start gap-2 text-sm text-primary-foreground/80">
-              <MapPin className="w-4 h-4 text-accent-light flex-shrink-0 mt-0.5" strokeWidth={1.8} />
+              <MapPin className="w-4 h-4 text-accent-light flex-shrink-0 mt-0.5" strokeWidth={2} />
               <span>Serving Washington State</span>
             </div>
           </div>
@@ -84,16 +84,16 @@ const Footer = () => {
               <li><Link to="/quote" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-200">Get a Quote</Link></li>
             </ul>
             <div className="mt-8">
-              <p className="text-xs text-primary-foreground/50">Hablamos Español</p>
-              <p className="text-xs text-primary-foreground/50 mt-1">Licensed in Washington State</p>
+              <p className="text-xs text-primary-foreground/50 font-body">Hablamos Español</p>
+              <p className="text-xs text-primary-foreground/50 font-body mt-1">Licensed in Washington State</p>
             </div>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-primary-foreground/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-primary-foreground/50">© {new Date().getFullYear()} Bringas Insurance Group by Raul's Insurance. All rights reserved.</p>
-          <p className="text-xs text-primary-foreground/50">We Bring You Insurance Solutions 🦉</p>
+          <p className="text-xs text-primary-foreground/50 font-body">© {new Date().getFullYear()} Bringas Insurance Group by Raul's Insurance. All rights reserved.</p>
+          <p className="text-xs text-primary-foreground/50 font-body">We Bring You Insurance Solutions 🦉</p>
         </div>
       </div>
     </footer>
