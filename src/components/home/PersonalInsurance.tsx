@@ -45,12 +45,13 @@ const PersonalInsurance = () => {
                 to={s.href}
                 className="group relative flex flex-col h-[320px] rounded-3xl overflow-hidden bg-slate-100 shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,121,194,0.15)] transition-all duration-500"
               >
-                {/* Imagen de Fondo (Unsplash dinámico) */}
+                {/* Imagen de Fondo */}
                 <div className="absolute inset-0">
                   <img
-                    src={`https://source.unsplash.com/featured/?${s.label.replace(/\s+/g, ",")},family,insurance`}
+                    src={s.image}
                     alt={s.label}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
                   />
                   {/* Overlay Gradiente Profundo */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#005296]/95 via-[#005296]/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
