@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,24 +7,24 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 210 29% 24%;
+    --foreground: 216 28% 17%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 29% 24%;
+    --card-foreground: 216 28% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 29% 24%;
+    --popover-foreground: 216 28% 17%;
 
-    --primary: 209 98% 29%;
+    --primary: 204 100% 38%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 152 99% 28%;
+    --secondary: 152 100% 33%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 14% 96%;
+    --muted: 210 20% 98%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 152 99% 28%;
+    --accent: 152 100% 33%;
     --accent-foreground: 0 0% 100%;
 
     --accent-light: 152 100% 33%;
@@ -34,33 +34,37 @@
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 209 98% 29%;
+    --ring: 204 100% 38%;
 
     --radius: 0.75rem;
 
     /* Brand tokens */
-    --brand-navy: 209 98% 29%;
-    --brand-navy-deep: 210 29% 24%;
-    --brand-green: 152 99% 28%;
-    --brand-green-light: 152 100% 33%;
-    --brand-warm: 220 14% 96%;
-    --brand-warm-accent: 35 60% 50%;
+    --brand-blue: 204 100% 38%;
+    --brand-blue-deep: 210 100% 29%;
+    --brand-green: 152 100% 33%;
+    --brand-green-deep: 155 100% 28%;
+
+    /* Gradient endpoints */
+    --grad-blue-from: 210 100% 29%;
+    --grad-blue-to: 204 100% 37%;
+    --grad-green-from: 155 100% 28%;
+    --grad-green-to: 152 100% 33%;
 
     /* Body text */
     --body-text: 215 25% 27%;
 
     /* Card shadows */
-    --shadow-card: 0 4px 6px -1px rgba(1, 80, 147, 0.04), 0 2px 4px -1px rgba(1, 80, 147, 0.03);
-    --shadow-card-hover: 0 20px 25px -5px rgba(1, 80, 147, 0.08), 0 10px 10px -5px rgba(1, 80, 147, 0.04);
+    --shadow-card: 0 10px 20px rgba(0, 121, 194, 0.08);
+    --shadow-card-hover: 0 20px 40px rgba(0, 121, 194, 0.15);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 209 98% 29%;
+    --sidebar-primary: 204 100% 38%;
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 209 98% 29%;
+    --sidebar-ring: 204 100% 38%;
   }
 
   .dark {
@@ -70,28 +74,28 @@
     --card-foreground: 0 0% 98%;
     --popover: 213 73% 12%;
     --popover-foreground: 0 0% 98%;
-    --primary: 209 98% 29%;
+    --primary: 204 100% 38%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 152 99% 28%;
+    --secondary: 152 100% 33%;
     --secondary-foreground: 0 0% 100%;
     --muted: 213 50% 18%;
     --muted-foreground: 210 20% 65%;
-    --accent: 152 99% 28%;
+    --accent: 152 100% 33%;
     --accent-foreground: 0 0% 98%;
     --accent-light: 152 100% 33%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
     --border: 213 50% 20%;
     --input: 213 50% 20%;
-    --ring: 209 98% 29%;
+    --ring: 204 100% 38%;
     --sidebar-background: 213 73% 10%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 152 99% 28%;
+    --sidebar-primary: 152 100% 33%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 213 50% 15%;
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 213 50% 20%;
-    --sidebar-ring: 152 99% 28%;
+    --sidebar-ring: 152 100% 33%;
   }
 }
 
@@ -116,33 +120,35 @@
     @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
   }
 
-  .gradient-navy {
-    background: linear-gradient(135deg, hsl(var(--brand-navy)) 0%, hsl(var(--brand-navy-deep)) 100%);
+  /* Gradients */
+  .gradient-blue {
+    background: linear-gradient(135deg, hsl(var(--grad-blue-from)) 0%, hsl(var(--grad-blue-to)) 100%);
   }
 
   .gradient-green {
-    background: linear-gradient(135deg, hsl(var(--brand-green)) 0%, hsl(var(--brand-green-light)) 100%);
+    background: linear-gradient(135deg, hsl(var(--grad-green-from)) 0%, hsl(var(--grad-green-to)) 100%);
   }
 
   .text-gradient-brand {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--brand-navy)) 0%, hsl(var(--brand-green)) 100%);
+    background-image: linear-gradient(135deg, hsl(var(--brand-blue)) 0%, hsl(var(--brand-green)) 100%);
   }
 
-  /* Elevated card with brand shadow and green top border */
+  /* Elevated card with bottom gradient border */
   .elevated-card {
-    @apply bg-card rounded-2xl border border-border/60 relative overflow-hidden;
+    @apply bg-card rounded-2xl relative overflow-hidden;
+    border: 1px solid hsl(var(--border) / 0.6);
     box-shadow: var(--shadow-card);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .elevated-card::before {
+  .elevated-card::after {
     content: '';
-    @apply absolute top-0 left-0 right-0 h-[3px];
-    background: hsl(var(--brand-green));
+    @apply absolute bottom-0 left-0 right-0 h-[3px];
+    background: linear-gradient(90deg, hsl(var(--grad-blue-from)), hsl(var(--grad-blue-to)));
   }
   .elevated-card:hover {
     box-shadow: var(--shadow-card-hover);
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY(-4px);
   }
 
   /* Glass card (legacy compat) */
@@ -153,31 +159,31 @@
 
   /* Icon container with green tint */
   .icon-circle {
-    @apply w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0;
-    background: hsl(var(--brand-green) / 0.08);
+    @apply w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0;
+    background: linear-gradient(135deg, hsl(var(--grad-green-from) / 0.15), hsl(var(--grad-green-to) / 0.2));
     color: hsl(var(--brand-green));
   }
   .icon-circle-sm {
-    @apply w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0;
-    background: hsl(var(--brand-green) / 0.08);
+    @apply w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0;
+    background: linear-gradient(135deg, hsl(var(--grad-green-from) / 0.15), hsl(var(--grad-green-to) / 0.2));
     color: hsl(var(--brand-green));
   }
 
-  /* Btn primary: navy bg, green hover */
+  /* Btn primary: green gradient */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-heading font-semibold transition-all duration-300;
-    background: hsl(var(--primary));
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-heading font-bold transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--grad-green-from)), hsl(var(--grad-green-to)));
     color: hsl(var(--primary-foreground));
   }
   .btn-primary:hover {
-    background: hsl(var(--brand-green));
-    box-shadow: 0 10px 25px -5px hsl(var(--brand-green) / 0.35);
+    background: linear-gradient(315deg, hsl(var(--grad-green-from)), hsl(var(--grad-green-to)));
+    box-shadow: 0 10px 25px -5px hsl(var(--brand-green) / 0.4);
     transform: translateY(-2px);
   }
 
-  /* Btn outline: navy border, navy fill hover */
+  /* Btn outline: blue gradient border */
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-heading font-medium transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-heading font-semibold transition-all duration-300;
     border: 2px solid hsl(var(--primary));
     color: hsl(var(--primary));
     background: transparent;
@@ -190,13 +196,13 @@
 
   /* Section alternation bg */
   .section-alt {
-    background: hsl(var(--muted));
+    background: hsl(210 20% 98%);
   }
 
   /* Owl eye pattern */
   .owl-pattern {
-    background-image: radial-gradient(circle at 30% 50%, hsl(var(--brand-navy) / 0.03) 8px, transparent 8px),
-                       radial-gradient(circle at 70% 50%, hsl(var(--brand-navy) / 0.03) 8px, transparent 8px);
+    background-image: radial-gradient(circle at 30% 50%, hsl(var(--brand-blue) / 0.04) 8px, transparent 8px),
+                       radial-gradient(circle at 70% 50%, hsl(var(--brand-blue) / 0.04) 8px, transparent 8px);
     background-size: 120px 80px;
   }
 }
