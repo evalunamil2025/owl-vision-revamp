@@ -51,17 +51,17 @@ const Index = () => {
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-foreground/10 text-sm font-medium text-primary-foreground/80 mb-6">
                 🦉 Independent Insurance Agency
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-6">
-                Insurance that <span className="text-brand-green-light">protects</span> what you love
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold leading-tight mb-6 text-white">
+                Insurance that <span className="text-accent-light">protects</span> what you love
               </h1>
               <p className="text-lg text-primary-foreground/75 leading-relaxed mb-8 max-w-lg">
                 Family • Home • Auto • Business — We compare multiple carriers to bring you the coverage that truly fits your life. No boring paperwork, just real solutions.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link to="/quote" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-secondary text-secondary-foreground font-heading font-semibold transition-all hover:shadow-lg hover:shadow-secondary/30 hover:-translate-y-0.5">
+                <Link to="/quote" className="btn-primary">
                   Get Your Free Quote <ArrowRight className="w-4 h-4" />
                 </Link>
-                <a href="tel:+14254057111" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-primary-foreground/30 text-primary-foreground font-heading font-medium hover:bg-primary-foreground/10 transition-all">
+                <a href="tel:+14254057111" className="btn-outline border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
                   <Phone className="w-4 h-4" /> (425) 405-7111
                 </a>
               </div>
@@ -74,21 +74,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="section-padding bg-brand-warm">
+      {/* Why Choose Us — alternating bg */}
+      <section className="section-padding section-alt">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-3">Why Choose Bringas?</h2>
+            <h2 className="text-3xl sm:text-4xl font-heading font-extrabold mb-3">Why Choose Bringas?</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">We take your peace of mind seriously — but we don't believe the process should be boring.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {whyUs.map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="glass-card p-6 text-center hover:shadow-lg transition-shadow group">
-                <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  <item.icon className="w-6 h-6" />
+                className="elevated-card p-6 text-center group">
+                <div className="icon-circle mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <item.icon className="w-6 h-6" strokeWidth={1.8} />
                 </div>
-                <h3 className="font-heading font-semibold text-foreground mb-2">{item.title}</h3>
+                <h3 className="font-heading font-bold mb-2">{item.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
@@ -96,22 +96,22 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Personal Insurance Services */}
+      {/* Personal Insurance Services — white bg */}
       <section className="section-padding">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-10">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-3">Personal Insurance</h2>
+            <h2 className="text-3xl sm:text-4xl font-heading font-extrabold mb-3">Personal Insurance</h2>
             <p className="text-muted-foreground max-w-xl">Coverage designed to protect you, your family, and everything you've built.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {personalServices.map((s, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
-                <Link to={s.href} className="glass-card p-5 flex items-start gap-4 hover:shadow-lg hover:-translate-y-0.5 transition-all group block">
-                  <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <s.icon className="w-5 h-5" />
+                <Link to={s.href} className="elevated-card p-5 flex items-start gap-4 group block">
+                  <div className="icon-circle-sm group-hover:scale-110 transition-transform duration-300">
+                    <s.icon className="w-5 h-5" strokeWidth={1.8} />
                   </div>
                   <div>
-                    <h3 className="font-heading font-semibold text-foreground text-sm mb-1">{s.label}</h3>
+                    <h3 className="font-heading font-bold text-sm mb-1">{s.label}</h3>
                     <p className="text-xs text-muted-foreground">{s.desc}</p>
                   </div>
                 </Link>
@@ -121,21 +121,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Business Insurance Services */}
-      <section className="section-padding bg-muted/50">
+      {/* Business Insurance Services — alt bg */}
+      <section className="section-padding section-alt">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-10">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-3">Business Insurance</h2>
+            <h2 className="text-3xl sm:text-4xl font-heading font-extrabold mb-3">Business Insurance</h2>
             <p className="text-muted-foreground max-w-xl">Your business is your project — we make sure it's properly protected.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {businessServices.map((s, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
-                <Link to={s.href} className="glass-card p-5 text-center hover:shadow-lg hover:-translate-y-0.5 transition-all group block">
-                  <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center mx-auto mb-3 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <s.icon className="w-5 h-5" />
+                <Link to={s.href} className="elevated-card p-5 text-center group block">
+                  <div className="icon-circle mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <s.icon className="w-5 h-5" strokeWidth={1.8} />
                   </div>
-                  <h3 className="font-heading font-semibold text-foreground text-sm mb-1">{s.label}</h3>
+                  <h3 className="font-heading font-bold text-sm mb-1">{s.label}</h3>
                   <p className="text-xs text-muted-foreground">{s.desc}</p>
                 </Link>
               </motion.div>
@@ -144,12 +144,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Mission */}
+      {/* Mission — white bg */}
       <section className="section-padding">
         <div className="container mx-auto max-w-4xl">
           <div className="grid md:grid-cols-5 gap-10 items-center">
             <div className="md:col-span-3">
-              <h2 className="text-3xl font-heading font-bold text-foreground mb-4">Our Mission</h2>
+              <h2 className="text-3xl font-heading font-extrabold mb-4">Our Mission</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 We take your peace of mind very seriously, but we don't believe the process of getting insured should be boring. Our goal is for you to feel safe and smile at the same time.
               </p>
@@ -159,7 +159,7 @@ const Index = () => {
             </div>
             <div className="md:col-span-2 flex justify-center">
               <div className="relative">
-                <div className="absolute -inset-4 bg-accent rounded-3xl -rotate-3" />
+                <div className="absolute -inset-4 rounded-3xl -rotate-3" style={{ background: 'hsl(152 99% 28% / 0.08)' }} />
                 <img src={mascot} alt="Owlie mascot" className="relative w-48 md:w-56" />
               </div>
             </div>
@@ -167,34 +167,34 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Hispanic Community */}
+      {/* Hispanic Community — gradient green */}
       <section className="gradient-green text-secondary-foreground section-padding">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">Nuestra Comunidad Hispana</h2>
+          <h2 className="text-3xl sm:text-4xl font-heading font-extrabold mb-4 text-white">Nuestra Comunidad Hispana</h2>
           <p className="text-secondary-foreground/80 leading-relaxed max-w-2xl mx-auto mb-6">
             We're bilingual and understand that serving the Hispanic community requires authenticity and warmth. We communicate with respect and joy in both Spanish and English, so you feel at home.
           </p>
           <p className="text-sm text-secondary-foreground/60 mb-8">
             Latinos represent nearly one in five Americans, with purchasing power exceeding $2.8 trillion by 2026.
           </p>
-          <Link to="/quote" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-card text-foreground font-heading font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all">
+          <Link to="/quote" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-card font-heading font-semibold transition-all duration-300 hover:shadow-brand-lg hover:-translate-y-0.5 text-primary">
             Let's Talk <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="section-padding">
+      {/* Final CTA — navy bg */}
+      <section className="gradient-navy text-primary-foreground section-padding">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-4">Ready to Get Started?</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto mb-8">
+          <h2 className="text-3xl sm:text-4xl font-heading font-extrabold mb-4 text-white">Ready to Get Started?</h2>
+          <p className="text-primary-foreground/75 max-w-xl mx-auto mb-8">
             The first step to protecting what you love is simpler than you think. Call us or send a message — we promise to explain everything without jargon and, if possible, with a smile.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/quote" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-primary text-primary-foreground font-heading font-semibold hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 transition-all">
+            <Link to="/quote" className="btn-primary">
               Get Your Free Quote <ArrowRight className="w-4 h-4" />
             </Link>
-            <a href="tel:+14254057111" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl border-2 border-primary text-primary font-heading font-medium hover:bg-primary hover:text-primary-foreground transition-all">
+            <a href="tel:+14254057111" className="btn-outline border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
               <Phone className="w-4 h-4" /> (425) 405-7111
             </a>
           </div>

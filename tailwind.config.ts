@@ -42,6 +42,7 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          light: "hsl(var(--accent-light))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -74,6 +75,11 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        'brand': '0 4px 6px -1px rgba(1, 80, 147, 0.04), 0 2px 4px -1px rgba(1, 80, 147, 0.03)',
+        'brand-lg': '0 20px 25px -5px rgba(1, 80, 147, 0.08), 0 10px 10px -5px rgba(1, 80, 147, 0.04)',
+        'brand-xl': '0 25px 50px -12px rgba(1, 80, 147, 0.12)',
       },
       keyframes: {
         "accordion-down": {

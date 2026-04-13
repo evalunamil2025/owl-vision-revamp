@@ -6,52 +6,61 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 213 73% 12%;
+    --background: 0 0% 100%;
+    --foreground: 210 29% 24%;
 
     --card: 0 0% 100%;
-    --card-foreground: 213 73% 12%;
+    --card-foreground: 210 29% 24%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 213 73% 12%;
+    --popover-foreground: 210 29% 24%;
 
-    --primary: 209 85% 28%;
+    --primary: 209 98% 29%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 152 72% 30%;
+    --secondary: 152 99% 28%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 20% 94%;
-    --muted-foreground: 213 20% 45%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 209 85% 95%;
-    --accent-foreground: 209 85% 28%;
+    --accent: 152 99% 28%;
+    --accent-foreground: 0 0% 100%;
+
+    --accent-light: 152 100% 33%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
-    --ring: 209 85% 28%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 209 98% 29%;
 
     --radius: 0.75rem;
 
     /* Brand tokens */
-    --brand-navy: 209 85% 28%;
-    --brand-navy-deep: 213 73% 14%;
-    --brand-green: 152 72% 30%;
-    --brand-green-light: 152 50% 45%;
-    --brand-warm: 35 30% 96%;
+    --brand-navy: 209 98% 29%;
+    --brand-navy-deep: 210 29% 24%;
+    --brand-green: 152 99% 28%;
+    --brand-green-light: 152 100% 33%;
+    --brand-warm: 220 14% 96%;
     --brand-warm-accent: 35 60% 50%;
+
+    /* Body text */
+    --body-text: 215 25% 27%;
+
+    /* Card shadows */
+    --shadow-card: 0 4px 6px -1px rgba(1, 80, 147, 0.04), 0 2px 4px -1px rgba(1, 80, 147, 0.03);
+    --shadow-card-hover: 0 20px 25px -5px rgba(1, 80, 147, 0.08), 0 10px 10px -5px rgba(1, 80, 147, 0.04);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 209 85% 28%;
+    --sidebar-primary: 209 98% 29%;
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 209 85% 28%;
+    --sidebar-ring: 209 98% 29%;
   }
 
   .dark {
@@ -61,27 +70,28 @@
     --card-foreground: 0 0% 98%;
     --popover: 213 73% 12%;
     --popover-foreground: 0 0% 98%;
-    --primary: 152 72% 40%;
+    --primary: 209 98% 29%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 209 85% 45%;
+    --secondary: 152 99% 28%;
     --secondary-foreground: 0 0% 100%;
     --muted: 213 50% 18%;
     --muted-foreground: 210 20% 65%;
-    --accent: 213 50% 20%;
+    --accent: 152 99% 28%;
     --accent-foreground: 0 0% 98%;
+    --accent-light: 152 100% 33%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
     --border: 213 50% 20%;
     --input: 213 50% 20%;
-    --ring: 152 72% 40%;
+    --ring: 209 98% 29%;
     --sidebar-background: 213 73% 10%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 152 72% 40%;
+    --sidebar-primary: 152 99% 28%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 213 50% 15%;
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 213 50% 20%;
-    --sidebar-ring: 152 72% 40%;
+    --sidebar-ring: 152 99% 28%;
   }
 }
 
@@ -91,11 +101,13 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body antialiased;
+    @apply bg-background font-body antialiased;
+    color: hsl(var(--body-text));
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
+    color: hsl(var(--primary));
   }
 }
 
@@ -117,11 +129,71 @@
     background-image: linear-gradient(135deg, hsl(var(--brand-navy)) 0%, hsl(var(--brand-green)) 100%);
   }
 
-  .glass-card {
-    @apply bg-card/90 backdrop-blur-md border border-border/40 rounded-2xl shadow-md;
+  /* Elevated card with brand shadow and green top border */
+  .elevated-card {
+    @apply bg-card rounded-2xl border border-border/60 relative overflow-hidden;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .elevated-card::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-[3px];
+    background: hsl(var(--brand-green));
+  }
+  .elevated-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px) scale(1.02);
   }
 
-  /* Owl eye pattern for decorative backgrounds */
+  /* Glass card (legacy compat) */
+  .glass-card {
+    @apply bg-card rounded-2xl border border-border/60 relative overflow-hidden;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Icon container with green tint */
+  .icon-circle {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0;
+    background: hsl(var(--brand-green) / 0.08);
+    color: hsl(var(--brand-green));
+  }
+  .icon-circle-sm {
+    @apply w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0;
+    background: hsl(var(--brand-green) / 0.08);
+    color: hsl(var(--brand-green));
+  }
+
+  /* Btn primary: navy bg, green hover */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-heading font-semibold transition-all duration-300;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+  .btn-primary:hover {
+    background: hsl(var(--brand-green));
+    box-shadow: 0 10px 25px -5px hsl(var(--brand-green) / 0.35);
+    transform: translateY(-2px);
+  }
+
+  /* Btn outline: navy border, navy fill hover */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-heading font-medium transition-all duration-300;
+    border: 2px solid hsl(var(--primary));
+    color: hsl(var(--primary));
+    background: transparent;
+  }
+  .btn-outline:hover {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    transform: translateY(-1px);
+  }
+
+  /* Section alternation bg */
+  .section-alt {
+    background: hsl(var(--muted));
+  }
+
+  /* Owl eye pattern */
   .owl-pattern {
     background-image: radial-gradient(circle at 30% 50%, hsl(var(--brand-navy) / 0.03) 8px, transparent 8px),
                        radial-gradient(circle at 70% 50%, hsl(var(--brand-navy) / 0.03) 8px, transparent 8px);
