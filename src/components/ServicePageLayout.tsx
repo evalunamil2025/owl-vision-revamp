@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Phone, Shield } from "lucide-react";
+import { ArrowRight, Phone, Shield, Sparkles, CheckCircle2 } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import heroBg from "@/assets/seattle-hero-bg.jpg";
 
 interface CoverageItem {
   title: string;
@@ -39,113 +40,259 @@ const ServicePageLayout = ({
   additionalSections,
 }: ServicePageLayoutProps) => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Navbar />
 
-      {/* Hero */}
-      <section className="gradient-blue text-primary-foreground section-padding relative overflow-hidden">
-        <div className="absolute inset-0 owl-pattern opacity-30" />
-        <div className="container mx-auto relative z-10 max-w-4xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="flex items-center gap-2 mb-4">
-              <Shield className="w-5 h-5 text-accent-light" strokeWidth={2} />
-              <span className="text-sm font-heading font-semibold text-primary-foreground/70 uppercase tracking-wider">Bringas Insurance Group</span>
+      {/* ─── HERO (Aquos Style) ─── */}
+      <section className="relative pt-32 pb-48 overflow-hidden bg-[#015093]">
+        <div className="absolute inset-0 z-0">
+          <img src={heroBg} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#015093]/95 via-[#015093]/90 to-[#0079c2]/80 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-[#001e2b]/30" />
+        </div>
+
+        {/* Decorative glow */}
+        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#00a651]/15 rounded-full blur-[120px] animate-pulse z-0" />
+
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8">
+              <Sparkles className="w-4 h-4 text-[#00a651]" />
+              <span className="text-[10px] font-black tracking-[0.4em] text-white uppercase font-heading">
+                Bringas Insurance Group
+              </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4 text-white">{title}</h1>
-            <p className="text-lg sm:text-xl text-primary-foreground/80 font-heading font-medium mb-4">{subtitle}</p>
-            <p className="text-primary-foreground/70 font-body leading-relaxed max-w-2xl">{heroDescription}</p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link to="/quote" className="btn-primary">
-                Get a Quote <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a href="tel:+14254057111" className="btn-outline border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
-                <Phone className="w-4 h-4" strokeWidth={2} /> (425) 405-7111
-              </a>
-            </div>
+
+            <h1 className="text-5xl md:text-7xl lg:text-[5rem] font-bold text-white tracking-tighter leading-[0.9] mb-8 font-heading">
+              {title}
+              <br />
+              <span className="text-[#00a651] font-light italic text-3xl md:text-5xl">{subtitle}</span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-white/90 font-body font-light max-w-2xl mx-auto leading-relaxed">
+              {heroDescription}
+            </p>
           </motion.div>
+        </div>
+
+        {/* SVG Wave divisor */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] transform rotate-180 z-10">
+          <svg className="relative block w-full h-[80px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V120C0,120,321.39,56.44,321.39,56.44Z"
+              fill="#ffffff"
+            />
+          </svg>
         </div>
       </section>
 
-      {/* Coverages */}
-      <section className="section-padding">
-        <div className="container mx-auto max-w-5xl">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-10">What's Covered?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {coverages.map((c, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="elevated-card p-6 group">
-                <h3 className="text-lg font-heading font-bold text-primary mb-2">{c.title}</h3>
-                <p className="text-sm text-muted-foreground font-body mb-3">{c.description}</p>
-                {c.items && (
-                  <ul className="space-y-1.5">
-                    {c.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-2 text-sm text-foreground font-body">
-                        <span className="w-1.5 h-1.5 rounded-full bg-secondary mt-1.5 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </motion.div>
-            ))}
+      {/* ─── CTA CARDS (Floating over hero) ─── */}
+      <section className="pb-24 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-6 -translate-y-24 relative z-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="bg-white p-8 rounded-[2.5rem] border border-[#0079c2]/10 shadow-xl shadow-[#0079c2]/5 flex flex-col items-center text-center group hover:scale-105 transition-all"
+            >
+              <div className="w-14 h-14 bg-[#00a651]/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#0079c2] transition-colors">
+                <Shield className="w-6 h-6 text-[#00a651] group-hover:text-white transition-colors" />
+              </div>
+              <p className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 mb-1 font-heading">
+                Get Protected
+              </p>
+              <Link to="/quote" className="text-[#015093] font-bold font-body hover:text-[#00a651] transition-colors">
+                Request a Free Quote →
+              </Link>
+            </motion.div>
+
+            <motion.a
+              href="tel:+14254057111"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="bg-white p-8 rounded-[2.5rem] border border-[#0079c2]/10 shadow-xl shadow-[#0079c2]/5 flex flex-col items-center text-center group hover:scale-105 transition-all"
+            >
+              <div className="w-14 h-14 bg-[#00a651]/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#0079c2] transition-colors">
+                <Phone className="w-6 h-6 text-[#00a651] group-hover:text-white transition-colors" />
+              </div>
+              <p className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 mb-1 font-heading">
+                Call Us Now
+              </p>
+              <p className="text-[#015093] font-bold font-body">(425) 405-7111</p>
+            </motion.a>
+          </div>
+
+          {/* ─── COVERAGES GRID ─── */}
+          <div className="max-w-5xl mx-auto">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-[#015093]/5 rounded-xl flex items-center justify-center">
+                <Shield className="w-5 h-5 text-[#0079c2]" />
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 font-heading">
+                Coverage Details
+              </span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-[#015093] tracking-tight mb-12 font-heading">
+              What's <span className="text-[#00a651]">Covered?</span>
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {coverages.map((c, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="bg-white p-8 rounded-[2.5rem] border border-[#0079c2]/5 shadow-xl shadow-[#0079c2]/5 group hover:scale-[1.02] transition-all"
+                >
+                  <div className="w-12 h-12 bg-[#00a651]/10 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-[#015093] transition-colors">
+                    <CheckCircle2 className="w-6 h-6 text-[#00a651] group-hover:text-white transition-colors" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#015093] mb-2 font-heading">{c.title}</h3>
+                  <p className="text-sm text-[#015093]/70 font-body mb-3 leading-relaxed">{c.description}</p>
+                  {c.items && (
+                    <ul className="space-y-2">
+                      {c.items.map((item, j) => (
+                        <li key={j} className="flex items-start gap-2 text-sm text-[#015093]/80 font-body">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#00a651] mt-1.5 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {additionalSections}
 
-      {/* Important Note */}
+      {/* ─── IMPORTANT NOTE ─── */}
       {importantNote && (
-        <section className="section-padding section-alt">
-          <div className="container mx-auto max-w-3xl">
-            <div className="elevated-card p-8 border-l-4 border-l-secondary">
-              <h3 className="text-xl font-heading font-bold text-primary mb-3">{importantNote.title}</h3>
-              <p className="text-muted-foreground font-body leading-relaxed mb-4">{importantNote.content}</p>
-              {importantNote.items && (
-                <ul className="space-y-2">
-                  {importantNote.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-foreground font-body">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+        <section className="py-24 bg-[#f8fafb]">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mx-auto bg-white p-10 md:p-14 rounded-[3rem] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.06)] border border-[#0079c2]/10 relative overflow-hidden"
+            >
+              {/* Glow */}
+              <div className="absolute top-[-30%] right-[-20%] w-64 h-64 bg-[#00a651]/10 rounded-full blur-[80px]" />
+
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 bg-[#00a651]/10 rounded-xl flex items-center justify-center">
+                    <Sparkles className="w-5 h-5 text-[#00a651]" />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 font-heading">
+                    Important
+                  </span>
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-bold text-[#015093] tracking-tight mb-4 font-heading">
+                  {importantNote.title}
+                </h3>
+                <p className="text-[#015093]/70 font-body leading-relaxed mb-6">{importantNote.content}</p>
+
+                {importantNote.items && (
+                  <ul className="space-y-3">
+                    {importantNote.items.map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-sm text-[#015093]/80 font-body">
+                        <span className="w-2 h-2 rounded-full bg-[#00a651] mt-1.5 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </motion.div>
           </div>
         </section>
       )}
 
-      {/* Our Approach */}
+      {/* ─── OUR APPROACH ─── */}
       {approach && (
-        <section className="section-padding">
-          <div className="container mx-auto max-w-3xl text-center">
-            <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4">Our Approach</h2>
-            <p className="text-muted-foreground font-body mb-6">{approach.intro}</p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <section className="py-24 bg-white">
+          <div className="container mx-auto px-6 max-w-5xl">
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#015093] font-heading mb-4 tracking-tight">
+                Our <span className="text-[#00a651]">Approach</span>
+              </h2>
+              <p className="text-[#015093]/60 font-body text-lg">{approach.intro}</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
               {approach.items.map((item, i) => (
-                <div key={i} className="elevated-card p-5 text-center">
-                  <p className="text-sm font-heading font-semibold text-foreground">{item}</p>
-                </div>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="bg-white p-10 rounded-[2.5rem] border border-[#0079c2]/5 shadow-xl shadow-[#0079c2]/5 flex flex-col items-center text-center group hover:scale-105 transition-all"
+                >
+                  <div className="w-14 h-14 bg-[#015093]/5 rounded-3xl flex items-center justify-center mb-6 group-hover:bg-[#015093] transition-colors">
+                    <span className="text-2xl font-bold text-[#0079c2] group-hover:text-white transition-colors font-heading">
+                      {i + 1}
+                    </span>
+                  </div>
+                  <p className="text-sm font-bold text-[#015093] font-heading">{item}</p>
+                </motion.div>
               ))}
             </div>
-            {approach.closing && <p className="mt-6 text-muted-foreground font-body italic">{approach.closing}</p>}
+
+            {approach.closing && (
+              <p className="mt-12 text-center text-[#015093]/60 font-body italic text-lg max-w-2xl mx-auto">
+                {approach.closing}
+              </p>
+            )}
           </div>
         </section>
       )}
 
-      {/* Final CTA */}
-      <section className="gradient-blue text-primary-foreground section-padding">
-        <div className="container mx-auto max-w-3xl text-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 text-white">Ready to Protect What Matters?</h2>
-          <p className="text-primary-foreground/75 font-body mb-8">As an independent agency, we compare multiple carriers to find the best coverage for your needs.</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/quote" className="btn-primary">
-              Get Your Free Quote <ArrowRight className="w-4 h-4" />
-            </Link>
-            <a href="tel:+14254057111" className="btn-outline border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
-              <Phone className="w-4 h-4" strokeWidth={2} /> Call Us
-            </a>
+      {/* ─── FINAL CTA (Aquos Style) ─── */}
+      <section className="pb-24 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="bg-gradient-to-br from-[#015093] to-[#003f5e] rounded-[4rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+            {/* Decorative glows */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#00a651]/10 blur-[80px] rounded-full" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#0079c2]/10 blur-[60px] rounded-full" />
+
+            <div className="relative z-10 max-w-3xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter mb-8 leading-[0.95] font-heading">
+                Ready to protect <br /> <span className="text-[#00a651]">what matters most?</span>
+              </h2>
+              <p className="text-white text-lg font-body font-light mb-12 max-w-2xl mx-auto leading-relaxed">
+                As an independent agency, we compare multiple carriers to find the best coverage for your needs.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-5 justify-center">
+                <Link
+                  to="/quote"
+                  className="px-12 py-6 bg-[#00a651] text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-[#00a651]/30 hover:bg-white hover:text-[#015093] transition-all flex items-center justify-center gap-2 group"
+                >
+                  Get Your Free Quote
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <a
+                  href="tel:+14254057111"
+                  className="px-12 py-6 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-white/20 transition-colors flex items-center justify-center gap-2"
+                >
+                  <Phone className="w-4 h-4 text-[#00a651]" /> (425) 405-7111
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
