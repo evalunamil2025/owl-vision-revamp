@@ -31,20 +31,20 @@ const Contact = () => {
 
   const socialLinks = [
     {
-      icon: Facebook,
+      icon: FacebookIcon,
       label: "Facebook",
       handle: "/BringasInsurance",
       url: "https://www.facebook.com/Bringas-Insurance-111132600590435/?modal=admin_todo_tour",
     },
     {
-      icon: Linkedin,
+      icon: LinkedinIcon,
       label: "LinkedIn",
       handle: "@bringas-insurance",
       url: "https://www.linkedin.com/in/bringas-insurance-54111bb1/",
     },
-    { icon: Twitter, label: "Twitter", handle: "@BringasIns", url: "https://twitter.com/BringasIns" },
+    { icon: TwitterIcon, label: "Twitter", handle: "@BringasIns", url: "https://twitter.com/BringasIns" },
     {
-      icon: Instagram,
+      icon: InstagramIcon,
       label: "Instagram",
       handle: "@bringas_insurance",
       url: "https://www.instagram.com/bringas_insurance_group/",
@@ -53,9 +53,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Helmet>
-        <title>Contact | Bringas Insurance Group</title>
-      </Helmet>
+      <title>Contact | Bringas Insurance Group</title>
 
       <Navbar />
 
