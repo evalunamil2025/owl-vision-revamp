@@ -14,9 +14,7 @@ const Index = () => {
       <Navbar />
       <Hero />
       <WhyChooseUs />
-      <PersonalInsurance />
-      <MidCTA />
-      <BusinessInsurance />
+      <UnifiedServices />
       <Community />
       <Mission />
       <FinalCTA />
