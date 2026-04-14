@@ -1,87 +1,95 @@
-import { motion, Variants } from "framer-motion";
-import { ShieldCheck, Target, Heart } from "lucide-react"; // Usaremos iconos sutiles en lugar de mascota
+import { motion } from "framer-motion";
+import { Quote } from "lucide-react";
 
 const Mission = () => {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-    },
-  };
-
   return (
     <section className="relative py-32 bg-white overflow-hidden">
-      {/* --- Elementos Decorativos de Fondo --- */}
-      {/* Grid de puntos (Patrón sutil) */}
-      <div className="absolute inset-0 [background-image:radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:32px_32px] opacity-40" />
+      {/* --- Detalles Decorativos --- */}
+      {/* Círculos de gradiente sutiles en los extremos para dar profundidad */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-slate-50 to-transparent rounded-full blur-3xl -z-10 opacity-60" />
 
-      {/* Bloque geométrico lateral */}
-      <div className="absolute top-0 right-0 w-1/4 h-full bg-[#f8fafc] -skew-x-6 translate-x-1/3 pointer-events-none border-l border-slate-100" />
+      {/* Acentos de líneas minimalistas */}
+      <div className="absolute top-20 left-10 w-20 h-20 border-t-2 border-l-2 border-[#00a651]/10 rounded-tl-3xl hidden lg:block" />
+      <div className="absolute bottom-20 right-10 w-20 h-20 border-b-2 border-r-2 border-[#015093]/10 rounded-br-3xl hidden lg:block" />
 
-      {/* Círculo de desenfoque sutil */}
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#00a651]/5 rounded-full blur-[100px]" />
+      <div className="container mx-auto max-w-4xl px-6 relative z-10 text-center">
+        {/* Badge Superior */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#f8fafc] border border-slate-100 mb-10"
+        >
+          <span className="w-2 h-2 rounded-full bg-[#00a651] animate-pulse" />
+          <span className="text-[#015093] font-heading font-black uppercase tracking-[0.3em] text-[10px]">
+            About Our Essence
+          </span>
+        </motion.div>
 
-      <div className="container mx-auto max-w-6xl px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Columna Izquierda: Títulos e Iconos */}
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
-            <div className="flex items-center gap-3 mb-8">
-              <span className="w-12 h-[2px] bg-[#00a651]" />
-              <span className="text-[#00a651] font-heading font-black uppercase tracking-[0.3em] text-xs">
-                About Our Essence
-              </span>
-            </div>
+        {/* Título Principal Centrado */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-5xl md:text-7xl font-heading font-bold text-[#015093] mb-12 tracking-tighter"
+        >
+          Our <span className="text-[#00a651] font-light italic">Mission</span>
+        </motion.h2>
 
-            <h2 className="text-5xl md:text-7xl font-heading font-bold text-[#015093] mb-10 tracking-tighter leading-tight">
-              Our <span className="text-[#00a651] font-light italic">Mission</span>
-            </h2>
+        {/* Contenido de Texto */}
+        <div className="space-y-12">
+          {/* Párrafo de Impacto */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-xl md:text-3xl text-slate-600 font-body font-light leading-relaxed max-w-3xl mx-auto"
+          >
+            We take your peace of mind very seriously, but we don't believe the process of getting insured should be
+            <span className="text-[#015093] font-medium"> boring</span>. Our goal is for you to feel safe and smile at
+            the same time.
+          </motion.p>
 
-            {/* Pequeños acentos visuales para que no se vea vacío */}
-            <div className="grid grid-cols-3 gap-4 mb-10">
-              {[ShieldCheck, Target, Heart].map((Icon, i) => (
-                <div key={i} className="flex flex-col gap-2">
-                  <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center border border-slate-100">
-                    <Icon className="w-5 h-5 text-[#00a651]/60" />
-                  </div>
-                </div>
-              ))}
-            </div>
+          {/* Divisor Elegante */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            className="flex items-center justify-center gap-4"
+          >
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-slate-200" />
+            <Quote className="w-6 h-6 text-[#00a651]/20" />
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-slate-200" />
           </motion.div>
 
-          {/* Columna Derecha: Bloques de Texto */}
+          {/* Bloque de Cierre (Cita Personalizada) */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            transition={{ delay: 0.2 }}
             className="relative"
           >
-            <div className="space-y-10">
-              {/* Párrafo principal con tipografía más grande */}
-              <p className="text-xl md:text-2xl text-slate-600 font-body font-light leading-relaxed">
-                We take your peace of mind very seriously, but we don't believe the process of getting insured should be
-                boring. Our goal is for you to feel safe and smile at the same time.
-              </p>
-
-              {/* Bloque de cita refinado */}
-              <div className="relative p-10 bg-[#f8fafc] rounded-[2rem] border border-slate-100 shadow-[0_20px_40px_rgba(0,0,0,0.02)]">
-                {/* Comilla decorativa */}
-                <span className="absolute -top-6 left-8 text-8xl text-[#00a651]/10 font-serif leading-none">“</span>
-
-                <p className="text-lg text-slate-500 font-body leading-relaxed italic relative z-10">
-                  By paying a relatively small premium, you transfer risks that could ruin your finances. We turn that
-                  process into a friendly and personalized experience, because insurance can also be approachable and
-                  human.
-                </p>
-
-                {/* Línea de acento inferior */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-[#00a651]/20 to-transparent rounded-full" />
-              </div>
-            </div>
+            <p className="text-lg md:text-xl text-slate-500 font-body leading-relaxed italic max-w-2xl mx-auto">
+              By paying a relatively small premium, you transfer risks that could ruin your finances. We turn that
+              process into a{" "}
+              <span className="text-[#00a651] not-italic font-semibold">friendly and personalized experience</span>,
+              because insurance can also be approachable and human.
+            </p>
           </motion.div>
         </div>
+
+        {/* Decoración Final Inferior */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="mt-16 flex justify-center"
+        >
+          <div className="w-1 h-12 bg-gradient-to-b from-[#00a651]/40 to-transparent rounded-full" />
+        </motion.div>
       </div>
     </section>
   );
