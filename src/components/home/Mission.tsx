@@ -44,7 +44,7 @@ const Mission = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-xl md:text-3xl text-slate-600 font-body font-light leading-relaxed max-w-3xl mx-auto"
+            className="text-lg md:text-lg text-slate-600 font-body font-light leading-relaxed max-w-3xl mx-auto"
           >
             We take your peace of mind very seriously, but we don't believe the process of getting insured should be
             <span className="text-[#015093] font-medium"> boring</span>. Our goal is for you to feel safe and smile at
