@@ -19,8 +19,8 @@ const Index = () => {
 
       <BusinessInsurance />
       <MidCTA />
-      <Community />
       <Mission />
+      <Community />
       <FinalCTA />
       <Footer />
     </div>
