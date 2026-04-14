@@ -5,25 +5,19 @@ import mascot from "@/assets/owlie-mascot.png";
 import heroBg from "@/assets/seattle-hero-bg.jpg";
 
 const Hero = () => {
-  // Variantes para animar los elementos de texto en cascada
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
+  const leftEntry = {
+    initial: { opacity: 0, x: -50 },
+    animate: { opacity: 1, x: 0 },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number] },
-    },
+  const rightEntry = {
+    initial: { opacity: 0, x: 50 },
+    animate: { opacity: 1, x: 0 },
+  };
+
+  const bottomEntry = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
   };
 
   return (
