@@ -8,6 +8,7 @@ import BusinessInsurance from "@/components/home/BusinessInsurance";
 import Mission from "@/components/home/Mission";
 import Community from "@/components/home/Community";
 import FinalCTA from "@/components/home/FinalCTA";
+import CarrierSlider from "@/components/home/CarrierSlider";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
       <Community />
       <Mission />
       <FinalCTA />
+      <CarrierSlider />
       <Footer />
     </div>
   );

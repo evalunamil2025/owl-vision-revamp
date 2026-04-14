@@ -1,0 +1,77 @@
+import { motion } from "framer-motion";
+
+import kemperAuto from "@/assets/images/carriers/kemper-auto.png";
+import oregonMutual from "@/assets/images/carriers/oregon-mutual.png";
+import travelers from "@/assets/images/carriers/travelers.jpg";
+import nationwide from "@/assets/images/carriers/nationwide.jpg";
+import dairyland from "@/assets/images/carriers/dairyland.png";
+import bristolWest from "@/assets/images/carriers/bristol-west.png";
+import progressive from "@/assets/images/carriers/progressive.jpg";
+import safeco from "@/assets/images/carriers/safeco.jpg";
+import nationalGeneral from "@/assets/images/carriers/national-general.jpg";
+
+const carriers = [
+  { name: "Kemper Auto", logo: kemperAuto },
+  { name: "Oregon Mutual", logo: oregonMutual },
+  { name: "Travelers", logo: travelers },
+  { name: "Nationwide", logo: nationwide },
+  { name: "Dairyland", logo: dairyland },
+  { name: "Bristol West", logo: bristolWest },
+  { name: "Progressive", logo: progressive },
+  { name: "Safeco Insurance", logo: safeco },
+  { name: "National General", logo: nationalGeneral },
+];
+
+// Duplicate for seamless loop
+const doubledCarriers = [...carriers, ...carriers];
+
+const CarrierSlider = () => {
+  return (
+    <section className="bg-white py-24 overflow-hidden">
+      {/* Header */}
+      <div className="container mx-auto px-6 text-center pt-0 mb-14">
+        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#00a651] font-heading block mb-4">
+          We have the best!
+        </span>
+        <h2 className="text-3xl md:text-4xl font-bold text-[#015093] tracking-tighter font-heading">
+          Here are some companies we represent.
+        </h2>
+      </div>
+
+      {/* Marquee */}
+      <div className="relative">
+        {/* Fade edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+        <motion.div
+          className="flex items-center gap-16 w-max"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 30,
+              ease: "linear",
+            },
+          }}
+        >
+          {doubledCarriers.map((carrier, i) => (
+            <div
+              key={`${carrier.name}-${i}`}
+              className="flex-shrink-0 px-4"
+            >
+              <img
+                src={carrier.logo}
+                alt={carrier.name}
+                className="h-14 w-auto object-contain grayscale hover:grayscale-0 hover:scale-105 transition-all duration-300"
+              />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default CarrierSlider;
