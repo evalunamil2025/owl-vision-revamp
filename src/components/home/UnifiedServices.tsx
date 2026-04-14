@@ -5,16 +5,15 @@ import { ArrowRight, Sparkles, User, Building2 } from "lucide-react";
 import { personalServices, businessServices } from "@/data/homeData";
 
 const WaveDivider = () => (
-  <svg
-    viewBox="0 0 400 30"
-    preserveAspectRatio="none"
-    className="absolute bottom-0 left-0 w-full h-6 z-10"
-  >
-    <path
-      d="M0,15 C100,30 200,0 300,15 C350,22 380,10 400,15 L400,30 L0,30 Z"
-      fill="white"
-    />
-  </svg>
+  <div className="absolute bottom-0 left-0 w-full h-12 z-10 translate-y-[1px]">
+    <svg
+      viewBox="0 0 400 40"
+      preserveAspectRatio="none"
+      className="w-full h-full drop-shadow-[0_-2px_5px_rgba(0,0,0,0.05)]"
+    >
+      <path d="M0,25 C120,45 280,5 400,25 L400,40 L0,40 Z" fill="white" />
+    </svg>
+  </div>
 );
 
 const UnifiedServices = () => {
@@ -23,8 +22,9 @@ const UnifiedServices = () => {
   const services = category === "personal" ? personalServices : businessServices;
 
   return (
-    <section className="relative py-32 bg-white overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[hsl(var(--muted))] to-transparent pointer-events-none" />
+    <section className="relative py-32 bg-[#f8fafc] overflow-hidden">
+      {/* Decoración de fondo suave */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
@@ -33,9 +33,9 @@ const UnifiedServices = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-8"
           >
-            <Sparkles className="w-4 h-4 text-secondary" />
+            <Sparkles className="w-4 h-4 text-secondary animate-pulse" />
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/70 font-heading">
               Comprehensive Coverage
             </span>
@@ -47,8 +47,7 @@ const UnifiedServices = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold text-primary tracking-tighter leading-[0.95] mb-6 font-heading"
           >
-            Our Insurance{" "}
-            <span className="text-secondary font-light italic">Solutions</span>
+            Our Insurance <span className="text-secondary font-light italic">Solutions</span>
           </motion.h2>
 
           <motion.p
@@ -67,96 +66,104 @@ const UnifiedServices = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
           className="flex justify-center mb-16"
         >
-          <div className="inline-flex items-center gap-1 p-1.5 rounded-full bg-slate-200/50 backdrop-blur-sm">
+          <div className="inline-flex p-1.5 bg-slate-200/50 backdrop-blur-md rounded-2xl border border-white/50 shadow-inner">
             <button
               onClick={() => setCategory("personal")}
-              className={`inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold font-heading tracking-wide transition-all duration-300 ${
+              className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-sm transition-all duration-300 ${
                 category === "personal"
-                  ? "bg-white text-primary shadow-lg shadow-primary/10"
-                  : "text-primary/50 hover:text-primary/70"
+                  ? "bg-white text-primary shadow-xl shadow-slate-400/20 scale-105"
+                  : "text-slate-500 hover:text-slate-700"
               }`}
             >
-              <User className="w-4 h-4" />
-              Personal
+              <User className="w-4 h-4" /> Personal
             </button>
             <button
               onClick={() => setCategory("business")}
-              className={`inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold font-heading tracking-wide transition-all duration-300 ${
+              className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-sm transition-all duration-300 ${
                 category === "business"
-                  ? "bg-white text-primary shadow-lg shadow-primary/10"
-                  : "text-primary/50 hover:text-primary/70"
+                  ? "bg-white text-primary shadow-xl shadow-slate-400/20 scale-105"
+                  : "text-slate-500 hover:text-slate-700"
               }`}
             >
-              <Building2 className="w-4 h-4" />
-              Business
+              <Building2 className="w-4 h-4" /> Business
             </button>
           </div>
         </motion.div>
 
         {/* Cards Grid */}
-        <AnimatePresence mode="popLayout">
-          <motion.div
-            key={category}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-          >
-            {services.map((s, i) => (
-              <motion.div
-                key={`${category}-${i}`}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative bg-white rounded-[2.5rem] overflow-hidden border border-primary/5 shadow-[0_20px_40px_-15px_rgba(1,80,147,0.05)] hover:shadow-[0_40px_80px_-20px_rgba(0,166,81,0.15)] transition-all duration-700 flex flex-col h-full hover:border-b-4 hover:border-b-secondary"
-              >
-                {/* Image */}
-                <div className="relative h-52 overflow-hidden">
-                  <img
-                    src={s.image}
-                    alt={s.label}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <WaveDivider />
+        <div className="relative min-h-[600px]">
+          <AnimatePresence mode="popLayout">
+            <motion.div
+              key={category}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -20 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            >
+              {services.map((s, i) => (
+                <motion.div
+                  key={`${category}-${i}`}
+                  className="group relative bg-white rounded-[2.5rem] border border-white transition-all duration-500 shadow-[0_15px_40px_rgba(0,0,0,0.04)] hover:shadow-2xl hover:-translate-y-3 overflow-hidden flex flex-col h-full"
+                >
+                  {/* Image Container */}
+                  <div className="relative h-56 overflow-hidden shrink-0">
+                    <img
+                      src={s.image}
+                      alt={s.label}
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
 
-                  {/* Floating Icon Badge */}
-                  <div className="absolute bottom-0 right-6 translate-y-1/2 z-20 w-12 h-12 rounded-2xl bg-white/90 backdrop-blur-md flex items-center justify-center text-primary shadow-lg group-hover:bg-secondary group-hover:text-white transition-all duration-500">
-                    <s.icon className="w-6 h-6" strokeWidth={1.5} />
-                  </div>
-                </div>
+                    {/* El Divisor de Ola */}
+                    <WaveDivider />
 
-                {/* Content */}
-                <div className="p-8 pt-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-primary mb-3 font-heading tracking-tight group-hover:text-[hsl(var(--brand-blue))] transition-colors">
-                    {s.label}
-                  </h3>
-
-                  <p className="text-primary/60 text-sm font-body leading-relaxed mb-8 line-clamp-3">
-                    {s.desc}
-                  </p>
-
-                  <div className="mt-auto">
-                    <Link
-                      to={s.href}
-                      className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-secondary group/btn"
-                    >
-                      Learn More
-                      <div className="w-8 h-8 rounded-xl bg-secondary/10 flex items-center justify-center group-hover/btn:bg-secondary group-hover/btn:text-white transition-all duration-300">
-                        <ArrowRight className="w-4 h-4" />
+                    {/* Floating Icon Badge Corregido */}
+                    <div className="absolute bottom-[-14px] left-8 z-30">
+                      <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center border-2 border-white shadow-xl transition-all duration-500 group-hover:bg-secondary group-hover:scale-110">
+                        <s.icon
+                          className="w-7 h-7 text-secondary group-hover:text-white transition-colors duration-500"
+                          strokeWidth={1.8}
+                        />
                       </div>
-                    </Link>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+
+                  {/* Content */}
+                  <div className="relative z-20 p-8 pt-12 flex flex-col flex-grow">
+                    <h3 className="text-xl font-black text-slate-800 mb-3 font-heading tracking-tight group-hover:text-primary transition-colors uppercase">
+                      {s.label}
+                    </h3>
+
+                    <p className="text-slate-500 text-sm font-body leading-relaxed mb-8 line-clamp-3 font-light">
+                      {s.desc}
+                    </p>
+
+                    <div className="mt-auto">
+                      <Link
+                        to={s.href}
+                        className="inline-flex items-center gap-3 text-xs font-black uppercase tracking-tighter text-secondary group/btn"
+                      >
+                        <span className="relative">
+                          Learn More
+                          <span className="absolute bottom-[-2px] left-0 w-full h-[1px] bg-secondary transform scale-x-0 group-hover/btn:scale-x-100 transition-transform origin-left" />
+                        </span>
+                        <div className="w-8 h-8 rounded-xl bg-secondary/10 flex items-center justify-center group-hover/btn:bg-secondary group-hover/btn:text-white group-hover/btn:shadow-lg transition-all duration-300">
+                          <ArrowRight className="w-4 h-4" />
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Glow inferior animado */}
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );
