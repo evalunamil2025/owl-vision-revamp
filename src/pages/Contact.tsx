@@ -1,10 +1,22 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Sparkles, Facebook, Instagram, Linkedin, Twitter, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Sparkles, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import contactHeroBg from "@/assets/seattle-hero-bg.jpg"; // Reutilizando tu fondo de Seattle
+import contactHeroBg from "@/assets/seattle-hero-bg.jpg";
+
+const FacebookIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+);
+const InstagramIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+);
+const LinkedinIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+);
+const TwitterIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+);
 
 const Contact = () => {
   // Estilo base para los inputs con la paleta de Bringas
@@ -19,20 +31,20 @@ const Contact = () => {
 
   const socialLinks = [
     {
-      icon: Facebook,
+      icon: FacebookIcon,
       label: "Facebook",
       handle: "/BringasInsurance",
       url: "https://www.facebook.com/Bringas-Insurance-111132600590435/?modal=admin_todo_tour",
     },
     {
-      icon: Linkedin,
+      icon: LinkedinIcon,
       label: "LinkedIn",
       handle: "@bringas-insurance",
       url: "https://www.linkedin.com/in/bringas-insurance-54111bb1/",
     },
-    { icon: Twitter, label: "Twitter", handle: "@BringasIns", url: "https://twitter.com/BringasIns" },
+    { icon: TwitterIcon, label: "Twitter", handle: "@BringasIns", url: "https://twitter.com/BringasIns" },
     {
-      icon: Instagram,
+      icon: InstagramIcon,
       label: "Instagram",
       handle: "@bringas_insurance",
       url: "https://www.instagram.com/bringas_insurance_group/",
@@ -41,9 +53,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Helmet>
-        <title>Contact | Bringas Insurance Group</title>
-      </Helmet>
+      <title>Contact | Bringas Insurance Group</title>
 
       <Navbar />
 
@@ -203,7 +213,7 @@ const Contact = () => {
                         rel="noopener noreferrer"
                         className="flex items-center gap-4 p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-colors border border-white/10"
                       >
-                        <social.icon className="w-5 h-5 text-[#00a651]" />
+                        <span className="w-5 h-5 text-[#00a651]"><social.icon /></span>
                         <span className="font-bold text-sm tracking-tight font-body">{social.label}</span>
                         <span className="ml-auto text-white/50 text-xs">{social.handle}</span>
                       </a>
