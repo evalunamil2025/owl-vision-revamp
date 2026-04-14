@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Quote from "./pages/Quote";
+import Contact from "./pages/Contact";
 import AutoInsurance from "./pages/AutoInsurance";
 import HomeInsurance from "./pages/HomeInsurance";
 import LifeInsurance from "./pages/LifeInsurance";
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/quote" element={<Quote />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/auto-insurance" element={<AutoInsurance />} />
           <Route path="/home-insurance" element={<HomeInsurance />} />
           <Route path="/life-insurance" element={<LifeInsurance />} />
