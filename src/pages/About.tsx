@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Eye, Heart, Users, Sparkles, ArrowRight, ShieldCheck, Headphones } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import mascot from "@/assets/owlie-mascot.png";
-import aboutHeroBg from "@/assets/about-hero-bg.jpg"; // Asegúrate de tener esta imagen o usa una de Seattle
+import aboutHeroBg from "@/assets/about-hero-bg.jpg";
 
 const About = () => {
   // Estilo de badge superior (Aquos Style)
@@ -13,10 +13,6 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Helmet>
-        <title>About Us | Bringas Insurance Group</title>
-      </Helmet>
-
       <Navbar />
 
       {/* --- HERO SECTION (Estilo Aquos con curvas profundas) --- */}
