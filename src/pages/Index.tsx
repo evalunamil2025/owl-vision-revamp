@@ -16,8 +16,9 @@ const Index = () => {
       <Hero />
       <WhyChooseUs />
       <PersonalInsurance />
-      <MidCTA />
+
       <BusinessInsurance />
+      <MidCTA />
       <Community />
       <Mission />
       <FinalCTA />
