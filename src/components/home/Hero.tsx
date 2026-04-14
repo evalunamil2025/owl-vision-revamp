@@ -40,10 +40,11 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Contenido de Texto con Stagger */}
-          <motion.div variants={containerVariants} initial="hidden" animate="visible">
+          {/* Text content — slides in from left */}
+          <div>
             <motion.span
-              variants={itemVariants}
+              {...leftEntry}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-bold text-white mb-8 tracking-wide"
             >
               <span className="flex h-2 w-2 rounded-full bg-[#00a651] animate-pulse" />
@@ -51,7 +52,8 @@ const Hero = () => {
             </motion.span>
 
             <motion.h1
-              variants={itemVariants}
+              {...leftEntry}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 text-white"
             >
               Insurance that <br />
@@ -60,14 +62,20 @@ const Hero = () => {
             </motion.h1>
 
             <motion.p
-              variants={itemVariants}
+              {...leftEntry}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
               className="text-lg sm:text-xl text-white/80 font-medium leading-relaxed mb-10 max-w-xl"
             >
               Family • Home • Auto • Business — We compare multiple carriers to find the perfect fit. Real protection,
               no complications.
             </motion.p>
 
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-5">
+            {/* CTA Buttons — slide up from bottom */}
+            <motion.div
+              {...bottomEntry}
+              transition={{ duration: 0.8, delay: 1.6, ease: "easeOut" }}
+              className="flex flex-wrap gap-5"
+            >
               <Link
                 to="/quote"
                 className="bg-[#00a651] hover:bg-white hover:text-[#0079c2] text-white px-8 py-4 rounded-full font-bold transition-all flex items-center gap-2 shadow-xl hover:shadow-[#00a651]/20 active:scale-95"
@@ -82,7 +90,7 @@ const Hero = () => {
                 <Phone className="w-5 h-5 text-[#00a651]" strokeWidth={3} /> (425) 405-7111
               </a>
             </motion.div>
-          </motion.div>
+          </div>
 
           {/* Mascota con efecto de flotación y entrada suave */}
           <motion.div
