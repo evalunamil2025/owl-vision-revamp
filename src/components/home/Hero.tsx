@@ -94,12 +94,11 @@ const Hero = () => {
 
           {/* Mascota con efecto de flotación y entrada suave */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, x: 50 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
+            {...rightEntry}
             transition={{
               duration: 1,
               delay: 0.8,
-              ease: [0.16, 1, 0.3, 1],
+              ease: "easeOut",
             }}
             className="hidden lg:flex justify-center relative"
           >
