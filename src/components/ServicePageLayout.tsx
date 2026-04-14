@@ -43,16 +43,16 @@ const ServicePageLayout = ({
     <div className="min-h-screen bg-white">
       <Navbar />
 
-      {/* ─── HERO (Green Gradient) ─── */}
-      <section className="relative pt-32 pb-48 overflow-hidden bg-[#00a651]">
+      {/* ─── HERO (Blue Gradient + Buttons) ─── */}
+      <section className="relative pt-32 pb-48 overflow-hidden bg-[#015093]">
         <div className="absolute inset-0 z-0">
           <img src={heroBg} alt="" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#00a651]/95 via-[#008f45]/90 to-[#015093]/40 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-[#015093]/80" />
           <div className="absolute inset-0 bg-[#001e2b]/20" />
         </div>
 
         {/* Decorative glow */}
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-white/10 rounded-full blur-[120px] animate-pulse z-0" />
+        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#0079c2]/20 rounded-full blur-[120px] animate-pulse z-0" />
 
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.div
@@ -68,15 +68,27 @@ const ServicePageLayout = ({
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-[5rem] font-bold text-white tracking-tighter leading-[0.9] mb-8 font-heading">
+            <h1 className="text-5xl md:text-7xl lg:text-[5rem] font-bold text-white tracking-tighter leading-[0.9] mb-10 font-heading">
               {title}
-              <br />
-              <span className="text-white/80 font-light italic text-3xl md:text-5xl">{subtitle}</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-white/90 font-body font-light max-w-2xl mx-auto leading-relaxed">
-              {heroDescription}
-            </p>
+            {/* CTA Buttons (moved from deleted CTA cards) */}
+            <div className="flex flex-col sm:flex-row gap-5 justify-center">
+              <Link
+                to="/quote"
+                className="px-10 py-5 bg-white text-[#00a651] rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-black/10 hover:bg-[#00a651] hover:text-white transition-all flex items-center justify-center gap-2 group"
+              >
+                <Shield className="w-4 h-4" />
+                Get Your Free Quote
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <a
+                href="tel:+14254057111"
+                className="px-10 py-5 bg-transparent border-2 border-white/30 text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-sm"
+              >
+                <Phone className="w-4 h-4 text-[#00a651]" /> (425) 405-7111
+              </a>
+            </div>
           </motion.div>
         </div>
 
@@ -85,54 +97,33 @@ const ServicePageLayout = ({
           <svg className="relative block w-full h-[80px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path
               d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V120C0,120,321.39,56.44,321.39,56.44Z"
-              fill="#00a651"
+              fill="white"
             />
           </svg>
         </div>
       </section>
 
-      {/* ─── CTA CARDS (Floating over hero) ─── */}
-      <section className="relative bg-[#00a651]">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-6 -translate-y-24 relative z-20">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="bg-white p-8 rounded-[2.5rem] border border-[#0079c2]/10 shadow-xl shadow-[#0079c2]/5 flex flex-col items-center text-center group hover:scale-105 transition-all"
-            >
-              <div className="w-14 h-14 bg-[#00a651]/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#00a651] transition-colors">
-                <Shield className="w-6 h-6 text-[#00a651] group-hover:text-white transition-colors" />
-              </div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 mb-1 font-heading">
-                Get Protected
-              </p>
-              <Link to="/quote" className="text-[#015093] font-bold font-body hover:text-[#00a651] transition-colors">
-                Request a Free Quote →
-              </Link>
-            </motion.div>
-
-            <motion.a
-              href="tel:+14254057111"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="bg-white p-8 rounded-[2.5rem] border border-[#0079c2]/10 shadow-xl shadow-[#0079c2]/5 flex flex-col items-center text-center group hover:scale-105 transition-all"
-            >
-              <div className="w-14 h-14 bg-[#00a651]/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#00a651] transition-colors">
-                <Phone className="w-6 h-6 text-[#00a651] group-hover:text-white transition-colors" />
-              </div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 mb-1 font-heading">
-                Call Us Now
-              </p>
-              <p className="text-[#015093] font-bold font-body">(425) 405-7111</p>
-            </motion.a>
-          </div>
+      {/* ─── INTRODUCTION SECTION ─── */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-4xl mx-auto"
+          >
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#015093]/60 font-heading block mb-6">
+              {subtitle}
+            </span>
+            <p className="text-xl md:text-2xl font-light text-[#015093]/80 font-body leading-relaxed">
+              {heroDescription}
+            </p>
+          </motion.div>
         </div>
       </section>
 
       {/* ─── COVERAGES GRID (Green WhyChooseUs Style) ─── */}
-      <section className="relative py-24 bg-[#00a651] overflow-hidden -mt-24">
+      <section className="relative py-24 bg-[#00a651] overflow-hidden">
         {/* Decorative blurs */}
         <div className="absolute top-[-20%] left-[-10%] w-[400px] h-[400px] bg-[#008f45]/40 rounded-full blur-[120px]" />
         <div className="absolute bottom-[-15%] right-[-5%] w-[350px] h-[350px] bg-[#015093]/20 rounded-full blur-[100px]" />
@@ -197,9 +188,7 @@ const ServicePageLayout = ({
               viewport={{ once: true }}
               className="max-w-3xl mx-auto bg-white p-10 md:p-14 rounded-[3rem] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.06)] border border-[#0079c2]/10 relative overflow-hidden"
             >
-              {/* Glow */}
               <div className="absolute top-[-30%] right-[-20%] w-64 h-64 bg-[#00a651]/10 rounded-full blur-[80px]" />
-
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 bg-[#00a651]/10 rounded-xl flex items-center justify-center">
@@ -209,12 +198,10 @@ const ServicePageLayout = ({
                     Important
                   </span>
                 </div>
-
                 <h3 className="text-2xl md:text-3xl font-bold text-[#015093] tracking-tight mb-4 font-heading">
                   {importantNote.title}
                 </h3>
                 <p className="text-[#015093]/70 font-body leading-relaxed mb-6">{importantNote.content}</p>
-
                 {importantNote.items && (
                   <ul className="space-y-3">
                     {importantNote.items.map((item, i) => (
@@ -234,7 +221,6 @@ const ServicePageLayout = ({
       {/* ─── OUR APPROACH (Blue with Glassmorphism) ─── */}
       {approach && (
         <section className="relative py-24 bg-[#015093] overflow-hidden">
-          {/* Decorative blurs */}
           <div className="absolute top-[-15%] right-[-10%] w-[400px] h-[400px] bg-[#0079c2]/30 rounded-full blur-[120px]" />
           <div className="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] bg-[#00a651]/15 rounded-full blur-[100px]" />
 
@@ -257,9 +243,7 @@ const ServicePageLayout = ({
                   className="bg-white/5 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/10 flex flex-col items-center text-center group hover:bg-white/15 hover:scale-105 transition-all duration-300"
                 >
                   <div className="w-14 h-14 bg-white/10 rounded-3xl flex items-center justify-center mb-6 group-hover:bg-[#00a651] transition-colors">
-                    <span className="text-2xl font-bold text-white font-heading">
-                      {i + 1}
-                    </span>
+                    <span className="text-2xl font-bold text-white font-heading">{i + 1}</span>
                   </div>
                   <p className="text-sm font-bold text-white font-heading">{item}</p>
                 </motion.div>
@@ -279,10 +263,8 @@ const ServicePageLayout = ({
       <section className="pb-24 bg-white pt-24">
         <div className="container mx-auto px-6">
           <div className="bg-gradient-to-r from-[#00a651] to-[#008f45] rounded-[4rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
-            {/* Decorative glows */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 blur-[80px] rounded-full" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#015093]/10 blur-[60px] rounded-full" />
-
             <div className="relative z-10 max-w-3xl mx-auto">
               <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter mb-8 leading-[0.95] font-heading">
                 Ready to protect <br /> <span className="text-white/80 italic font-light">what matters most?</span>
