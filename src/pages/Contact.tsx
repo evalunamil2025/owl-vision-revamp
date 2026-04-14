@@ -213,7 +213,7 @@ const Contact = () => {
                         rel="noopener noreferrer"
                         className="flex items-center gap-4 p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-colors border border-white/10"
                       >
-                        <social.icon className="w-5 h-5 text-[#00a651]" />
+                        <span className="w-5 h-5 text-[#00a651]"><social.icon /></span>
                         <span className="font-bold text-sm tracking-tight font-body">{social.label}</span>
                         <span className="ml-auto text-white/50 text-xs">{social.handle}</span>
                       </a>
