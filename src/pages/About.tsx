@@ -4,7 +4,7 @@ import { Eye, Heart, Users, Sparkles, ArrowRight, ShieldCheck, Headphones } from
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import mascot from "@/assets/owlie-mascot.png";
-import aboutHeroBg from "@/assets/about-hero-bg.jpg";
+import aboutHeroBg from "@/assets/seattle-hero-bg.jpg";
 
 const About = () => {
   // Estilo de badge superior (Aquos Style)
