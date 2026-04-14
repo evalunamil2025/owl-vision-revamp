@@ -162,6 +162,15 @@ const Navbar = () => {
           >
             About
           </Link>
+
+          <Link
+            to="/contact"
+            className={`px-4 py-2 text-sm font-bold transition-all ${
+              isActive("/contact") ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
+            }`}
+          >
+            Contact
+          </Link>
         </nav>
 
         {/* Action Area */}
@@ -216,6 +225,13 @@ const Navbar = () => {
                   className="block p-3 text-lg font-bold text-slate-800 bg-slate-50 rounded-xl"
                 >
                   About Us
+                </Link>
+                <Link
+                  to="/contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="block p-3 text-lg font-bold text-slate-800 bg-slate-50 rounded-xl"
+                >
+                  Contact
                 </Link>
               </div>
 
