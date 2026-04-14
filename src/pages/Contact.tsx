@@ -199,7 +199,7 @@ const Contact = () => (
                     whileTap={{ scale: 0.97 }}
                     className={`flex flex-col items-center gap-2 p-5 rounded-2xl bg-slate-50 text-slate-600 hover:text-white ${s.color} transition-all duration-300 shadow-sm hover:shadow-lg`}
                   >
-                    <s.icon className="w-7 h-7" strokeWidth={1.8} />
+                    <s.icon />
                     <span className="text-xs font-heading font-bold">{s.label}</span>
                   </motion.a>
                 ))}
