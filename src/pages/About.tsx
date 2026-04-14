@@ -13,10 +13,6 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Helmet>
-        <title>About Us | Bringas Insurance Group</title>
-      </Helmet>
-
       <Navbar />
 
       {/* --- HERO SECTION (Estilo Aquos con curvas profundas) --- */}
