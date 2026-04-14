@@ -64,7 +64,7 @@ const CarrierSlider = () => {
               <img
                 src={carrier.logo}
                 alt={carrier.name}
-                className="h-14 w-auto object-contain grayscale hover:grayscale-0 hover:scale-105 transition-all duration-300"
+                className="h-14 w-auto object-contain hover:scale-105 transition-all duration-300"
               />
             </div>
           ))}
