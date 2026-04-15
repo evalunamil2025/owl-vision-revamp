@@ -16,6 +16,8 @@ type QuickReply = {
   href?: string;
 };
 
+type FlowStep = "greeting" | "wait_name" | "main";
+
 const PERSONAL_OPTIONS: QuickReply[] = [
   { label: "🚗 Auto Insurance", action: "service_auto", href: "/auto-insurance" },
   { label: "🏠 Home Insurance", action: "service_home", href: "/home-insurance" },
@@ -43,10 +45,10 @@ const SERVICE_INFO: Record<string, { text: string; href: string }> = {
   service_bop: { text: "A Business Owners Policy (BOP) bundles general liability and property insurance at a cost-effective rate for small businesses.", href: "/bop-insurance" },
 };
 
-const INITIAL_BUTTONS: QuickReply[] = [
+const MAIN_BUTTONS: QuickReply[] = [
   { label: "🛡️ Personal Insurance", action: "personal" },
   { label: "🏢 Business Insurance", action: "business" },
-  { label: "📞 Contact an Agent", action: "contact", href: "/contact" },
+  { label: "📞 Talk to an Agent", action: "contact", href: "/contact" },
 ];
 
 const uid = () => Math.random().toString(36).slice(2, 9);
@@ -58,14 +60,14 @@ const TypingIndicator = () => (
     exit={{ opacity: 0 }}
     className="flex items-end gap-2 mb-3"
   >
-    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#015093] to-[#00a651] flex items-center justify-center flex-shrink-0">
+    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00a651] to-[#00c853] flex items-center justify-center flex-shrink-0">
       <Bot className="w-4 h-4 text-white" />
     </div>
-    <div className="bg-slate-100 rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1.5">
+    <div className="bg-green-50 rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1.5">
       {[0, 1, 2].map((i) => (
         <motion.span
           key={i}
-          className="w-2 h-2 rounded-full bg-slate-400"
+          className="w-2 h-2 rounded-full bg-green-400"
           animate={{ y: [0, -6, 0] }}
           transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
         />
@@ -79,30 +81,53 @@ const InsuranceChatbot = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [typing, setTyping] = useState(false);
   const [input, setInput] = useState("");
+  const [flowStep, setFlowStep] = useState<FlowStep>("greeting");
+  const [userName, setUserName] = useState<string>(() => {
+    return localStorage.getItem("owlin_user_name") || "";
+  });
   const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const initRef = useRef(false);
 
   const scrollToBottom = () => {
     setTimeout(() => scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" }), 50);
   };
 
-  const addBotMessage = (text: string, buttons?: QuickReply[], delay = 800) => {
-    setTyping(true);
-    scrollToBottom();
-    setTimeout(() => {
-      setTyping(false);
-      setMessages((prev) => [...prev, { id: uid(), role: "bot", text, buttons }]);
+  const addBotMessage = (text: string, buttons?: QuickReply[], delay = 1200): Promise<void> => {
+    return new Promise((resolve) => {
+      setTyping(true);
       scrollToBottom();
-    }, delay);
+      setTimeout(() => {
+        setTyping(false);
+        setMessages((prev) => [...prev, { id: uid(), role: "bot", text, buttons }]);
+        scrollToBottom();
+        resolve();
+      }, delay);
+    });
   };
 
   useEffect(() => {
-    if (open && messages.length === 0) {
-      addBotMessage(
-        "Hi! 👋 I'm your Bringas Insurance assistant. How can I help you protect what matters most today?",
-        INITIAL_BUTTONS,
-        600
-      );
+    if (open && !initRef.current) {
+      initRef.current = true;
+      if (userName) {
+        setFlowStep("main");
+        addBotMessage(
+          `Welcome back, ${userName}! 👋 How can I help you today?`,
+          MAIN_BUTTONS,
+          800
+        );
+      } else {
+        setFlowStep("wait_name");
+        addBotMessage(
+          "Hi! I'm Owlin, your Bringas Insurance assistant. I'm here to help you find the perfect protection. First, may I ask, what is your name?",
+          undefined,
+          1000
+        );
+      }
+    }
+    if (open) {
+      setTimeout(() => inputRef.current?.focus(), 300);
     }
   }, [open]);
 
@@ -111,13 +136,13 @@ const InsuranceChatbot = () => {
     scrollToBottom();
 
     if (action === "contact" && href) {
-      addBotMessage("Great choice! Let me connect you with one of our experts right away. 🚀");
+      addBotMessage(`No problem, ${userName || "friend"}! Let me connect you with one of our experts right away. 🚀`);
       setTimeout(() => { setOpen(false); navigate(href); }, 1800);
       return;
     }
 
     if (action === "restart") {
-      addBotMessage("No problem! What would you like to explore?", INITIAL_BUTTONS);
+      addBotMessage(`What else can I help you with, ${userName || "friend"}?`, MAIN_BUTTONS);
       return;
     }
 
@@ -146,15 +171,27 @@ const InsuranceChatbot = () => {
     }
   };
 
-  const handleSend = () => {
-    if (!input.trim()) return;
-    setMessages((prev) => [...prev, { id: uid(), role: "user", text: input }]);
+  const handleSend = async () => {
+    const text = input.trim();
+    if (!text) return;
+
+    setMessages((prev) => [...prev, { id: uid(), role: "user", text }]);
     setInput("");
     scrollToBottom();
+
+    if (flowStep === "wait_name") {
+      const name = text.split(" ")[0];
+      setUserName(name);
+      localStorage.setItem("owlin_user_name", name);
+      setFlowStep("main");
+      await addBotMessage(`Nice to meet you, ${name}! 👋 How can I help you today?`, MAIN_BUTTONS, 1200);
+      return;
+    }
+
     addBotMessage(
-      "That's a great question! For a detailed answer, please let me connect you with one of our experts.",
+      `That's a great question, ${userName || "friend"}! For a detailed answer, please let me connect you with one of our experts.`,
       [
-        { label: "📞 Contact an Agent", action: "contact", href: "/contact" },
+        { label: "📞 Talk to an Agent", action: "contact", href: "/contact" },
         { label: "⬅️ Start Over", action: "restart" },
       ],
       1200
@@ -163,7 +200,6 @@ const InsuranceChatbot = () => {
 
   return (
     <>
-      {/* Launcher FAB */}
       <AnimatePresence>
         {!open && (
           <motion.button
@@ -171,7 +207,7 @@ const InsuranceChatbot = () => {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             onClick={() => setOpen(true)}
-            className="fixed bottom-6 right-6 z-[100] w-16 h-16 rounded-full bg-[#015093] text-white shadow-2xl flex items-center justify-center hover:scale-110 transition-transform"
+            className="fixed bottom-6 right-6 z-[100] w-16 h-16 rounded-full bg-[#00a651] text-white shadow-2xl flex items-center justify-center hover:scale-110 transition-transform"
           >
             <span className="absolute inset-0 rounded-full bg-[#00a651]/30 animate-ping" />
             <MessageSquare className="w-7 h-7 relative z-10" />
@@ -179,7 +215,6 @@ const InsuranceChatbot = () => {
         )}
       </AnimatePresence>
 
-      {/* Chat Window */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -187,17 +222,17 @@ const InsuranceChatbot = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.6, y: 40 }}
             transition={{ type: "spring", damping: 22, stiffness: 300 }}
-            className="fixed bottom-6 right-6 z-[100] w-[92vw] sm:w-[400px] h-[75vh] sm:h-[560px] rounded-3xl overflow-hidden shadow-[0_25px_60px_-12px_rgba(1,80,147,0.4)] flex flex-col bg-white/95 backdrop-blur-lg border border-white/20"
+            className="fixed bottom-6 right-6 z-[100] w-[92vw] sm:w-[400px] h-[75vh] sm:h-[560px] rounded-3xl overflow-hidden shadow-[0_25px_60px_-12px_rgba(0,166,81,0.35)] flex flex-col bg-white/95 backdrop-blur-lg border border-white/20"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-[#015093] to-[#00a651] p-4 flex items-center gap-3 flex-shrink-0">
+            <div className="bg-gradient-to-r from-[#00a651] to-[#00c853] p-4 flex items-center gap-3 flex-shrink-0">
               <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
                 <Bot className="w-6 h-6 text-white" />
               </div>
               <div className="flex-1">
-                <h3 className="text-white font-bold text-sm">Bringas Smart Concierge</h3>
+                <h3 className="text-white font-bold text-sm">Owlin — Your Virtual Assistant</h3>
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-green-300 animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                   <span className="text-white/70 text-xs">Online — Ready to help</span>
                 </div>
               </div>
@@ -221,7 +256,7 @@ const InsuranceChatbot = () => {
                     className={`flex mb-3 ${msg.role === "user" ? "justify-end" : "items-end gap-2"}`}
                   >
                     {msg.role === "bot" && (
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#015093] to-[#00a651] flex items-center justify-center flex-shrink-0">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00a651] to-[#00c853] flex items-center justify-center flex-shrink-0">
                         <Bot className="w-4 h-4 text-white" />
                       </div>
                     )}
@@ -230,7 +265,7 @@ const InsuranceChatbot = () => {
                         className={`px-4 py-2.5 text-sm leading-relaxed ${
                           msg.role === "user"
                             ? "bg-[#015093] text-white rounded-2xl rounded-br-sm"
-                            : "bg-slate-100 text-slate-700 rounded-2xl rounded-bl-sm"
+                            : "bg-green-50 text-slate-700 rounded-2xl rounded-bl-sm"
                         }`}
                       >
                         {msg.text}
@@ -241,7 +276,7 @@ const InsuranceChatbot = () => {
                             <button
                               key={btn.label}
                               onClick={() => handleAction(btn.action, btn.label, btn.href)}
-                              className="px-3 py-1.5 text-xs font-semibold rounded-full border border-[#015093]/20 text-[#015093] bg-white hover:bg-[#015093] hover:text-white transition-all flex items-center gap-1 shadow-sm"
+                              className="px-3 py-1.5 text-xs font-semibold rounded-full border border-[#00a651]/20 text-[#00a651] bg-white hover:bg-[#00a651] hover:text-white transition-all flex items-center gap-1 shadow-sm"
                             >
                               {btn.label}
                               <ArrowRight className="w-3 h-3" />
@@ -263,14 +298,15 @@ const InsuranceChatbot = () => {
                 className="flex gap-2"
               >
                 <input
+                  ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Type your question..."
-                  className="flex-1 px-4 py-2.5 text-sm rounded-full bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#015093]/40 focus:ring-2 focus:ring-[#015093]/10 transition-all"
+                  placeholder={flowStep === "wait_name" ? "Type your name..." : "Type your question..."}
+                  className="flex-1 px-4 py-2.5 text-sm rounded-full bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#00a651]/40 focus:ring-2 focus:ring-[#00a651]/10 transition-all"
                 />
                 <button
                   type="submit"
-                  className="w-10 h-10 rounded-full bg-[#015093] text-white flex items-center justify-center hover:bg-[#00a651] transition-colors shadow-md"
+                  className="w-10 h-10 rounded-full bg-[#00a651] text-white flex items-center justify-center hover:bg-[#00c853] transition-colors shadow-md"
                 >
                   <Send className="w-4 h-4" />
                 </button>
