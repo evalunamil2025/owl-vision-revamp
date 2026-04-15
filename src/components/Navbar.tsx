@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Phone, ShieldCheck, Briefcase, Info, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/bringas-insurance-logo.png";
+import logo from "@/assets/bringas-insurance-logo-big.png";
 
 const personalLinks = [
   { label: "Auto Insurance", href: "/auto-insurance" },
