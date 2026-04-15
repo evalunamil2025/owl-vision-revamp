@@ -27,6 +27,7 @@ import RestaurantInsurance from "./pages/RestaurantInsurance";
 import BuildingOwners from "./pages/BuildingOwners";
 import BondsSurety from "./pages/BondsSurety";
 import NotFound from "./pages/NotFound";
+import InsuranceChatbot from "./components/InsuranceChatbot";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +63,7 @@ const App = () => (
           <Route path="/bonds-surety" element={<BondsSurety />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <InsuranceChatbot />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
