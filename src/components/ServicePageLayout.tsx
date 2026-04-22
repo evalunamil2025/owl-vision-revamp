@@ -122,55 +122,109 @@ const ServicePageLayout = ({
         </div>
       </section>
 
-      {/* ─── COVERAGES GRID (Green WhyChooseUs Style) ─── */}
-      <section className="relative py-24 bg-[#00a651] overflow-hidden">
-        {/* Decorative blurs */}
-        <div className="absolute top-[-20%] left-[-10%] w-[400px] h-[400px] bg-[#008f45]/40 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-15%] right-[-5%] w-[350px] h-[350px] bg-[#015093]/20 rounded-full blur-[100px]" />
-        <div className="absolute top-[50%] left-[60%] w-[250px] h-[250px] bg-white/5 rounded-full blur-[80px]" />
+      {/* ─── COVERAGES — Bento Magazine Layout ─── */}
+      <section className="relative py-28 bg-[#f6f8fb] overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(#015093 1px, transparent 1px), linear-gradient(90deg, #015093 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+        <div className="absolute -top-32 -right-24 w-[480px] h-[480px] bg-[#00a651]/10 rounded-full blur-[140px]" />
+        <div className="absolute -bottom-32 -left-24 w-[420px] h-[420px] bg-[#0079c2]/10 rounded-full blur-[140px]" />
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
-                <Shield className="w-5 h-5 text-white" />
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[#015093]/10 shadow-sm mb-5">
+                  <Shield className="w-3.5 h-3.5 text-[#00a651]" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#015093]/70 font-heading">
+                    Coverage Details
+                  </span>
+                </div>
+                <h2 className="text-4xl md:text-6xl font-bold text-[#015093] tracking-tighter leading-[0.95] font-heading">
+                  What's <span className="text-[#00a651] italic font-light">Covered?</span>
+                </h2>
               </div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-white/60 font-heading">
-                Coverage Details
-              </span>
+              <p className="text-[#015093]/60 font-body text-base max-w-sm md:text-right">
+                A clear breakdown of every protection layer included in your policy.
+              </p>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-12 font-heading">
-              What's <span className="text-white/80 italic font-light">Covered?</span>
-            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
+              {coverages.map((c, i) => {
+                const themes = [
+                  { bg: "bg-white", text: "text-[#015093]", sub: "text-[#015093]/70", accent: "#00a651", chip: "bg-[#00a651]/10 text-[#00a651]" },
+                  { bg: "bg-[#015093]", text: "text-white", sub: "text-white/75", accent: "#ffffff", chip: "bg-white/15 text-white" },
+                  { bg: "bg-white", text: "text-[#015093]", sub: "text-[#015093]/70", accent: "#0079c2", chip: "bg-[#0079c2]/10 text-[#0079c2]" },
+                  { bg: "bg-[#00a651]", text: "text-white", sub: "text-white/85", accent: "#ffffff", chip: "bg-white/15 text-white" },
+                ];
+                const t = themes[i % themes.length];
+                const isFeature = i % 5 === 0;
+                const span = isFeature ? "md:col-span-4" : "md:col-span-2";
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {coverages.map((c, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-white/10 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/20 group hover:bg-white hover:scale-[1.02] transition-all duration-300"
-                >
-                  <div className="w-12 h-12 bg-white/15 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-[#00a651]/10 transition-colors">
-                    <CheckCircle2 className="w-6 h-6 text-white group-hover:text-[#00a651] transition-colors" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-[#015093] mb-2 font-heading transition-colors">{c.title}</h3>
-                  <p className="text-sm text-white/80 group-hover:text-[#015093]/70 font-body mb-3 leading-relaxed transition-colors">{c.description}</p>
-                  {c.items && (
-                    <ul className="space-y-2">
-                      {c.items.map((item, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm text-white/70 group-hover:text-[#015093]/80 font-body transition-colors">
-                          <span className="w-1.5 h-1.5 rounded-full bg-white/60 group-hover:bg-[#00a651] mt-1.5 flex-shrink-0 transition-colors" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </motion.div>
-              ))}
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ delay: (i % 4) * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className={`${span} ${t.bg} relative overflow-hidden rounded-[2rem] p-8 md:p-10 border border-black/5 shadow-[0_20px_50px_-25px_rgba(1,80,147,0.25)] hover:shadow-[0_30px_70px_-25px_rgba(1,80,147,0.4)] hover:-translate-y-1 transition-all duration-500 group`}
+                  >
+                    <span
+                      className="absolute -top-6 -right-2 text-[9rem] font-black font-heading leading-none select-none pointer-events-none"
+                      style={{ color: t.accent, opacity: 0.08 }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+
+                    <div className="flex items-center justify-between mb-6 relative z-10">
+                      <div className={`w-11 h-11 rounded-2xl ${t.chip} flex items-center justify-center backdrop-blur-sm`}>
+                        <CheckCircle2 className="w-5 h-5" strokeWidth={2.2} />
+                      </div>
+                      <span className={`text-[10px] font-black uppercase tracking-[0.3em] font-heading ${t.sub}`}>
+                        / {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+
+                    <h3
+                      className={`${isFeature ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"} font-bold ${t.text} font-heading tracking-tight leading-tight mb-3 relative z-10`}
+                    >
+                      {c.title}
+                    </h3>
+
+                    <p className={`text-sm md:text-[15px] ${t.sub} font-body leading-relaxed mb-5 relative z-10`}>
+                      {c.description}
+                    </p>
+
+                    {c.items && (
+                      <div className="flex flex-wrap gap-2 relative z-10">
+                        {c.items.map((item, j) => (
+                          <span
+                            key={j}
+                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold font-body ${t.chip}`}
+                          >
+                            <span
+                              className="w-1.5 h-1.5 rounded-full"
+                              style={{ backgroundColor: t.accent }}
+                            />
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    <div
+                      className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-500"
+                      style={{ backgroundColor: t.accent }}
+                    />
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>
