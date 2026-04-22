@@ -4,16 +4,41 @@ const RVInsurance = () => (
   <ServicePageLayout
     title="Recreational Vehicle Insurance"
     subtitle="Enjoy your adventures — without carrying the risk"
-    heroDescription="Recreational vehicles are made for enjoyment: trips, getaways, weekends away from routine. But they also involve different risks than a regular car. Not just because of their size or use, but because of everything you carry with you."
+    heroDescription="Recreational vehicles are made for enjoyment: trips, getaways, weekends away from routine. But they also involve different risks than a regular car — they're larger, more expensive, often serve as temporary homes, and carry valuable personal contents."
     coverages={[
-      { title: "Vehicle Damage", description: "Protects your RV or recreational vehicle.", items: ["Accidents", "Theft", "Vandalism", "Fire", "Weather events"] },
-      { title: "Liability Coverage", description: "Covers damage to other people or their property if you're responsible for an incident." },
-      { title: "Extras Protection", description: "Many recreational vehicles include equipment, accessories, and trailers that can be covered." },
-      { title: "Road Protection", description: "Additional coverages depending on your use.", items: ["Roadside assistance", "Towing", "Vacation or frequent use coverage", "Off-road protection"] },
+      {
+        title: "Vehicle Damage",
+        description: "Covers the RV itself (motorhome, travel trailer, fifth wheel, or camper) from collision and non-collision losses.",
+        items: ["Collision damage", "Theft & vandalism", "Fire & explosion", "Hail, wind, flood", "Animal collisions"],
+      },
+      {
+        title: "Liability Coverage",
+        description: "Required for motorhomes (Class A, B, C). Pays for injuries and damage you cause to others. Travel trailers are usually covered by your tow vehicle's liability — but only while attached.",
+      },
+      {
+        title: "Personal Effects & Attached Accessories",
+        description: "Covers belongings inside the RV and permanently attached equipment — both often excluded from standard auto policies.",
+        items: ["Awnings & satellite dishes", "Generators & solar panels", "Clothing & electronics", "Outdoor gear"],
+      },
+      {
+        title: "Full-Timer Coverage",
+        description: "Essential if your RV is your primary residence. Adds homeowners-style protections like personal liability at your campsite and loss assessment.",
+        items: ["Personal liability at campsite", "Medical payments to others", "Loss assessment", "Storage shed coverage"],
+      },
+      {
+        title: "Vacation & Roadside Protection",
+        description: "Add-ons designed for life on the road.",
+        items: [
+          "24/7 roadside assistance",
+          "Towing for large vehicles",
+          "Emergency expense coverage",
+          "Total loss replacement",
+        ],
+      },
     ]}
     importantNote={{
       title: "What Many People Overlook",
-      content: "An RV isn't used like a car. It may be parked for long periods, function as temporary housing, or travel long distances. That's why it needs a policy specifically designed for that use.",
+      content: "An RV isn't used like a car. It may sit parked for months, function as temporary or full-time housing, or travel thousands of miles each season. Standard auto policies don't account for personal contents, attached accessories, or full-time living — gaps that surface only at claim time.",
     }}
     approach={{
       intro: "We don't give you a generic solution. We design coverage that truly fits your lifestyle.",

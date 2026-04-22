@@ -4,17 +4,38 @@ const MobileHomeInsurance = () => (
   <ServicePageLayout
     title="Mobile Home Insurance"
     subtitle="Your home, regardless of how it's built, deserves protection"
-    heroDescription="For many families, a mobile home represents an accessible and smart way to own a home. But it has unique characteristics that require a different type of insurance. Assuming both are covered the same way can leave you exposed."
+    heroDescription="For many families, a manufactured or mobile home represents an accessible and smart way to own a home. But these homes have unique characteristics — different construction, transit risk, and exposure to wind — that require a specialized HO-7 policy. A standard HO-3 won't apply."
     coverages={[
-      { title: "Structure Protection", description: "Covers damage to your home from fire, weather events, and accidents." },
-      { title: "Natural Hazard Protection", description: "Depending on your location, you can include coverage for storms, wind, and floods (with additional policy)." },
-      { title: "Accidental Damage", description: "Protects your property from unexpected situations that may affect its integrity." },
-      { title: "Loss of Use", description: "If your home becomes uninhabitable, this coverage can help with temporary expenses during repairs." },
-      { title: "Liability Coverage", description: "Protects you if someone is injured on your property or if you cause damage to third parties." },
+      {
+        title: "Structure Protection",
+        description: "Covers the home itself plus permanently attached additions like decks, porches, and carports against fire, weather, and other named perils.",
+      },
+      {
+        title: "Personal Property",
+        description: "Protects your belongings inside the home — furniture, electronics, clothing, and appliances — on either Actual Cash Value or Replacement Cost basis.",
+      },
+      {
+        title: "Personal Liability",
+        description: "Protects you if someone is injured on your property or you cause damage to others. Includes legal defense.",
+        items: ["Bodily injury claims", "Property damage to others", "Medical payments to guests", "Legal defense costs"],
+      },
+      {
+        title: "Loss of Use",
+        description: "If your home becomes uninhabitable due to a covered loss, pays for additional living expenses (hotel, meals, storage) during repairs.",
+      },
+      {
+        title: "Trip Collision (In-Transit)",
+        description: "Specific to mobile homes — covers damage that occurs while the home is being transported to a new location.",
+      },
+      {
+        title: "Optional Add-Ons",
+        description: "Common endorsements for mobile homes.",
+        items: ["Replacement cost coverage", "Flood insurance (separate NFIP policy)", "Earthquake endorsement", "Adjacent structures (sheds, fences)"],
+      },
     ]}
     importantNote={{
       title: "What Many Mobile Home Owners Don't Know",
-      content: "Not all insurance companies handle this type of housing correctly. Working with an independent agency is key — it allows you to compare real options and find companies that truly understand this property type.",
+      content: "Mobile homes need an HO-7 form — not the HO-3 used for site-built homes. Many carriers require tie-downs or skirting to qualify. Replacement Cost coverage is essential because Actual Cash Value depreciates the home heavily, leaving you well short of replacement at claim time.",
     }}
     approach={{
       intro: "It's not just about insuring you. It's about insuring you well.",
