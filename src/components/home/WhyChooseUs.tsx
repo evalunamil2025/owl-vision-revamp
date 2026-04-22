@@ -91,21 +91,22 @@ const WhyChooseUs = () => {
                 {/* Hover glow corner */}
                 <div className="absolute -top-20 -right-20 w-60 h-60 bg-[#00a651]/0 group-hover:bg-[#00a651]/10 rounded-full blur-3xl transition-all duration-700" />
 
+                {/* Big watermark numeral, top-right corner */}
+                <div className="absolute top-4 right-6 text-6xl lg:text-7xl font-bold text-[#0079c2]/[0.06] font-heading leading-none select-none pointer-events-none group-hover:text-[#0079c2]/[0.12] transition-colors duration-500">
+                  0{i + 1}
+                </div>
+
                 <div className="relative flex items-start gap-6">
-                  {/* Numeral + Icon stack */}
-                  <div className="flex-shrink-0 relative">
-                    <div className="absolute -top-4 -left-2 text-7xl font-bold text-[#0079c2]/8 font-heading leading-none select-none group-hover:text-[#0079c2]/15 transition-colors duration-500">
-                      0{i + 1}
-                    </div>
+                  {/* Icon */}
+                  <div className="flex-shrink-0">
                     <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0079c2] to-[#012f57] flex items-center justify-center shadow-lg shadow-[#0079c2]/20 group-hover:from-[#00a651] group-hover:to-[#008f45] group-hover:shadow-[#00a651]/30 group-hover:rotate-[-6deg] group-hover:scale-110 transition-all duration-500">
                       <item.icon className="w-7 h-7 text-white" strokeWidth={1.75} />
-                      {/* Pulse ring */}
                       <span className="absolute inset-0 rounded-2xl border-2 border-[#00a651] opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all duration-700" />
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="flex-1 min-w-0">
+                  <div className="flex-1 min-w-0 pr-12">
                     <div className="flex items-start justify-between gap-4 mb-3">
                       <h3 className="text-2xl font-bold text-[#012f57] font-heading tracking-tight group-hover:text-[#0079c2] transition-colors duration-300">
                         {item.title}
@@ -117,7 +118,6 @@ const WhyChooseUs = () => {
                       {item.desc}
                     </p>
 
-                    {/* Reveal-on-hover underline */}
                     <div className="mt-5 h-px w-0 bg-gradient-to-r from-[#00a651] to-[#0079c2] group-hover:w-full transition-all duration-700 ease-out" />
                   </div>
                 </div>
