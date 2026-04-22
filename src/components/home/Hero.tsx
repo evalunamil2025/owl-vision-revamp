@@ -5,13 +5,36 @@ import mascot from "@/assets/owlin-branch.png";
 import heroBg from "@/assets/seattle-hero-bg.jpg";
 
 const Hero = () => {
-  const leftEntry = {
-    initial: { opacity: 0, x: -50 },
-    animate: { opacity: 1, x: 0 },
+  // Letter-by-letter reveal for the headline
+  const headlineContainer = {
+    initial: {},
+    animate: { transition: { staggerChildren: 0.04, delayChildren: 0.3 } },
   };
 
-  const rightEntry = {
-    initial: { opacity: 0, x: 50 },
+  const letter = {
+    initial: { opacity: 0, y: 40, rotateX: -90 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: { duration: 0.7, ease: [0.215, 0.61, 0.355, 1] as const },
+    },
+  };
+
+  const renderWord = (word: string, extraClass = "") =>
+    word.split("").map((char, idx) => (
+      <motion.span
+        key={`${word}-${idx}`}
+        variants={letter}
+        className={`inline-block ${extraClass}`}
+        style={{ transformOrigin: "50% 100%" }}
+      >
+        {char}
+      </motion.span>
+    ));
+
+  const leftEntry = {
+    initial: { opacity: 0, x: -50 },
     animate: { opacity: 1, x: 0 },
   };
 
@@ -51,19 +74,47 @@ const Hero = () => {
               OWLIE IS HERE • INDEPENDENT INSURANCE AGENCY
             </motion.span>
 
+            {/* Headline with letter-by-letter cinematic reveal */}
             <motion.h1
-              {...leftEntry}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 text-white"
+              variants={headlineContainer}
+              initial="initial"
+              animate="animate"
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 text-white tracking-tight"
+              style={{ perspective: 800 }}
             >
-              Insurance that <br />
-              <span className="text-[#00a651]">protects</span> what <br className="hidden sm:block" />
-              you love
+              <span className="block mb-2">
+                {renderWord("Insurance")}
+                <span className="inline-block w-3" />
+                {renderWord("that")}
+              </span>
+
+              {/* "protects" — accent word with gradient + glow + underline */}
+              <span className="block relative mb-2">
+                <motion.span
+                  className="relative inline-block bg-gradient-to-r from-[#00d96a] via-[#00a651] to-[#00d96a] bg-clip-text text-transparent drop-shadow-[0_4px_20px_rgba(0,166,81,0.45)]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.2, duration: 0.6 }}
+                >
+                  {renderWord("protects")}
+                  {/* Animated underline brush */}
+                  <motion.span
+                    className="absolute left-0 -bottom-2 h-[6px] rounded-full bg-gradient-to-r from-[#00a651] to-[#00d96a]"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
+                  />
+                </motion.span>
+                <span className="inline-block w-3" />
+                {renderWord("what")}
+              </span>
+
+              <span className="block">{renderWord("you")}<span className="inline-block w-3" />{renderWord("love")}</span>
             </motion.h1>
 
             <motion.p
               {...leftEntry}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
               className="text-lg sm:text-xl text-white/80 font-medium leading-relaxed mb-10 max-w-xl"
             >
               Family • Home • Auto • Business — We compare multiple carriers to find the perfect fit. Real protection,
@@ -73,7 +124,7 @@ const Hero = () => {
             {/* CTA Buttons — slide up from bottom */}
             <motion.div
               {...bottomEntry}
-              transition={{ duration: 0.8, delay: 1.6, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 2, ease: "easeOut" }}
               className="flex flex-wrap gap-5"
             >
               <Link
@@ -92,30 +143,46 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Mascota con efecto de flotación y entrada suave */}
+          {/* Mascota — entrada cinematográfica + flotación + sutil rotación */}
           <motion.div
-            {...rightEntry}
+            initial={{ opacity: 0, scale: 0.5, rotate: -15, y: 80 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
             transition={{
-              duration: 1,
-              delay: 0.8,
-              ease: "easeOut",
+              duration: 1.4,
+              delay: 0.6,
+              type: "spring",
+              stiffness: 70,
+              damping: 14,
             }}
             className="hidden lg:flex justify-center relative"
           >
-            {/* Resplandor detrás de la mascota para profundidad */}
-            <div className="absolute inset-0 bg-[#00a651]/20 blur-[120px] rounded-full" />
+            {/* Resplandor pulsante detrás de la mascota */}
+            <motion.div
+              className="absolute inset-0 bg-[#00a651]/25 blur-[120px] rounded-full"
+              animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            {/* Anillo decorativo orbitando */}
+            <motion.div
+              className="absolute inset-8 border-2 border-dashed border-white/15 rounded-full"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            />
 
             <motion.img
               src={mascot}
               alt="Owlie Mascot"
-              className="w-80 xl:w-[400px] drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)] relative z-10"
+              className="w-80 xl:w-[420px] drop-shadow-[0_35px_45px_rgba(0,0,0,0.55)] relative z-10"
               animate={{
-                y: [0, -20, 0],
+                y: [0, -22, 0],
+                rotate: [0, 2, 0, -2, 0],
               }}
               transition={{
-                duration: 6,
+                duration: 7,
                 repeat: Infinity,
                 ease: "easeInOut",
+                delay: 2,
               }}
             />
           </motion.div>
