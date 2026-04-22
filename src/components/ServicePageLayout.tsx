@@ -1,10 +1,59 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Phone, Shield, Sparkles, CheckCircle2, Search, ClipboardCheck, Settings2 } from "lucide-react";
+import {
+  ArrowRight, Phone, Shield, Sparkles, CheckCircle2, Search, ClipboardCheck, Settings2,
+  Car, ShieldAlert, Users, HeartPulse, UserX, Stethoscope, LifeBuoy, Home, Sofa,
+  Hotel, Scale, FileText, HandCoins, Coins, Building2, Briefcase, AlertTriangle,
+  Wrench, Droplets, Anchor, Bike, Truck, Flame, Umbrella, Package, Cpu,
+  Hammer, HardHat, Construction, UtensilsCrossed, Wine, BadgeCheck, Gavel, ScrollText,
+  TrendingDown, Map, Zap, FileCheck, Award, LayoutGrid,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import heroBg from "@/assets/seattle-hero-bg.jpg";
+
+// Map coverage titles to contextual icons
+const ICON_MAP: { test: RegExp; icon: LucideIcon }[] = [
+  { test: /collision/i, icon: Car },
+  { test: /comprehensive/i, icon: ShieldAlert },
+  { test: /uninsured|underinsured|motorist/i, icon: UserX },
+  { test: /personal injury|pip/i, icon: Stethoscope },
+  { test: /medical pay|medical exp/i, icon: HeartPulse },
+  { test: /liquor/i, icon: Wine },
+  { test: /liability|legal defense|legal cost|extended liability/i, icon: Scale },
+  { test: /roadside|road protection|additional cover/i, icon: LifeBuoy },
+  { test: /property protection|building protection|building cover|building &|building and/i, icon: Home },
+  { test: /personal belong|contents|extras protection/i, icon: Sofa },
+  { test: /temporary living|loss of use|living expense/i, icon: Hotel },
+  { test: /family protection/i, icon: Users },
+  { test: /final expense/i, icon: ScrollText },
+  { test: /income replacement|loss of income|business interrupt/i, icon: TrendingDown },
+  { test: /legacy/i, icon: HandCoins },
+  { test: /term life/i, icon: FileText },
+  { test: /permanent life/i, icon: Award },
+  { test: /flood|water/i, icon: Droplets },
+  { test: /physical damage|vehicle damage|structure protection|natural hazard|accidental damage/i, icon: ShieldAlert },
+  { test: /tools|equipment|builders risk/i, icon: Wrench },
+  { test: /commercial auto/i, icon: Truck },
+  { test: /general liability|third-party injur|third-party prop/i, icon: Shield },
+  { test: /inventory/i, icon: Package },
+  { test: /systems|technology/i, icon: Cpu },
+  { test: /equipment & furniture|business contents/i, icon: Briefcase },
+  { test: /contract bond/i, icon: FileCheck },
+  { test: /license|permit/i, icon: BadgeCheck },
+  { test: /commercial surety/i, icon: Briefcase },
+  { test: /court bond/i, icon: Gavel },
+  { test: /subdivision/i, icon: Map },
+  { test: /multi-policy/i, icon: LayoutGrid },
+  { test: /accident coverage/i, icon: HeartPulse },
+];
+
+const getIcon = (title: string): LucideIcon => {
+  const match = ICON_MAP.find((m) => m.test.test(title));
+  return match ? match.icon : CheckCircle2;
+};
 
 interface CoverageItem {
   title: string;
@@ -184,8 +233,17 @@ const ServicePageLayout = ({
                     </span>
 
                     <div className="flex items-center justify-between mb-6 relative z-10">
-                      <div className={`w-11 h-11 rounded-2xl ${t.chip} flex items-center justify-center backdrop-blur-sm`}>
-                        <CheckCircle2 className="w-5 h-5" strokeWidth={2.2} />
+                      <div className="relative">
+                        <div
+                          className="absolute inset-0 rounded-2xl blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-500"
+                          style={{ backgroundColor: t.accent }}
+                        />
+                        <div className={`relative w-14 h-14 rounded-2xl ${t.chip} flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:scale-110 group-hover:rotate-[-6deg] transition-transform duration-500`}>
+                          {(() => {
+                            const Ico = getIcon(c.title);
+                            return <Ico className="w-6 h-6" strokeWidth={1.8} />;
+                          })()}
+                        </div>
                       </div>
                       <span className={`text-[10px] font-black uppercase tracking-[0.3em] font-heading ${t.sub}`}>
                         / {String(i + 1).padStart(2, "0")}
