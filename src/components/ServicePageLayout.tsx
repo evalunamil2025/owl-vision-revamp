@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Phone, Shield, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Phone, Shield, Sparkles, CheckCircle2, Search, ClipboardCheck, Settings2 } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import heroBg from "@/assets/seattle-hero-bg.jpg";
@@ -173,7 +173,8 @@ const ServicePageLayout = ({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ delay: (i % 4) * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className={`${span} ${t.bg} relative overflow-hidden rounded-[2rem] p-8 md:p-10 border border-black/5 shadow-[0_20px_50px_-25px_rgba(1,80,147,0.25)] hover:shadow-[0_30px_70px_-25px_rgba(1,80,147,0.4)] hover:-translate-y-1 transition-all duration-500 group`}
+                    whileHover={{ scale: 1.03, y: -6 }}
+                    className={`${span} ${t.bg} relative overflow-hidden rounded-[2rem] p-8 md:p-10 border border-black/5 shadow-[0_20px_50px_-25px_rgba(1,80,147,0.25)] hover:shadow-[0_40px_80px_-20px_rgba(1,80,147,0.45)] transition-shadow duration-500 group cursor-pointer`}
                   >
                     <span
                       className="absolute -top-6 -right-2 text-[9rem] font-black font-heading leading-none select-none pointer-events-none"
@@ -272,42 +273,106 @@ const ServicePageLayout = ({
         </section>
       )}
 
-      {/* ─── OUR APPROACH (Blue with Glassmorphism) ─── */}
+      {/* ─── OUR APPROACH — Editorial Timeline ─── */}
       {approach && (
-        <section className="relative py-24 bg-[#015093] overflow-hidden">
-          <div className="absolute top-[-15%] right-[-10%] w-[400px] h-[400px] bg-[#0079c2]/30 rounded-full blur-[120px]" />
-          <div className="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] bg-[#00a651]/15 rounded-full blur-[100px]" />
+        <section className="relative py-32 bg-gradient-to-br from-[#012f57] via-[#015093] to-[#013a6b] overflow-hidden">
+          {/* Backdrop decorations */}
+          <div className="absolute top-[-15%] right-[-10%] w-[500px] h-[500px] bg-[#0079c2]/30 rounded-full blur-[140px]" />
+          <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#00a651]/20 rounded-full blur-[120px]" />
+          <div
+            className="absolute inset-0 opacity-[0.06] pointer-events-none"
+            style={{
+              backgroundImage:
+                "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
+              backgroundSize: "64px 64px",
+            }}
+          />
 
-          <div className="container mx-auto px-6 max-w-5xl relative z-10">
-            <div className="text-center max-w-2xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-white font-heading mb-4 tracking-tight">
+          <div className="container mx-auto px-6 max-w-6xl relative z-10">
+            {/* Header */}
+            <div className="text-center max-w-2xl mx-auto mb-20">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-6">
+                <Sparkles className="w-3.5 h-3.5 text-[#00a651]" />
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80 font-heading">
+                  The Process
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold text-white font-heading mb-6 tracking-tighter leading-[0.95]">
                 Our <span className="text-[#00a651] italic font-light">Approach</span>
               </h2>
-              <p className="text-white/70 font-body text-lg">{approach.intro}</p>
+              <p className="text-white/70 font-body text-lg leading-relaxed">{approach.intro}</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              {approach.items.map((item, i) => (
+            {/* Timeline */}
+            <div className="relative">
+              {/* Connector line (desktop) */}
+              <div className="hidden md:block absolute top-[60px] left-[10%] right-[10%] h-[2px]">
+                <div className="w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                 <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-white/5 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/10 flex flex-col items-center text-center group hover:bg-white/15 hover:scale-105 transition-all duration-300"
-                >
-                  <div className="w-14 h-14 bg-white/10 rounded-3xl flex items-center justify-center mb-6 group-hover:bg-[#00a651] transition-colors">
-                    <span className="text-2xl font-bold text-white font-heading">{i + 1}</span>
-                  </div>
-                  <p className="text-sm font-bold text-white font-heading">{item}</p>
-                </motion.div>
-              ))}
+                  transition={{ duration: 1.4, ease: "easeOut", delay: 0.3 }}
+                  className="absolute inset-0 bg-gradient-to-r from-[#00a651] via-white to-[#00a651] origin-left"
+                />
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-10 md:gap-6 relative">
+                {approach.items.map((item, i) => {
+                  const StepIcon = [Search, ClipboardCheck, Settings2][i % 3];
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      whileHover={{ y: -8 }}
+                      className="group relative flex flex-col items-center text-center"
+                    >
+                      {/* Number badge */}
+                      <div className="relative mb-8">
+                        <div className="absolute inset-0 bg-[#00a651] rounded-full blur-2xl opacity-50 group-hover:opacity-80 transition-opacity duration-500" />
+                        <div className="relative w-[120px] h-[120px] rounded-full bg-gradient-to-br from-white to-white/90 flex items-center justify-center shadow-[0_20px_60px_-15px_rgba(0,166,81,0.6)] group-hover:scale-110 transition-transform duration-500">
+                          <span className="absolute text-[5rem] font-black text-[#015093]/10 font-heading leading-none select-none">
+                            {i + 1}
+                          </span>
+                          <StepIcon
+                            className="w-10 h-10 text-[#00a651] relative z-10 group-hover:scale-110 transition-transform duration-500"
+                            strokeWidth={1.8}
+                          />
+                        </div>
+                        {/* Step label chip */}
+                        <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#00a651] shadow-lg">
+                          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-white font-heading whitespace-nowrap">
+                            Step {String(i + 1).padStart(2, "0")}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Card */}
+                      <div className="w-full bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 group-hover:bg-white/[0.08] group-hover:border-[#00a651]/40 transition-all duration-500 relative overflow-hidden">
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-2/3 h-[2px] bg-[#00a651] transition-all duration-500" />
+                        <h3 className="text-lg md:text-xl font-bold text-white font-heading leading-snug">
+                          {item}
+                        </h3>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
 
             {approach.closing && (
-              <p className="mt-12 text-center text-white/60 font-body italic text-lg max-w-2xl mx-auto">
-                {approach.closing}
-              </p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6 }}
+                className="mt-20 text-center text-white/70 font-body italic text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+              >
+                "{approach.closing}"
+              </motion.p>
             )}
           </div>
         </section>
