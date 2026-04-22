@@ -1,87 +1,138 @@
 import { motion } from "framer-motion";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import { whyUs } from "@/data/homeData";
 
 const WhyChooseUs = () => {
   return (
-    <section className="relative py-32 bg-[#00a651] overflow-hidden">
-      {/* Capas de degradado para profundidad moderna */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#00a651] via-[#008f45] to-[#015093]/30" />
+    <section className="relative py-28 lg:py-36 bg-[#f7faf9] overflow-hidden">
+      {/* Decorative background layers */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-[#f7faf9] to-white" />
+      <div className="absolute top-20 -left-32 w-[500px] h-[500px] bg-[#00a651]/10 rounded-full blur-[140px]" />
+      <div className="absolute bottom-0 -right-32 w-[600px] h-[600px] bg-[#0079c2]/10 rounded-full blur-[160px]" />
 
-      {/* Elementos decorativos de fondo con opacidad controlada */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#015093]/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4" />
+      {/* Subtle grid texture */}
+      <div
+        className="absolute inset-0 opacity-[0.025]"
+        style={{
+          backgroundImage:
+            "linear-gradient(#015093 1px, transparent 1px), linear-gradient(90deg, #015093 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* Cabecera de Sección (Invertida a Blanco) */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-[0.95] mb-8 font-heading"
-          >
-            Why Choose <br />
-            <span className="text-white/80 font-light italic">Bringas Insurance?</span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-white/80 font-body font-light leading-relaxed"
-          >
-            We take your peace of mind seriously — but we don't believe the process should be boring. Experience a more
-            human way to protect your assets.
-          </motion.p>
-        </div>
-
-        {/* Grid de Tarjetas (Estilo Glassmorphism) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {whyUs.map((item, i) => (
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* LEFT — Sticky editorial panel */}
+          <div className="lg:col-span-5 lg:sticky lg:top-32">
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="group relative bg-white/10 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/20 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:bg-white hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.2)] transition-all duration-500 flex flex-col items-center text-center"
+              transition={{ duration: 0.6 }}
             >
-              {/* Contenedor de Icono centrado */}
-              <div className="mb-8 relative flex justify-center">
-                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center group-hover:bg-[#00a651] transition-colors duration-500">
-                  <item.icon
-                    className="w-8 h-8 text-white group-hover:text-white transition-all duration-500 group-hover:scale-110"
-                    strokeWidth={1.5}
-                  />
-                </div>
-                {/* Punto decorativo */}
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-white/40 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00a651]/10 border border-[#00a651]/20 text-[#00a651] text-xs font-bold tracking-[0.18em] uppercase mb-8">
+                <Sparkles className="w-3.5 h-3.5" />
+                The Bringas Difference
+              </span>
 
-              {/* Título centrado (Cambia de blanco a azul al hacer hover) */}
-              <h3 className="text-xl font-bold text-white mb-4 font-heading tracking-tight group-hover:text-[#015093] transition-colors">
-                {item.title}
-              </h3>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#012f57] tracking-tighter leading-[0.95] mb-8 font-heading">
+                Why <span className="italic font-light text-[#0079c2]">choose</span><br />
+                us?
+              </h2>
 
-              {/* Descripción centrada */}
-              <p className="text-sm text-white/70 font-body leading-relaxed group-hover:text-[#015093]/70 transition-colors">
-                {item.desc}
+              <p className="text-lg text-[#012f57]/70 font-body leading-relaxed mb-10 max-w-md">
+                Peace of mind shouldn't feel transactional. We blend independent expertise with a
+                neighborly touch — protecting what matters with clarity, honesty, and care.
               </p>
-            </motion.div>
-          ))}
-        </div>
 
-        {/* Cierre visual sutil */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-20 flex justify-center"
-        >
-          <div className="h-px w-24 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-        </motion.div>
+              {/* Decorative stat strip */}
+              <div className="flex items-center gap-6 pt-8 border-t border-[#012f57]/10">
+                <div>
+                  <div className="text-4xl font-bold text-[#00a651] font-heading">15+</div>
+                  <div className="text-xs text-[#012f57]/60 uppercase tracking-wider mt-1">
+                    Top carriers
+                  </div>
+                </div>
+                <div className="h-12 w-px bg-[#012f57]/10" />
+                <div>
+                  <div className="text-4xl font-bold text-[#0079c2] font-heading">100%</div>
+                  <div className="text-xs text-[#012f57]/60 uppercase tracking-wider mt-1">
+                    Independent
+                  </div>
+                </div>
+                <div className="h-12 w-px bg-[#012f57]/10" />
+                <div>
+                  <div className="text-4xl font-bold text-[#012f57] font-heading">24/7</div>
+                  <div className="text-xs text-[#012f57]/60 uppercase tracking-wider mt-1">
+                    Local support
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* RIGHT — Staggered editorial cards */}
+          <div className="lg:col-span-7 space-y-5">
+            {whyUs.map((item, i) => (
+              <motion.article
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
+                whileHover={{ y: -4 }}
+                className={`group relative bg-white rounded-3xl p-8 lg:p-10 border border-[#012f57]/8 shadow-[0_10px_40px_-20px_rgba(1,47,87,0.15)] hover:shadow-[0_30px_60px_-20px_rgba(0,121,194,0.25)] transition-all duration-500 cursor-pointer overflow-hidden ${
+                  i % 2 === 1 ? "lg:ml-12" : "lg:mr-12"
+                }`}
+              >
+                {/* Animated gradient accent (top stripe) */}
+                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#00a651] via-[#0079c2] to-[#00a651] bg-[length:200%_100%] opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-[shimmer_3s_linear_infinite]" />
+
+                {/* Hover glow corner */}
+                <div className="absolute -top-20 -right-20 w-60 h-60 bg-[#00a651]/0 group-hover:bg-[#00a651]/10 rounded-full blur-3xl transition-all duration-700" />
+
+                <div className="relative flex items-start gap-6">
+                  {/* Numeral + Icon stack */}
+                  <div className="flex-shrink-0 relative">
+                    <div className="absolute -top-4 -left-2 text-7xl font-bold text-[#0079c2]/8 font-heading leading-none select-none group-hover:text-[#0079c2]/15 transition-colors duration-500">
+                      0{i + 1}
+                    </div>
+                    <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0079c2] to-[#012f57] flex items-center justify-center shadow-lg shadow-[#0079c2]/20 group-hover:from-[#00a651] group-hover:to-[#008f45] group-hover:shadow-[#00a651]/30 group-hover:rotate-[-6deg] group-hover:scale-110 transition-all duration-500">
+                      <item.icon className="w-7 h-7 text-white" strokeWidth={1.75} />
+                      {/* Pulse ring */}
+                      <span className="absolute inset-0 rounded-2xl border-2 border-[#00a651] opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all duration-700" />
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <h3 className="text-2xl font-bold text-[#012f57] font-heading tracking-tight group-hover:text-[#0079c2] transition-colors duration-300">
+                        {item.title}
+                      </h3>
+                      <ArrowUpRight className="w-5 h-5 text-[#012f57]/30 group-hover:text-[#00a651] group-hover:rotate-45 transition-all duration-500 flex-shrink-0 mt-1" />
+                    </div>
+
+                    <p className="text-[#012f57]/70 font-body leading-relaxed">
+                      {item.desc}
+                    </p>
+
+                    {/* Reveal-on-hover underline */}
+                    <div className="mt-5 h-px w-0 bg-gradient-to-r from-[#00a651] to-[#0079c2] group-hover:w-full transition-all duration-700 ease-out" />
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
       </div>
+
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      `}</style>
     </section>
   );
 };
