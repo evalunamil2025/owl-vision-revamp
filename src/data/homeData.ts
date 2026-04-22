@@ -3,6 +3,8 @@ import {
   Building2, Car, Home, Heart, Briefcase, Anchor, Bike, Truck,
   Umbrella, Flame, Building, FileCheck, ShieldCheck, Sparkles
 } from "lucide-react";
+import mobileHomeInsuranceImage from "@/assets/mobile-home-insurance.jpg";
+import rvInsuranceImage from "@/assets/rv-insurance.jpg";
 
 export const personalServices = [
   { icon: Car, label: "Auto Insurance", href: "/auto-insurance", desc: "Protect your vehicle and your peace of mind.", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80" },
@@ -11,10 +13,10 @@ export const personalServices = [
   { icon: Flame, label: "Flood Insurance", href: "/flood-insurance", desc: "Don't let water damage catch you off guard.", image: "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=800&q=80" },
   { icon: Anchor, label: "Boat & Watercraft", href: "/boat-insurance", desc: "Enjoy the water worry-free.", image: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&q=80" },
   { icon: Bike, label: "Motorcycle", href: "/motorcycle-insurance", desc: "Ride with the right coverage.", image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=800&q=80" },
-  { icon: Truck, label: "RV Insurance", href: "/rv-insurance", desc: "Adventures protected.", image: "https://images.unsplash.com/photo-1626668893632-6f3a4466d109?w=800&q=80" },
+  { icon: Truck, label: "RV Insurance", href: "/rv-insurance", desc: "Adventures protected.", image: rvInsuranceImage },
   { icon: ShieldCheck, label: "Renters Insurance", href: "/renters-insurance", desc: "Your belongings deserve protection.", image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80" },
   { icon: Building, label: "Landlord Insurance", href: "/landlord-insurance", desc: "Protect your rental investment.", image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80" },
-  { icon: Home, label: "Mobile Home", href: "/mobile-home-insurance", desc: "Coverage designed for your home type.", image: "https://images.unsplash.com/photo-1623298317883-6b70254edf31?w=800&q=80" },
+  { icon: Home, label: "Mobile Home", href: "/mobile-home-insurance", desc: "Coverage designed for your home type.", image: mobileHomeInsuranceImage },
   { icon: Umbrella, label: "Personal Umbrella", href: "/personal-umbrella", desc: "Extra protection when you need it.", image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80" },
 ];
 
