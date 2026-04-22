@@ -28,6 +28,7 @@ import BuildingOwners from "./pages/BuildingOwners";
 import BondsSurety from "./pages/BondsSurety";
 import NotFound from "./pages/NotFound";
 import InsuranceChatbot from "./components/InsuranceChatbot";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
