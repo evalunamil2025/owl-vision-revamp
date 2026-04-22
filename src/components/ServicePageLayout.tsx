@@ -233,8 +233,17 @@ const ServicePageLayout = ({
                     </span>
 
                     <div className="flex items-center justify-between mb-6 relative z-10">
-                      <div className={`w-11 h-11 rounded-2xl ${t.chip} flex items-center justify-center backdrop-blur-sm`}>
-                        <CheckCircle2 className="w-5 h-5" strokeWidth={2.2} />
+                      <div className="relative">
+                        <div
+                          className="absolute inset-0 rounded-2xl blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-500"
+                          style={{ backgroundColor: t.accent }}
+                        />
+                        <div className={`relative w-14 h-14 rounded-2xl ${t.chip} flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:scale-110 group-hover:rotate-[-6deg] transition-transform duration-500`}>
+                          {(() => {
+                            const Ico = getIcon(c.title);
+                            return <Ico className="w-6 h-6" strokeWidth={1.8} />;
+                          })()}
+                        </div>
                       </div>
                       <span className={`text-[10px] font-black uppercase tracking-[0.3em] font-heading ${t.sub}`}>
                         / {String(i + 1).padStart(2, "0")}
