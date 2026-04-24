@@ -102,7 +102,7 @@ const ServicePageLayout = ({
           <img
             src={heroImage || heroBg}
             alt={heroImage ? (heroImageAlt || "") : ""}
-            className={`w-full h-full object-cover ${heroImage ? "object-right" : "object-center"}`}
+            className={`w-full h-full object-cover ${heroImage ? "object-[85%_center]" : "object-center"}`}
           />
           {heroImage ? (
             <>
