@@ -1,7 +1,10 @@
 import ServicePageLayout from "@/components/ServicePageLayout";
+import owlieDriving from "@/assets/owlie-driving.png";
 
 const AutoInsurance = () => (
   <ServicePageLayout
+    heroImage={owlieDriving}
+    heroImageAlt="Owlie the mascot driving on a scenic mountain road"
     title="Auto Insurance"
     subtitle="Drive with confidence — we've got you covered"
     heroDescription="Your car isn't just transportation. It takes you to work, to see family, on vacations — to all the moments that make up your life. An accident, theft, or even a storm can become a serious financial problem without proper protection."
