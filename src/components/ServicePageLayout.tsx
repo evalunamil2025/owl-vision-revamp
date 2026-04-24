@@ -102,12 +102,12 @@ const ServicePageLayout = ({
           <img
             src={heroImage || heroBg}
             alt={heroImage ? (heroImageAlt || "") : ""}
-            className="w-full h-full object-cover object-center"
+            className={`w-full h-full object-cover ${heroImage ? "object-right" : "object-center"}`}
           />
           {heroImage ? (
             <>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#015093]/95 via-[#015093]/70 to-[#015093]/40" />
-              <div className="absolute inset-0 bg-[#001e2b]/30" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#015093]/70 via-[#015093]/40 to-[#015093]/20" />
+              <div className="absolute inset-0 bg-[#001e2b]/15" />
             </>
           ) : (
             <>
