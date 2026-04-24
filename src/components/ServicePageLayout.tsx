@@ -99,70 +99,62 @@ const ServicePageLayout = ({
       {/* ─── HERO (Blue Gradient + Buttons) ─── */}
       <section className="relative pt-32 pb-48 overflow-hidden bg-[#015093]">
         <div className="absolute inset-0 z-0">
-          <img src={heroBg} alt="" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-[#015093]/80" />
-          <div className="absolute inset-0 bg-[#001e2b]/20" />
+          <img
+            src={heroImage || heroBg}
+            alt={heroImage ? (heroImageAlt || "") : ""}
+            className="w-full h-full object-cover object-center"
+          />
+          {heroImage ? (
+            <>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#015093]/95 via-[#015093]/70 to-[#015093]/40" />
+              <div className="absolute inset-0 bg-[#001e2b]/30" />
+            </>
+          ) : (
+            <>
+              <div className="absolute inset-0 bg-[#015093]/80" />
+              <div className="absolute inset-0 bg-[#001e2b]/20" />
+            </>
+          )}
         </div>
 
         {/* Decorative glow */}
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#0079c2]/20 rounded-full blur-[120px] animate-pulse z-0" />
 
-        <div className={`container mx-auto px-6 relative z-10 ${heroImage ? "" : "text-center"}`}>
-          <div className={heroImage ? "grid lg:grid-cols-2 gap-12 items-center" : ""}>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className={heroImage ? "max-w-2xl" : "max-w-4xl mx-auto"}
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8">
-                <Sparkles className="w-4 h-4 text-white" />
-                <span className="text-[10px] font-black tracking-[0.4em] text-white uppercase font-heading">
-                  Bringas Insurance Group
-                </span>
-              </div>
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8">
+              <Sparkles className="w-4 h-4 text-white" />
+              <span className="text-[10px] font-black tracking-[0.4em] text-white uppercase font-heading">
+                Bringas Insurance Group
+              </span>
+            </div>
 
-              <h1 className={`${heroImage ? "text-5xl md:text-6xl lg:text-7xl" : "text-5xl md:text-7xl lg:text-[5rem]"} font-bold text-white tracking-tighter leading-[0.9] mb-10 font-heading`}>
-                {title}
-              </h1>
+            <h1 className="text-5xl md:text-7xl lg:text-[5rem] font-bold text-white tracking-tighter leading-[0.9] mb-10 font-heading">
+              {title}
+            </h1>
 
-              {/* CTA Buttons */}
-              <div className={`flex flex-col sm:flex-row gap-5 ${heroImage ? "" : "justify-center"}`}>
-                <Link
-                  to="/quote"
-                  className="px-10 py-5 bg-white text-[#00a651] rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-black/10 hover:bg-[#00a651] hover:text-white transition-all flex items-center justify-center gap-2 group"
-                >
-                  <Shield className="w-4 h-4" />
-                  Get Your Free Quote
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <a
-                  href="tel:+14254057111"
-                  className="px-10 py-5 bg-transparent border-2 border-white/30 text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-sm"
-                >
-                  <Phone className="w-4 h-4 text-[#00a651]" /> (425) 405-7111
-                </a>
-              </div>
-            </motion.div>
-
-            {heroImage && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.85, x: 60 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="relative hidden lg:flex justify-center items-center"
+            <div className="flex flex-col sm:flex-row gap-5 justify-center">
+              <Link
+                to="/quote"
+                className="px-10 py-5 bg-white text-[#00a651] rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-black/10 hover:bg-[#00a651] hover:text-white transition-all flex items-center justify-center gap-2 group"
               >
-                <div className="absolute inset-0 bg-[#00a651]/30 blur-[100px] rounded-full" />
-                <motion.img
-                  src={heroImage}
-                  alt={heroImageAlt || ""}
-                  animate={{ y: [0, -14, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative z-10 w-full max-w-[640px] rounded-[2rem] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.55)] object-cover"
-                />
-              </motion.div>
-            )}
-          </div>
+                <Shield className="w-4 h-4" />
+                Get Your Free Quote
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <a
+                href="tel:+14254057111"
+                className="px-10 py-5 bg-transparent border-2 border-white/30 text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-sm"
+              >
+                <Phone className="w-4 h-4 text-[#00a651]" /> (425) 405-7111
+              </a>
+            </div>
+          </motion.div>
         </div>
 
         {/* SVG Wave divisor */}
