@@ -1,53 +1,44 @@
+import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
 
-const RestaurantInsurance = () => (
-  <ServicePageLayout
-    title="Restaurant Insurance"
-    subtitle="Your restaurant doesn't just serve food — it manages risks every day"
-    heroDescription="A restaurant is one of the most dynamic businesses around. Everything happens at once: customers coming and going, kitchen in constant operation, staff under pressure, equipment running all day. The NRA reports that fire is the leading cause of restaurant losses — and a single foodborne illness lawsuit can exceed $100,000."
-    coverages={[
-      {
-        title: "Property Protection",
-        description: "Covers the building (if owned), tenant improvements, kitchen equipment, dining furniture, and inventory from fire, water damage, theft, and vandalism.",
-      },
-      {
-        title: "General Liability",
-        description: "Covers slip-and-falls, foodborne illness claims, and other third-party injuries. Required in nearly every commercial lease and by most landlords.",
-      },
-      {
-        title: "Business Interruption",
-        description: "If a covered event closes your restaurant, replaces lost income and pays ongoing expenses (rent, payroll, loan payments) until you reopen — typically up to 12 months.",
-      },
-      {
-        title: "Liquor Liability",
-        description: "Required by Washington's WSLCB and most landlords if you serve alcohol. Protects you when an intoxicated patron causes injury or damage after being over-served.",
-        items: ["Required if you serve alcohol", "Mandatory in many leases", "Dram shop law protection", "Often excluded from standard CGL"],
-      },
-      {
-        title: "Workers' Compensation",
-        description: "Mandatory in Washington for any business with employees. Covers cuts, burns, slips, and back injuries — common in fast-paced kitchens.",
-      },
-      {
-        title: "Common Endorsements",
-        description: "Coverages designed for the realities of food service.",
-        items: [
-          "Food spoilage (power outage)",
-          "Equipment breakdown",
-          "Employee dishonesty",
-          "Sewer & drain backup",
-          "Outdoor seating & signage",
-        ],
-      },
-    ]}
-    importantNote={{
-      title: "More Risk Points Than Most Businesses",
-      content: "Restaurants have unique exposures: open flames, hot oil, fryers, walk-in coolers, gas lines, alcohol service, and high employee turnover. The NFPA estimates U.S. fire departments respond to 8,000+ restaurant fires per year — most caused by cooking equipment. A generic policy doesn't address these properly.",
-    }}
-    approach={{
-      intro: "We don't treat your business as just another one. We understand the restaurant industry.",
-      items: ["Understand your industry", "Evaluate real risks", "Design specific coverage"],
-    }}
-  />
-);
+const RestaurantInsurance = () => {
+  const { t } = useTranslation();
+  return (
+    <ServicePageLayout
+      title={t("restaurant.title")}
+      subtitle={t("restaurant.subtitle")}
+      heroDescription={t("restaurant.heroDescription")}
+      coverages={[
+        { title: t("restaurant.coverages.property.title"), description: t("restaurant.coverages.property.description") },
+        { title: t("restaurant.coverages.liability.title"), description: t("restaurant.coverages.liability.description") },
+        { title: t("restaurant.coverages.interruption.title"), description: t("restaurant.coverages.interruption.description") },
+        {
+          title: t("restaurant.coverages.liquor.title"),
+          description: t("restaurant.coverages.liquor.description"),
+          items: [
+            t("restaurant.coverages.liquor.i1"),
+            t("restaurant.coverages.liquor.i2"),
+            t("restaurant.coverages.liquor.i3"),
+            t("restaurant.coverages.liquor.i4"),
+          ],
+        },
+        { title: t("restaurant.coverages.workers.title"), description: t("restaurant.coverages.workers.description") },
+        {
+          title: t("restaurant.coverages.endorsements.title"),
+          description: t("restaurant.coverages.endorsements.description"),
+          items: [
+            t("restaurant.coverages.endorsements.i1"),
+            t("restaurant.coverages.endorsements.i2"),
+            t("restaurant.coverages.endorsements.i3"),
+            t("restaurant.coverages.endorsements.i4"),
+            t("restaurant.coverages.endorsements.i5"),
+          ],
+        },
+      ]}
+      importantNote={{ title: t("restaurant.importantNote.title"), content: t("restaurant.importantNote.content") }}
+      approach={{ intro: t("restaurant.approach.intro"), items: [t("restaurant.approach.i1"), t("restaurant.approach.i2"), t("restaurant.approach.i3")] }}
+    />
+  );
+};
 
 export default RestaurantInsurance;

@@ -1,43 +1,33 @@
+import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
 
-const FloodInsurance = () => (
-  <ServicePageLayout
-    title="Flood Insurance"
-    subtitle="When water gets in — the problem is just beginning"
-    heroDescription="Floods don't warn you. When they happen, they don't just affect your home — they affect everything inside: furniture, memories, appliances, and often your financial stability. According to FEMA, just one inch of water can cause more than $25,000 in damage — and standard homeowner policies do NOT cover flood damage."
-    coverages={[
-      {
-        title: "Building Property Coverage",
-        description: "Through the National Flood Insurance Program (NFIP), covers up to $250,000 for the structure of a residential building. Private flood policies can offer higher limits.",
-        items: [
-          "Foundation & structural elements",
-          "Electrical & plumbing systems",
-          "HVAC equipment",
-          "Built-in appliances & cabinets",
-          "Permanently installed flooring",
-        ],
-      },
-      {
-        title: "Contents Coverage",
-        description: "Covers up to $100,000 for personal belongings under NFIP. Sold separately from building coverage — most renters need only contents.",
-        items: ["Furniture & electronics", "Clothing", "Portable appliances", "Window AC units", "Valuables (sub-limits apply)"],
-      },
-    ]}
-    importantNote={{
-      title: "Who Needs Flood Insurance?",
-      content: "FEMA reports that more than 25% of flood claims come from properties OUTSIDE high-risk zones. Most policies have a 30-day waiting period before they take effect — you can't buy it when a storm is forecast. Federal disaster aid is typically a loan that must be repaid.",
-      items: [
-        "Floods can happen outside designated zones",
-        "Heavy rain, snowmelt, and drainage failures cause damage",
-        "30-day waiting period applies",
-        "Federal assistance often comes as a loan, not a grant",
-      ],
-    }}
-    approach={{
-      intro: "It's not about selling you insurance 'just in case.' It's about helping you understand if you really need it and what type of coverage is adequate.",
-      items: ["Evaluate if you truly need it", "Find the right coverage type", "Protect you without overpaying"],
-    }}
-  />
-);
+const FloodInsurance = () => {
+  const { t } = useTranslation();
+  return (
+    <ServicePageLayout
+      title={t("flood.title")}
+      subtitle={t("flood.subtitle")}
+      heroDescription={t("flood.heroDescription")}
+      coverages={[
+        {
+          title: t("flood.coverages.building.title"),
+          description: t("flood.coverages.building.description"),
+          items: [t("flood.coverages.building.i1"), t("flood.coverages.building.i2"), t("flood.coverages.building.i3"), t("flood.coverages.building.i4"), t("flood.coverages.building.i5")],
+        },
+        {
+          title: t("flood.coverages.contents.title"),
+          description: t("flood.coverages.contents.description"),
+          items: [t("flood.coverages.contents.i1"), t("flood.coverages.contents.i2"), t("flood.coverages.contents.i3"), t("flood.coverages.contents.i4"), t("flood.coverages.contents.i5")],
+        },
+      ]}
+      importantNote={{
+        title: t("flood.importantNote.title"),
+        content: t("flood.importantNote.content"),
+        items: [t("flood.importantNote.i1"), t("flood.importantNote.i2"), t("flood.importantNote.i3"), t("flood.importantNote.i4")],
+      }}
+      approach={{ intro: t("flood.approach.intro"), items: [t("flood.approach.i1"), t("flood.approach.i2"), t("flood.approach.i3")] }}
+    />
+  );
+};
 
 export default FloodInsurance;

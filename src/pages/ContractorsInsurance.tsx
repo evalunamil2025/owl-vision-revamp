@@ -1,51 +1,61 @@
+import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
 
-const ContractorsInsurance = () => (
-  <ServicePageLayout
-    title="Contractors Insurance"
-    subtitle="In construction, risk is part of the job — protection should be part of the plan"
-    heroDescription="If you work in construction, you know every project has variables you can't control: on-site accidents, third-party damage, expensive equipment in constant use, and human error. In Washington, contractors must register with L&I and most clients require proof of $1M+ in General Liability before signing a contract."
-    coverages={[
-      {
-        title: "General Liability",
-        description: "Foundation coverage required by most general contractors and project owners. Pays for third-party bodily injury, property damage, and completed-operations claims.",
-        items: ["Third-party injuries", "Damage to client property", "Completed operations (post-job)", "Subcontractor liability (varies)"],
-      },
-      {
-        title: "Tools & Equipment (Inland Marine)",
-        description: "Covers tools and portable equipment wherever they go — at the shop, in transit, on the job site, or in your truck overnight. Standard property policies often exclude this.",
-        items: ["Hand & power tools", "Portable equipment under $10K", "Scheduled large equipment", "Borrowed/leased equipment"],
-      },
-      {
-        title: "Builders Risk (Course of Construction)",
-        description: "A specialized policy that covers a project under construction — including materials on-site, in transit, or in temporary storage.",
-        items: ["New construction", "Renovations & remodels", "Materials & supplies", "Temporary structures"],
-      },
-      {
-        title: "Commercial Auto",
-        description: "Required if you use vehicles for business — transporting tools, hauling materials, or moving crews. Personal policies exclude commercial use.",
-      },
-      {
-        title: "Workers' Compensation",
-        description: "Mandatory in Washington for contractors with employees. Pays medical bills and lost wages for on-the-job injuries — and shields you from employee lawsuits.",
-      },
-    ]}
-    importantNote={{
-      title: "What Many Contractors Underestimate",
-      content: "A Certificate of Insurance (COI) isn't just paperwork — it's often a contract requirement before you can step on site. Most clients require Additional Insured status and Waiver of Subrogation endorsements. Missing these can delay payment or terminate a contract entirely.",
-      items: [
-        "Type of work (residential, commercial, industrial)",
-        "Project size & dollar value",
-        "Number of employees & subcontractors",
-        "Tool & equipment values",
-        "Additional Insured & Waiver requirements",
-      ],
-    }}
-    approach={{
-      intro: "We understand the construction industry. We evaluate your real risks, analyze your operation type, and design complete coverage.",
-      items: ["Evaluate real risks", "Analyze your operation", "Design complete coverage"],
-    }}
-  />
-);
+const ContractorsInsurance = () => {
+  const { t } = useTranslation();
+  return (
+    <ServicePageLayout
+      title={t("contractors.title")}
+      subtitle={t("contractors.subtitle")}
+      heroDescription={t("contractors.heroDescription")}
+      coverages={[
+        {
+          title: t("contractors.coverages.liability.title"),
+          description: t("contractors.coverages.liability.description"),
+          items: [
+            t("contractors.coverages.liability.i1"),
+            t("contractors.coverages.liability.i2"),
+            t("contractors.coverages.liability.i3"),
+            t("contractors.coverages.liability.i4"),
+          ],
+        },
+        {
+          title: t("contractors.coverages.tools.title"),
+          description: t("contractors.coverages.tools.description"),
+          items: [
+            t("contractors.coverages.tools.i1"),
+            t("contractors.coverages.tools.i2"),
+            t("contractors.coverages.tools.i3"),
+            t("contractors.coverages.tools.i4"),
+          ],
+        },
+        {
+          title: t("contractors.coverages.builders.title"),
+          description: t("contractors.coverages.builders.description"),
+          items: [
+            t("contractors.coverages.builders.i1"),
+            t("contractors.coverages.builders.i2"),
+            t("contractors.coverages.builders.i3"),
+            t("contractors.coverages.builders.i4"),
+          ],
+        },
+        { title: t("contractors.coverages.auto.title"), description: t("contractors.coverages.auto.description") },
+        { title: t("contractors.coverages.workers.title"), description: t("contractors.coverages.workers.description") },
+      ]}
+      importantNote={{
+        title: t("contractors.importantNote.title"),
+        content: t("contractors.importantNote.content"),
+        items: [
+          t("contractors.importantNote.i1"),
+          t("contractors.importantNote.i2"),
+          t("contractors.importantNote.i3"),
+          t("contractors.importantNote.i4"),
+          t("contractors.importantNote.i5"),
+        ],
+      }}
+      approach={{ intro: t("contractors.approach.intro"), items: [t("contractors.approach.i1"), t("contractors.approach.i2"), t("contractors.approach.i3")] }}
+    />
+  );
+};
 
 export default ContractorsInsurance;
