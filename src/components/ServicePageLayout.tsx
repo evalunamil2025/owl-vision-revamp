@@ -137,9 +137,11 @@ const ServicePageLayout = ({
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-[5rem] font-bold text-white tracking-tighter leading-[0.9] mb-10 font-heading">
-              {title}
-            </h1>
+            <RichText
+              as="h1"
+              text={title}
+              className="text-5xl md:text-7xl lg:text-[5rem] font-bold text-white tracking-tighter leading-[0.9] mb-10 font-heading"
+            />
 
             <div className="flex flex-col sm:flex-row gap-5 justify-center">
               <Link
