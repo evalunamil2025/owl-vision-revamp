@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Sparkles, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import contactHeroBg from "@/assets/seattle-hero-bg.jpg";
@@ -19,36 +20,21 @@ const TwitterIcon = () => (
 );
 
 const Contact = () => {
-  // Estilo base para los inputs con la paleta de Bringas
+  const { t } = useTranslation();
   const inputClasses =
     "w-full bg-[#0079c2]/5 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-[#00a651] transition-all outline-none text-[#015093] placeholder:text-[#015093]/40 font-body";
 
   const infoItems = [
-    { icon: Phone, label: "Call Us", val: "(425) 405-7111", href: "tel:+14254057111" },
-    { icon: Mail, label: "Email Us", val: "raul@bringasinsurance.com", href: "mailto:raul@bringasinsurance.com" },
-    { icon: MapPin, label: "Visit Us", val: "Everett, WA 98204", href: "https://maps.google.com" },
+    { icon: Phone, label: t("contact.callUs"), val: t("common.phone"), href: "tel:+14254057111" },
+    { icon: Mail, label: t("contact.emailUs"), val: "raul@bringasinsurance.com", href: "mailto:raul@bringasinsurance.com" },
+    { icon: MapPin, label: t("contact.visitUs"), val: "Everett, WA 98204", href: "https://maps.google.com" },
   ];
 
   const socialLinks = [
-    {
-      icon: FacebookIcon,
-      label: "Facebook",
-      handle: "/BringasInsurance",
-      url: "https://www.facebook.com/Bringas-Insurance-111132600590435/?modal=admin_todo_tour",
-    },
-    {
-      icon: LinkedinIcon,
-      label: "LinkedIn",
-      handle: "@bringas-insurance",
-      url: "https://www.linkedin.com/in/bringas-insurance-54111bb1/",
-    },
+    { icon: FacebookIcon, label: "Facebook", handle: "/BringasInsurance", url: "https://www.facebook.com/Bringas-Insurance-111132600590435/?modal=admin_todo_tour" },
+    { icon: LinkedinIcon, label: "LinkedIn", handle: "@bringas-insurance", url: "https://www.linkedin.com/in/bringas-insurance-54111bb1/" },
     { icon: TwitterIcon, label: "Twitter", handle: "@BringasIns", url: "https://twitter.com/BringasIns" },
-    {
-      icon: InstagramIcon,
-      label: "Instagram",
-      handle: "@bringas_insurance",
-      url: "https://www.instagram.com/bringas_insurance_group/",
-    },
+    { icon: InstagramIcon, label: "Instagram", handle: "@bringas_insurance", url: "https://www.instagram.com/bringas_insurance_group/" },
   ];
 
   return (
@@ -79,18 +65,17 @@ const Contact = () => {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8">
               <Sparkles className="w-4 h-4 text-[#00a651]" />
               <span className="text-[10px] font-black tracking-[0.4em] text-white uppercase">
-                Expert Insurance Guidance
+                {t("contact.badge")}
               </span>
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-[5rem] font-bold text-white tracking-tighter leading-[0.9] mb-8 font-heading">
-              You're one step closer <br />
-              <span className="text-[#00a651] font-light italic text-4xl md:text-6xl">to total protection</span>
+              {t("contact.title1")} <br />
+              <span className="text-[#00a651] font-light italic text-4xl md:text-6xl">{t("contact.title2")}</span>
             </h1>
 
             <p className="text-lg md:text-xl text-white/90 font-body font-light max-w-2xl mx-auto mb-10 leading-relaxed">
-              Questions about your coverage or looking for a new policy? Our team is ready to provide you with
-              personalized attention and the best rates in Washington.
+              {t("contact.intro")}
             </p>
           </motion.div>
         </div>
@@ -138,63 +123,63 @@ const Contact = () => {
               viewport={{ once: true }}
               className="lg:col-span-3 bg-white rounded-[3rem] p-8 md:p-12 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.06)] border border-[#0079c2]/10"
             >
-              <h2 className="text-3xl font-bold text-[#015093] tracking-tight mb-2 font-heading">Send us a message</h2>
+              <h2 className="text-3xl font-bold text-[#015093] tracking-tight mb-2 font-heading">{t("contact.sendMessage")}</h2>
               <p className="text-[#015093]/60 mb-10 font-medium font-body">
-                Fill out the form and an agent will contact you shortly.
+                {t("contact.fillForm")}
               </p>
 
               <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
-                    Full Name
+                    {t("contact.fullName")}
                   </label>
-                  <input type="text" placeholder="John Doe" className={inputClasses} />
+                  <input type="text" placeholder={t("contact.placeholders.fullName")} className={inputClasses} />
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
-                      Email Address
+                      {t("contact.emailAddress")}
                     </label>
-                    <input type="email" placeholder="john@example.com" className={inputClasses} />
+                    <input type="email" placeholder={t("contact.placeholders.email")} className={inputClasses} />
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
-                      Phone Number
+                      {t("contact.phoneNumber")}
                     </label>
-                    <input type="tel" placeholder="(425) 000-0000" className={inputClasses} />
+                    <input type="tel" placeholder={t("contact.placeholders.phone")} className={inputClasses} />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
-                    Insurance Interest
+                    {t("contact.insuranceInterest")}
                   </label>
-                  <select className={inputClasses}>
-                    <option value="" disabled selected>
-                      Select an option
+                  <select className={inputClasses} defaultValue="">
+                    <option value="" disabled>
+                      {t("common.selectOption")}
                     </option>
-                    <option value="auto">Auto Insurance</option>
-                    <option value="home">Home Insurance</option>
-                    <option value="business">Business Insurance</option>
-                    <option value="life">Life Insurance</option>
+                    <option value="auto">{t("services.auto")}</option>
+                    <option value="home">{t("services.home")}</option>
+                    <option value="business">{t("services.bop")}</option>
+                    <option value="life">{t("services.life")}</option>
                   </select>
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
-                    How can we help?
+                    {t("contact.howCanWeHelp")}
                   </label>
                   <textarea
                     rows={4}
-                    placeholder="Tell us more about your needs..."
+                    placeholder={t("contact.placeholders.message")}
                     className={`${inputClasses} resize-none`}
                   />
                 </div>
 
                 <button className="w-full py-5 bg-[#015093] text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-[#015093]/20 hover:bg-[#00a651] transition-all flex items-center justify-center gap-3 group">
                   <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  Send Inquiry
+                  {t("contact.sendInquiry")}
                 </button>
               </form>
             </motion.div>
@@ -203,7 +188,7 @@ const Contact = () => {
             <div className="lg:col-span-2 space-y-8">
               <div className="bg-[#015093] rounded-[3rem] p-10 text-white relative overflow-hidden group">
                 <div className="relative z-10">
-                  <h3 className="text-xl font-bold mb-6 font-heading tracking-tight">Connect With Us</h3>
+                  <h3 className="text-xl font-bold mb-6 font-heading tracking-tight">{t("contact.connectWithUs")}</h3>
                   <div className="space-y-4">
                     {socialLinks.map((social, i) => (
                       <a
@@ -220,15 +205,14 @@ const Contact = () => {
                     ))}
                   </div>
                 </div>
-                {/* Glow decorativo verde */}
                 <div className="absolute top-[-20%] right-[-20%] w-48 h-48 bg-[#00a651]/20 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700" />
               </div>
 
               <div className="bg-[#f8fafb] border border-[#0079c2]/10 rounded-[2.5rem] p-8">
                 <p className="text-sm text-[#015093] font-body leading-relaxed text-center">
-                  🦉 <strong className="font-heading uppercase tracking-widest text-[10px]">Hablamos Español</strong>
+                  🦉 <strong className="font-heading uppercase tracking-widest text-[10px]">{t("contact.hablamos")}</strong>
                   <br />
-                  Estamos listos para asesorarte en tu idioma.
+                  {t("contact.hablamosSub")}
                 </p>
               </div>
             </div>
@@ -246,25 +230,24 @@ const Contact = () => {
 
             <div className="relative z-10 max-w-3xl mx-auto">
               <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter mb-8 leading-[0.95] font-heading">
-                Ready to protect <br /> <span className="text-[#00a651]">your future?</span>
+                {t("contact.cta.titleA")} <br /> <span className="text-[#00a651]">{t("contact.cta.titleB")}</span>
               </h2>
               <p className="text-white text-lg font-body font-light mb-12 max-w-2xl mx-auto leading-relaxed">
-                Car · Home · Business · Life — Don't wait for the unexpected. Call us today and get a tailored quote in
-                minutes.
+                {t("contact.cta.desc")}
               </p>
               <div className="flex flex-col sm:flex-row gap-5 justify-center">
                 <Link
                   to="/quote"
                   className="px-12 py-6 bg-[#00a651] text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-[#00a651]/30 hover:bg-white hover:text-[#015093] transition-all flex items-center justify-center gap-2 group"
                 >
-                  Get a Quote Now
+                  {t("contact.cta.button")}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <a
                   href="tel:+14254057111"
                   className="px-12 py-6 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-white/20 transition-colors flex items-center justify-center gap-2"
                 >
-                  <Phone className="w-4 h-4 text-[#00a651]" /> (425) 405-7111
+                  <Phone className="w-4 h-4 text-[#00a651]" /> {t("common.phone")}
                 </a>
               </div>
             </div>

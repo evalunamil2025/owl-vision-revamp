@@ -1,39 +1,42 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Phone, ShieldCheck, Briefcase, Info, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, ShieldCheck, Briefcase, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import logo from "@/assets/bringas-insurance-logo-big.png";
-
-const personalLinks = [
-  { label: "Auto Insurance", href: "/auto-insurance" },
-  { label: "Home Insurance", href: "/home-insurance" },
-  { label: "Life Insurance", href: "/life-insurance" },
-  { label: "Flood Insurance", href: "/flood-insurance" },
-  { label: "Boat & Watercraft", href: "/boat-insurance" },
-  { label: "Motorcycle", href: "/motorcycle-insurance" },
-  { label: "RV Insurance", href: "/rv-insurance" },
-  { label: "Renters Insurance", href: "/renters-insurance" },
-  { label: "Landlord Insurance", href: "/landlord-insurance" },
-  { label: "Mobile Home", href: "/mobile-home-insurance" },
-  { label: "Personal Umbrella", href: "/personal-umbrella" },
-];
-
-const businessLinks = [
-  { label: "General Liability", href: "/general-liability" },
-  { label: "Business Owners (BOP)", href: "/bop-insurance" },
-  { label: "Commercial Auto", href: "/commercial-auto" },
-  { label: "Commercial Property", href: "/commercial-property" },
-  { label: "Contractors Insurance", href: "/contractors-insurance" },
-  { label: "Restaurant Insurance", href: "/restaurant-insurance" },
-  { label: "Building Owners", href: "/building-owners" },
-  { label: "Bonds & Surety", href: "/bonds-surety" },
-];
+import LanguageToggle from "./LanguageToggle";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
+
+  const personalLinks = [
+    { label: t("services.auto"), href: "/auto-insurance" },
+    { label: t("services.home"), href: "/home-insurance" },
+    { label: t("services.life"), href: "/life-insurance" },
+    { label: t("services.flood"), href: "/flood-insurance" },
+    { label: t("services.boat"), href: "/boat-insurance" },
+    { label: t("services.motorcycle"), href: "/motorcycle-insurance" },
+    { label: t("services.rv"), href: "/rv-insurance" },
+    { label: t("services.renters"), href: "/renters-insurance" },
+    { label: t("services.landlord"), href: "/landlord-insurance" },
+    { label: t("services.mobileHome"), href: "/mobile-home-insurance" },
+    { label: t("services.personalUmbrella"), href: "/personal-umbrella" },
+  ];
+
+  const businessLinks = [
+    { label: t("services.generalLiability"), href: "/general-liability" },
+    { label: t("services.bop"), href: "/bop-insurance" },
+    { label: t("services.commercialAuto"), href: "/commercial-auto" },
+    { label: t("services.commercialProperty"), href: "/commercial-property" },
+    { label: t("services.contractors"), href: "/contractors-insurance" },
+    { label: t("services.restaurant"), href: "/restaurant-insurance" },
+    { label: t("services.buildingOwners"), href: "/building-owners" },
+    { label: t("services.bondsSurety"), href: "/bonds-surety" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -63,7 +66,7 @@ const Navbar = () => {
               isActive("/") ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
             }`}
           >
-            Home
+            {t("nav.home")}
           </Link>
 
           {/* Mega Menú Personal */}
@@ -77,7 +80,7 @@ const Navbar = () => {
                 activeDropdown === "personal" ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
               }`}
             >
-              Personal{" "}
+              {t("nav.personal")}{" "}
               <ChevronDown
                 className={`w-4 h-4 transition-transform ${activeDropdown === "personal" ? "rotate-180" : ""}`}
               />
@@ -92,7 +95,7 @@ const Navbar = () => {
                 >
                   <div className="grid grid-cols-2 gap-x-8 gap-y-2">
                     <div className="col-span-2 mb-4 flex items-center gap-2 text-[#00a651] font-bold text-xs uppercase tracking-widest">
-                      <ShieldCheck className="w-4 h-4" /> Protection for your family
+                      <ShieldCheck className="w-4 h-4" /> {t("nav.personalProtection")}
                     </div>
                     {personalLinks.map((l) => (
                       <Link
@@ -121,7 +124,7 @@ const Navbar = () => {
                 activeDropdown === "business" ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
               }`}
             >
-              Business{" "}
+              {t("nav.business")}{" "}
               <ChevronDown
                 className={`w-4 h-4 transition-transform ${activeDropdown === "business" ? "rotate-180" : ""}`}
               />
@@ -136,7 +139,7 @@ const Navbar = () => {
                 >
                   <div className="grid grid-cols-2 gap-x-8 gap-y-2">
                     <div className="col-span-2 mb-4 flex items-center gap-2 text-[#00a651] font-bold text-xs uppercase tracking-widest">
-                      <Briefcase className="w-4 h-4" /> Commercial Solutions
+                      <Briefcase className="w-4 h-4" /> {t("nav.commercialSolutions")}
                     </div>
                     {businessLinks.map((l) => (
                       <Link
@@ -160,7 +163,7 @@ const Navbar = () => {
               isActive("/about") ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
             }`}
           >
-            About
+            {t("nav.about")}
           </Link>
 
           <Link
@@ -169,18 +172,20 @@ const Navbar = () => {
               isActive("/contact") ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
             }`}
           >
-            Contact
+            {t("nav.contact")}
           </Link>
         </nav>
 
         {/* Action Area */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <LanguageToggle />
+
           <a href="tel:+14254057111" className="hidden sm:flex flex-col items-end group">
             <span className="text-[10px] uppercase text-slate-400 font-bold group-hover:text-[#00a651] transition-colors">
-              Call an Agent
+              {t("common.callAgent")}
             </span>
             <span className="flex items-center gap-1 text-sm font-bold text-[#0079c2]">
-              <Phone className="w-3.5 h-3.5 text-[#00a651]" /> (425) 405-7111
+              <Phone className="w-3.5 h-3.5 text-[#00a651]" /> {t("common.phone")}
             </span>
           </a>
 
@@ -188,7 +193,7 @@ const Navbar = () => {
             to="/quote"
             className="hidden lg:inline-flex bg-[#00a651] hover:bg-[#0079c2] text-white font-bold text-sm px-6 py-3 rounded-full transition-all shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-95"
           >
-            Get a Quote
+            {t("common.getQuote")}
           </Link>
 
           <button
@@ -211,32 +216,36 @@ const Navbar = () => {
           >
             <div className="p-6 space-y-6">
               <div className="space-y-2">
-                <p className="text-[#00a651] font-bold text-xs uppercase tracking-widest px-2">Navigation</p>
+                <p className="text-[#00a651] font-bold text-xs uppercase tracking-widest px-2">
+                  {t("nav.navigation")}
+                </p>
                 <Link
                   to="/"
                   onClick={() => setMobileOpen(false)}
                   className="block p-3 text-lg font-bold text-slate-800 bg-slate-50 rounded-xl"
                 >
-                  Home
+                  {t("nav.home")}
                 </Link>
                 <Link
                   to="/about"
                   onClick={() => setMobileOpen(false)}
                   className="block p-3 text-lg font-bold text-slate-800 bg-slate-50 rounded-xl"
                 >
-                  About Us
+                  {t("nav.aboutUs")}
                 </Link>
                 <Link
                   to="/contact"
                   onClick={() => setMobileOpen(false)}
                   className="block p-3 text-lg font-bold text-slate-800 bg-slate-50 rounded-xl"
                 >
-                  Contact
+                  {t("nav.contact")}
                 </Link>
               </div>
 
               <div className="space-y-2">
-                <p className="text-[#00a651] font-bold text-xs uppercase tracking-widest px-2">Personal Insurance</p>
+                <p className="text-[#00a651] font-bold text-xs uppercase tracking-widest px-2">
+                  {t("nav.personalInsurance")}
+                </p>
                 <div className="grid grid-cols-1 gap-1">
                   {personalLinks.map((l) => (
                     <Link
@@ -256,7 +265,7 @@ const Navbar = () => {
                 onClick={() => setMobileOpen(false)}
                 className="block w-full py-4 bg-[#0079c2] text-white text-center font-bold rounded-2xl shadow-lg"
               >
-                Get a Quote Now
+                {t("nav.getQuoteNow")}
               </Link>
             </div>
           </motion.div>

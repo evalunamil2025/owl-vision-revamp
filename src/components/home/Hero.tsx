@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import mascot from "@/assets/owlin-branch.png";
 import heroBg from "@/assets/seattle-hero-bg.jpg";
 
 const Hero = () => {
+  const { t } = useTranslation();
   // Letter-by-letter reveal for the headline
   const headlineContainer = {
     initial: {},
@@ -71,7 +73,7 @@ const Hero = () => {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-bold text-white mb-8 tracking-wide"
             >
               <span className="flex h-2 w-2 rounded-full bg-[#00a651] animate-pulse" />
-              OWLIE IS HERE • INDEPENDENT INSURANCE AGENCY
+              {t("hero.badge")}
             </motion.span>
 
             {/* Headline with letter-by-letter cinematic reveal */}
@@ -83,12 +85,12 @@ const Hero = () => {
               style={{ perspective: 800 }}
             >
               <span className="block mb-2">
-                {renderWord("Insurance")}
+                {renderWord(t("hero.titleLine1a"))}
                 <span className="inline-block w-3" />
-                {renderWord("that")}
+                {renderWord(t("hero.titleLine1b"))}
               </span>
 
-              {/* "protects" — accent word with gradient + glow + underline */}
+              {/* accent word with gradient + glow + underline */}
               <span className="block relative mb-2">
                 <motion.span
                   className="relative inline-block bg-gradient-to-r from-[#00d96a] via-[#00a651] to-[#00d96a] bg-clip-text text-transparent drop-shadow-[0_4px_20px_rgba(0,166,81,0.45)]"
@@ -96,8 +98,7 @@ const Hero = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.2, duration: 0.6 }}
                 >
-                  {renderWord("protects")}
-                  {/* Animated underline brush */}
+                  {renderWord(t("hero.titleProtects"))}
                   <motion.span
                     className="absolute left-0 -bottom-2 h-[6px] rounded-full bg-gradient-to-r from-[#00a651] to-[#00d96a]"
                     initial={{ width: 0 }}
@@ -106,10 +107,14 @@ const Hero = () => {
                   />
                 </motion.span>
                 <span className="inline-block w-3" />
-                {renderWord("what")}
+                {renderWord(t("hero.titleLine2b"))}
               </span>
 
-              <span className="block">{renderWord("you")}<span className="inline-block w-3" />{renderWord("love")}</span>
+              <span className="block">
+                {renderWord(t("hero.titleLine3a"))}
+                <span className="inline-block w-3" />
+                {renderWord(t("hero.titleLine3b"))}
+              </span>
             </motion.h1>
 
             <motion.p
@@ -117,8 +122,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
               className="text-lg sm:text-xl text-white/80 font-medium leading-relaxed mb-10 max-w-xl"
             >
-              Family • Home • Auto • Business — We compare multiple carriers to find the perfect fit. Real protection,
-              no complications.
+              {t("hero.subtitle")}
             </motion.p>
 
             {/* CTA Buttons — slide up from bottom */}
@@ -131,14 +135,14 @@ const Hero = () => {
                 to="/quote"
                 className="bg-[#00a651] hover:bg-white hover:text-[#0079c2] text-white px-8 py-4 rounded-full font-bold transition-all flex items-center gap-2 shadow-xl hover:shadow-[#00a651]/20 active:scale-95"
               >
-                Get Your Free Quote <ArrowRight className="w-5 h-5" />
+                {t("common.getFreeQuote")} <ArrowRight className="w-5 h-5" />
               </Link>
 
               <a
                 href="tel:+14254057111"
                 className="bg-white/5 hover:bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold transition-all flex items-center gap-2 active:scale-95"
               >
-                <Phone className="w-5 h-5 text-[#00a651]" strokeWidth={3} /> (425) 405-7111
+                <Phone className="w-5 h-5 text-[#00a651]" strokeWidth={3} /> {t("common.phone")}
               </a>
             </motion.div>
           </div>
