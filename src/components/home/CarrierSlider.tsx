@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 import kemperAuto from "@/assets/images/carriers/kemper-auto.png";
 import oregonMutual from "@/assets/images/carriers/oregon-mutual.png";
@@ -26,15 +27,16 @@ const carriers = [
 const doubledCarriers = [...carriers, ...carriers];
 
 const CarrierSlider = () => {
+  const { t } = useTranslation();
   return (
     <section className="bg-white py-24 overflow-hidden">
       {/* Header */}
       <div className="container mx-auto px-6 text-center pt-0 mb-14">
         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#00a651] font-heading block mb-4">
-          We have the best!
+          {t("homePage.carriers.eyebrow")}
         </span>
         <h2 className="text-3xl md:text-4xl font-bold text-[#015093] tracking-tighter font-heading">
-          Here are some companies we represent.
+          {t("homePage.carriers.title")}
         </h2>
       </div>
 

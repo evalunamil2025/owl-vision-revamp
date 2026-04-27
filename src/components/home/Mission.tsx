@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Mission = () => {
+  const { t } = useTranslation();
   return (
     <section className="relative py-32 bg-white overflow-hidden">
       {/* --- Detalles Decorativos --- */}
@@ -22,7 +24,7 @@ const Mission = () => {
         >
           <span className="w-2 h-2 rounded-full bg-[#00a651] animate-pulse" />
           <span className="text-[#015093] font-heading font-black uppercase tracking-[0.3em] text-[10px]">
-            About Our Essence
+            {t("homePage.mission.badge")}
           </span>
         </motion.div>
 
@@ -33,7 +35,7 @@ const Mission = () => {
           viewport={{ once: true }}
           className="text-5xl md:text-7xl font-heading font-bold text-[#015093] mb-12 tracking-tighter"
         >
-          Our <span className="text-[#00a651] font-light italic">Mission</span>
+          {t("homePage.mission.titleA")} <span className="text-[#00a651] font-light italic">{t("homePage.mission.titleAccent")}</span>
         </motion.h2>
 
         {/* Contenido de Texto */}
@@ -46,9 +48,9 @@ const Mission = () => {
             transition={{ delay: 0.1 }}
             className="text-lg md:text-lg text-slate-600 font-body font-light leading-relaxed max-w-3xl mx-auto"
           >
-            We take your peace of mind very seriously, but we don't believe the process of getting insured should be
-            <span className="text-[#015093] font-medium"> boring</span>. Our goal is for you to feel safe and smile at
-            the same time.
+            {t("homePage.mission.paragraphPart1")}
+            <span className="text-[#015093] font-medium">{t("homePage.mission.paragraphHighlight")}</span>
+            {t("homePage.mission.paragraphPart2")}
           </motion.p>
 
           {/* Divisor Elegante */}
@@ -72,10 +74,9 @@ const Mission = () => {
             className="relative"
           >
             <p className="text-lg md:text-xl text-slate-500 font-body leading-relaxed italic max-w-2xl mx-auto">
-              By paying a relatively small premium, you transfer risks that could ruin your finances. We turn that
-              process into a{" "}
-              <span className="text-[#00a651] not-italic font-semibold">friendly and personalized experience</span>,
-              because insurance can also be approachable and human.
+              {t("homePage.mission.quotePart1")}
+              <span className="text-[#00a651] not-italic font-semibold">{t("homePage.mission.quoteHighlight")}</span>
+              {t("homePage.mission.quotePart2")}
             </p>
           </motion.div>
         </div>
