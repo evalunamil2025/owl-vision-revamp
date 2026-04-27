@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
   ArrowRight, Phone, Shield, Sparkles, CheckCircle2, Search, ClipboardCheck, Settings2,
   Car, ShieldAlert, Users, HeartPulse, UserX, Stethoscope, LifeBuoy, Home, Sofa,
@@ -92,6 +93,7 @@ const ServicePageLayout = ({
   heroImage,
   heroImageAlt,
 }: ServicePageLayoutProps) => {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -130,7 +132,7 @@ const ServicePageLayout = ({
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8">
               <Sparkles className="w-4 h-4 text-white" />
               <span className="text-[10px] font-black tracking-[0.4em] text-white uppercase font-heading">
-                Bringas Insurance Group
+                {t("service.brand")}
               </span>
             </div>
 
@@ -144,14 +146,14 @@ const ServicePageLayout = ({
                 className="px-10 py-5 bg-white text-[#00a651] rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-black/10 hover:bg-[#00a651] hover:text-white transition-all flex items-center justify-center gap-2 group"
               >
                 <Shield className="w-4 h-4" />
-                Get Your Free Quote
+                {t("common.getFreeQuote")}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <a
                 href="tel:+14254057111"
                 className="px-10 py-5 bg-transparent border-2 border-white/30 text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-sm"
               >
-                <Phone className="w-4 h-4 text-[#00a651]" /> (425) 405-7111
+                <Phone className="w-4 h-4 text-[#00a651]" /> {t("common.phone")}
               </a>
             </div>
           </motion.div>
@@ -207,15 +209,15 @@ const ServicePageLayout = ({
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[#015093]/10 shadow-sm mb-5">
                   <Shield className="w-3.5 h-3.5 text-[#00a651]" />
                   <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#015093]/70 font-heading">
-                    Coverage Details
+                    {t("service.coverageDetails")}
                   </span>
                 </div>
                 <h2 className="text-4xl md:text-6xl font-bold text-[#015093] tracking-tighter leading-[0.95] font-heading">
-                  What's <span className="text-[#00a651] italic font-light">Covered?</span>
+                  {t("service.whatsCoveredA")} <span className="text-[#00a651] italic font-light">{t("service.whatsCoveredB")}</span>
                 </h2>
               </div>
               <p className="text-[#015093]/60 font-body text-base max-w-sm md:text-right">
-                A clear breakdown of every protection layer included in your policy.
+                {t("service.coverageBreakdown")}
               </p>
             </div>
 
@@ -324,7 +326,7 @@ const ServicePageLayout = ({
                     <Sparkles className="w-5 h-5 text-[#00a651]" />
                   </div>
                   <span className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 font-heading">
-                    Important
+                    {t("service.important")}
                   </span>
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-[#015093] tracking-tight mb-4 font-heading">
@@ -368,11 +370,11 @@ const ServicePageLayout = ({
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-6">
                 <Sparkles className="w-3.5 h-3.5 text-[#00a651]" />
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80 font-heading">
-                  The Process
+                  {t("service.process")}
                 </span>
               </div>
               <h2 className="text-4xl md:text-6xl font-bold text-white font-heading mb-6 tracking-tighter leading-[0.95]">
-                Our <span className="text-[#00a651] italic font-light">Approach</span>
+                {t("service.ourApproachA")} <span className="text-[#00a651] italic font-light">{t("service.ourApproachB")}</span>
               </h2>
               <p className="text-white/70 font-body text-lg leading-relaxed">{approach.intro}</p>
             </div>
@@ -419,7 +421,7 @@ const ServicePageLayout = ({
                         {/* Step label chip */}
                         <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#00a651] shadow-lg">
                           <span className="text-[9px] font-black uppercase tracking-[0.25em] text-white font-heading whitespace-nowrap">
-                            Step {String(i + 1).padStart(2, "0")}
+                            {t("service.step")} {String(i + 1).padStart(2, "0")}
                           </span>
                         </div>
                       </div>
@@ -460,24 +462,24 @@ const ServicePageLayout = ({
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#015093]/10 blur-[60px] rounded-full" />
             <div className="relative z-10 max-w-3xl mx-auto">
               <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter mb-8 leading-[0.95] font-heading">
-                Ready to protect <br /> <span className="text-white/80 italic font-light">what matters most?</span>
+                {t("service.finalCtaTitleA")} <br /> <span className="text-white/80 italic font-light">{t("service.finalCtaTitleB")}</span>
               </h2>
               <p className="text-white/90 text-lg font-body font-light mb-12 max-w-2xl mx-auto leading-relaxed">
-                As an independent agency, we compare multiple carriers to find the best coverage for your needs.
+                {t("service.finalCtaDesc")}
               </p>
               <div className="flex flex-col sm:flex-row gap-5 justify-center">
                 <Link
                   to="/quote"
                   className="px-12 py-6 bg-white text-[#00a651] rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-black/10 hover:bg-[#015093] hover:text-white transition-all flex items-center justify-center gap-2 group"
                 >
-                  Get Your Free Quote
+                  {t("common.getFreeQuote")}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <a
                   href="tel:+14254057111"
                   className="px-12 py-6 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-white/20 transition-colors flex items-center justify-center gap-2"
                 >
-                  <Phone className="w-4 h-4 text-white" /> (425) 405-7111
+                  <Phone className="w-4 h-4 text-white" /> {t("common.phone")}
                 </a>
               </div>
             </div>
