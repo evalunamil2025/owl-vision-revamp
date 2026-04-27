@@ -182,9 +182,11 @@ const ServicePageLayout = ({
             transition={{ duration: 0.6, delay: 0.2 }}
             className="max-w-4xl mx-auto"
           >
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#015093]/60 font-heading block mb-6">
-              {subtitle}
-            </span>
+            <RichText
+              as="span"
+              text={subtitle}
+              className="text-[10px] font-black uppercase tracking-[0.4em] text-[#015093]/60 font-heading block mb-6"
+            />
             <p className="text-xl md:text-2xl font-light text-[#015093]/80 font-body leading-relaxed">
               {heroDescription}
             </p>
