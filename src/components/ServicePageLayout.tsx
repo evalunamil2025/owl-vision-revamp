@@ -137,9 +137,11 @@ const ServicePageLayout = ({
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-[5rem] font-bold text-white tracking-tighter leading-[0.9] mb-10 font-heading">
-              {title}
-            </h1>
+            <RichText
+              as="h1"
+              text={title}
+              className="text-5xl md:text-7xl lg:text-[5rem] font-bold text-white tracking-tighter leading-[0.9] mb-10 font-heading"
+            />
 
             <div className="flex flex-col sm:flex-row gap-5 justify-center">
               <Link
@@ -180,12 +182,16 @@ const ServicePageLayout = ({
             transition={{ duration: 0.6, delay: 0.2 }}
             className="max-w-4xl mx-auto"
           >
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#015093]/60 font-heading block mb-6">
-              {subtitle}
-            </span>
-            <p className="text-xl md:text-2xl font-light text-[#015093]/80 font-body leading-relaxed">
-              {heroDescription}
-            </p>
+            <RichText
+              as="span"
+              text={subtitle}
+              className="text-[10px] font-black uppercase tracking-[0.4em] text-[#015093]/60 font-heading block mb-6"
+            />
+            <RichText
+              as="p"
+              text={heroDescription}
+              className="text-xl md:text-2xl font-light text-[#015093]/80 font-body leading-relaxed"
+            />
           </motion.div>
         </div>
       </section>

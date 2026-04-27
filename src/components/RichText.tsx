@@ -8,7 +8,7 @@ interface RichTextProps {
    */
   text: string;
   className?: string;
-  as?: "span" | "p" | "h2" | "h3" | "h4" | "li" | "div";
+  as?: "span" | "p" | "h1" | "h2" | "h3" | "h4" | "li" | "div";
 }
 
 /**
