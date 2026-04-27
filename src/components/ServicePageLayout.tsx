@@ -13,6 +13,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import RichText from "./RichText";
 import heroBg from "@/assets/seattle-hero-bg.jpg";
 
 // Map coverage titles to contextual icons
@@ -268,14 +269,16 @@ const ServicePageLayout = ({
                       </span>
                     </div>
 
-                    <h3
+                    <RichText
+                      as="h3"
+                      text={c.title}
                       className={`${isFeature ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"} font-bold ${t.text} font-heading tracking-tight leading-tight mb-3 relative z-10`}
-                      dangerouslySetInnerHTML={{ __html: c.title }}
                     />
 
-                    <p
+                    <RichText
+                      as="p"
+                      text={c.description}
                       className={`text-sm md:text-[15px] ${t.sub} font-body leading-relaxed mb-5 relative z-10`}
-                      dangerouslySetInnerHTML={{ __html: c.description }}
                     />
 
                     {c.items && (
@@ -289,7 +292,7 @@ const ServicePageLayout = ({
                               className="w-1.5 h-1.5 rounded-full"
                               style={{ backgroundColor: t.accent }}
                             />
-                            <span dangerouslySetInnerHTML={{ __html: item }} />
+                            <RichText text={item} />
                           </span>
                         ))}
                       </div>
@@ -329,20 +332,22 @@ const ServicePageLayout = ({
                     {t("service.important")}
                   </span>
                 </div>
-                <h3
+                <RichText
+                  as="h3"
+                  text={importantNote.title}
                   className="text-2xl md:text-3xl font-bold text-[#015093] tracking-tight mb-4 font-heading"
-                  dangerouslySetInnerHTML={{ __html: importantNote.title }}
                 />
-                <p
+                <RichText
+                  as="p"
+                  text={importantNote.content}
                   className="text-[#015093]/70 font-body leading-relaxed mb-6"
-                  dangerouslySetInnerHTML={{ __html: importantNote.content }}
                 />
                 {importantNote.items && (
                   <ul className="space-y-3">
                     {importantNote.items.map((item, i) => (
                       <li key={i} className="flex items-start gap-3 text-sm text-[#015093]/80 font-body">
                         <span className="w-2 h-2 rounded-full bg-[#00a651] mt-1.5 flex-shrink-0" />
-                        <span dangerouslySetInnerHTML={{ __html: item }} />
+                        <RichText text={item} />
                       </li>
                     ))}
                   </ul>
@@ -433,9 +438,11 @@ const ServicePageLayout = ({
                       {/* Card */}
                       <div className="w-full bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 group-hover:bg-white/[0.08] group-hover:border-[#00a651]/40 transition-all duration-500 relative overflow-hidden">
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-2/3 h-[2px] bg-[#00a651] transition-all duration-500" />
-                        <h3 className="text-lg md:text-xl font-bold text-white font-heading leading-snug">
-                          {item}
-                        </h3>
+                        <RichText
+                          as="h3"
+                          text={item}
+                          className="text-lg md:text-xl font-bold text-white font-heading leading-snug"
+                        />
                       </div>
                     </motion.div>
                   );
