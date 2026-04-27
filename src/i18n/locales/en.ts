@@ -184,6 +184,11 @@ const en = {
     process: "The Process",
     ourApproachA: "Our",
     ourApproachB: "Approach",
+    step: "Step",
+    finalCtaTitleA: "Ready to protect",
+    finalCtaTitleB: "what matters most?",
+    finalCtaDesc:
+      "As an independent agency, we compare multiple carriers to find the best coverage for your needs.",
   },
 };
 

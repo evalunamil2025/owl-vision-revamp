@@ -186,6 +186,11 @@ const es: Translation = {
     process: "El proceso",
     ourApproachA: "Nuestro",
     ourApproachB: "enfoque",
+    step: "Paso",
+    finalCtaTitleA: "¿Listo para proteger",
+    finalCtaTitleB: "lo que más importa?",
+    finalCtaDesc:
+      "Como agencia independiente, comparamos múltiples aseguradoras para encontrar la mejor cobertura para tus necesidades.",
   },
 };
 
