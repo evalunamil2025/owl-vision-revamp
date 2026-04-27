@@ -329,16 +329,20 @@ const ServicePageLayout = ({
                     {t("service.important")}
                   </span>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-[#015093] tracking-tight mb-4 font-heading">
-                  {importantNote.title}
-                </h3>
-                <p className="text-[#015093]/70 font-body leading-relaxed mb-6">{importantNote.content}</p>
+                <h3
+                  className="text-2xl md:text-3xl font-bold text-[#015093] tracking-tight mb-4 font-heading"
+                  dangerouslySetInnerHTML={{ __html: importantNote.title }}
+                />
+                <p
+                  className="text-[#015093]/70 font-body leading-relaxed mb-6"
+                  dangerouslySetInnerHTML={{ __html: importantNote.content }}
+                />
                 {importantNote.items && (
                   <ul className="space-y-3">
                     {importantNote.items.map((item, i) => (
                       <li key={i} className="flex items-start gap-3 text-sm text-[#015093]/80 font-body">
                         <span className="w-2 h-2 rounded-full bg-[#00a651] mt-1.5 flex-shrink-0" />
-                        {item}
+                        <span dangerouslySetInnerHTML={{ __html: item }} />
                       </li>
                     ))}
                   </ul>
