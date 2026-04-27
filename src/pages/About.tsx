@@ -117,9 +117,9 @@ const About = () => {
       <section className="py-24 bg-[#f8fafb]">
         <div className="container mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#015093] font-heading mb-4">What makes us different</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#015093] font-heading mb-4">{t("about.differentTitle")}</h2>
             <p className="text-[#015093]/60 font-body">
-              Independence, transparency, and a deep connection to our community.
+              {t("about.differentSub")}
             </p>
           </div>
 
@@ -127,18 +127,18 @@ const About = () => {
             {[
               {
                 icon: Heart,
-                title: "Personalized Care",
-                desc: "Independent and objective advice tailored to your priorities — not a single company's agenda.",
+                title: t("about.values.personalizedTitle"),
+                desc: t("about.values.personalizedDesc"),
               },
               {
                 icon: Users,
-                title: "Community First",
-                desc: "Bilingual, local, and deeply connected to the Hispanic community. We speak your language.",
+                title: t("about.values.communityTitle"),
+                desc: t("about.values.communityDesc"),
               },
               {
                 icon: ShieldCheck,
-                title: "Transparent Always",
-                desc: "We explain everything without jargon. You'll always know what you're paying for and why.",
+                title: t("about.values.transparentTitle"),
+                desc: t("about.values.transparentDesc"),
               },
             ].map((item, i) => (
               <motion.div
@@ -186,32 +186,26 @@ const About = () => {
                   <Headphones className="w-5 h-5 text-[#00a651]" />
                 </div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 font-heading">
-                  The Bringas Team
+                  {t("about.teamLabel")}
                 </span>
               </div>
 
               <h2 className="text-4xl font-bold text-[#015093] font-heading tracking-tight">
-                Real people, real service
+                {t("about.teamTitle")}
               </h2>
 
               <div className="space-y-6 text-[#015093]/80 font-body leading-relaxed text-lg">
                 <p>
-                  When you think of insurance agents, do you picture someone in a gray suit speaking complicated
-                  language? <strong>Forget that.</strong> Our team is made up of real people who live in your community
-                  and speak your language.
+                  <Trans i18nKey="about.teamP1" components={{ strong: <strong /> }} />
                 </p>
-                <p>
-                  As an independent agency, our agents give you impartial advice. They're locally trained and here to
-                  listen, explain, and support you. Whether you're new to insurance or have been managing policies for
-                  years, we're here for you.
-                </p>
+                <p>{t("about.teamP2")}</p>
               </div>
 
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-[#015093] text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-[#015093]/20 hover:bg-[#00a651] transition-all group"
               >
-                Meet an Agent
+                {t("about.meetAgent")}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
@@ -228,25 +222,24 @@ const About = () => {
 
             <div className="relative z-10 max-w-3xl mx-auto">
               <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter mb-8 leading-[0.95] font-heading">
-                Ready to find <br /> <span className="text-[#00a651]">your peace of mind?</span>
+                {t("about.cta.title1")} <br /> <span className="text-[#00a651]">{t("about.cta.title2")}</span>
               </h2>
               <p className="text-white text-lg md:text-xl font-body font-light mb-12 max-w-2xl mx-auto leading-relaxed">
-                Join the hundreds of families in Washington who have found a simpler, more human way to handle
-                insurance.
+                {t("about.cta.desc")}
               </p>
               <div className="flex flex-col sm:flex-row gap-5 justify-center">
                 <Link
                   to="/quote"
                   className="px-12 py-6 bg-[#00a651] text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-[#00a651]/30 hover:bg-white hover:text-[#015093] transition-all flex items-center justify-center gap-2 group"
                 >
-                  Start My Quote
+                  {t("about.cta.startQuote")}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   to="/contact"
                   className="px-12 py-6 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-white/20 transition-colors flex items-center justify-center gap-2"
                 >
-                  Contact Us
+                  {t("about.cta.contact")}
                 </Link>
               </div>
             </div>
