@@ -192,6 +192,95 @@ const es: Translation = {
     finalCtaDesc:
       "Como agencia independiente, comparamos múltiples aseguradoras para encontrar la mejor cobertura para tus necesidades.",
   },
+  auto: {
+    heroImageAlt: "Owlie, la mascota, conduciendo por una pintoresca ruta de montaña",
+    title: "Seguro de Auto",
+    subtitle: "Maneja con confianza — estás protegido",
+    heroDescription:
+      "Tu auto no es solo un medio de transporte. Te lleva al trabajo, a ver a tu familia, de vacaciones — a todos los momentos que forman parte de tu vida. Un accidente, un robo o incluso una tormenta pueden convertirse en un serio problema financiero sin la protección adecuada.",
+    coverages: {
+      liability: {
+        title: "<b>Liability Coverage</b> (Cobertura de Responsabilidad Civil)",
+        description:
+          "Requerida por la ley del estado de Washington. Cubre las lesiones corporales y los daños a la propiedad que tú causes a otros en un accidente del cual seas responsable, además de tu defensa legal.",
+        i1: "<b>Bodily Injury Liability</b> (Responsabilidad por Lesiones Corporales)",
+        i2: "<b>Property Damage Liability</b> (Responsabilidad por Daños a la Propiedad)",
+        i3: "Gastos de defensa legal",
+        i4: "Mínimo en WA: 25/50/10",
+      },
+      collision: {
+        title: "<b>Collision Coverage</b> (Cobertura de Colisión)",
+        description:
+          "Cubre la reparación o el reemplazo de tu vehículo tras una colisión con otro vehículo u objeto — independientemente de quién tenga la culpa. Sujeto a tu deducible.",
+        i1: "Accidentes de un solo vehículo",
+        i2: "Choque con otro vehículo",
+        i3: "Choque con un objeto (poste, cerca)",
+        i4: "Volcaduras",
+      },
+      comprehensive: {
+        title: "<b>Comprehensive Coverage</b> (Cobertura Integral)",
+        description:
+          "Cubre los daños a tu vehículo por eventos que no son colisiones. A menudo es requerida por los prestamistas si estás financiando o arrendando el auto.",
+        i1: "Robo y vandalismo",
+        i2: "Incendios y explosiones",
+        i3: "Granizo, vientos fuertes, inundaciones",
+        i4: "Objetos que caen y animales",
+        i5: "Rotura de cristales",
+      },
+      umuim: {
+        title: "<b>Uninsured/Underinsured Motorist (UM/UIM)</b>",
+        description:
+          "Aproximadamente 1 de cada 8 conductores en EE.UU. no tiene seguro (III). El <b>UM/UIM</b> cubre tus lesiones y daños cuando el conductor culpable no tiene seguro — o no tiene suficiente.",
+        i1: "Accidentes de fuga (hit-and-run)",
+        i2: "Conductores culpables sin seguro",
+        i3: "Conductores con seguro insuficiente",
+        i4: "Lesiones corporales y daños a la propiedad",
+      },
+      medpay: {
+        title: "<b>Medical Payments (MedPay)</b> (Pagos Médicos)",
+        description:
+          "Cobertura sin culpa (no-fault) que paga los gastos médicos tuyos y de tus pasajeros tras un accidente, sin importar quién lo haya causado.",
+        i1: "Visitas al hospital y al médico",
+        i2: "Cirugía y rayos X",
+        i3: "Tratamiento dental",
+        i4: "Gastos funerarios",
+      },
+      pip: {
+        title: "<b>Personal Injury Protection (PIP)</b> (Protección contra Lesiones Personales)",
+        description:
+          "Opcional en Washington, pero altamente recomendada. Más amplia que <b>MedPay</b> — también cubre la pérdida de salario y servicios esenciales.",
+        i1: "Gastos médicos",
+        i2: "Pérdida de salario",
+        i3: "Servicios esenciales (cuidado infantil, tareas del hogar)",
+        i4: "Gastos funerarios",
+      },
+      additional: {
+        title: "Coberturas Adicionales",
+        description: "Coberturas opcionales que cierran brechas comunes y evitan sorpresas pagadas de tu bolsillo.",
+        i1: "Asistencia en el camino",
+        i2: "Reembolso de auto de alquiler",
+        i3: "Grúa y mano de obra",
+        i4: "<b>Gap Insurance</b> (préstamo/arrendamiento)",
+        i5: "Reemplazo por auto nuevo",
+      },
+    },
+    importantNote: {
+      title: "¿Cuánta cobertura necesitas?",
+      content:
+        "Los mínimos del estado de Washington (25/50/10) rara vez son suficientes — una sola visita a la sala de emergencias puede superar los $25,000. Tu cifra real depende de tus bienes, el valor de tu vehículo, tu capacidad de afrontar un deducible y tu tolerancia personal al riesgo.",
+      i1: "Trabajar con una agencia independiente marca la diferencia",
+      i2: "Comparamos múltiples aseguradoras para encontrar la mejor combinación de precio y protección",
+      i3: "No estamos limitados a una sola opción",
+    },
+    approach: {
+      intro:
+        "No se trata solo de darte un precio. Se trata de asegurarnos de que entiendas qué cubre tu póliza, qué no cubre y qué realmente necesitas.",
+      i1: "Comparar múltiples aseguradoras",
+      i2: "Evaluar tu perfil real",
+      i3: "Ajustar cobertura y costo a tu situación",
+      closing: "Una póliza barata que no protege bien puede terminar costando mucho más a la larga.",
+    },
+  },
 };
 
 export default es;
