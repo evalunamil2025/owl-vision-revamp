@@ -1304,6 +1304,101 @@ const en = {
       i3: "Design specific coverage",
     },
   },
+  homePage: {
+    hero: {
+      speech: "Go for it — just takes a minute! I'll guide you. 🕐",
+    },
+    whyUs: {
+      badge: "The Bringas Difference",
+      titleA: "Why",
+      titleAccent: "choose",
+      titleB: "us?",
+      intro:
+        "Peace of mind shouldn't feel transactional. We blend independent expertise with a neighborly touch — protecting what matters with clarity, honesty, and care.",
+      stats: {
+        carriers: "Top carriers",
+        independent: "Independent",
+        support: "Local support",
+      },
+      items: {
+        freedom: {
+          title: "Freedom of Choice",
+          desc: "As an independent agency, we compare multiple carriers to find your best option — like a buffet of insurance.",
+        },
+        honest: {
+          title: "Honest Advice",
+          desc: "We give objective recommendations because we work for you, not for a single company.",
+        },
+        local: {
+          title: "Local Experts",
+          desc: "We know your community, the adjusters, and the local landscape. We're the neighbor who understands your policy.",
+        },
+        ongoing: {
+          title: "Ongoing Support",
+          desc: "Life changes, and so should your coverage. We review and adjust your policies as your needs evolve.",
+        },
+      },
+    },
+    services: {
+      badge: "Comprehensive Coverage",
+      titleA: "Our Insurance",
+      titleAccent: "Solutions",
+      personal: "Personal",
+      business: "Business",
+      learnMore: "Learn More",
+      items: {
+        auto: { label: "Auto Insurance", desc: "Protect your vehicle and your peace of mind." },
+        home: { label: "Home Insurance", desc: "Safeguard your biggest investment." },
+        life: { label: "Life Insurance", desc: "Protect those who matter most." },
+        flood: { label: "Flood Insurance", desc: "Don't let water damage catch you off guard." },
+        boat: { label: "Boat & Watercraft", desc: "Enjoy the water worry-free." },
+        motorcycle: { label: "Motorcycle", desc: "Ride with the right coverage." },
+        rv: { label: "RV Insurance", desc: "Adventures protected." },
+        renters: { label: "Renters Insurance", desc: "Your belongings deserve protection." },
+        landlord: { label: "Landlord Insurance", desc: "Protect your rental investment." },
+        mobileHome: { label: "Mobile Home", desc: "Coverage designed for your home type." },
+        personalUmbrella: { label: "Personal Umbrella", desc: "Extra protection when you need it." },
+        generalLiability: { label: "General Liability", desc: "Essential protection for any business." },
+        bop: { label: "Business Owners (BOP)", desc: "All-in-one coverage for your business." },
+        commercialAuto: { label: "Commercial Auto", desc: "Cover vehicles used for work." },
+        commercialProperty: { label: "Commercial Property", desc: "Protect your business space." },
+        contractors: { label: "Contractors Insurance", desc: "Built for the construction industry." },
+        restaurant: { label: "Restaurant Insurance", desc: "Specialized restaurant coverage." },
+        buildingOwners: { label: "Building Owners", desc: "Protect your real estate investment." },
+        bondsSurety: { label: "Bonds & Surety", desc: "Guarantee your commitments." },
+      },
+    },
+    community: {
+      badge: "Bilingual Pride",
+      title: "Our Hispanic Community",
+      paragraph:
+        "We're bilingual and understand that serving the Hispanic community requires authenticity and warmth. We communicate with respect and joy in both Spanish and English, so you feel at home.",
+      stat: "Latinos represent nearly one in five Americans, with purchasing power exceeding $2.8 trillion by 2026.",
+      cta: "Let's Talk",
+    },
+    mission: {
+      badge: "About Our Essence",
+      titleA: "Our",
+      titleAccent: "Mission",
+      paragraphPart1:
+        "We take your peace of mind very seriously, but we don't believe the process of getting insured should be ",
+      paragraphHighlight: "boring",
+      paragraphPart2: ". Our goal is for you to feel safe and smile at the same time.",
+      quotePart1: "By paying a relatively small premium, you transfer risks that could ruin your finances. We turn that process into a ",
+      quoteHighlight: "friendly and personalized experience",
+      quotePart2: ", because insurance can also be approachable and human.",
+    },
+    finalCta: {
+      title: "Ready to Get Started?",
+      desc: "The first step to protecting what you love is simpler than you think. Call us or send a message — we promise to explain everything without jargon and, if possible, with a smile.",
+      cta: "Get Your Free Quote",
+      speech: "Go for it — just takes a minute! I'll guide you. 🕐",
+    },
+    carriers: {
+      eyebrow: "We have the best!",
+      title: "Here are some companies we represent.",
+    },
+  },
 };
 
 export default en;
