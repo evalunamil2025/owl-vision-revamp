@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles, User, Building2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { personalServices, businessServices } from "@/data/homeData";
 
 const WaveDivider = () => (
@@ -13,6 +14,7 @@ const WaveDivider = () => (
 );
 
 const UnifiedServices = () => {
+  const { t } = useTranslation();
   const [category, setCategory] = useState<"personal" | "business">("personal");
   const services = category === "personal" ? personalServices : businessServices;
 
