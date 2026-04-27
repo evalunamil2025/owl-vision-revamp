@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Sparkles, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import contactHeroBg from "@/assets/seattle-hero-bg.jpg";
@@ -19,36 +20,21 @@ const TwitterIcon = () => (
 );
 
 const Contact = () => {
-  // Estilo base para los inputs con la paleta de Bringas
+  const { t } = useTranslation();
   const inputClasses =
     "w-full bg-[#0079c2]/5 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-[#00a651] transition-all outline-none text-[#015093] placeholder:text-[#015093]/40 font-body";
 
   const infoItems = [
-    { icon: Phone, label: "Call Us", val: "(425) 405-7111", href: "tel:+14254057111" },
-    { icon: Mail, label: "Email Us", val: "raul@bringasinsurance.com", href: "mailto:raul@bringasinsurance.com" },
-    { icon: MapPin, label: "Visit Us", val: "Everett, WA 98204", href: "https://maps.google.com" },
+    { icon: Phone, label: t("contact.callUs"), val: t("common.phone"), href: "tel:+14254057111" },
+    { icon: Mail, label: t("contact.emailUs"), val: "raul@bringasinsurance.com", href: "mailto:raul@bringasinsurance.com" },
+    { icon: MapPin, label: t("contact.visitUs"), val: "Everett, WA 98204", href: "https://maps.google.com" },
   ];
 
   const socialLinks = [
-    {
-      icon: FacebookIcon,
-      label: "Facebook",
-      handle: "/BringasInsurance",
-      url: "https://www.facebook.com/Bringas-Insurance-111132600590435/?modal=admin_todo_tour",
-    },
-    {
-      icon: LinkedinIcon,
-      label: "LinkedIn",
-      handle: "@bringas-insurance",
-      url: "https://www.linkedin.com/in/bringas-insurance-54111bb1/",
-    },
+    { icon: FacebookIcon, label: "Facebook", handle: "/BringasInsurance", url: "https://www.facebook.com/Bringas-Insurance-111132600590435/?modal=admin_todo_tour" },
+    { icon: LinkedinIcon, label: "LinkedIn", handle: "@bringas-insurance", url: "https://www.linkedin.com/in/bringas-insurance-54111bb1/" },
     { icon: TwitterIcon, label: "Twitter", handle: "@BringasIns", url: "https://twitter.com/BringasIns" },
-    {
-      icon: InstagramIcon,
-      label: "Instagram",
-      handle: "@bringas_insurance",
-      url: "https://www.instagram.com/bringas_insurance_group/",
-    },
+    { icon: InstagramIcon, label: "Instagram", handle: "@bringas_insurance", url: "https://www.instagram.com/bringas_insurance_group/" },
   ];
 
   return (
