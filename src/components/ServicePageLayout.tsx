@@ -187,9 +187,11 @@ const ServicePageLayout = ({
               text={subtitle}
               className="text-[10px] font-black uppercase tracking-[0.4em] text-[#015093]/60 font-heading block mb-6"
             />
-            <p className="text-xl md:text-2xl font-light text-[#015093]/80 font-body leading-relaxed">
-              {heroDescription}
-            </p>
+            <RichText
+              as="p"
+              text={heroDescription}
+              className="text-xl md:text-2xl font-light text-[#015093]/80 font-body leading-relaxed"
+            />
           </motion.div>
         </div>
       </section>
