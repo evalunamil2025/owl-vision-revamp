@@ -1,65 +1,111 @@
+import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
 import owlieDriving from "@/assets/owlie-driving.png";
 
-const AutoInsurance = () => (
-  <ServicePageLayout
-    heroImage={owlieDriving}
-    heroImageAlt="Owlie the mascot driving on a scenic mountain road"
-    title="Auto Insurance"
-    subtitle="Drive with confidence — we've got you covered"
-    heroDescription="Your car isn't just transportation. It takes you to work, to see family, on vacations — to all the moments that make up your life. An accident, theft, or even a storm can become a serious financial problem without proper protection."
-    coverages={[
-      {
-        title: "Liability Coverage",
-        description: "Required by Washington State law. Pays for bodily injury and property damage you cause to others in an at-fault accident, plus your legal defense.",
-        items: ["Bodily Injury Liability", "Property Damage Liability", "Legal defense costs", "WA minimum: 25/50/10"],
-      },
-      {
-        title: "Collision Coverage",
-        description: "Pays to repair or replace your vehicle after a collision with another vehicle or object — regardless of fault. Subject to your deductible.",
-        items: ["Single-car accidents", "Hitting another vehicle", "Hitting an object (pole, fence)", "Rollovers"],
-      },
-      {
-        title: "Comprehensive Coverage",
-        description: "Covers damage to your vehicle from non-collision events. Often required by lenders if you're financing or leasing.",
-        items: ["Theft & vandalism", "Fire & explosions", "Hail, windstorm, flood", "Falling objects & animals", "Glass breakage"],
-      },
-      {
-        title: "Uninsured/Underinsured Motorist",
-        description: "Roughly 1 in 8 U.S. drivers is uninsured (III). UM/UIM pays for your injuries and damage when the at-fault driver has no insurance — or not enough.",
-        items: ["Hit-and-run accidents", "Uninsured at-fault drivers", "Underinsured drivers", "Bodily injury & property damage"],
-      },
-      {
-        title: "Medical Payments (MedPay)",
-        description: "No-fault coverage that pays medical bills for you and your passengers after an accident, regardless of who caused it.",
-        items: ["Hospital & doctor visits", "Surgery & X-rays", "Dental treatment", "Funeral expenses"],
-      },
-      {
-        title: "Personal Injury Protection (PIP)",
-        description: "Optional in Washington but highly recommended. Broader than MedPay — also covers lost wages and essential services.",
-        items: ["Medical expenses", "Lost wages", "Essential services (childcare, housekeeping)", "Funeral expenses"],
-      },
-      {
-        title: "Additional Coverages",
-        description: "Optional add-ons that close common gaps and avoid out-of-pocket surprises.",
-        items: ["Roadside assistance", "Rental car reimbursement", "Towing & labor", "Gap insurance (loan/lease)", "New car replacement"],
-      },
-    ]}
-    importantNote={{
-      title: "How Much Coverage Do You Need?",
-      content: "Washington's state minimums (25/50/10) are rarely enough — a single ER visit can exceed $25,000. Your real number depends on your assets, vehicle value, ability to handle a deductible, and personal risk tolerance.",
-      items: [
-        "Working with an independent agency makes the difference",
-        "We compare multiple carriers for the best price-protection combination",
-        "We're not limited to a single option",
-      ],
-    }}
-    approach={{
-      intro: "It's not just about giving you a price. It's about making sure you understand what your policy covers, what it doesn't, and what you truly need.",
-      items: ["Compare multiple carriers", "Evaluate your real profile", "Adjust coverage and cost to your situation"],
-      closing: "A cheap policy that doesn't protect well can end up costing much more later.",
-    }}
-  />
-);
+const AutoInsurance = () => {
+  const { t } = useTranslation();
+
+  return (
+    <ServicePageLayout
+      heroImage={owlieDriving}
+      heroImageAlt={t("auto.heroImageAlt")}
+      title={t("auto.title")}
+      subtitle={t("auto.subtitle")}
+      heroDescription={t("auto.heroDescription")}
+      coverages={[
+        {
+          title: t("auto.coverages.liability.title"),
+          description: t("auto.coverages.liability.description"),
+          items: [
+            t("auto.coverages.liability.i1"),
+            t("auto.coverages.liability.i2"),
+            t("auto.coverages.liability.i3"),
+            t("auto.coverages.liability.i4"),
+          ],
+        },
+        {
+          title: t("auto.coverages.collision.title"),
+          description: t("auto.coverages.collision.description"),
+          items: [
+            t("auto.coverages.collision.i1"),
+            t("auto.coverages.collision.i2"),
+            t("auto.coverages.collision.i3"),
+            t("auto.coverages.collision.i4"),
+          ],
+        },
+        {
+          title: t("auto.coverages.comprehensive.title"),
+          description: t("auto.coverages.comprehensive.description"),
+          items: [
+            t("auto.coverages.comprehensive.i1"),
+            t("auto.coverages.comprehensive.i2"),
+            t("auto.coverages.comprehensive.i3"),
+            t("auto.coverages.comprehensive.i4"),
+            t("auto.coverages.comprehensive.i5"),
+          ],
+        },
+        {
+          title: t("auto.coverages.umuim.title"),
+          description: t("auto.coverages.umuim.description"),
+          items: [
+            t("auto.coverages.umuim.i1"),
+            t("auto.coverages.umuim.i2"),
+            t("auto.coverages.umuim.i3"),
+            t("auto.coverages.umuim.i4"),
+          ],
+        },
+        {
+          title: t("auto.coverages.medpay.title"),
+          description: t("auto.coverages.medpay.description"),
+          items: [
+            t("auto.coverages.medpay.i1"),
+            t("auto.coverages.medpay.i2"),
+            t("auto.coverages.medpay.i3"),
+            t("auto.coverages.medpay.i4"),
+          ],
+        },
+        {
+          title: t("auto.coverages.pip.title"),
+          description: t("auto.coverages.pip.description"),
+          items: [
+            t("auto.coverages.pip.i1"),
+            t("auto.coverages.pip.i2"),
+            t("auto.coverages.pip.i3"),
+            t("auto.coverages.pip.i4"),
+          ],
+        },
+        {
+          title: t("auto.coverages.additional.title"),
+          description: t("auto.coverages.additional.description"),
+          items: [
+            t("auto.coverages.additional.i1"),
+            t("auto.coverages.additional.i2"),
+            t("auto.coverages.additional.i3"),
+            t("auto.coverages.additional.i4"),
+            t("auto.coverages.additional.i5"),
+          ],
+        },
+      ]}
+      importantNote={{
+        title: t("auto.importantNote.title"),
+        content: t("auto.importantNote.content"),
+        items: [
+          t("auto.importantNote.i1"),
+          t("auto.importantNote.i2"),
+          t("auto.importantNote.i3"),
+        ],
+      }}
+      approach={{
+        intro: t("auto.approach.intro"),
+        items: [
+          t("auto.approach.i1"),
+          t("auto.approach.i2"),
+          t("auto.approach.i3"),
+        ],
+        closing: t("auto.approach.closing"),
+      }}
+    />
+  );
+};
 
 export default AutoInsurance;

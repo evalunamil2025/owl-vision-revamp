@@ -190,6 +190,95 @@ const en = {
     finalCtaDesc:
       "As an independent agency, we compare multiple carriers to find the best coverage for your needs.",
   },
+  auto: {
+    heroImageAlt: "Owlie the mascot driving on a scenic mountain road",
+    title: "Auto Insurance",
+    subtitle: "Drive with confidence — we've got you covered",
+    heroDescription:
+      "Your car isn't just transportation. It takes you to work, to see family, on vacations — to all the moments that make up your life. An accident, theft, or even a storm can become a serious financial problem without proper protection.",
+    coverages: {
+      liability: {
+        title: "Liability Coverage",
+        description:
+          "Required by Washington State law. Pays for bodily injury and property damage you cause to others in an at-fault accident, plus your legal defense.",
+        i1: "Bodily Injury Liability",
+        i2: "Property Damage Liability",
+        i3: "Legal defense costs",
+        i4: "WA minimum: 25/50/10",
+      },
+      collision: {
+        title: "Collision Coverage",
+        description:
+          "Pays to repair or replace your vehicle after a collision with another vehicle or object — regardless of fault. Subject to your deductible.",
+        i1: "Single-car accidents",
+        i2: "Hitting another vehicle",
+        i3: "Hitting an object (pole, fence)",
+        i4: "Rollovers",
+      },
+      comprehensive: {
+        title: "Comprehensive Coverage",
+        description:
+          "Covers damage to your vehicle from non-collision events. Often required by lenders if you're financing or leasing.",
+        i1: "Theft & vandalism",
+        i2: "Fire & explosions",
+        i3: "Hail, windstorm, flood",
+        i4: "Falling objects & animals",
+        i5: "Glass breakage",
+      },
+      umuim: {
+        title: "Uninsured/Underinsured Motorist",
+        description:
+          "Roughly 1 in 8 U.S. drivers is uninsured (III). UM/UIM pays for your injuries and damage when the at-fault driver has no insurance — or not enough.",
+        i1: "Hit-and-run accidents",
+        i2: "Uninsured at-fault drivers",
+        i3: "Underinsured drivers",
+        i4: "Bodily injury & property damage",
+      },
+      medpay: {
+        title: "Medical Payments (MedPay)",
+        description:
+          "No-fault coverage that pays medical bills for you and your passengers after an accident, regardless of who caused it.",
+        i1: "Hospital & doctor visits",
+        i2: "Surgery & X-rays",
+        i3: "Dental treatment",
+        i4: "Funeral expenses",
+      },
+      pip: {
+        title: "Personal Injury Protection (PIP)",
+        description:
+          "Optional in Washington but highly recommended. Broader than MedPay — also covers lost wages and essential services.",
+        i1: "Medical expenses",
+        i2: "Lost wages",
+        i3: "Essential services (childcare, housekeeping)",
+        i4: "Funeral expenses",
+      },
+      additional: {
+        title: "Additional Coverages",
+        description: "Optional add-ons that close common gaps and avoid out-of-pocket surprises.",
+        i1: "Roadside assistance",
+        i2: "Rental car reimbursement",
+        i3: "Towing & labor",
+        i4: "Gap insurance (loan/lease)",
+        i5: "New car replacement",
+      },
+    },
+    importantNote: {
+      title: "How Much Coverage Do You Need?",
+      content:
+        "Washington's state minimums (25/50/10) are rarely enough — a single ER visit can exceed $25,000. Your real number depends on your assets, vehicle value, ability to handle a deductible, and personal risk tolerance.",
+      i1: "Working with an independent agency makes the difference",
+      i2: "We compare multiple carriers for the best price-protection combination",
+      i3: "We're not limited to a single option",
+    },
+    approach: {
+      intro:
+        "It's not just about giving you a price. It's about making sure you understand what your policy covers, what it doesn't, and what you truly need.",
+      i1: "Compare multiple carriers",
+      i2: "Evaluate your real profile",
+      i3: "Adjust coverage and cost to your situation",
+      closing: "A cheap policy that doesn't protect well can end up costing much more later.",
+    },
+  },
 };
 
 export default en;
