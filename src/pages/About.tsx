@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Eye, Heart, Users, Sparkles, ArrowRight, ShieldCheck, Headphones } from "lucide-react";
+import { useTranslation, Trans } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import mascot from "@/assets/owlie-mascot.png";
 import aboutHeroBg from "@/assets/seattle-hero-bg.jpg";
 
 const About = () => {
-  // Estilo de badge superior (Aquos Style)
+  const { t } = useTranslation();
   const badgeStyle =
     "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8";
 
@@ -35,18 +36,17 @@ const About = () => {
             <div className={badgeStyle}>
               <Sparkles className="w-4 h-4 text-[#00a651]" />
               <span className="text-[10px] font-black tracking-[0.4em] text-white uppercase font-heading">
-                Peace · Security · Smiles
+                {t("about.badge")}
               </span>
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-[5rem] font-bold text-white tracking-tighter leading-[0.9] mb-8 font-heading">
-              More than insurance, <br />
-              <span className="text-[#00a651] font-light italic text-4xl md:text-6xl">we provide peace of mind</span>
+              {t("about.title1")} <br />
+              <span className="text-[#00a651] font-light italic text-4xl md:text-6xl">{t("about.title2")}</span>
             </h1>
 
             <p className="text-lg md:text-xl text-white/90 font-body font-light max-w-2xl mx-auto leading-relaxed">
-              That's what drives us every day: ensuring you can live with the confidence that you're protected, without
-              losing your joy.
+              {t("about.intro")}
             </p>
           </motion.div>
         </div>
@@ -78,27 +78,20 @@ const About = () => {
                   <Eye className="w-5 h-5 text-[#00a651]" />
                 </div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 font-heading">
-                  Our Vision
+                  {t("about.visionLabel")}
                 </span>
               </div>
 
               <h2 className="text-3xl md:text-4xl font-bold text-[#015093] tracking-tight mb-6 font-heading">
-                Financial peace shouldn't be an empty promise
+                {t("about.visionTitle")}
               </h2>
 
               <div className="space-y-4 font-body text-[#015093]/80 leading-relaxed">
-                <p>
-                  We believe financial peace of mind should be an everyday reality. Our vision is simple: that you and
-                  your family live with the confidence that you're protected, without losing joy or good humor.
-                </p>
+                <p>{t("about.visionP1")}</p>
                 <p className="bg-[#0079c2]/5 p-6 rounded-2xl border-l-4 border-[#00a651] italic">
-                  "Studies show that 69% of people with life insurance feel less stressed knowing their family is
-                  protected."
+                  {t("about.visionQuote")}
                 </p>
-                <p>
-                  We turn insurance into a tool for your emotional wellbeing, explaining every detail without the boring
-                  jargon.
-                </p>
+                <p>{t("about.visionP2")}</p>
               </div>
             </motion.div>
 
