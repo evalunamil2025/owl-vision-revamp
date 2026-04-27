@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import mascot from "@/assets/owlie-mascot.png";
 
 const FinalCTA = () => {
+  const { t } = useTranslation();
   const containerVariants: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
@@ -53,7 +55,7 @@ const FinalCTA = () => {
               className="absolute -top-4 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:-right-6 md:top-0 z-20 bg-white rounded-2xl px-5 py-3 shadow-lg max-w-[220px] text-center"
             >
               <p className="text-sm font-semibold text-[#015093] font-['Josefin_Sans'] leading-snug">
-                Go for it — just takes a minute! I'll guide you. 🕐
+                {t("homePage.finalCta.speech")}
               </p>
               {/* Bubble tail */}
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 rounded-sm shadow-sm" />
@@ -74,15 +76,14 @@ const FinalCTA = () => {
               variants={itemVariants}
               className="text-3xl md:text-5xl lg:text-6xl font-['Josefin_Sans'] font-bold mb-5 text-white tracking-tight leading-tight"
             >
-              Ready to Get Started?
+              {t("homePage.finalCta.title")}
             </motion.h2>
 
             <motion.p
               variants={itemVariants}
               className="text-white/85 text-lg md:text-xl max-w-xl mb-10 leading-relaxed"
             >
-              The first step to protecting what you love is simpler than you think. Call us or send a message — we promise
-              to explain everything without jargon and, if possible, with a smile.
+              {t("homePage.finalCta.desc")}
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap justify-center md:justify-start items-center gap-5">
@@ -90,7 +91,7 @@ const FinalCTA = () => {
                 to="/quote"
                 className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-[#00a651] text-white font-['Josefin_Sans'] font-bold text-lg transition-all duration-300 hover:bg-[#00b85c] hover:shadow-[0_0_30px_rgba(0,166,81,0.4)] hover:-translate-y-1 active:scale-95"
               >
-                Get Your Free Quote
+                {t("homePage.finalCta.cta")}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 

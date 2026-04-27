@@ -1306,6 +1306,101 @@ const es: Translation = {
       i3: "Diseñar cobertura específica",
     },
   },
+  homePage: {
+    hero: {
+      speech: "¡Anímate, solo toma un minuto! Yo te guío. 🕐",
+    },
+    whyUs: {
+      badge: "La diferencia Bringas",
+      titleA: "¿Por qué",
+      titleAccent: "elegirnos",
+      titleB: "?",
+      intro:
+        "La tranquilidad no debería sentirse como un trámite. Combinamos experiencia independiente con un trato cercano — protegiendo lo que importa con claridad, honestidad y atención.",
+      stats: {
+        carriers: "Aseguradoras líderes",
+        independent: "Independiente",
+        support: "Soporte local",
+      },
+      items: {
+        freedom: {
+          title: "Libertad de elección",
+          desc: "Como agencia independiente, comparamos múltiples aseguradoras para encontrar tu mejor opción — como un buffet de seguros.",
+        },
+        honest: {
+          title: "Asesoría honesta",
+          desc: "Te damos recomendaciones objetivas porque trabajamos para ti, no para una sola compañía.",
+        },
+        local: {
+          title: "Expertos locales",
+          desc: "Conocemos tu comunidad, a los ajustadores y el entorno local. Somos el vecino que entiende tu póliza.",
+        },
+        ongoing: {
+          title: "Acompañamiento continuo",
+          desc: "La vida cambia, y tu cobertura también debería. Revisamos y ajustamos tus pólizas conforme evolucionan tus necesidades.",
+        },
+      },
+    },
+    services: {
+      badge: "Cobertura integral",
+      titleA: "Nuestras soluciones de",
+      titleAccent: "seguros",
+      personal: "Personal",
+      business: "Negocios",
+      learnMore: "Saber más",
+      items: {
+        auto: { label: "Seguro de Auto", desc: "Protege tu vehículo y tu tranquilidad." },
+        home: { label: "Seguro de Hogar", desc: "Resguarda tu mayor inversión." },
+        life: { label: "Seguro de Vida", desc: "Protege a quienes más importan." },
+        flood: { label: "Seguro contra Inundaciones", desc: "No dejes que el agua te tome por sorpresa." },
+        boat: { label: "Botes y Embarcaciones", desc: "Disfruta el agua sin preocupaciones." },
+        motorcycle: { label: "Motocicleta", desc: "Maneja con la cobertura adecuada." },
+        rv: { label: "Casas Rodantes (RV)", desc: "Aventuras protegidas." },
+        renters: { label: "Seguro de Inquilino", desc: "Tus pertenencias merecen protección." },
+        landlord: { label: "Seguro de Arrendador", desc: "Protege tu inversión de alquiler." },
+        mobileHome: { label: "Casas Móviles", desc: "Cobertura diseñada para tu tipo de hogar." },
+        personalUmbrella: { label: "Paraguas Personal", desc: "Protección extra cuando la necesitas." },
+        generalLiability: { label: "Responsabilidad Civil General", desc: "Protección esencial para cualquier negocio." },
+        bop: { label: "Dueños de Negocio (BOP)", desc: "Cobertura integral para tu empresa." },
+        commercialAuto: { label: "Auto Comercial", desc: "Cubre los vehículos usados para trabajar." },
+        commercialProperty: { label: "Propiedad Comercial", desc: "Protege el espacio de tu negocio." },
+        contractors: { label: "Seguro para Contratistas", desc: "Diseñado para la industria de la construcción." },
+        restaurant: { label: "Seguro para Restaurantes", desc: "Cobertura especializada para restaurantes." },
+        buildingOwners: { label: "Dueños de Edificios", desc: "Protege tu inversión inmobiliaria." },
+        bondsSurety: { label: "Fianzas y Garantías", desc: "Respalda tus compromisos." },
+      },
+    },
+    community: {
+      badge: "Orgullo bilingüe",
+      title: "Nuestra Comunidad Hispana",
+      paragraph:
+        "Somos bilingües y entendemos que servir a la comunidad hispana requiere autenticidad y calidez. Nos comunicamos con respeto y alegría tanto en español como en inglés, para que te sientas en casa.",
+      stat: "Los latinos representan casi uno de cada cinco estadounidenses, con un poder adquisitivo que superará los $2.8 trillones para 2026.",
+      cta: "Hablemos",
+    },
+    mission: {
+      badge: "Sobre nuestra esencia",
+      titleA: "Nuestra",
+      titleAccent: "Misión",
+      paragraphPart1:
+        "Nos tomamos muy en serio tu tranquilidad, pero no creemos que el proceso de asegurarte deba ser ",
+      paragraphHighlight: "aburrido",
+      paragraphPart2: ". Nuestra meta es que te sientas seguro y sonrías al mismo tiempo.",
+      quotePart1: "Al pagar una prima relativamente pequeña, transfieres riesgos que podrían arruinar tus finanzas. Convertimos ese proceso en una ",
+      quoteHighlight: "experiencia cercana y personalizada",
+      quotePart2: ", porque los seguros también pueden ser accesibles y humanos.",
+    },
+    finalCta: {
+      title: "¿Listo para empezar?",
+      desc: "El primer paso para proteger lo que amas es más simple de lo que crees. Llámanos o envíanos un mensaje — te prometemos explicarte todo sin tecnicismos y, de ser posible, con una sonrisa.",
+      cta: "Obtén tu cotización gratis",
+      speech: "¡Anímate, solo toma un minuto! Yo te guío. 🕐",
+    },
+    carriers: {
+      eyebrow: "¡Tenemos las mejores!",
+      title: "Estas son algunas compañías que representamos.",
+    },
+  },
 };
 
 export default es;

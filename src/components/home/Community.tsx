@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Languages } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Community = () => {
+  const { t } = useTranslation();
   const containerVariants: Variants = {
     hidden: { opacity: 0, scale: 0.95 },
     visible: {
@@ -58,7 +60,7 @@ const Community = () => {
           >
             <Languages className="w-4 h-4 text-white" />
             <span className="text-white font-['Josefin_Sans'] text-xs font-bold uppercase tracking-[0.2em]">
-              Bilingual Pride
+              {t("homePage.community.badge")}
             </span>
           </motion.div>
 
@@ -66,13 +68,12 @@ const Community = () => {
             variants={itemVariants}
             className="text-4xl md:text-6xl font-['Josefin_Sans'] font-bold mb-8 text-white tracking-tight"
           >
-            Our Hispanic Community
+            {t("homePage.community.title")}
           </motion.h2>
 
           <motion.div variants={itemVariants} className="max-w-3xl mx-auto space-y-6">
             <p className="text-white font-body text-xl md:text-2xl leading-relaxed font-light">
-              We're bilingual and understand that serving the Hispanic community requires authenticity and warmth. We
-              communicate with respect and joy in both Spanish and English, so you feel at home.
+              {t("homePage.community.paragraph")}
             </p>
 
             <div className="py-8">
@@ -80,7 +81,7 @@ const Community = () => {
             </div>
 
             <p className="text-white/70 text-base font-body max-w-xl mx-auto italic">
-              Latinos represent nearly one in five Americans, with purchasing power exceeding $2.8 trillion by 2026.
+              {t("homePage.community.stat")}
             </p>
           </motion.div>
 
@@ -89,7 +90,7 @@ const Community = () => {
               to="/quote"
               className="group inline-flex items-center gap-4 px-12 py-5 rounded-2xl bg-white text-[#00a651] font-['Josefin_Sans'] font-bold text-lg transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:-translate-y-1 active:scale-95"
             >
-              Let's Talk
+              {t("homePage.community.cta")}
               <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[#00a651] text-white transition-transform group-hover:translate-x-1">
                 <ArrowRight className="w-4 h-4" />
               </div>
