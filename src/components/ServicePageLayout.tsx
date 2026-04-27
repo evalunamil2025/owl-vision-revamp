@@ -270,13 +270,13 @@ const ServicePageLayout = ({
 
                     <h3
                       className={`${isFeature ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"} font-bold ${t.text} font-heading tracking-tight leading-tight mb-3 relative z-10`}
-                    >
-                      {c.title}
-                    </h3>
+                      dangerouslySetInnerHTML={{ __html: c.title }}
+                    />
 
-                    <p className={`text-sm md:text-[15px] ${t.sub} font-body leading-relaxed mb-5 relative z-10`}>
-                      {c.description}
-                    </p>
+                    <p
+                      className={`text-sm md:text-[15px] ${t.sub} font-body leading-relaxed mb-5 relative z-10`}
+                      dangerouslySetInnerHTML={{ __html: c.description }}
+                    />
 
                     {c.items && (
                       <div className="flex flex-wrap gap-2 relative z-10">
@@ -289,7 +289,7 @@ const ServicePageLayout = ({
                               className="w-1.5 h-1.5 rounded-full"
                               style={{ backgroundColor: t.accent }}
                             />
-                            {item}
+                            <span dangerouslySetInnerHTML={{ __html: item }} />
                           </span>
                         ))}
                       </div>
