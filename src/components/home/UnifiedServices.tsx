@@ -105,11 +105,21 @@ const UnifiedServices = () => {
                   <div className="absolute top-[195px] left-8 z-30">
                     <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center border-2 border-white shadow-xl transition-all duration-500 group-hover:bg-[#00a651] group-hover:scale-110 overflow-hidden">
                       {"customIcon" in s && s.customIcon ? (
-                        <img
-                          src={s.customIcon as string}
-                          alt={label}
-                          className="w-10 h-10 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert"
-                        />
+                        <div className="relative w-10 h-10">
+                          <img
+                            src={s.customIcon as string}
+                            alt={label}
+                            className="absolute inset-0 w-10 h-10 object-contain transition-opacity duration-500 group-hover:opacity-0"
+                          />
+                          {"customIconHover" in s && s.customIconHover ? (
+                            <img
+                              src={s.customIconHover as string}
+                              alt=""
+                              aria-hidden="true"
+                              className="absolute inset-0 w-10 h-10 object-contain opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            />
+                          ) : null}
+                        </div>
                       ) : (
                         <s.icon
                           className="w-7 h-7 text-[#00a651] group-hover:text-white transition-colors duration-500"
