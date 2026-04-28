@@ -6,7 +6,9 @@ import {
 import mobileHomeInsuranceImage from "@/assets/mobile-home-insurance.jpg";
 import rvInsuranceImage from "@/assets/rv-insurance.jpg";
 import lifeInsuranceImage from "@/assets/life-insurance.jpg";
-import personalUmbrellaImage from "@/assets/personal-umbrella.jpg";
+import personalUmbrellaImage from "@/assets/service-personal-umbrella.png";
+import serviceRentersImage from "@/assets/service-renters.png";
+import serviceLandlordImage from "@/assets/service-landlord.png";
 import serviceAutoImage from "@/assets/service-auto.png";
 import serviceHomeImage from "@/assets/service-home.png";
 import owlieAutoIcon from "@/assets/owlie-auto-icon.png";
@@ -56,8 +58,8 @@ export const personalServices = [
   { key: "boat", icon: Anchor, customIcon: owlieBoatIcon, customIconHover: owlieBoatIconWhite, href: "/boat-insurance", image: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&q=80" },
   { key: "motorcycle", icon: Bike, customIcon: owlieMotorcycleIcon, customIconHover: owlieMotorcycleIconWhite, href: "/motorcycle-insurance", image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=800&q=80" },
   { key: "rv", icon: Truck, customIcon: owlieRvIcon, customIconHover: owlieRvIconWhite, href: "/rv-insurance", image: rvInsuranceImage },
-  { key: "renters", icon: ShieldCheck, customIcon: owlieRentersIcon, customIconHover: owlieRentersIconWhite, href: "/renters-insurance", image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80" },
-  { key: "landlord", icon: Building, customIcon: owlieLandlordIcon, customIconHover: owlieLandlordIconWhite, href: "/landlord-insurance", image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80" },
+  { key: "renters", icon: ShieldCheck, customIcon: owlieRentersIcon, customIconHover: owlieRentersIconWhite, href: "/renters-insurance", image: serviceRentersImage },
+  { key: "landlord", icon: Building, customIcon: owlieLandlordIcon, customIconHover: owlieLandlordIconWhite, href: "/landlord-insurance", image: serviceLandlordImage },
   { key: "mobileHome", icon: Home, customIcon: owlieMobileHomeIcon, customIconHover: owlieMobileHomeIconWhite, href: "/mobile-home-insurance", image: mobileHomeInsuranceImage },
   { key: "personalUmbrella", icon: Umbrella, customIcon: owliePersonalUmbrellaIcon, customIconHover: owliePersonalUmbrellaIconWhite, href: "/personal-umbrella", image: personalUmbrellaImage },
 ];
