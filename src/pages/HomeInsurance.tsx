@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
+import heroHome from "@/assets/hero-home-insurance.webp";
 
 const HomeInsurance = () => {
   const { t } = useTranslation();
@@ -8,6 +9,8 @@ const HomeInsurance = () => {
       title={t("home.title")}
       subtitle={t("home.subtitle")}
       heroDescription={t("home.heroDescription")}
+      heroImage={heroHome}
+      heroImageAlt={t("home.title")}
       coverages={[
         {
           title: t("home.coverages.dwelling.title"),
