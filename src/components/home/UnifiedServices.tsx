@@ -103,11 +103,19 @@ const UnifiedServices = () => {
 
                   {/* Icono Flotante - Fuera del overflow-hidden de la imagen */}
                   <div className="absolute top-[195px] left-8 z-30">
-                    <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center border-2 border-white shadow-xl transition-all duration-500 group-hover:bg-[#00a651] group-hover:scale-110">
-                      <s.icon
-                        className="w-7 h-7 text-[#00a651] group-hover:text-white transition-colors duration-500"
-                        strokeWidth={1.8}
-                      />
+                    <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center border-2 border-white shadow-xl transition-all duration-500 group-hover:bg-[#00a651] group-hover:scale-110 overflow-hidden">
+                      {"customIcon" in s && s.customIcon ? (
+                        <img
+                          src={s.customIcon as string}
+                          alt={label}
+                          className="w-10 h-10 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert"
+                        />
+                      ) : (
+                        <s.icon
+                          className="w-7 h-7 text-[#00a651] group-hover:text-white transition-colors duration-500"
+                          strokeWidth={1.8}
+                        />
+                      )}
                     </div>
                   </div>
 
