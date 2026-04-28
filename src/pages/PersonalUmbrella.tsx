@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
+import heroImage from "@/assets/hero-personal-umbrella.webp";
 
 const PersonalUmbrella = () => {
   const { t } = useTranslation();
@@ -8,6 +9,8 @@ const PersonalUmbrella = () => {
       title={t("personalUmbrella.title")}
       subtitle={t("personalUmbrella.subtitle")}
       heroDescription={t("personalUmbrella.heroDescription")}
+      heroImage={heroImage}
+      heroImageAlt="Owlie advising a couple about Personal Umbrella Insurance"
       coverages={[
         { title: t("personalUmbrella.coverages.extended.title"), description: t("personalUmbrella.coverages.extended.description") },
         { title: t("personalUmbrella.coverages.personalInjury.title"), description: t("personalUmbrella.coverages.personalInjury.description") },
