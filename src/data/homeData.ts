@@ -29,6 +29,22 @@ import owlieMobileHomeIcon from "@/assets/owlie-mobileHome-icon.png";
 import owlieMobileHomeIconWhite from "@/assets/owlie-mobileHome-icon-white.png";
 import owliePersonalUmbrellaIcon from "@/assets/owlie-personalUmbrella-icon.png";
 import owliePersonalUmbrellaIconWhite from "@/assets/owlie-personalUmbrella-icon-white.png";
+import owlieGeneralLiabilityIcon from "@/assets/owlie-generalLiability-icon.png";
+import owlieGeneralLiabilityIconWhite from "@/assets/owlie-generalLiability-icon-white.png";
+import owlieBopIcon from "@/assets/owlie-bop-icon.png";
+import owlieBopIconWhite from "@/assets/owlie-bop-icon-white.png";
+import owlieCommercialAutoIcon from "@/assets/owlie-commercialAuto-icon.png";
+import owlieCommercialAutoIconWhite from "@/assets/owlie-commercialAuto-icon-white.png";
+import owlieCommercialPropertyIcon from "@/assets/owlie-commercialProperty-icon.png";
+import owlieCommercialPropertyIconWhite from "@/assets/owlie-commercialProperty-icon-white.png";
+import owlieContractorsIcon from "@/assets/owlie-contractors-icon.png";
+import owlieContractorsIconWhite from "@/assets/owlie-contractors-icon-white.png";
+import owlieRestaurantIcon from "@/assets/owlie-restaurant-icon.png";
+import owlieRestaurantIconWhite from "@/assets/owlie-restaurant-icon-white.png";
+import owlieBuildingOwnersIcon from "@/assets/owlie-buildingOwners-icon.png";
+import owlieBuildingOwnersIconWhite from "@/assets/owlie-buildingOwners-icon-white.png";
+import owlieBondsSuretyIcon from "@/assets/owlie-bondsSurety-icon.png";
+import owlieBondsSuretyIconWhite from "@/assets/owlie-bondsSurety-icon-white.png";
 
 export const personalServices = [
   { key: "auto", icon: Car, customIcon: owlieAutoIcon, customIconHover: owlieAutoIconWhite, href: "/auto-insurance", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80" },
@@ -45,14 +61,14 @@ export const personalServices = [
 ];
 
 export const businessServices = [
-  { key: "generalLiability", icon: Shield, href: "/general-liability", image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" },
-  { key: "bop", icon: Briefcase, href: "/bop-insurance", image: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&q=80" },
-  { key: "commercialAuto", icon: Truck, href: "/commercial-auto", image: "https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80" },
-  { key: "commercialProperty", icon: Building2, href: "/commercial-property", image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80" },
-  { key: "contractors", icon: Handshake, href: "/contractors-insurance", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" },
-  { key: "restaurant", icon: Sparkles, href: "/restaurant-insurance", image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" },
-  { key: "buildingOwners", icon: Building2, href: "/building-owners", image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" },
-  { key: "bondsSurety", icon: FileCheck, href: "/bonds-surety", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80" },
+  { key: "generalLiability", icon: Shield, customIcon: owlieGeneralLiabilityIcon, customIconHover: owlieGeneralLiabilityIconWhite, href: "/general-liability", image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" },
+  { key: "bop", icon: Briefcase, customIcon: owlieBopIcon, customIconHover: owlieBopIconWhite, href: "/bop-insurance", image: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&q=80" },
+  { key: "commercialAuto", icon: Truck, customIcon: owlieCommercialAutoIcon, customIconHover: owlieCommercialAutoIconWhite, href: "/commercial-auto", image: "https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80" },
+  { key: "commercialProperty", icon: Building2, customIcon: owlieCommercialPropertyIcon, customIconHover: owlieCommercialPropertyIconWhite, href: "/commercial-property", image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80" },
+  { key: "contractors", icon: Handshake, customIcon: owlieContractorsIcon, customIconHover: owlieContractorsIconWhite, href: "/contractors-insurance", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" },
+  { key: "restaurant", icon: Sparkles, customIcon: owlieRestaurantIcon, customIconHover: owlieRestaurantIconWhite, href: "/restaurant-insurance", image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" },
+  { key: "buildingOwners", icon: Building2, customIcon: owlieBuildingOwnersIcon, customIconHover: owlieBuildingOwnersIconWhite, href: "/building-owners", image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" },
+  { key: "bondsSurety", icon: FileCheck, customIcon: owlieBondsSuretyIcon, customIconHover: owlieBondsSuretyIconWhite, href: "/bonds-surety", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80" },
 ];
 
 export const whyUs = [
