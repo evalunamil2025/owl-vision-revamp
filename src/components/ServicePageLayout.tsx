@@ -173,25 +173,78 @@ const ServicePageLayout = ({
         </div>
       </section>
 
-      {/* ─── INTRODUCTION SECTION ─── */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 text-center">
+      {/* ─── INTRODUCTION SECTION — Premium Blue Statement ─── */}
+      <section className="relative py-24 md:py-32 bg-white overflow-hidden">
+        <div className="container mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="relative max-w-6xl mx-auto"
           >
-            <RichText
-              as="span"
-              text={subtitle}
-              className="text-[10px] font-black uppercase tracking-[0.4em] text-[#015093]/60 font-heading block mb-6"
-            />
-            <RichText
-              as="p"
-              text={heroDescription}
-              className="text-xl md:text-2xl font-light text-[#015093]/80 font-body leading-relaxed"
-            />
+            {/* Outer glow */}
+            <div className="absolute -inset-6 bg-gradient-to-br from-[#0079c2]/20 via-transparent to-[#00a651]/20 rounded-[3.5rem] blur-2xl opacity-70" />
+
+            {/* Main card */}
+            <div className="relative rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-[0_50px_100px_-30px_rgba(1,80,147,0.55)]">
+              {/* Gradient background using brand blue */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#012f57] via-[#015093] to-[#0079c2]" />
+
+              {/* Decorative blurs */}
+              <div className="absolute -top-32 -right-20 w-[480px] h-[480px] bg-[#0079c2]/40 rounded-full blur-[140px]" />
+              <div className="absolute -bottom-40 -left-24 w-[420px] h-[420px] bg-[#00a651]/25 rounded-full blur-[140px]" />
+
+              {/* Subtle grid */}
+              <div
+                className="absolute inset-0 opacity-[0.07] pointer-events-none"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
+                  backgroundSize: "56px 56px",
+                }}
+              />
+
+              {/* Giant decorative quote glyph */}
+              <span
+                className="absolute -top-10 left-4 md:left-10 text-[16rem] md:text-[22rem] font-black font-heading leading-none text-white/[0.06] select-none pointer-events-none"
+                aria-hidden="true"
+              >
+                &ldquo;
+              </span>
+
+              <div className="relative z-10 px-8 md:px-16 lg:px-20 py-16 md:py-24 text-center">
+                {/* Eyebrow chip */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/10 border border-white/25 backdrop-blur-md mb-10"
+                >
+                  <span className="w-2 h-2 rounded-full bg-[#00a651] animate-pulse shadow-[0_0_12px_rgba(0,166,81,0.8)]" />
+                  <RichText
+                    as="span"
+                    text={subtitle}
+                    className="text-sm md:text-base font-black uppercase tracking-[0.25em] text-white font-heading"
+                  />
+                </motion.div>
+
+                {/* Description */}
+                <RichText
+                  as="p"
+                  text={heroDescription}
+                  className="text-2xl md:text-3xl lg:text-[2.25rem] font-light text-white font-body leading-[1.45] tracking-tight max-w-4xl mx-auto"
+                />
+
+                {/* Bottom accent line */}
+                <div className="flex items-center justify-center gap-3 mt-12">
+                  <span className="h-px w-12 bg-white/30" />
+                  <span className="w-2 h-2 rounded-full bg-[#00a651]" />
+                  <span className="h-px w-12 bg-white/30" />
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
