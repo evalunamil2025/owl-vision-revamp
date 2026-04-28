@@ -7,6 +7,7 @@ import mobileHomeInsuranceImage from "@/assets/mobile-home-insurance.jpg";
 import rvInsuranceImage from "@/assets/rv-insurance.jpg";
 import lifeInsuranceImage from "@/assets/life-insurance.jpg";
 import personalUmbrellaImage from "@/assets/personal-umbrella.jpg";
+import owlieAutoIcon from "@/assets/owlie-auto-icon.png";
 
 export const personalServices = [
   { key: "auto", icon: Car, href: "/auto-insurance", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80" },
