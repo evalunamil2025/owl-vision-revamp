@@ -5,11 +5,13 @@ import {
 } from "lucide-react";
 import mobileHomeInsuranceImage from "@/assets/mobile-home-insurance.jpg";
 import rvInsuranceImage from "@/assets/rv-insurance.jpg";
+import lifeInsuranceImage from "@/assets/life-insurance.jpg";
+import personalUmbrellaImage from "@/assets/personal-umbrella.jpg";
 
 export const personalServices = [
   { key: "auto", icon: Car, href: "/auto-insurance", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80" },
   { key: "home", icon: Home, href: "/home-insurance", image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" },
-  { key: "life", icon: Heart, href: "/life-insurance", image: "https://images.unsplash.com/photo-1581579438747-104c53e7a7e8?w=800&q=80" },
+  { key: "life", icon: Heart, href: "/life-insurance", image: lifeInsuranceImage },
   { key: "flood", icon: Flame, href: "/flood-insurance", image: "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=800&q=80" },
   { key: "boat", icon: Anchor, href: "/boat-insurance", image: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&q=80" },
   { key: "motorcycle", icon: Bike, href: "/motorcycle-insurance", image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=800&q=80" },
@@ -17,7 +19,7 @@ export const personalServices = [
   { key: "renters", icon: ShieldCheck, href: "/renters-insurance", image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80" },
   { key: "landlord", icon: Building, href: "/landlord-insurance", image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80" },
   { key: "mobileHome", icon: Home, href: "/mobile-home-insurance", image: mobileHomeInsuranceImage },
-  { key: "personalUmbrella", icon: Umbrella, href: "/personal-umbrella", image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80" },
+  { key: "personalUmbrella", icon: Umbrella, href: "/personal-umbrella", image: personalUmbrellaImage },
 ];
 
 export const businessServices = [
