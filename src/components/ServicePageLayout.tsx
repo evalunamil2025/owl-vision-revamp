@@ -264,11 +264,13 @@ const ServicePageLayout = ({
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 mb-14">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[#015093]/10 shadow-sm mb-5">
-                  <Shield className="w-3.5 h-3.5 text-[#00a651]" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#015093]/70 font-heading">
+                <div className="inline-flex items-center gap-3 pl-2 pr-5 py-2 rounded-full bg-gradient-to-r from-[#00a651] to-[#0079c2] shadow-[0_12px_30px_-10px_rgba(0,166,81,0.55)] mb-7">
+                  <span className="w-8 h-8 rounded-full bg-white/95 flex items-center justify-center shadow-inner">
+                    <Shield className="w-4 h-4 text-[#00a651]" strokeWidth={2.4} />
+                  </span>
+                  <span className="text-sm md:text-[15px] font-black uppercase tracking-[0.28em] text-white font-heading">
                     {t("service.coverageDetails")}
                   </span>
                 </div>
@@ -276,9 +278,17 @@ const ServicePageLayout = ({
                   {t("service.whatsCoveredA")} <span className="text-[#00a651] italic font-light">{t("service.whatsCoveredB")}</span>
                 </h2>
               </div>
-              <p className="text-[#015093]/60 font-body text-base max-w-sm md:text-right">
-                {t("service.coverageBreakdown")}
-              </p>
+              <div className="md:max-w-sm md:text-right">
+                <div className="hidden md:flex items-center justify-end gap-2 mb-3">
+                  <span className="h-px w-10 bg-[#00a651]" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#00a651] font-heading">
+                    Overview
+                  </span>
+                </div>
+                <p className="text-lg md:text-xl font-medium text-[#015093] font-body leading-snug">
+                  {t("service.coverageBreakdown")}
+                </p>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
