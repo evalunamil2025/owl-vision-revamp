@@ -7,6 +7,8 @@ import mobileHomeInsuranceImage from "@/assets/mobile-home-insurance.jpg";
 import rvInsuranceImage from "@/assets/rv-insurance.jpg";
 import lifeInsuranceImage from "@/assets/life-insurance.jpg";
 import personalUmbrellaImage from "@/assets/personal-umbrella.jpg";
+import serviceAutoImage from "@/assets/service-auto.png";
+import serviceHomeImage from "@/assets/service-home.png";
 import owlieAutoIcon from "@/assets/owlie-auto-icon.png";
 import owlieAutoIconWhite from "@/assets/owlie-auto-icon-white.png";
 import owlieHomeIcon from "@/assets/owlie-home-icon.png";
@@ -47,8 +49,8 @@ import owlieBondsSuretyIcon from "@/assets/owlie-bondsSurety-icon.png";
 import owlieBondsSuretyIconWhite from "@/assets/owlie-bondsSurety-icon-white.png";
 
 export const personalServices = [
-  { key: "auto", icon: Car, customIcon: owlieAutoIcon, customIconHover: owlieAutoIconWhite, href: "/auto-insurance", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80" },
-  { key: "home", icon: Home, customIcon: owlieHomeIcon, customIconHover: owlieHomeIconWhite, href: "/home-insurance", image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" },
+  { key: "auto", icon: Car, customIcon: owlieAutoIcon, customIconHover: owlieAutoIconWhite, href: "/auto-insurance", image: serviceAutoImage },
+  { key: "home", icon: Home, customIcon: owlieHomeIcon, customIconHover: owlieHomeIconWhite, href: "/home-insurance", image: serviceHomeImage },
   { key: "life", icon: Heart, customIcon: owlieLifeIcon, customIconHover: owlieLifeIconWhite, href: "/life-insurance", image: lifeInsuranceImage },
   { key: "flood", icon: Flame, customIcon: owlieFloodIcon, customIconHover: owlieFloodIconWhite, href: "/flood-insurance", image: "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=800&q=80" },
   { key: "boat", icon: Anchor, customIcon: owlieBoatIcon, customIconHover: owlieBoatIconWhite, href: "/boat-insurance", image: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&q=80" },
