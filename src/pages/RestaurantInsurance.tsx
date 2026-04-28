@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
+import heroImage from "@/assets/hero-restaurant.webp";
 
 const RestaurantInsurance = () => {
   const { t } = useTranslation();
@@ -8,6 +9,8 @@ const RestaurantInsurance = () => {
       title={t("restaurant.title")}
       subtitle={t("restaurant.subtitle")}
       heroDescription={t("restaurant.heroDescription")}
+      heroImage={heroImage}
+      heroImageAlt="Owlie dining at an upscale restaurant"
       coverages={[
         { title: t("restaurant.coverages.property.title"), description: t("restaurant.coverages.property.description") },
         { title: t("restaurant.coverages.liability.title"), description: t("restaurant.coverages.liability.description") },

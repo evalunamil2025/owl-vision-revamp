@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
+import heroImage from "@/assets/hero-bonds-surety.webp";
 
 const BondsSurety = () => {
   const { t } = useTranslation();
@@ -8,6 +9,8 @@ const BondsSurety = () => {
       title={t("bondsSurety.title")}
       subtitle={t("bondsSurety.subtitle")}
       heroDescription={t("bondsSurety.heroDescription")}
+      heroImage={heroImage}
+      heroImageAlt="Owlie helping a client sign a surety bond"
       coverages={[
         {
           title: t("bondsSurety.coverages.contract.title"),
