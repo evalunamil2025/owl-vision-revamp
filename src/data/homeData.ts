@@ -8,12 +8,15 @@ import rvInsuranceImage from "@/assets/rv-insurance.jpg";
 import lifeInsuranceImage from "@/assets/life-insurance.jpg";
 import personalUmbrellaImage from "@/assets/personal-umbrella.jpg";
 import owlieAutoIcon from "@/assets/owlie-auto-icon.png";
+import owlieHomeIcon from "@/assets/owlie-home-icon.png";
+import owlieLifeIcon from "@/assets/owlie-life-icon.png";
+import owlieFloodIcon from "@/assets/owlie-flood-icon.png";
 
 export const personalServices = [
   { key: "auto", icon: Car, customIcon: owlieAutoIcon, href: "/auto-insurance", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80" },
-  { key: "home", icon: Home, href: "/home-insurance", image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" },
-  { key: "life", icon: Heart, href: "/life-insurance", image: lifeInsuranceImage },
-  { key: "flood", icon: Flame, href: "/flood-insurance", image: "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=800&q=80" },
+  { key: "home", icon: Home, customIcon: owlieHomeIcon, href: "/home-insurance", image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" },
+  { key: "life", icon: Heart, customIcon: owlieLifeIcon, href: "/life-insurance", image: lifeInsuranceImage },
+  { key: "flood", icon: Flame, customIcon: owlieFloodIcon, href: "/flood-insurance", image: "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=800&q=80" },
   { key: "boat", icon: Anchor, href: "/boat-insurance", image: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&q=80" },
   { key: "motorcycle", icon: Bike, href: "/motorcycle-insurance", image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=800&q=80" },
   { key: "rv", icon: Truck, href: "/rv-insurance", image: rvInsuranceImage },
