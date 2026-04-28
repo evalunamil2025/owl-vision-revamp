@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
+import heroImg from "@/assets/hero-commercial-auto.webp";
 
 const CommercialAuto = () => {
   const { t } = useTranslation();
@@ -8,6 +9,8 @@ const CommercialAuto = () => {
       title={t("commercialAuto.title")}
       subtitle={t("commercialAuto.subtitle")}
       heroDescription={t("commercialAuto.heroDescription")}
+      heroImage={heroImg}
+      heroImageAlt={t("commercialAuto.title")}
       coverages={[
         {
           title: t("commercialAuto.coverages.liability.title"),

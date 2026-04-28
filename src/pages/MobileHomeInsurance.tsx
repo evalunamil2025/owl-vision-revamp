@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
+import heroImg from "@/assets/hero-mobile-home.webp";
 
 const MobileHomeInsurance = () => {
   const { t } = useTranslation();
@@ -8,6 +9,8 @@ const MobileHomeInsurance = () => {
       title={t("mobileHome.title")}
       subtitle={t("mobileHome.subtitle")}
       heroDescription={t("mobileHome.heroDescription")}
+      heroImage={heroImg}
+      heroImageAlt={t("mobileHome.title")}
       coverages={[
         { title: t("mobileHome.coverages.structure.title"), description: t("mobileHome.coverages.structure.description") },
         { title: t("mobileHome.coverages.property.title"), description: t("mobileHome.coverages.property.description") },

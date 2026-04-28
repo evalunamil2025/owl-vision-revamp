@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
+import heroImg from "@/assets/hero-bop.webp";
 
 const BOPInsurance = () => {
   const { t } = useTranslation();
@@ -8,6 +9,8 @@ const BOPInsurance = () => {
       title={t("bop.title")}
       subtitle={t("bop.subtitle")}
       heroDescription={t("bop.heroDescription")}
+      heroImage={heroImg}
+      heroImageAlt={t("bop.title")}
       coverages={[
         {
           title: t("bop.coverages.property.title"),
