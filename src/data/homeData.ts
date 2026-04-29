@@ -3,9 +3,11 @@ import {
   Building2, Car, Home, Heart, Briefcase, Anchor, Bike, Truck,
   Umbrella, Flame, Building, FileCheck, ShieldCheck, Sparkles
 } from "lucide-react";
-import mobileHomeInsuranceImage from "@/assets/mobile-home-insurance.jpg";
-import rvInsuranceImage from "@/assets/rv-insurance.jpg";
+import mobileHomeInsuranceImage from "@/assets/service-mobile-home.webp";
+import rvInsuranceImage from "@/assets/service-rv.webp";
 import lifeInsuranceImage from "@/assets/life-insurance.jpg";
+import serviceBoatImage from "@/assets/service-boat.webp";
+import serviceMotorcycleImage from "@/assets/service-motorcycle.webp";
 import personalUmbrellaImage from "@/assets/service-personal-umbrella.png";
 import serviceRentersImage from "@/assets/service-renters.png";
 import serviceLandlordImage from "@/assets/service-landlord.png";
