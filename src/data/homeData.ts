@@ -3,9 +3,11 @@ import {
   Building2, Car, Home, Heart, Briefcase, Anchor, Bike, Truck,
   Umbrella, Flame, Building, FileCheck, ShieldCheck, Sparkles
 } from "lucide-react";
-import mobileHomeInsuranceImage from "@/assets/mobile-home-insurance.jpg";
-import rvInsuranceImage from "@/assets/rv-insurance.jpg";
+import mobileHomeInsuranceImage from "@/assets/service-mobile-home.webp";
+import rvInsuranceImage from "@/assets/service-rv.webp";
 import lifeInsuranceImage from "@/assets/life-insurance.jpg";
+import serviceBoatImage from "@/assets/service-boat.webp";
+import serviceMotorcycleImage from "@/assets/service-motorcycle.webp";
 import personalUmbrellaImage from "@/assets/service-personal-umbrella.png";
 import serviceRentersImage from "@/assets/service-renters.png";
 import serviceLandlordImage from "@/assets/service-landlord.png";
@@ -55,8 +57,8 @@ export const personalServices = [
   { key: "home", icon: Home, customIcon: owlieHomeIcon, customIconHover: owlieHomeIconWhite, href: "/home-insurance", image: serviceHomeImage },
   { key: "life", icon: Heart, customIcon: owlieLifeIcon, customIconHover: owlieLifeIconWhite, href: "/life-insurance", image: lifeInsuranceImage },
   { key: "flood", icon: Flame, customIcon: owlieFloodIcon, customIconHover: owlieFloodIconWhite, href: "/flood-insurance", image: "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=800&q=80" },
-  { key: "boat", icon: Anchor, customIcon: owlieBoatIcon, customIconHover: owlieBoatIconWhite, href: "/boat-insurance", image: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&q=80" },
-  { key: "motorcycle", icon: Bike, customIcon: owlieMotorcycleIcon, customIconHover: owlieMotorcycleIconWhite, href: "/motorcycle-insurance", image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=800&q=80" },
+  { key: "boat", icon: Anchor, customIcon: owlieBoatIcon, customIconHover: owlieBoatIconWhite, href: "/boat-insurance", image: serviceBoatImage },
+  { key: "motorcycle", icon: Bike, customIcon: owlieMotorcycleIcon, customIconHover: owlieMotorcycleIconWhite, href: "/motorcycle-insurance", image: serviceMotorcycleImage },
   { key: "rv", icon: Truck, customIcon: owlieRvIcon, customIconHover: owlieRvIconWhite, href: "/rv-insurance", image: rvInsuranceImage },
   { key: "renters", icon: ShieldCheck, customIcon: owlieRentersIcon, customIconHover: owlieRentersIconWhite, href: "/renters-insurance", image: serviceRentersImage },
   { key: "landlord", icon: Building, customIcon: owlieLandlordIcon, customIconHover: owlieLandlordIconWhite, href: "/landlord-insurance", image: serviceLandlordImage },
