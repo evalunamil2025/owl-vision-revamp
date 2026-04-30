@@ -56,6 +56,10 @@ import serviceContractorsImage from "@/assets/service-contractors.webp";
 import serviceRestaurantImage from "@/assets/service-restaurant.webp";
 import serviceBuildingOwnersImage from "@/assets/service-building-owners.webp";
 import serviceBondsSuretyImage from "@/assets/service-bonds-surety.webp";
+import serviceFloodImage from "@/assets/service-flood.webp";
+import serviceGeneralLiabilityImage from "@/assets/service-general-liability.webp";
+import serviceBopImage from "@/assets/service-bop.webp";
+import serviceCommercialAutoImage from "@/assets/service-commercial-auto.webp";
 
 export const personalServices = [
   { key: "auto", icon: Car, customIcon: owlieAutoIcon, customIconHover: owlieAutoIconWhite, href: "/auto-insurance", image: serviceAutoImage },
