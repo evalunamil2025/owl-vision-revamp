@@ -65,7 +65,7 @@ export const personalServices = [
   { key: "auto", icon: Car, customIcon: owlieAutoIcon, customIconHover: owlieAutoIconWhite, href: "/auto-insurance", image: serviceAutoImage },
   { key: "home", icon: Home, customIcon: owlieHomeIcon, customIconHover: owlieHomeIconWhite, href: "/home-insurance", image: serviceHomeImage },
   { key: "life", icon: Heart, customIcon: owlieLifeIcon, customIconHover: owlieLifeIconWhite, href: "/life-insurance", image: lifeInsuranceImage },
-  { key: "flood", icon: Flame, customIcon: owlieFloodIcon, customIconHover: owlieFloodIconWhite, href: "/flood-insurance", image: "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=800&q=80" },
+  { key: "flood", icon: Flame, customIcon: owlieFloodIcon, customIconHover: owlieFloodIconWhite, href: "/flood-insurance", image: serviceFloodImage },
   { key: "boat", icon: Anchor, customIcon: owlieBoatIcon, customIconHover: owlieBoatIconWhite, href: "/boat-insurance", image: serviceBoatImage },
   { key: "motorcycle", icon: Bike, customIcon: owlieMotorcycleIcon, customIconHover: owlieMotorcycleIconWhite, href: "/motorcycle-insurance", image: serviceMotorcycleImage },
   { key: "rv", icon: Truck, customIcon: owlieRvIcon, customIconHover: owlieRvIconWhite, href: "/rv-insurance", image: rvInsuranceImage },
@@ -76,9 +76,9 @@ export const personalServices = [
 ];
 
 export const businessServices = [
-  { key: "generalLiability", icon: Shield, customIcon: owlieGeneralLiabilityIcon, customIconHover: owlieGeneralLiabilityIconWhite, href: "/general-liability", image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" },
-  { key: "bop", icon: Briefcase, customIcon: owlieBopIcon, customIconHover: owlieBopIconWhite, href: "/bop-insurance", image: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&q=80" },
-  { key: "commercialAuto", icon: Truck, customIcon: owlieCommercialAutoIcon, customIconHover: owlieCommercialAutoIconWhite, href: "/commercial-auto", image: "https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=800&q=80" },
+  { key: "generalLiability", icon: Shield, customIcon: owlieGeneralLiabilityIcon, customIconHover: owlieGeneralLiabilityIconWhite, href: "/general-liability", image: serviceGeneralLiabilityImage },
+  { key: "bop", icon: Briefcase, customIcon: owlieBopIcon, customIconHover: owlieBopIconWhite, href: "/bop-insurance", image: serviceBopImage },
+  { key: "commercialAuto", icon: Truck, customIcon: owlieCommercialAutoIcon, customIconHover: owlieCommercialAutoIconWhite, href: "/commercial-auto", image: serviceCommercialAutoImage },
   { key: "commercialProperty", icon: Building2, customIcon: owlieCommercialPropertyIcon, customIconHover: owlieCommercialPropertyIconWhite, href: "/commercial-property", image: serviceCommercialPropertyImage },
   { key: "contractors", icon: Handshake, customIcon: owlieContractorsIcon, customIconHover: owlieContractorsIconWhite, href: "/contractors-insurance", image: serviceContractorsImage },
   { key: "restaurant", icon: Sparkles, customIcon: owlieRestaurantIcon, customIconHover: owlieRestaurantIconWhite, href: "/restaurant-insurance", image: serviceRestaurantImage },
