@@ -63,7 +63,7 @@ const About = () => {
       </section>
 
       {/* --- SECCIÓN VISIÓN (2 Columnas con Mascota) --- */}
-      <section className="pb-24 bg-white">
+      <section className="pb-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center -translate-y-12 relative z-20">
             {/* Columna Texto */}
@@ -117,10 +117,10 @@ const About = () => {
       <section className="py-24 bg-[#f8fafb]">
         <div className="container mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#015093] font-heading mb-4">{t("about.differentTitle")}</h2>
-            <p className="text-[#015093]/60 font-body">
-              {t("about.differentSub")}
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#015093] font-heading mb-4">
+              {t("about.differentTitle")}
+            </h2>
+            <p className="text-[#015093]/60 font-body">{t("about.differentSub")}</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -190,9 +190,7 @@ const About = () => {
                 </span>
               </div>
 
-              <h2 className="text-4xl font-bold text-[#015093] font-heading tracking-tight">
-                {t("about.teamTitle")}
-              </h2>
+              <h2 className="text-4xl font-bold text-[#015093] font-heading tracking-tight">{t("about.teamTitle")}</h2>
 
               <div className="space-y-6 text-[#015093]/80 font-body leading-relaxed text-lg">
                 <p>
