@@ -36,9 +36,9 @@ const Footer = () => {
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#00a651]/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16 text-center md:text-left">
           {/* Brand & Contact */}
-          <div className="lg:col-span-4 space-y-8">
+          <div className="lg:col-span-4 space-y-8 flex flex-col items-center md:items-start">
             <Link to="/" className="inline-block transition-transform hover:scale-105">
               <img
                 src={logo}
@@ -75,7 +75,7 @@ const Footer = () => {
 
           {/* Personal */}
           <div className="lg:col-span-3">
-            <h4 className="font-['Josefin_Sans'] font-bold text-lg mb-8 text-white flex items-center gap-2">
+            <h4 className="font-['Josefin_Sans'] font-bold text-lg mb-8 text-white flex items-center justify-center md:justify-start gap-2">
               <span className="w-2 h-2 bg-[#00a651] rounded-full" />
               {t("footer.personalTitle")}
             </h4>
@@ -84,7 +84,7 @@ const Footer = () => {
                 <li key={l.href}>
                   <Link
                     to={l.href}
-                    className="group flex items-center justify-between text-white/70 hover:text-white transition-all text-sm"
+                    className="group flex items-center justify-center md:justify-between text-white/70 hover:text-white transition-all text-sm"
                   >
                     {l.label}
                     <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0 text-[#00a651]" />
@@ -96,7 +96,7 @@ const Footer = () => {
 
           {/* Business */}
           <div className="lg:col-span-3">
-            <h4 className="font-['Josefin_Sans'] font-bold text-lg mb-8 text-white flex items-center gap-2">
+            <h4 className="font-['Josefin_Sans'] font-bold text-lg mb-8 text-white flex items-center justify-center md:justify-start gap-2">
               <span className="w-2 h-2 bg-[#00a651] rounded-full" />
               {t("footer.businessTitle")}
             </h4>
@@ -105,7 +105,7 @@ const Footer = () => {
                 <li key={l.href}>
                   <Link
                     to={l.href}
-                    className="group flex items-center justify-between text-white/70 hover:text-white transition-all text-sm"
+                    className="group flex items-center justify-center md:justify-between text-white/70 hover:text-white transition-all text-sm"
                   >
                     {l.label}
                     <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0 text-[#00a651]" />
@@ -116,7 +116,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 flex flex-col items-center md:items-start">
             <h4 className="font-['Josefin_Sans'] font-bold text-lg mb-8 text-white">{t("footer.company")}</h4>
             <ul className="space-y-4 mb-10">
               <li>
@@ -151,7 +151,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-6 text-white/60">
-          <div className="flex items-center gap-6">
+          <div className="flex flex-col md:flex-row items-center gap-3 md:gap-6 text-center md:text-left">
             <p className="text-[11px] font-body">{t("footer.rights", { year: new Date().getFullYear() })}</p>
             <div className="h-4 w-px bg-white/20 hidden md:block" />
             <p className="text-[11px] font-body italic">{t("footer.motto")}</p>
