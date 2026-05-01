@@ -1401,6 +1401,23 @@ const es: Translation = {
       title: "Estas son algunas compañías que representamos.",
     },
   },
+  payBill: {
+    navLabel: "Pago de póliza",
+    clients: "Clientes",
+    heroBadge: "Pagos rápidos y seguros",
+    heroTitle: "PAGO DE PÓLIZA",
+    heroSubtitle: "Paga tu póliza directamente con tu aseguradora en pocos clics.",
+    infoTitle: "¿Dónde encuentro mi número de póliza?",
+    infoDesc:
+      "Todos los números de póliza aparecen en sus tarjetas de identificación de seguro y en cualquier carta enviada por la aseguradora. Haga clic en el enlace de abajo para ir al sitio de pago rápido de su operador.",
+    visitWebsite: "Pagar en línea",
+    callCarrier: "Llamar a la aseguradora",
+    cta: {
+      title: "Seguros para su: Auto / Hogar / Negocio / Vida.",
+      desc: "Llámenos hoy para una cotización: (425) 405-7111.",
+      button: "Cotizar",
+    },
+  },
 };
 
 export default es;
