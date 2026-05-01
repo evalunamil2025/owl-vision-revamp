@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 const Mission = () => {
   const { t } = useTranslation();
   return (
-    <section className="relative py-[10px] md:py-32 bg-white overflow-hidden">
+    <section className="relative py-[4px] md:py-32 bg-white overflow-hidden">
       {/* --- Detalles Decorativos --- */}
       {/* Círculos de gradiente sutiles en los extremos para dar profundidad */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-slate-50 to-transparent rounded-full blur-3xl -z-10 opacity-60" />
