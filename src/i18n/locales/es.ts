@@ -1418,6 +1418,29 @@ const es: Translation = {
       button: "Cotizar",
     },
   },
+  clientCenter: {
+    navLabel: "Centro de Clientes",
+    heroBadge: "Portal de autoservicio 24/7",
+    heroTitle: "Centro de Clientes",
+    heroSubtitle:
+      "Administra tus pólizas en línea — en cualquier momento y lugar. Consulta documentos, solicita cambios y accede a tu cuenta en segundos.",
+    portalTitle: "Tu Portal de Pólizas en Línea",
+    portalDesc:
+      "Los clientes de Bringas Insurance Group pueden ver información de su póliza, imprimir documentos, solicitar cambios y más. Acceso 24/7, todos los días del año.",
+    stepsTitle: "¡Usar el portal es muy fácil!",
+    step1Title: "Ingresa tu correo registrado",
+    step1Desc: "Utiliza el correo electrónico que proporcionaste al firmar tu póliza.",
+    step2Title: "Recibe un PIN seguro",
+    step2Desc: "Te enviaremos un PIN de un solo uso a tu bandeja de entrada para verificar tu identidad.",
+    step3Title: "Aplica tu PIN",
+    step3Desc: "Ingresa el PIN para acceder de forma segura al panel completo de tu póliza.",
+    note: "<1>Importante:</1> No se pueden realizar cambios hasta que sean procesados por nuestro equipo licenciado.",
+    iframeTitle: "Bringas Insurance — Portal de Servicio al Cliente",
+    openInNewTab: "Abrir portal en una nueva pestaña",
+    disclaimerTitle: "Aviso Legal del Sitio Web",
+    disclaimerBody:
+      "Este aviso no es una oferta para vender seguros. La cobertura de seguro no puede ser vinculada o modificada mediante el envío de este formulario en línea, correo electrónico, fax o mensaje de voz. Ningún vínculo, póliza de seguro, cambio, adición o eliminación de cobertura entrará en vigor hasta que sea confirmado por escrito por un agente o representante con licencia de Bringas Insurance Group. Cualquier propuesta de seguro que podamos presentarle se basará en la información que usted proporcione a través de este formulario en línea y en cualquier comunicación verbal o escrita posterior. Por favor comuníquese con nuestra oficina al (425) 405-7111 para discutir los detalles específicos de cobertura y sus necesidades de seguro. La información que envía a través de este sitio se utiliza únicamente para preparar cotizaciones y servicios de póliza y no se distribuye ni se vende a terceros. Al enviar su información, usted consiente ser contactado por un agente con licencia con respecto a sus necesidades de seguro.",
+  },
 };
 
 export default es;
