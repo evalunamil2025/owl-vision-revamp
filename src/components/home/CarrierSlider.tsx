@@ -29,7 +29,7 @@ const doubledCarriers = [...carriers, ...carriers];
 const CarrierSlider = () => {
   const { t } = useTranslation();
   return (
-    <section className="bg-white py-[4px] md:py-24 overflow-hidden">
+    <section className="bg-white py-12 md:py-24 overflow-hidden">
       {/* Header */}
       <div className="container mx-auto px-6 text-center pt-0 mb-14">
         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#00a651] font-heading block mb-4">
@@ -59,10 +59,7 @@ const CarrierSlider = () => {
           }}
         >
           {doubledCarriers.map((carrier, i) => (
-            <div
-              key={`${carrier.name}-${i}`}
-              className="flex-shrink-0 px-4"
-            >
+            <div key={`${carrier.name}-${i}`} className="flex-shrink-0 px-4">
               <img
                 src={carrier.logo}
                 alt={carrier.name}
