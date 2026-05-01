@@ -29,6 +29,7 @@ import BondsSurety from "./pages/BondsSurety";
 import NotFound from "./pages/NotFound";
 import InsuranceChatbot from "./components/InsuranceChatbot";
 import ScrollToTop from "./components/ScrollToTop";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +67,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         <InsuranceChatbot />
+        <WhatsAppButton />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
