@@ -27,6 +27,7 @@ import RestaurantInsurance from "./pages/RestaurantInsurance";
 import BuildingOwners from "./pages/BuildingOwners";
 import BondsSurety from "./pages/BondsSurety";
 import PayMyBill from "./pages/PayMyBill";
+import ClientCenter from "./pages/ClientCenter";
 import NotFound from "./pages/NotFound";
 import InsuranceChatbot from "./components/InsuranceChatbot";
 import ScrollToTop from "./components/ScrollToTop";
@@ -66,6 +67,7 @@ const App = () => (
           <Route path="/building-owners" element={<BuildingOwners />} />
           <Route path="/bonds-surety" element={<BondsSurety />} />
           <Route path="/pay-my-bill" element={<PayMyBill />} />
+          <Route path="/client-center" element={<ClientCenter />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <InsuranceChatbot />

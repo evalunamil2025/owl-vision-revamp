@@ -1416,6 +1416,29 @@ const en = {
       button: "Get a Quote",
     },
   },
+  clientCenter: {
+    navLabel: "Client Center",
+    heroBadge: "24/7 Self-Service Portal",
+    heroTitle: "Client Center",
+    heroSubtitle:
+      "Manage your policies online — anytime, anywhere. View documents, request changes, and access your account in seconds.",
+    portalTitle: "Your Online Policy Portal",
+    portalDesc:
+      "Bringas Insurance Group clients can view policy information, print policy-related documents, submit change requests and more. Access 24/7, every day of the year.",
+    stepsTitle: "Using the Portal is Easy!",
+    step1Title: "Enter your registered email",
+    step1Desc: "Use the email address you provided when you signed your policy.",
+    step2Title: "Receive a secure PIN",
+    step2Desc: "We'll send a one-time PIN to your inbox to verify your identity.",
+    step3Title: "Apply your PIN",
+    step3Desc: "Enter the PIN to securely access your full policy dashboard.",
+    note: "<1>Important:</1> No changes can be made until processed by our licensed team.",
+    iframeTitle: "Bringas Insurance — Client Service Portal",
+    openInNewTab: "Open portal in a new tab",
+    disclaimerTitle: "Website Disclaimer",
+    disclaimerBody:
+      "This notice is not an offer to sell insurance. Insurance coverage cannot be bound or modified by submitting any online form, e-mail message, fax, or voice mail. No binder, insurance policy, change, addition, or deletion to insurance coverage will become effective unless and until confirmed in writing by a licensed agent or representative of Bringas Insurance Group. Any proposal of insurance we may present to you will be based upon the information you provide via this online form and any subsequent verbal or written communications. Please contact our office at (425) 405-7111 to discuss specific coverage details and your insurance needs. The information you submit through this site is used solely to prepare quotes and policy services and is not distributed or sold to third parties. By submitting your information, you consent to be contacted by a licensed agent regarding your insurance needs.",
+  },
 };
 
 export default en;

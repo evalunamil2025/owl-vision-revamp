@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Phone, ShieldCheck, Briefcase, ArrowRight, CreditCard, Users } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, ShieldCheck, Briefcase, ArrowRight, CreditCard, Users, UserCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/bringas-insurance-logo-big.png";
@@ -194,6 +194,16 @@ const Navbar = () => {
                     </span>
                     <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all" />
                   </Link>
+                  <Link
+                    to="/client-center"
+                    className="group flex items-center justify-between px-3 py-2 text-sm text-slate-600 hover:text-[#0079c2] hover:bg-blue-50 rounded-xl transition-all"
+                  >
+                    <span className="flex items-center gap-2">
+                      <UserCircle className="w-4 h-4" />
+                      {t("clientCenter.navLabel")}
+                    </span>
+                    <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all" />
+                  </Link>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -289,6 +299,14 @@ const Navbar = () => {
                 >
                   <CreditCard className="w-5 h-5 text-[#00a651]" />
                   {t("payBill.navLabel")}
+                </Link>
+                <Link
+                  to="/client-center"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2 p-3 text-lg font-bold text-slate-800 bg-slate-50 rounded-xl"
+                >
+                  <UserCircle className="w-5 h-5 text-[#00a651]" />
+                  {t("clientCenter.navLabel")}
                 </Link>
               </div>
 
