@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Phone, ShieldCheck, Briefcase, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, ShieldCheck, Briefcase, ArrowRight, CreditCard, Users } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/bringas-insurance-logo-big.png";
@@ -152,6 +152,48 @@ const Navbar = () => {
                       </Link>
                     ))}
                   </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Mega Menú Clients */}
+          <div
+            className="relative group"
+            onMouseEnter={() => setActiveDropdown("clients")}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <button
+              className={`flex items-center gap-1 px-4 py-2 text-sm font-bold transition-all ${
+                activeDropdown === "clients" ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
+              }`}
+            >
+              {t("payBill.clients")}{" "}
+              <ChevronDown
+                className={`w-4 h-4 transition-transform ${activeDropdown === "clients" ? "rotate-180" : ""}`}
+              />
+            </button>
+            <AnimatePresence>
+              {activeDropdown === "clients" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 15 }}
+                  className="absolute top-full -left-12 mt-2 w-[300px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 z-50"
+                >
+                  <div className="mb-4 flex items-center gap-2 text-[#00a651] font-bold text-xs uppercase tracking-widest">
+                    <Users className="w-4 h-4" /> {t("payBill.clients")}
+                  </div>
+                  <Link
+                    to="/pay-my-bill"
+                    className="group flex items-center justify-between px-3 py-2 text-sm text-slate-600 hover:text-[#0079c2] hover:bg-blue-50 rounded-xl transition-all"
+                  >
+                    <span className="flex items-center gap-2">
+                      <CreditCard className="w-4 h-4" />
+                      {t("payBill.navLabel")}
+                    </span>
+                    <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all" />
+                  </Link>
                 </motion.div>
               )}
             </AnimatePresence>
