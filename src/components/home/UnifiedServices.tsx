@@ -19,7 +19,7 @@ const UnifiedServices = () => {
   const services = category === "personal" ? personalServices : businessServices;
 
   return (
-    <section className="relative py-[4px] md:py-32 bg-[#f8fafc] overflow-hidden">
+    <section className="relative py-14 md:py-32 bg-[#f8fafc] overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -41,7 +41,8 @@ const UnifiedServices = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold text-[#015093] tracking-tighter leading-[0.95] mb-6 font-heading"
           >
-            {t("homePage.services.titleA")} <span className="text-[#00a651] font-light italic">{t("homePage.services.titleAccent")}</span>
+            {t("homePage.services.titleA")}{" "}
+            <span className="text-[#00a651] font-light italic">{t("homePage.services.titleAccent")}</span>
           </motion.h2>
         </div>
 
@@ -86,75 +87,75 @@ const UnifiedServices = () => {
                 const label = t(`homePage.services.items.${s.key}.label` as const);
                 const desc = t(`homePage.services.items.${s.key}.desc` as const);
                 return (
-                <motion.div
-                  key={`${category}-${i}`}
-                  className="group relative bg-white rounded-[2.5rem] transition-all duration-500 shadow-[0_15px_40px_rgba(0,0,0,0.04)] hover:shadow-2xl hover:-translate-y-3 flex flex-col h-full"
-                >
-                  {/* Image Container con Icono que no se corta */}
-                  <div className="relative h-56 rounded-t-[2.5rem] overflow-hidden shrink-0">
-                    <img
-                      src={s.image}
-                      alt={label}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
-                    <WaveDivider />
-                  </div>
+                  <motion.div
+                    key={`${category}-${i}`}
+                    className="group relative bg-white rounded-[2.5rem] transition-all duration-500 shadow-[0_15px_40px_rgba(0,0,0,0.04)] hover:shadow-2xl hover:-translate-y-3 flex flex-col h-full"
+                  >
+                    {/* Image Container con Icono que no se corta */}
+                    <div className="relative h-56 rounded-t-[2.5rem] overflow-hidden shrink-0">
+                      <img
+                        src={s.image}
+                        alt={label}
+                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
+                      <WaveDivider />
+                    </div>
 
-                  {/* Icono Flotante - Fuera del overflow-hidden de la imagen */}
-                  <div className="absolute top-[195px] left-8 z-30">
-                    <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center border-2 border-white shadow-xl transition-all duration-500 group-hover:bg-[#00a651] group-hover:scale-110 overflow-hidden">
-                      {"customIcon" in s && s.customIcon ? (
-                        <div className="relative w-10 h-10">
-                          <img
-                            src={s.customIcon as string}
-                            alt={label}
-                            className="absolute inset-0 w-10 h-10 object-contain transition-opacity duration-500 group-hover:opacity-0"
-                          />
-                          {"customIconHover" in s && s.customIconHover ? (
+                    {/* Icono Flotante - Fuera del overflow-hidden de la imagen */}
+                    <div className="absolute top-[195px] left-8 z-30">
+                      <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center border-2 border-white shadow-xl transition-all duration-500 group-hover:bg-[#00a651] group-hover:scale-110 overflow-hidden">
+                        {"customIcon" in s && s.customIcon ? (
+                          <div className="relative w-10 h-10">
                             <img
-                              src={s.customIconHover as string}
-                              alt=""
-                              aria-hidden="true"
-                              className="absolute inset-0 w-10 h-10 object-contain opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                              src={s.customIcon as string}
+                              alt={label}
+                              className="absolute inset-0 w-10 h-10 object-contain transition-opacity duration-500 group-hover:opacity-0"
                             />
-                          ) : null}
-                        </div>
-                      ) : (
-                        <s.icon
-                          className="w-7 h-7 text-[#00a651] group-hover:text-white transition-colors duration-500"
-                          strokeWidth={1.8}
-                        />
-                      )}
+                            {"customIconHover" in s && s.customIconHover ? (
+                              <img
+                                src={s.customIconHover as string}
+                                alt=""
+                                aria-hidden="true"
+                                className="absolute inset-0 w-10 h-10 object-contain opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                              />
+                            ) : null}
+                          </div>
+                        ) : (
+                          <s.icon
+                            className="w-7 h-7 text-[#00a651] group-hover:text-white transition-colors duration-500"
+                            strokeWidth={1.8}
+                          />
+                        )}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Content */}
-                  <div className="relative z-20 p-8 pt-12 flex flex-col flex-grow">
-                    <h3 className="text-xl font-black text-[#015093] mb-3 font-heading tracking-tight group-hover:text-[#00a651] transition-colors uppercase leading-none">
-                      {label}
-                    </h3>
+                    {/* Content */}
+                    <div className="relative z-20 p-8 pt-12 flex flex-col flex-grow">
+                      <h3 className="text-xl font-black text-[#015093] mb-3 font-heading tracking-tight group-hover:text-[#00a651] transition-colors uppercase leading-none">
+                        {label}
+                      </h3>
 
-                    <p className="text-slate-500 text-sm font-body leading-relaxed mb-8 line-clamp-3 font-light">
-                      {desc}
-                    </p>
+                      <p className="text-slate-500 text-sm font-body leading-relaxed mb-8 line-clamp-3 font-light">
+                        {desc}
+                      </p>
 
-                    <div className="mt-auto">
-                      <Link
-                        to={s.href}
-                        className="inline-flex items-center gap-3 text-xs font-black uppercase tracking-tighter text-[#00a651] group/btn"
-                      >
-                        <span className="relative">
-                          {t("homePage.services.learnMore")}
-                          <span className="absolute bottom-[-2px] left-0 w-full h-[1px] bg-[#00a651] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform origin-left" />
-                        </span>
-                        <div className="w-8 h-8 rounded-xl bg-[#00a651]/10 flex items-center justify-center group-hover/btn:bg-[#00a651] group-hover/btn:text-white transition-all duration-300">
-                          <ArrowRight className="w-4 h-4" />
-                        </div>
-                      </Link>
+                      <div className="mt-auto">
+                        <Link
+                          to={s.href}
+                          className="inline-flex items-center gap-3 text-xs font-black uppercase tracking-tighter text-[#00a651] group/btn"
+                        >
+                          <span className="relative">
+                            {t("homePage.services.learnMore")}
+                            <span className="absolute bottom-[-2px] left-0 w-full h-[1px] bg-[#00a651] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform origin-left" />
+                          </span>
+                          <div className="w-8 h-8 rounded-xl bg-[#00a651]/10 flex items-center justify-center group-hover/btn:bg-[#00a651] group-hover/btn:text-white transition-all duration-300">
+                            <ArrowRight className="w-4 h-4" />
+                          </div>
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
                 );
               })}
             </motion.div>
