@@ -282,6 +282,14 @@ const Navbar = () => {
                 >
                   {t("nav.contact")}
                 </Link>
+                <Link
+                  to="/pay-my-bill"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2 p-3 text-lg font-bold text-slate-800 bg-slate-50 rounded-xl"
+                >
+                  <CreditCard className="w-5 h-5 text-[#00a651]" />
+                  {t("payBill.navLabel")}
+                </Link>
               </div>
 
               <div className="space-y-2">
