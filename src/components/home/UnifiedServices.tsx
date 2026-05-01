@@ -19,7 +19,7 @@ const UnifiedServices = () => {
   const services = category === "personal" ? personalServices : businessServices;
 
   return (
-    <section className="relative py-[10px] md:py-32 bg-[#f8fafc] overflow-hidden">
+    <section className="relative py-[4px] md:py-32 bg-[#f8fafc] overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
