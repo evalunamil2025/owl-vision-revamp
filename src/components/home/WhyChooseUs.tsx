@@ -6,7 +6,7 @@ import { whyUs } from "@/data/homeData";
 const WhyChooseUs = () => {
   const { t } = useTranslation();
   return (
-    <section className="relative py-[10px] md:py-28 lg:py-36 bg-[#f7faf9] overflow-hidden">
+    <section className="relative py-[5px] md:py-28 lg:py-36 bg-[#f7faf9] overflow-hidden">
       {/* Decorative background layers */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-[#f7faf9] to-white" />
       <div className="absolute top-20 -left-32 w-[500px] h-[500px] bg-[#00a651]/10 rounded-full blur-[140px]" />
