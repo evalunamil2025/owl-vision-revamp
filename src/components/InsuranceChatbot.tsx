@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { MessageSquare, X, Send, Bot, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 type Message = {
   id: string;
@@ -18,38 +19,108 @@ type QuickReply = {
 
 type FlowStep = "greeting" | "wait_name" | "main";
 
-const PERSONAL_OPTIONS: QuickReply[] = [
-  { label: "🚗 Auto Insurance", action: "service_auto", href: "/auto-insurance" },
-  { label: "🏠 Home Insurance", action: "service_home", href: "/home-insurance" },
-  { label: "❤️ Life Insurance", action: "service_life", href: "/life-insurance" },
-  { label: "🌊 Flood Insurance", action: "service_flood", href: "/flood-insurance" },
-  { label: "⬅️ Go Back", action: "restart" },
-];
+type Lang = "en" | "es";
 
-const BUSINESS_OPTIONS: QuickReply[] = [
-  { label: "📋 General Liability", action: "service_gl", href: "/general-liability" },
-  { label: "🚛 Commercial Auto", action: "service_ca", href: "/commercial-auto" },
-  { label: "🏗️ Contractors", action: "service_contractors", href: "/contractors-insurance" },
-  { label: "🏢 BOP", action: "service_bop", href: "/bop-insurance" },
-  { label: "⬅️ Go Back", action: "restart" },
-];
-
-const SERVICE_INFO: Record<string, { text: string; href: string }> = {
-  service_auto: { text: "Auto Insurance protects you against financial loss in the event of an accident or theft. We work with top carriers to find you the best rate!", href: "/auto-insurance" },
-  service_home: { text: "Homeowners Insurance covers your home and belongings against damage, theft, and liability. Let us find the perfect policy for your family.", href: "/home-insurance" },
-  service_life: { text: "Life Insurance provides financial security for your loved ones. We offer term, whole life, and universal options to fit your needs.", href: "/life-insurance" },
-  service_flood: { text: "Flood Insurance protects your property from flood damage — standard homeowners policies don't cover it. Don't wait until it's too late!", href: "/flood-insurance" },
-  service_gl: { text: "General Liability Insurance protects your business from third-party claims of bodily injury, property damage, and more.", href: "/general-liability" },
-  service_ca: { text: "Commercial Auto Insurance covers vehicles used for business purposes, protecting your fleet and drivers on the road.", href: "/commercial-auto" },
-  service_contractors: { text: "Contractors Insurance provides comprehensive coverage for construction professionals, from liability to tools and equipment.", href: "/contractors-insurance" },
-  service_bop: { text: "A Business Owners Policy (BOP) bundles general liability and property insurance at a cost-effective rate for small businesses.", href: "/bop-insurance" },
+const COPY = {
+  en: {
+    headerTitle: "Owlin — Your Virtual Assistant",
+    online: "Online — Ready to help",
+    welcomeBack: (n: string) => `Welcome back, ${n}! 👋 How can I help you today?`,
+    askName: "Hi! I'm Owlin, your Bringas Insurance assistant. I'm here to help you find the perfect protection. First, may I ask, what is your name?",
+    niceToMeet: (n: string) => `Nice to meet you, ${n}! 👋 How can I help you today?`,
+    contactReply: (n: string) => `No problem, ${n}! Let me connect you with one of our experts right away. 🚀`,
+    restartReply: (n: string) => `What else can I help you with, ${n}?`,
+    personalReply: "Excellent! We have great personal coverage options. What type of insurance are you looking for?",
+    businessReply: "Smart move protecting your business! What type of commercial coverage do you need?",
+    quoteReply: "Let's get you covered! Taking you to the details now… ✨",
+    fallback: (n: string) => `That's a great question, ${n}! For a detailed answer, please let me connect you with one of our experts.`,
+    friend: "friend",
+    placeholderName: "Type your name...",
+    placeholderQuestion: "Type your question...",
+    main: [
+      { label: "🛡️ Personal Insurance", action: "personal" },
+      { label: "🏢 Business Insurance", action: "business" },
+      { label: "📞 Talk to an Agent", action: "contact", href: "/contact" },
+    ] as QuickReply[],
+    personal: [
+      { label: "🚗 Auto Insurance", action: "service_auto", href: "/auto-insurance" },
+      { label: "🏠 Home Insurance", action: "service_home", href: "/home-insurance" },
+      { label: "❤️ Life Insurance", action: "service_life", href: "/life-insurance" },
+      { label: "🌊 Flood Insurance", action: "service_flood", href: "/flood-insurance" },
+      { label: "⬅️ Go Back", action: "restart" },
+    ] as QuickReply[],
+    business: [
+      { label: "📋 General Liability", action: "service_gl", href: "/general-liability" },
+      { label: "🚛 Commercial Auto", action: "service_ca", href: "/commercial-auto" },
+      { label: "🏗️ Contractors", action: "service_contractors", href: "/contractors-insurance" },
+      { label: "🏢 BOP", action: "service_bop", href: "/bop-insurance" },
+      { label: "⬅️ Go Back", action: "restart" },
+    ] as QuickReply[],
+    services: {
+      service_auto: { text: "Auto Insurance protects you against financial loss in the event of an accident or theft. We work with top carriers to find you the best rate!", href: "/auto-insurance" },
+      service_home: { text: "Homeowners Insurance covers your home and belongings against damage, theft, and liability. Let us find the perfect policy for your family.", href: "/home-insurance" },
+      service_life: { text: "Life Insurance provides financial security for your loved ones. We offer term, whole life, and universal options to fit your needs.", href: "/life-insurance" },
+      service_flood: { text: "Flood Insurance protects your property from flood damage — standard homeowners policies don't cover it. Don't wait until it's too late!", href: "/flood-insurance" },
+      service_gl: { text: "General Liability Insurance protects your business from third-party claims of bodily injury, property damage, and more.", href: "/general-liability" },
+      service_ca: { text: "Commercial Auto Insurance covers vehicles used for business purposes, protecting your fleet and drivers on the road.", href: "/commercial-auto" },
+      service_contractors: { text: "Contractors Insurance provides comprehensive coverage for construction professionals, from liability to tools and equipment.", href: "/contractors-insurance" },
+      service_bop: { text: "A Business Owners Policy (BOP) bundles general liability and property insurance at a cost-effective rate for small businesses.", href: "/bop-insurance" },
+    } as Record<string, { text: string; href: string }>,
+    getQuote: "📝 Get a Quote",
+    goBack: "⬅️ Go Back",
+    startOver: "⬅️ Start Over",
+    talkAgent: "📞 Talk to an Agent",
+  },
+  es: {
+    headerTitle: "Owlin — Tu Asistente Virtual",
+    online: "En línea — Listo para ayudar",
+    welcomeBack: (n: string) => `¡Bienvenido de nuevo, ${n}! 👋 ¿En qué puedo ayudarte hoy?`,
+    askName: "¡Hola! Soy Owlin, tu asistente de Bringas Insurance. Estoy aquí para ayudarte a encontrar la protección perfecta. Primero, ¿cuál es tu nombre?",
+    niceToMeet: (n: string) => `¡Mucho gusto, ${n}! 👋 ¿En qué puedo ayudarte hoy?`,
+    contactReply: (n: string) => `¡Sin problema, ${n}! Te conecto con uno de nuestros expertos ahora mismo. 🚀`,
+    restartReply: (n: string) => `¿En qué más puedo ayudarte, ${n}?`,
+    personalReply: "¡Excelente! Tenemos grandes opciones de cobertura personal. ¿Qué tipo de seguro estás buscando?",
+    businessReply: "¡Gran decisión proteger tu negocio! ¿Qué tipo de cobertura comercial necesitas?",
+    quoteReply: "¡Vamos a protegerte! Te llevo a los detalles ahora… ✨",
+    fallback: (n: string) => `¡Excelente pregunta, ${n}! Para una respuesta detallada, déjame conectarte con uno de nuestros expertos.`,
+    friend: "amigo",
+    placeholderName: "Escribe tu nombre...",
+    placeholderQuestion: "Escribe tu pregunta...",
+    main: [
+      { label: "🛡️ Seguros Personales", action: "personal" },
+      { label: "🏢 Seguros de Negocio", action: "business" },
+      { label: "📞 Hablar con un Agente", action: "contact", href: "/contact" },
+    ] as QuickReply[],
+    personal: [
+      { label: "🚗 Seguro de Auto", action: "service_auto", href: "/auto-insurance" },
+      { label: "🏠 Seguro de Hogar", action: "service_home", href: "/home-insurance" },
+      { label: "❤️ Seguro de Vida", action: "service_life", href: "/life-insurance" },
+      { label: "🌊 Seguro de Inundación", action: "service_flood", href: "/flood-insurance" },
+      { label: "⬅️ Volver", action: "restart" },
+    ] as QuickReply[],
+    business: [
+      { label: "📋 Responsabilidad General", action: "service_gl", href: "/general-liability" },
+      { label: "🚛 Auto Comercial", action: "service_ca", href: "/commercial-auto" },
+      { label: "🏗️ Contratistas", action: "service_contractors", href: "/contractors-insurance" },
+      { label: "🏢 BOP", action: "service_bop", href: "/bop-insurance" },
+      { label: "⬅️ Volver", action: "restart" },
+    ] as QuickReply[],
+    services: {
+      service_auto: { text: "El Seguro de Auto te protege contra pérdidas financieras en caso de accidente o robo. ¡Trabajamos con las mejores aseguradoras para conseguirte la mejor tarifa!", href: "/auto-insurance" },
+      service_home: { text: "El Seguro de Hogar cubre tu casa y pertenencias contra daños, robo y responsabilidad. Déjanos encontrar la póliza perfecta para tu familia.", href: "/home-insurance" },
+      service_life: { text: "El Seguro de Vida brinda seguridad financiera para tus seres queridos. Ofrecemos opciones de término, vida entera y universal para tus necesidades.", href: "/life-insurance" },
+      service_flood: { text: "El Seguro de Inundación protege tu propiedad contra daños por inundación — las pólizas estándar de hogar no lo cubren. ¡No esperes a que sea tarde!", href: "/flood-insurance" },
+      service_gl: { text: "El Seguro de Responsabilidad General protege a tu negocio de reclamos de terceros por lesiones, daños materiales y más.", href: "/general-liability" },
+      service_ca: { text: "El Seguro de Auto Comercial cubre vehículos usados para negocios, protegiendo tu flota y conductores en la carretera.", href: "/commercial-auto" },
+      service_contractors: { text: "El Seguro para Contratistas brinda cobertura integral para profesionales de la construcción, desde responsabilidad hasta herramientas y equipo.", href: "/contractors-insurance" },
+      service_bop: { text: "Una Póliza de Dueño de Negocio (BOP) combina responsabilidad general y seguro de propiedad a una tarifa accesible para pequeñas empresas.", href: "/bop-insurance" },
+    } as Record<string, { text: string; href: string }>,
+    getQuote: "📝 Obtener Cotización",
+    goBack: "⬅️ Volver",
+    startOver: "⬅️ Empezar de nuevo",
+    talkAgent: "📞 Hablar con un Agente",
+  },
 };
-
-const MAIN_BUTTONS: QuickReply[] = [
-  { label: "🛡️ Personal Insurance", action: "personal" },
-  { label: "🏢 Business Insurance", action: "business" },
-  { label: "📞 Talk to an Agent", action: "contact", href: "/contact" },
-];
 
 const uid = () => Math.random().toString(36).slice(2, 9);
 
@@ -77,6 +148,10 @@ const TypingIndicator = () => (
 );
 
 const InsuranceChatbot = () => {
+  const { i18n } = useTranslation();
+  const lang: Lang = i18n.language?.startsWith("es") ? "es" : "en";
+  const t = COPY[lang];
+
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [typing, setTyping] = useState(false);
@@ -107,28 +182,29 @@ const InsuranceChatbot = () => {
     });
   };
 
+  // Reset chat when language changes
+  useEffect(() => {
+    initRef.current = false;
+    setMessages([]);
+    setFlowStep("greeting");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
+
   useEffect(() => {
     if (open && !initRef.current) {
       initRef.current = true;
       if (userName) {
         setFlowStep("main");
-        addBotMessage(
-          `Welcome back, ${userName}! 👋 How can I help you today?`,
-          MAIN_BUTTONS,
-          800
-        );
+        addBotMessage(t.welcomeBack(userName), t.main, 800);
       } else {
         setFlowStep("wait_name");
-        addBotMessage(
-          "Hi! I'm Owlin, your Bringas Insurance assistant. I'm here to help you find the perfect protection. First, may I ask, what is your name?",
-          undefined,
-          1000
-        );
+        addBotMessage(t.askName, undefined, 1000);
       }
     }
     if (open) {
       setTimeout(() => inputRef.current?.focus(), 300);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   const handleAction = (action: string, label: string, href?: string) => {
@@ -136,37 +212,37 @@ const InsuranceChatbot = () => {
     scrollToBottom();
 
     if (action === "contact" && href) {
-      addBotMessage(`No problem, ${userName || "friend"}! Let me connect you with one of our experts right away. 🚀`);
+      addBotMessage(t.contactReply(userName || t.friend));
       setTimeout(() => { setOpen(false); navigate(href); }, 1800);
       return;
     }
 
     if (action === "restart") {
-      addBotMessage(`What else can I help you with, ${userName || "friend"}?`, MAIN_BUTTONS);
+      addBotMessage(t.restartReply(userName || t.friend), t.main);
       return;
     }
 
     if (action === "personal") {
-      addBotMessage("Excellent! We have great personal coverage options. What type of insurance are you looking for?", PERSONAL_OPTIONS);
+      addBotMessage(t.personalReply, t.personal);
       return;
     }
 
     if (action === "business") {
-      addBotMessage("Smart move protecting your business! What type of commercial coverage do you need?", BUSINESS_OPTIONS);
+      addBotMessage(t.businessReply, t.business);
       return;
     }
 
-    const info = SERVICE_INFO[action];
+    const info = t.services[action];
     if (info) {
       addBotMessage(info.text, [
-        { label: "📝 Get a Quote", action: "goto_quote", href: info.href },
-        { label: "⬅️ Go Back", action: "restart" },
+        { label: t.getQuote, action: "goto_quote", href: info.href },
+        { label: t.goBack, action: "restart" },
       ]);
       return;
     }
 
     if (action === "goto_quote" && href) {
-      addBotMessage("Let's get you covered! Taking you to the details now… ✨");
+      addBotMessage(t.quoteReply);
       setTimeout(() => { setOpen(false); navigate(href); }, 1500);
     }
   };
@@ -184,15 +260,15 @@ const InsuranceChatbot = () => {
       setUserName(name);
       localStorage.setItem("owlin_user_name", name);
       setFlowStep("main");
-      await addBotMessage(`Nice to meet you, ${name}! 👋 How can I help you today?`, MAIN_BUTTONS, 1200);
+      await addBotMessage(t.niceToMeet(name), t.main, 1200);
       return;
     }
 
     addBotMessage(
-      `That's a great question, ${userName || "friend"}! For a detailed answer, please let me connect you with one of our experts.`,
+      t.fallback(userName || t.friend),
       [
-        { label: "📞 Talk to an Agent", action: "contact", href: "/contact" },
-        { label: "⬅️ Start Over", action: "restart" },
+        { label: t.talkAgent, action: "contact", href: "/contact" },
+        { label: t.startOver, action: "restart" },
       ],
       1200
     );
@@ -230,10 +306,10 @@ const InsuranceChatbot = () => {
                 <Bot className="w-6 h-6 text-white" />
               </div>
               <div className="flex-1">
-                <h3 className="text-white font-bold text-sm">Owlin — Your Virtual Assistant</h3>
+                <h3 className="text-white font-bold text-sm">{t.headerTitle}</h3>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                  <span className="text-white/70 text-xs">Online — Ready to help</span>
+                  <span className="text-white/70 text-xs">{t.online}</span>
                 </div>
               </div>
               <button
@@ -301,7 +377,7 @@ const InsuranceChatbot = () => {
                   ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder={flowStep === "wait_name" ? "Type your name..." : "Type your question..."}
+                  placeholder={flowStep === "wait_name" ? t.placeholderName : t.placeholderQuestion}
                   className="flex-1 px-4 py-2.5 text-sm rounded-full bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#00a651]/40 focus:ring-2 focus:ring-[#00a651]/10 transition-all"
                 />
                 <button
