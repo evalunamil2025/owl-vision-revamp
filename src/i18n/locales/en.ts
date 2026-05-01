@@ -1399,6 +1399,23 @@ const en = {
       title: "Here are some companies we represent.",
     },
   },
+  payBill: {
+    navLabel: "Pay my bill",
+    clients: "Clients",
+    heroBadge: "Quick & Secure Payments",
+    heroTitle: "PAY MY BILL",
+    heroSubtitle: "Pay your policy directly with your carrier in just a few clicks.",
+    infoTitle: "Where can I find my policy number?",
+    infoDesc:
+      "All policy numbers are listed on your insurance ID cards and any letters a carrier may have sent. Click on the link below and it will take you to your operator's quick payment site.",
+    visitWebsite: "Pay Online",
+    callCarrier: "Call Carrier",
+    cta: {
+      title: "Insurance for: your Car / Home / Business / Life.",
+      desc: "Call us today for a quote: (425) 405-7111.",
+      button: "Get a Quote",
+    },
+  },
 };
 
 export default en;
