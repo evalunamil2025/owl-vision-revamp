@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 const Mission = () => {
   const { t } = useTranslation();
   return (
-    <section className="relative py-[4px] md:py-32 bg-white overflow-hidden">
+    <section className="relative py-12 md:py-32 bg-white overflow-hidden">
       {/* --- Detalles Decorativos --- */}
       {/* Círculos de gradiente sutiles en los extremos para dar profundidad */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-slate-50 to-transparent rounded-full blur-3xl -z-10 opacity-60" />
@@ -35,7 +35,8 @@ const Mission = () => {
           viewport={{ once: true }}
           className="text-5xl md:text-7xl font-heading font-bold text-[#015093] mb-12 tracking-tighter"
         >
-          {t("homePage.mission.titleA")} <span className="text-[#00a651] font-light italic">{t("homePage.mission.titleAccent")}</span>
+          {t("homePage.mission.titleA")}{" "}
+          <span className="text-[#00a651] font-light italic">{t("homePage.mission.titleAccent")}</span>
         </motion.h2>
 
         {/* Contenido de Texto */}
