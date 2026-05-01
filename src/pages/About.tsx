@@ -161,7 +161,7 @@ const About = () => {
       </section>
 
       {/* --- SECCIÓN NUESTRO EQUIPO (Full Width Rounded) --- */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-5 gap-12 items-center">
             <div className="lg:col-span-2">
