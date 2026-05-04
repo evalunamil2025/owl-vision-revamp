@@ -76,27 +76,23 @@ const en = {
   quote: {
     pageTitle: "Get Your Free Quote",
     pageSubtitle: "The first step to protecting what you love is simpler than you think.",
-    contactUs: "Contact Us",
-    firstName: "First Name",
-    lastName: "Last Name",
-    email: "Email",
-    phone: "Phone",
-    insuranceType: "Insurance Type",
-    message: "Message",
-    placeholders: {
-      firstName: "Your first name",
-      lastName: "Your last name",
-      email: "you@example.com",
-      phone: "(425) 000-0000",
-      message: "Tell us about your insurance needs...",
-    },
+    heroBadge: "Fast & Free Online Quote",
+    heroTitle: "GET A QUOTE",
+    heroSubtitle: "Compare rates from top carriers in minutes — no obligation, no hassle.",
+    iframeTitle: "Bringas Insurance — Online Quote",
+    openInNewTab: "Open quote tool in a new tab",
     sidebar: {
       getInTouch: "Get in Touch",
       hours: "Mon–Fri: 9am–5pm",
+      address: "Address",
       hablamos:
         "🦉 Hablamos Español. We promise to explain everything without jargon and, if possible, with a smile.",
       hablamosBold: "Hablamos Español.",
+      followUs: "Follow Us",
     },
+    disclaimerTitle: "Website Disclaimer – Review Carefully",
+    disclaimerBody:
+      "This information is not an offer to sell insurance. Insurance coverage cannot be bound or changed via submission of this online form/application, e-mail, voice mail or facsimile. No binder, insurance policy, change, addition, and/or deletion to insurance coverage goes into effect unless and until confirmed directly with a licensed agent. Note any proposal of insurance we may present to you will be based upon the values developed and exposures to loss disclosed to us on this online form/application and/or in communications with us. All coverages are subject to the terms, conditions and exclusions of the actual policy issued. Not all policies or coverages are available in every state. You also agree to release us from any liability if this information is accidentally viewed by unauthorized persons. We will only use this information for insurance quoting purposes and not distribute to other parties.",
   },
   contact: {
     badge: "Expert Insurance Guidance",
