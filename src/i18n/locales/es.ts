@@ -78,27 +78,23 @@ const es: Translation = {
   quote: {
     pageTitle: "Obtén tu cotización gratis",
     pageSubtitle: "El primer paso para proteger lo que amas es más simple de lo que crees.",
-    contactUs: "Contáctanos",
-    firstName: "Nombre",
-    lastName: "Apellido",
-    email: "Correo electrónico",
-    phone: "Teléfono",
-    insuranceType: "Tipo de seguro",
-    message: "Mensaje",
-    placeholders: {
-      firstName: "Tu nombre",
-      lastName: "Tu apellido",
-      email: "tu@ejemplo.com",
-      phone: "(425) 000-0000",
-      message: "Cuéntanos sobre tus necesidades de seguro...",
-    },
+    heroBadge: "Cotización en línea rápida y gratis",
+    heroTitle: "OBTENER UNA COTIZACIÓN",
+    heroSubtitle: "Compara tarifas de las mejores aseguradoras en minutos — sin compromiso ni complicaciones.",
+    iframeTitle: "Bringas Insurance — Cotización en línea",
+    openInNewTab: "Abrir el cotizador en una nueva pestaña",
     sidebar: {
       getInTouch: "Ponte en contacto",
       hours: "Lun–Vie: 9am–5pm",
+      address: "Dirección",
       hablamos:
         "🦉 Hablamos Español. Te prometemos explicarte todo sin tecnicismos y, si se puede, con una sonrisa.",
       hablamosBold: "Hablamos Español.",
+      followUs: "Síguenos",
     },
+    disclaimerTitle: "Aviso Legal del Sitio Web – Revise Cuidadosamente",
+    disclaimerBody:
+      "Esta información no constituye una oferta para vender seguros. La cobertura de seguro no puede ser vinculada ni modificada mediante el envío de este formulario/solicitud en línea, correo electrónico, mensaje de voz o fax. Ningún vínculo, póliza de seguro, cambio, adición y/o eliminación de cobertura entrará en vigor hasta que sea confirmado directamente con un agente con licencia. Tenga en cuenta que cualquier propuesta de seguro que podamos presentarle se basará en los valores desarrollados y las exposiciones a pérdida que nos sean reveladas en este formulario/solicitud en línea y/o en las comunicaciones que mantengamos con nosotros. Todas las coberturas están sujetas a los términos, condiciones y exclusiones de la póliza emitida. No todas las pólizas o coberturas están disponibles en todos los estados. Usted también acepta liberarnos de cualquier responsabilidad en caso de que esta información sea vista accidentalmente por personas no autorizadas. Solo utilizaremos esta información con fines de cotización de seguros y no la distribuiremos a terceros.",
   },
   contact: {
     badge: "Asesoría experta en seguros",
