@@ -63,6 +63,8 @@ const CarrierSlider = () => {
               <img
                 src={carrier.logo}
                 alt={carrier.name}
+                loading="lazy"
+                decoding="async"
                 className="h-14 w-auto object-contain hover:scale-105 transition-all duration-300"
               />
             </div>

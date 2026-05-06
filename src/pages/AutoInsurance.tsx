@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
-import owlieDriving from "@/assets/owlie-driving.png";
+import owlieDriving from "@/assets/owlie-driving.webp";
 
 const AutoInsurance = () => {
   const { t } = useTranslation();

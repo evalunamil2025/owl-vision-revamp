@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Phone, HelpCircle } from "lucide-react";
-import mascot from "@/assets/owlie-mascot.png";
+import mascot from "@/assets/owlie-mascot.webp";
 
 const MidCTA = () => {
   const containerVariants: Variants = {
