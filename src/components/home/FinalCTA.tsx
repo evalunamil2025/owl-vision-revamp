@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import mascot from "@/assets/owlie-mascot.png";
+import mascot from "@/assets/owlie-mascot.webp";
 
 const FinalCTA = () => {
   const { t } = useTranslation();

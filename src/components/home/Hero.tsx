@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import mascot from "@/assets/owlin-branch.png";
+import mascot from "@/assets/owlin-branch.webp";
 import heroBg from "@/assets/seattle-hero-bg.jpg";
 
 const Hero = () => {

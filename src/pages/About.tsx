@@ -4,7 +4,7 @@ import { Eye, Heart, Users, Sparkles, ArrowRight, ShieldCheck, Headphones } from
 import { useTranslation, Trans } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import mascot from "@/assets/owlie-mascot.png";
+import mascot from "@/assets/owlie-mascot.webp";
 import aboutHeroBg from "@/assets/seattle-hero-bg.jpg";
 
 const About = () => {
