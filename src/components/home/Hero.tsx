@@ -54,7 +54,14 @@ const Hero = () => {
         animate={{ scale: 1 }}
         transition={{ duration: 20, ease: "linear" }}
       >
-        <img src={heroBg} alt="" className="w-full h-full object-cover object-center" />
+        <img
+          src={heroBg}
+          alt=""
+          className="w-full h-full object-cover object-center"
+          fetchPriority="high"
+          decoding="async"
+          loading="eager"
+        />
       </motion.div>
 
       {/* Overlay Azul más oscuro y profundo */}
@@ -177,6 +184,8 @@ const Hero = () => {
             <motion.img
               src={mascot}
               alt="Owlie Mascot"
+              loading="lazy"
+              decoding="async"
               className="w-80 xl:w-[420px] drop-shadow-[0_35px_45px_rgba(0,0,0,0.55)] relative z-10"
               animate={{
                 y: [0, -22, 0],
