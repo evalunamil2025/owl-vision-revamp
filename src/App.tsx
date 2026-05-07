@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -38,6 +38,36 @@ const WhatsAppButton = lazy(() => import("./components/WhatsAppButton"));
 
 const queryClient = new QueryClient();
 
+// Defer floating widgets until the browser is idle or user interacts.
+// This reduces Total Blocking Time without changing the UI.
+const DeferredWidgets = () => {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    let cancelled = false;
+    const reveal = () => { if (!cancelled) setShow(true); };
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number };
+    const idleId = w.requestIdleCallback
+      ? w.requestIdleCallback(reveal, { timeout: 3500 })
+      : (window.setTimeout(reveal, 2500) as unknown as number);
+    const events: Array<keyof WindowEventMap> = ["pointerdown", "keydown", "scroll", "touchstart"];
+    events.forEach((e) => window.addEventListener(e, reveal, { once: true, passive: true } as AddEventListenerOptions));
+    return () => {
+      cancelled = true;
+      const wc = window as Window & { cancelIdleCallback?: (id: number) => void };
+      if (wc.cancelIdleCallback) wc.cancelIdleCallback(idleId);
+      else clearTimeout(idleId);
+      events.forEach((e) => window.removeEventListener(e, reveal));
+    };
+  }, []);
+  if (!show) return null;
+  return (
+    <Suspense fallback={null}>
+      <InsuranceChatbot />
+      <WhatsAppButton />
+    </Suspense>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -74,9 +104,8 @@ const App = () => (
             <Route path="/client-center" element={<ClientCenter />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <InsuranceChatbot />
-          <WhatsAppButton />
         </Suspense>
+        <DeferredWidgets />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
