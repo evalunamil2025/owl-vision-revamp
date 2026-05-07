@@ -55,7 +55,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between px-4">
         {/* Logo */}
         <Link to="/" className="flex-shrink-0 transition-transform hover:scale-105">
-          <img src={logo} alt="Bringas Insurance Group" width={220} height={56} fetchPriority="high" decoding="async" className="h-10 lg:h-14 w-auto object-contain" />
+          <img src={logo} alt="Bringas Insurance Group" width={220} height={56} decoding="async" className="h-10 lg:h-14 w-auto object-contain" />
         </Link>
 
         {/* Desktop Nav */}
