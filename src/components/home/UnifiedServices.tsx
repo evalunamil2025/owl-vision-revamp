@@ -96,6 +96,10 @@ const UnifiedServices = () => {
                       <img
                         src={s.image}
                         alt={label}
+                        width={640}
+                        height={379}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
@@ -110,6 +114,10 @@ const UnifiedServices = () => {
                             <img
                               src={s.customIcon as string}
                               alt={label}
+                              width={40}
+                              height={40}
+                              loading="lazy"
+                              decoding="async"
                               className="absolute inset-0 w-10 h-10 object-contain transition-opacity duration-500 group-hover:opacity-0"
                             />
                             {"customIconHover" in s && s.customIconHover ? (
@@ -117,6 +125,10 @@ const UnifiedServices = () => {
                                 src={s.customIconHover as string}
                                 alt=""
                                 aria-hidden="true"
+                                width={40}
+                                height={40}
+                                loading="lazy"
+                                decoding="async"
                                 className="absolute inset-0 w-10 h-10 object-contain opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                               />
                             ) : null}
