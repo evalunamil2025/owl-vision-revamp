@@ -3,31 +3,74 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Bringas Insurance Group</title>
-    <meta name="description" content="We Bring You Insurance Solutions." />
-    <meta name="author" content="Lovable" />
-
-    <!-- TODO: Update og:title to match your application name -->
+    <title>Bringas Insurance Group | Auto, Home, Life & Business Insurance</title>
+    <meta name="description" content="Bringas Insurance Group: We bring you insurance solutions for auto, home, life, flood and business. Get a free quote — call (425) 405-7111." />
+    <meta name="author" content="Bringas Insurance Group" />
+    <link rel="canonical" href="https://bringasinsurance.com/" />
+    <meta name="theme-color" content="#0079c2" />
 
     <meta property="og:type" content="website" />
-
+    <meta property="og:url" content="https://bringasinsurance.com/" />
+    <meta property="og:title" content="Bringas Insurance Group" />
+    <meta property="og:description" content="We Bring You Insurance Solutions." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
+    <meta name="twitter:site" content="@BringasIns" />
+    <meta name="twitter:title" content="Bringas Insurance Group" />
+    <meta name="twitter:description" content="We Bring You Insurance Solutions." />
+
+    <!-- Fonts: non-blocking with swap, single combined request -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <meta property="og:title" content="Bringas Insurance Group" />
-    <meta name="twitter:title" content="Bringas Insurance Group" />
-    <meta property="og:description" content="We Bring You Insurance Solutions." />
-    <meta name="twitter:description" content="We Bring You Insurance Solutions." />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QM8V0WQ00"></script>
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" />
+    </noscript>
+
+    <!-- JSON-LD: InsuranceAgency / LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "InsuranceAgency",
+      "name": "Bringas Insurance Group",
+      "url": "https://bringasinsurance.com/",
+      "telephone": "+1-425-405-7111",
+      "image": "https://bringasinsurance.com/og-image.jpg",
+      "areaServed": ["Washington", "Oregon", "United States"],
+      "sameAs": [
+        "https://www.facebook.com/Bringas-Insurance-111132600590435/",
+        "https://www.linkedin.com/in/bringas-insurance-54111bb1/",
+        "https://twitter.com/BringasIns",
+        "https://www.instagram.com/bringas_insurance_group/"
+      ]
+    }
+    </script>
+
+    <!-- Google Analytics: deferred until idle to reduce TBT -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-5QM8V0WQ00');
+      (function(){
+        var loaded = false;
+        function loadGA(){
+          if (loaded) return; loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-5QM8V0WQ00';
+          document.head.appendChild(s);
+        }
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadGA, { timeout: 4000 });
+        } else {
+          window.addEventListener('load', function(){ setTimeout(loadGA, 2000); });
+        }
+      })();
     </script>
   </head>
 
