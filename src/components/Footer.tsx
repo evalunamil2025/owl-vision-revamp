@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import logo from "@/assets/bringas-insurance-logo.png";
+import logo from "@/assets/bringas-insurance-logo.webp";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -43,6 +43,10 @@ const Footer = () => {
               <img
                 src={logo}
                 alt="Bringas Insurance Group"
+                width={220}
+                height={80}
+                loading="lazy"
+                decoding="async"
                 className="h-20 w-auto brightness-0 invert object-contain"
               />
             </Link>

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import mascot from "@/assets/owlin-branch.webp";
-import heroBg from "@/assets/seattle-hero-bg.jpg";
+import heroBg from "@/assets/seattle-hero-bg.webp";
 
 const Hero = () => {
   const { t } = useTranslation();

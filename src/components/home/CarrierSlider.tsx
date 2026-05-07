@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-import kemperAuto from "@/assets/images/carriers/kemper-auto.png";
-import oregonMutual from "@/assets/images/carriers/oregon-mutual.png";
-import travelers from "@/assets/images/carriers/travelers.jpg";
-import nationwide from "@/assets/images/carriers/nationwide.jpg";
-import dairyland from "@/assets/images/carriers/dairyland.png";
-import bristolWest from "@/assets/images/carriers/bristol-west.png";
-import progressive from "@/assets/images/carriers/progressive.jpg";
-import safeco from "@/assets/images/carriers/safeco.jpg";
-import nationalGeneral from "@/assets/images/carriers/national-general.jpg";
+import kemperAuto from "@/assets/images/carriers/kemper-auto.webp";
+import oregonMutual from "@/assets/images/carriers/oregon-mutual.webp";
+import travelers from "@/assets/images/carriers/travelers.webp";
+import nationwide from "@/assets/images/carriers/nationwide.webp";
+import dairyland from "@/assets/images/carriers/dairyland.webp";
+import bristolWest from "@/assets/images/carriers/bristol-west.webp";
+import progressive from "@/assets/images/carriers/progressive.webp";
+import safeco from "@/assets/images/carriers/safeco.webp";
+import nationalGeneral from "@/assets/images/carriers/national-general.webp";
 
 const carriers = [
   { name: "Kemper Auto", logo: kemperAuto },
@@ -63,6 +63,8 @@ const CarrierSlider = () => {
               <img
                 src={carrier.logo}
                 alt={carrier.name}
+                width={140}
+                height={56}
                 loading="lazy"
                 decoding="async"
                 className="h-14 w-auto object-contain hover:scale-105 transition-all duration-300"

@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Phone, ShieldCheck, Briefcase, ArrowRight, CreditCard, Users, UserCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import logo from "@/assets/bringas-insurance-logo-big.png";
+import logo from "@/assets/bringas-insurance-logo-big.webp";
 import LanguageToggle from "./LanguageToggle";
 
 const Navbar = () => {
@@ -55,7 +55,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between px-4">
         {/* Logo */}
         <Link to="/" className="flex-shrink-0 transition-transform hover:scale-105">
-          <img src={logo} alt="Bringas Insurance Group" className="h-10 lg:h-14 w-auto object-contain" />
+          <img src={logo} alt="Bringas Insurance Group" width={220} height={56} fetchPriority="high" decoding="async" className="h-10 lg:h-14 w-auto object-contain" />
         </Link>
 
         {/* Desktop Nav */}
