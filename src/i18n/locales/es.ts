@@ -58,7 +58,7 @@ const es: Translation = {
     titleLine3a: "que",
     titleLine3b: "amas",
     subtitle:
-      "Familia • Hogar • Auto • Negocio — Comparamos múltiples aseguradoras para encontrar la opción perfecta. Protección real, sin complicaciones.",
+      "Auto • Hogar • Negocio • Vida — Comparamos múltiples aseguradoras para encontrar la opción perfecta. Protección real, sin complicaciones.",
   },
   footer: {
     tagline:
