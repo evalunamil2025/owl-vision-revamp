@@ -1315,8 +1315,8 @@ const es: Translation = {
       intro:
         "La tranquilidad no debería sentirse como un trámite. Combinamos experiencia independiente con un trato cercano — protegiendo lo que importa con claridad, honestidad y atención.",
       stats: {
-        carriers: "Aseguradoras",
-        bestLabel: "Las Mejores",
+        carriers: "las mejores aseguradoras",
+        bestLabel: "Tenemos",
         independent: "Independiente",
         support: "Soporte local",
       },
