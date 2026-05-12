@@ -1338,7 +1338,7 @@ const en = {
         },
         ongoing: {
           title: "Ongoing Support",
-          desc: "Life changes, and so should your coverage. We review and adjust your policies as your needs evolve.",
+          desc: "Tell me how your life has changed—you had a child, you bought a house. Whether or not you have insurance, bring your policy and we'll review it and help you get better coverage.",
         },
       },
     },

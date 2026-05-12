@@ -1340,7 +1340,7 @@ const es: Translation = {
         },
         ongoing: {
           title: "Acompañamiento continuo",
-          desc: "La vida cambia, y tu cobertura también debería. Revisamos y ajustamos tus pólizas conforme evolucionan tus necesidades.",
+          desc: "Cuéntame cómo ha cambiado tu vida—tuviste un hijo, compraste una casa. Tengas o no seguro, trae tu póliza y la revisamos para ayudarte a obtener una mejor cobertura.",
         },
       },
     },
