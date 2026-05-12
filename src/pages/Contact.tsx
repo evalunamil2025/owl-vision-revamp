@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Sparkles, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Sparkles, ArrowRight, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
