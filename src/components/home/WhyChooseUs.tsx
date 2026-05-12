@@ -51,7 +51,7 @@ const WhyChooseUs = () => {
               {/* Decorative stat strip */}
               <div className="flex items-center gap-6 pt-8 border-t border-[#012f57]/10">
                 <div>
-                  <div className="text-4xl font-bold text-[#00a651] font-heading">15+</div>
+                  <div className="text-4xl font-bold text-[#00a651] font-heading">{t("homePage.whyUs.stats.bestLabel")}</div>
                   <div className="text-xs text-[#012f57]/60 uppercase tracking-wider mt-1">
                     {t("homePage.whyUs.stats.carriers")}
                   </div>
