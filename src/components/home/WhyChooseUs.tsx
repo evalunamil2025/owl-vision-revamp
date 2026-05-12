@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, Sparkles, Clock, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { whyUs } from "@/data/homeData";
 
