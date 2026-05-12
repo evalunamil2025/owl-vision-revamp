@@ -27,7 +27,7 @@ const Contact = () => {
   const infoItems = [
     { icon: Phone, label: t("contact.callUs"), val: t("common.phone"), href: "tel:+14254057111" },
     { icon: Mail, label: t("contact.emailUs"), val: "raul@bringasinsurance.com", href: "mailto:raul@bringasinsurance.com" },
-    { icon: MapPin, label: t("contact.visitUs"), val: "Everett, WA 98204", href: "https://maps.google.com" },
+    { icon: MapPin, label: t("contact.visitUs"), val: "9111 Evergreen Way, Everett, WA 98204", href: "https://www.google.com/maps/search/?api=1&query=9111+Evergreen+Way+Everett+WA+98204" },
   ];
 
   const socialLinks = [
