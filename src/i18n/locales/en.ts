@@ -1316,7 +1316,7 @@ const en = {
         carriers: "the best carriers",
         bestLabel: "We have",
         independent: "Independent",
-        support: "Local support",
+        support: "Online support",
       },
       items: {
         freedom: {

@@ -1318,7 +1318,7 @@ const es: Translation = {
         carriers: "las mejores aseguradoras",
         bestLabel: "Tenemos",
         independent: "Independiente",
-        support: "Soporte local",
+        support: "Soporte en línea",
       },
       items: {
         freedom: {
