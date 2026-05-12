@@ -103,6 +103,7 @@ const en = {
     callUs: "Call Us",
     emailUs: "Email Us",
     visitUs: "Visit Us",
+    getDirections: "Get Directions",
     sendMessage: "Send us a message",
     fillForm: "Fill out the form and an agent will contact you shortly.",
     fullName: "Full Name",
