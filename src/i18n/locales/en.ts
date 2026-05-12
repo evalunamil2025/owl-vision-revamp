@@ -103,6 +103,8 @@ const en = {
     callUs: "Call Us",
     emailUs: "Email Us",
     visitUs: "Visit Us",
+    hours: "Hours",
+    hoursValue: "Mon - Fri 9am - 6pm",
     getDirections: "Get Directions",
     sendMessage: "Send us a message",
     fillForm: "Fill out the form and an agent will contact you shortly.",
