@@ -56,7 +56,7 @@ const en = {
     titleLine3a: "you",
     titleLine3b: "love",
     subtitle:
-      "Family • Home • Auto • Business — We compare multiple carriers to find the perfect fit. Real protection, no complications.",
+      "Auto • Home • Business • Life — We compare multiple carriers to find the perfect fit. Real protection, no complications.",
   },
   footer: {
     tagline:
