@@ -1313,8 +1313,8 @@ const en = {
       intro:
         "Peace of mind shouldn't feel transactional. We blend independent expertise with a neighborly touch — protecting what matters with clarity, honesty, and care.",
       stats: {
-        carriers: "Carriers",
-        bestLabel: "The Best",
+        carriers: "the best carriers",
+        bestLabel: "We have",
         independent: "Independent",
         support: "Local support",
       },
