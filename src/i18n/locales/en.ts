@@ -1343,7 +1343,7 @@ const en = {
       },
     },
     services: {
-      badge: "Comprehensive Coverage",
+      badge: "Coverage tailored to your needs",
       titleA: "Our Insurance",
       titleAccent: "Solutions",
       personal: "Personal",

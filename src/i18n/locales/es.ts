@@ -1345,7 +1345,7 @@ const es: Translation = {
       },
     },
     services: {
-      badge: "Cobertura integral",
+      badge: "Cobertura a la medida de tus necesidades",
       titleA: "Nuestras soluciones de",
       titleAccent: "seguros",
       personal: "Personal",
