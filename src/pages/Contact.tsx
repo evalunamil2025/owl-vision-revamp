@@ -95,7 +95,7 @@ const Contact = () => {
       {/* --- INFO CARDS (Flotando sobre el Hero) --- */}
       <section className="pb-24 bg-white">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-6 -translate-y-24 mb-12 relative z-20">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 -translate-y-24 mb-12 relative z-20">
             {infoItems.map((item, i) => (
               <motion.a
                 key={i}
