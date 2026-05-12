@@ -1334,7 +1334,7 @@ const en = {
         },
         local: {
           title: "Local Experts",
-          desc: "We know your community, the adjusters, and the local landscape. We're the neighbor who understands your policy.",
+          desc: "Tell me what you need, and I'll give you the best options based on your needs.",
         },
         ongoing: {
           title: "Ongoing Support",

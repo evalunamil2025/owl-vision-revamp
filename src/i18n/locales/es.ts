@@ -1336,7 +1336,7 @@ const es: Translation = {
         },
         local: {
           title: "Expertos locales",
-          desc: "Conocemos tu comunidad, a los ajustadores y el entorno local. Somos el vecino que entiende tu póliza.",
+          desc: "Dime qué necesitas y te daré las mejores opciones según tus necesidades.",
         },
         ongoing: {
           title: "Acompañamiento continuo",
