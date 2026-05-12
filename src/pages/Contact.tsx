@@ -27,7 +27,7 @@ const Contact = () => {
   const infoItems = [
     { icon: Phone, label: t("contact.callUs"), val: t("common.phone"), href: "tel:+14254057111" },
     { icon: Mail, label: t("contact.emailUs"), val: "raul@bringasinsurance.com", href: "mailto:raul@bringasinsurance.com" },
-    { icon: MapPin, label: t("contact.visitUs"), val: "Everett, WA 98204", href: "https://maps.google.com" },
+    { icon: MapPin, label: t("contact.visitUs"), val: "9111 Evergreen Way, Everett, WA 98204", href: "https://www.google.com/maps/search/?api=1&query=9111+Evergreen+Way+Everett+WA+98204" },
   ];
 
   const socialLinks = [
@@ -215,6 +215,50 @@ const Contact = () => {
                   {t("contact.hablamosSub")}
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- MAPA & DIRECCIÓN --- */}
+      <section className="pb-24 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-5 gap-8 items-stretch">
+            <div className="lg:col-span-2 bg-[#f8fafb] border border-[#0079c2]/10 rounded-[2.5rem] p-10 flex flex-col justify-center">
+              <div className="inline-flex items-center gap-2 mb-4">
+                <MapPin className="w-5 h-5 text-[#00a651]" />
+                <span className="text-[10px] font-black tracking-[0.4em] text-[#015093]/60 uppercase font-heading">
+                  {t("contact.visitUs")}
+                </span>
+              </div>
+              <h3 className="text-3xl font-bold text-[#015093] tracking-tight mb-4 font-heading">
+                Bringas Insurance Group
+              </h3>
+              <address className="not-italic text-[#015093] font-body text-lg leading-relaxed mb-6">
+                9111 Evergreen Way<br />
+                Everett, WA 98204<br />
+                United States
+              </address>
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=9111+Evergreen+Way+Everett+WA+98204"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 self-start px-6 py-3 bg-[#015093] text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-[#00a651] transition-colors"
+              >
+                {t("contact.getDirections")} <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+            <div className="lg:col-span-3 rounded-[2.5rem] overflow-hidden border border-[#0079c2]/10 shadow-xl shadow-[#0079c2]/5 min-h-[400px]">
+              <iframe
+                title="Bringas Insurance Group - 9111 Evergreen Way, Everett, WA 98204"
+                src="https://www.google.com/maps?q=9111+Evergreen+Way+Everett+WA+98204&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0, minHeight: 400 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
             </div>
           </div>
         </div>
