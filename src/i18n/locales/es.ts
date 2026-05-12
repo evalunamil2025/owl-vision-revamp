@@ -1322,6 +1322,9 @@ const es: Translation = {
         independent: "Independiente",
         support: "Soporte en línea",
       },
+      hoursLabel: "Horario",
+      hoursValue: "Lun - Vie 9am - 6pm",
+      addressLabel: "Dirección",
       items: {
         freedom: {
           title: "Libertad de elección",

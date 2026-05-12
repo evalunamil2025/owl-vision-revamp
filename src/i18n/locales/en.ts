@@ -1320,6 +1320,9 @@ const en = {
         independent: "Independent",
         support: "Online support",
       },
+      hoursLabel: "Hours",
+      hoursValue: "Mon - Fri 9am - 6pm",
+      addressLabel: "Address",
       items: {
         freedom: {
           title: "Freedom of Choice",

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Sparkles, ArrowRight, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Sparkles, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
@@ -28,7 +28,6 @@ const Contact = () => {
     { icon: Phone, label: t("contact.callUs"), val: t("common.phone"), href: "tel:+14254057111" },
     { icon: Mail, label: t("contact.emailUs"), val: "raul@bringasinsurance.com", href: "mailto:raul@bringasinsurance.com" },
     { icon: MapPin, label: t("contact.visitUs"), val: "9111 Evergreen Way, Everett, WA 98204", href: "https://www.google.com/maps/search/?api=1&query=9111+Evergreen+Way+Everett+WA+98204" },
-    { icon: Clock, label: t("contact.hours"), val: t("contact.hoursValue"), href: "#" },
   ];
 
   const socialLinks = [
@@ -95,7 +94,7 @@ const Contact = () => {
       {/* --- INFO CARDS (Flotando sobre el Hero) --- */}
       <section className="pb-24 bg-white">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 -translate-y-24 mb-12 relative z-20">
+          <div className="grid md:grid-cols-3 gap-6 -translate-y-24 mb-12 relative z-20">
             {infoItems.map((item, i) => (
               <motion.a
                 key={i}

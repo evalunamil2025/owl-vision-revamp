@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, Sparkles, Clock, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { whyUs } from "@/data/homeData";
 
@@ -70,6 +70,41 @@ const WhyChooseUs = () => {
                     {t("homePage.whyUs.stats.support")}
                   </div>
                 </div>
+              </div>
+
+              {/* Hours & Address */}
+              <div className="mt-8 grid sm:grid-cols-2 gap-4">
+                <div className="flex items-start gap-3 p-4 rounded-2xl bg-white/60 border border-[#012f57]/8">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#00a651]/10 flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-[#00a651]" strokeWidth={2} />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-[#012f57]/60 mb-1 font-heading">
+                      {t("homePage.whyUs.hoursLabel")}
+                    </div>
+                    <div className="text-sm font-bold text-[#012f57] font-body leading-snug">
+                      {t("homePage.whyUs.hoursValue")}
+                    </div>
+                  </div>
+                </div>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=9111+Evergreen+Way+Everett+WA+98204"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3 p-4 rounded-2xl bg-white/60 border border-[#012f57]/8 hover:border-[#0079c2]/30 transition-colors group"
+                >
+                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#0079c2]/10 flex items-center justify-center group-hover:bg-[#0079c2]/20 transition-colors">
+                    <MapPin className="w-5 h-5 text-[#0079c2]" strokeWidth={2} />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-[#012f57]/60 mb-1 font-heading">
+                      {t("homePage.whyUs.addressLabel")}
+                    </div>
+                    <div className="text-sm font-bold text-[#012f57] font-body leading-snug">
+                      9111 Evergreen Way<br />Everett, WA 98204
+                    </div>
+                  </div>
+                </a>
               </div>
             </motion.div>
           </div>
