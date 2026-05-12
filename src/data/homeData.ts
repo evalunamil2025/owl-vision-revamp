@@ -1,7 +1,7 @@
 import {
   Shield, Users, Handshake, HeartHandshake,
   Building2, Car, Home, Heart, Briefcase, Anchor, Bike, Truck,
-  Umbrella, Flame, Building, FileCheck, ShieldCheck, Sparkles
+  Umbrella, Building, FileCheck, ShieldCheck, Sparkles
 } from "lucide-react";
 import mobileHomeInsuranceImage from "@/assets/service-mobile-home-card.webp";
 import rvInsuranceImage from "@/assets/service-rv-card.webp";
@@ -56,7 +56,7 @@ import serviceContractorsImage from "@/assets/service-contractors-card.webp";
 import serviceRestaurantImage from "@/assets/service-restaurant-card.webp";
 import serviceBuildingOwnersImage from "@/assets/service-building-owners-card.webp";
 import serviceBondsSuretyImage from "@/assets/service-bonds-surety-card.webp";
-import serviceFloodImage from "@/assets/service-flood-card.webp";
+
 import serviceGeneralLiabilityImage from "@/assets/service-general-liability-card.webp";
 import serviceBopImage from "@/assets/service-bop-card.webp";
 import serviceCommercialAutoImage from "@/assets/service-commercial-auto-card.webp";
@@ -65,7 +65,7 @@ export const personalServices = [
   { key: "auto", icon: Car, customIcon: owlieAutoIcon, customIconHover: owlieAutoIconWhite, href: "/auto-insurance", image: serviceAutoImage },
   { key: "home", icon: Home, customIcon: owlieHomeIcon, customIconHover: owlieHomeIconWhite, href: "/home-insurance", image: serviceHomeImage },
   { key: "life", icon: Heart, customIcon: owlieLifeIcon, customIconHover: owlieLifeIconWhite, href: "/life-insurance", image: lifeInsuranceImage },
-  { key: "flood", icon: Flame, customIcon: owlieFloodIcon, customIconHover: owlieFloodIconWhite, href: "/flood-insurance", image: serviceFloodImage },
+  
   { key: "boat", icon: Anchor, customIcon: owlieBoatIcon, customIconHover: owlieBoatIconWhite, href: "/boat-insurance", image: serviceBoatImage },
   { key: "motorcycle", icon: Bike, customIcon: owlieMotorcycleIcon, customIconHover: owlieMotorcycleIconWhite, href: "/motorcycle-insurance", image: serviceMotorcycleImage },
   { key: "rv", icon: Truck, customIcon: owlieRvIcon, customIconHover: owlieRvIconWhite, href: "/rv-insurance", image: rvInsuranceImage },
