@@ -17,7 +17,7 @@ const Navbar = () => {
     { label: t("services.auto"), href: "/auto-insurance" },
     { label: t("services.home"), href: "/home-insurance" },
     { label: t("services.life"), href: "/life-insurance" },
-    { label: t("services.flood"), href: "/flood-insurance" },
+    
     { label: t("services.boat"), href: "/boat-insurance" },
     { label: t("services.motorcycle"), href: "/motorcycle-insurance" },
     { label: t("services.rv"), href: "/rv-insurance" },
