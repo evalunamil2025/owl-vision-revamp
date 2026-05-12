@@ -105,6 +105,8 @@ const es: Translation = {
     callUs: "Llámanos",
     emailUs: "Escríbenos",
     visitUs: "Visítanos",
+    hours: "Horario",
+    hoursValue: "Lun - Vie 9am - 6pm",
     getDirections: "Cómo llegar",
     sendMessage: "Envíanos un mensaje",
     fillForm: "Completa el formulario y un agente se pondrá en contacto contigo pronto.",
