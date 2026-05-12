@@ -65,7 +65,7 @@ export const personalServices = [
   { key: "auto", icon: Car, customIcon: owlieAutoIcon, customIconHover: owlieAutoIconWhite, href: "/auto-insurance", image: serviceAutoImage },
   { key: "home", icon: Home, customIcon: owlieHomeIcon, customIconHover: owlieHomeIconWhite, href: "/home-insurance", image: serviceHomeImage },
   { key: "life", icon: Heart, customIcon: owlieLifeIcon, customIconHover: owlieLifeIconWhite, href: "/life-insurance", image: lifeInsuranceImage },
-  { key: "flood", icon: Flame, customIcon: owlieFloodIcon, customIconHover: owlieFloodIconWhite, href: "/flood-insurance", image: serviceFloodImage },
+  
   { key: "boat", icon: Anchor, customIcon: owlieBoatIcon, customIconHover: owlieBoatIconWhite, href: "/boat-insurance", image: serviceBoatImage },
   { key: "motorcycle", icon: Bike, customIcon: owlieMotorcycleIcon, customIconHover: owlieMotorcycleIconWhite, href: "/motorcycle-insurance", image: serviceMotorcycleImage },
   { key: "rv", icon: Truck, customIcon: owlieRvIcon, customIconHover: owlieRvIconWhite, href: "/rv-insurance", image: rvInsuranceImage },
