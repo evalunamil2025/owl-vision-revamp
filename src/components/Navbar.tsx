@@ -25,6 +25,7 @@ const Navbar = () => {
     { label: t("services.landlord"), href: "/landlord-insurance" },
     { label: t("services.mobileHome"), href: "/mobile-home-insurance" },
     { label: t("services.personalUmbrella"), href: "/personal-umbrella" },
+    { label: "SR-22 Insurance", href: "/sr22-insurance" },
   ];
 
   const businessLinks = [

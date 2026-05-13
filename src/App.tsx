@@ -33,6 +33,7 @@ const BondsSurety = lazy(() => import("./pages/BondsSurety"));
 const PayMyBill = lazy(() => import("./pages/PayMyBill"));
 const ClientCenter = lazy(() => import("./pages/ClientCenter"));
 const Carriers = lazy(() => import("./pages/Carriers"));
+const SR22Insurance = lazy(() => import("./pages/SR22Insurance"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const InsuranceChatbot = lazy(() => import("./components/InsuranceChatbot"));
 const WhatsAppButton = lazy(() => import("./components/WhatsAppButton"));
@@ -104,6 +105,7 @@ const App = () => (
             <Route path="/pay-my-bill" element={<PayMyBill />} />
             <Route path="/client-center" element={<ClientCenter />} />
             <Route path="/carriers" element={<Carriers />} />
+            <Route path="/sr22-insurance" element={<SR22Insurance />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
