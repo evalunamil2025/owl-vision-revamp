@@ -96,7 +96,6 @@ const COPY = {
       { label: "🚗 Seguro de Auto", action: "service_auto", href: "/auto-insurance" },
       { label: "🏠 Seguro de Hogar", action: "service_home", href: "/home-insurance" },
       { label: "❤️ Seguro de Vida", action: "service_life", href: "/life-insurance" },
-      { label: "🌊 Seguro de Inundación", action: "service_flood", href: "/flood-insurance" },
       { label: "⬅️ Volver", action: "restart" },
     ] as QuickReply[],
     business: [
