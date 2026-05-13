@@ -14,7 +14,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const AutoInsurance = lazy(() => import("./pages/AutoInsurance"));
 const HomeInsurance = lazy(() => import("./pages/HomeInsurance"));
 const LifeInsurance = lazy(() => import("./pages/LifeInsurance"));
-const FloodInsurance = lazy(() => import("./pages/FloodInsurance"));
+
 const BoatInsurance = lazy(() => import("./pages/BoatInsurance"));
 const MotorcycleInsurance = lazy(() => import("./pages/MotorcycleInsurance"));
 const RVInsurance = lazy(() => import("./pages/RVInsurance"));
@@ -84,7 +84,7 @@ const App = () => (
             <Route path="/auto-insurance" element={<AutoInsurance />} />
             <Route path="/home-insurance" element={<HomeInsurance />} />
             <Route path="/life-insurance" element={<LifeInsurance />} />
-            <Route path="/flood-insurance" element={<FloodInsurance />} />
+            
             <Route path="/boat-insurance" element={<BoatInsurance />} />
             <Route path="/motorcycle-insurance" element={<MotorcycleInsurance />} />
             <Route path="/rv-insurance" element={<RVInsurance />} />

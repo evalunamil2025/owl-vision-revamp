@@ -19,8 +19,6 @@ import owlieHomeIcon from "@/assets/owlie-home-icon-small.webp";
 import owlieHomeIconWhite from "@/assets/owlie-home-icon-white-small.webp";
 import owlieLifeIcon from "@/assets/owlie-life-icon-small.webp";
 import owlieLifeIconWhite from "@/assets/owlie-life-icon-white-small.webp";
-import owlieFloodIcon from "@/assets/owlie-flood-icon-small.webp";
-import owlieFloodIconWhite from "@/assets/owlie-flood-icon-white-small.webp";
 import owlieBoatIcon from "@/assets/owlie-boat-icon-small.webp";
 import owlieBoatIconWhite from "@/assets/owlie-boat-icon-white-small.webp";
 import owlieMotorcycleIcon from "@/assets/owlie-motorcycle-icon-small.webp";
