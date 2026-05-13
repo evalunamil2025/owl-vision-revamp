@@ -122,6 +122,9 @@ const COPY = {
     goBack: "⬅️ Volver",
     startOver: "⬅️ Empezar de nuevo",
     talkAgent: "📞 Hablar con un Agente",
+    callNow: "📞 Llamar ahora: (425) 405-7111",
+    officeOpenNudge: (n: string) => `¡Buenas noticias, ${n}! Nuestra oficina está abierta en este momento 🎉 La forma más rápida de obtener una respuesta personalizada es una llamada con uno de nuestros agentes licenciados. Toca abajo para llamarnos al instante:`,
+    officeClosedNudge: (n: string) => `Atención, ${n}: nuestra oficina está cerrada por ahora (Lun–Vie, 9am–6pm PT). Déjanos tu pregunta y te contactamos a primera hora — o toca abajo para agendar una llamada.`,
   },
 };
 
