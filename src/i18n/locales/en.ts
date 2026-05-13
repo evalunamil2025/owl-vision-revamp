@@ -48,7 +48,7 @@ const en = {
     other: "Other",
   },
   hero: {
-    badge: "OWLIE IS HERE • INDEPENDENT INSURANCE AGENCY",
+    badge: "OWLIN IS HERE • INDEPENDENT INSURANCE AGENCY",
     titleLine1a: "Insurance",
     titleLine1b: "that",
     titleProtects: "protects",

@@ -50,7 +50,7 @@ const es: Translation = {
     other: "Otro",
   },
   hero: {
-    badge: "OWLIE ESTÁ AQUÍ • AGENCIA INDEPENDIENTE DE SEGUROS",
+    badge: "OWLIN ESTÁ AQUÍ • AGENCIA INDEPENDIENTE DE SEGUROS",
     titleLine1a: "Seguros",
     titleLine1b: "que",
     titleProtects: "protegen",
