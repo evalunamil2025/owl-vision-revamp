@@ -100,9 +100,9 @@ const SR22Insurance = () => {
               <Sparkles className="w-4 h-4 text-[#7ee2a8]" />
               <span className="text-xs uppercase tracking-widest font-bold">SR-22 Filing Made Simple</span>
             </div>
-            <h1 className="font-josefin font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+            <h1 className="font-josefin font-bold text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 drop-shadow-lg">
               SR-22 Insurance: Get the Filing You Need and{" "}
-              <span className="text-[#7ee2a8]">Drive Legally Again</span>
+              <span className="text-[#a8f5c4]">Drive Legally Again</span>
             </h1>
             <p className="text-lg md:text-xl text-white/85 mb-8 leading-relaxed">
               Reinstate your license, meet state requirements, and get back to your routine — fast, affordable,
@@ -556,7 +556,7 @@ const SR22Insurance = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-josefin font-bold text-3xl md:text-5xl mb-6">
+            <h2 className="font-josefin font-bold text-white text-3xl md:text-5xl mb-6 drop-shadow-lg">
               Get Help With SR-22 Filing Today
             </h2>
             <p className="text-lg md:text-xl text-white/90 mb-10 leading-relaxed">
