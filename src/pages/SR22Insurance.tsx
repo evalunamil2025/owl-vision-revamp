@@ -15,6 +15,12 @@ import {
   FileText,
   Scale,
   ListChecks,
+  TrendingDown,
+  MapPin,
+  User,
+  Gauge,
+  Building2,
+  Award,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -417,50 +423,114 @@ const SR22Insurance = () => {
       </section>
 
       {/* COST */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
+      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-slate-900 via-[#012a4f] to-[#015093] text-white overflow-hidden">
+        {/* Decorative blobs */}
+        <div className="absolute inset-0 opacity-30 pointer-events-none" aria-hidden="true">
+          <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-[#00a651] rounded-full blur-3xl" />
+          <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-[#0079c2] rounded-full blur-3xl" />
+        </div>
+        {/* Grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.07] pointer-events-none"
+          aria-hidden="true"
+          style={{
+            backgroundImage:
+              "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+
+        <div className="relative container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-12"
+            className="text-center max-w-3xl mx-auto mb-14"
           >
-            <div className="inline-flex items-center gap-2 bg-[#00a651]/10 text-[#00a651] px-4 py-2 rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 bg-[#00a651]/20 border border-[#00a651]/40 backdrop-blur text-[#7ee2a8] px-4 py-2 rounded-full mb-5">
               <DollarSign className="w-4 h-4" />
               <span className="text-xs uppercase tracking-widest font-bold">What It Costs</span>
             </div>
-            <h2 className="font-josefin font-bold text-3xl md:text-4xl text-slate-900 mb-4">
-              Is SR-22 Insurance Expensive?
+            <h2 className="font-josefin font-bold text-white text-3xl md:text-5xl mb-5 drop-shadow-lg">
+              Is SR-22 Insurance{" "}
+              <span className="bg-gradient-to-r from-[#7ee2a8] to-[#00a651] bg-clip-text text-transparent">
+                Expensive?
+              </span>
             </h2>
-            <p className="text-slate-600 leading-relaxed">
+            <p className="text-white/80 text-lg leading-relaxed">
               The filing itself is usually small. The bigger expense comes from the premium, since drivers needing
-              an SR-22 may be considered higher risk. Your final rate depends on several factors:
+              an SR-22 may be considered higher risk.
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {rateFactors.map((factor, i) => (
-              <motion.div
-                key={factor}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.04 }}
-                className="flex items-center gap-3 bg-gradient-to-br from-slate-50 to-blue-50/50 p-4 rounded-xl border border-slate-100"
-              >
-                <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-sm flex-shrink-0">
-                  <span className="font-josefin font-bold text-[#0079c2]">{i + 1}</span>
+          <div className="grid lg:grid-cols-12 gap-6">
+            {/* Featured highlight card */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-4 relative bg-gradient-to-br from-[#00a651] to-[#007a35] rounded-3xl p-8 shadow-2xl overflow-hidden"
+            >
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl" />
+              <div className="relative">
+                <div className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center mb-5 border border-white/20">
+                  <TrendingDown className="w-7 h-7 text-white" />
                 </div>
-                <span className="text-slate-700 font-medium text-sm">{factor}</span>
-              </motion.div>
-            ))}
-          </div>
+                <p className="text-xs uppercase tracking-widest text-[#a8f5c4] font-bold mb-2">Save Smart</p>
+                <h3 className="font-josefin font-bold text-white text-2xl md:text-3xl mb-3 leading-tight">
+                  Rates Vary Significantly Between Carriers
+                </h3>
+                <p className="text-white/85 text-sm leading-relaxed mb-6">
+                  Not every insurance company handles SR-22 filings. Comparing multiple options is the fastest way
+                  to lower your premium.
+                </p>
+                <Link
+                  to="/quote"
+                  className="inline-flex items-center gap-2 bg-white text-[#00a651] hover:bg-slate-50 font-bold text-sm px-5 py-3 rounded-full shadow-lg hover:-translate-y-0.5 transition-all"
+                >
+                  Compare My Rate
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </motion.div>
 
-          <p className="text-center mt-8 text-slate-600 max-w-2xl mx-auto">
-            The best way to find a better rate is to{" "}
-            <span className="font-bold text-[#0079c2]">compare multiple options</span>. Not every insurance company
-            handles SR-22 filings, and prices can vary significantly.
-          </p>
+            {/* Factor grid */}
+            <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4">
+              {[
+                { icon: Award, label: "Driving record", hint: "Clean history = lower rate" },
+                { icon: AlertTriangle, label: "Reason for SR-22", hint: "DUI vs lapse impact differ" },
+                { icon: MapPin, label: "Your state", hint: "Minimum limits vary" },
+                { icon: User, label: "Age & location", hint: "ZIP affects pricing" },
+                { icon: Car, label: "Vehicle you drive", hint: "Make, model & year" },
+                { icon: Gauge, label: "Coverage limits", hint: "Higher limits, more cost" },
+                { icon: Building2, label: "Insurance company", hint: "Each carrier prices risk differently" },
+              ].map((f, i) => (
+                <motion.div
+                  key={f.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 hover:bg-white/10 hover:border-[#7ee2a8]/40 hover:-translate-y-1 transition-all"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0079c2] to-[#015093] flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
+                      <f.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-josefin font-bold text-[#7ee2a8] text-sm">
+                          0{i + 1}
+                        </span>
+                        <h4 className="font-josefin font-bold text-white text-base">{f.label}</h4>
+                      </div>
+                      <p className="text-white/60 text-xs leading-relaxed">{f.hint}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
