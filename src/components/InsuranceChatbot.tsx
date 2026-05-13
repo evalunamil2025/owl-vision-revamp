@@ -130,6 +130,24 @@ const COPY = {
 
 const uid = () => Math.random().toString(36).slice(2, 9);
 
+// Office hours: Mon–Fri, 9am–6pm Pacific Time
+const isOfficeHours = (): boolean => {
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Los_Angeles",
+      weekday: "short",
+      hour: "numeric",
+      hour12: false,
+    }).formatToParts(new Date());
+    const weekday = parts.find((p) => p.type === "weekday")?.value ?? "";
+    const hour = parseInt(parts.find((p) => p.type === "hour")?.value ?? "0", 10);
+    const isWeekday = ["Mon", "Tue", "Wed", "Thu", "Fri"].includes(weekday);
+    return isWeekday && hour >= 9 && hour < 18;
+  } catch {
+    return false;
+  }
+};
+
 const TypingIndicator = () => (
   <motion.div
     initial={{ opacity: 0, y: 10 }}
