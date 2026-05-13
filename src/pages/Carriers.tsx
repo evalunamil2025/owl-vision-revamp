@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import contactHeroBg from "@/assets/seattle-hero-bg.jpg";
 
-import progressive from "@/assets/images/carriers/progressive.png";
+import progressive from "@/assets/images/carriers/progressive.jpg";
 import nationalGeneral from "@/assets/images/carriers/national-general.jpg";
 import dairyland from "@/assets/images/carriers/dairyland.png";
 import safeco from "@/assets/images/carriers/safeco.jpg";
