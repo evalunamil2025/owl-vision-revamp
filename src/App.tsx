@@ -84,7 +84,7 @@ const App = () => (
             <Route path="/auto-insurance" element={<AutoInsurance />} />
             <Route path="/home-insurance" element={<HomeInsurance />} />
             <Route path="/life-insurance" element={<LifeInsurance />} />
-            <Route path="/flood-insurance" element={<FloodInsurance />} />
+            
             <Route path="/boat-insurance" element={<BoatInsurance />} />
             <Route path="/motorcycle-insurance" element={<MotorcycleInsurance />} />
             <Route path="/rv-insurance" element={<RVInsurance />} />
