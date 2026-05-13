@@ -21,6 +21,12 @@ import {
   Gauge,
   Building2,
   Award,
+  ShieldOff,
+  Ban,
+  Wine,
+  Repeat,
+  Gavel,
+  CarFront,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -297,41 +303,109 @@ const SR22Insurance = () => {
       </section>
 
       {/* WHY NEED IT */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-slate-50 via-white to-blue-50/40 overflow-hidden">
+        {/* Decorative shapes */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#0079c2]/8 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#00a651]/8 rounded-full blur-3xl" />
+        </div>
+
+        <div className="relative container mx-auto px-4 max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-12"
+            className="text-center max-w-3xl mx-auto mb-14"
           >
-            <div className="inline-flex items-center gap-2 bg-[#00a651]/10 text-[#00a651] px-4 py-2 rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 bg-white border border-amber-200 shadow-sm text-amber-700 px-4 py-2 rounded-full mb-5">
               <AlertTriangle className="w-4 h-4" />
               <span className="text-xs uppercase tracking-widest font-bold">Common Triggers</span>
             </div>
-            <h2 className="font-josefin font-bold text-3xl md:text-4xl text-slate-900 mb-4">
-              Why Would a Driver Need an SR-22?
+            <h2 className="font-josefin font-bold text-slate-900 text-3xl md:text-5xl mb-5 leading-tight">
+              Why Would a Driver{" "}
+              <span className="bg-gradient-to-r from-[#0079c2] to-[#00a651] bg-clip-text text-transparent">
+                Need an SR-22?
+              </span>
             </h2>
-            <p className="text-slate-600 leading-relaxed">
-              Requirements vary by state, but these are the most common reasons drivers are required to file an
-              SR-22 certificate.
+            <p className="text-slate-600 text-lg leading-relaxed">
+              Requirements vary by state, but these are the most common reasons drivers must file an SR-22
+              certificate.
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
-            {reasons.map((reason, i) => (
+          {/* Bento grid: 2 large + 4 small */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5">
+            {[
+              {
+                icon: ShieldOff,
+                title: "Driving without valid auto insurance",
+                desc: "Operating any vehicle while uninsured is among the most cited reasons.",
+                size: "lg:col-span-3",
+                accent: "from-[#0079c2] to-[#015093]",
+              },
+              {
+                icon: Wine,
+                title: "DUI or DWI-related offenses",
+                desc: "Serious convictions almost always trigger a mandatory filing period.",
+                size: "lg:col-span-3",
+                accent: "from-[#00a651] to-[#007a35]",
+              },
+              {
+                icon: Ban,
+                title: "License suspension or revocation",
+                desc: "Required to reinstate driving privileges.",
+                size: "lg:col-span-2",
+                accent: "from-[#015093] to-[#012a4f]",
+              },
+              {
+                icon: Repeat,
+                title: "Multiple traffic violations",
+                desc: "Repeat infractions in a short window.",
+                size: "lg:col-span-2",
+                accent: "from-[#0079c2] to-[#015093]",
+              },
+              {
+                icon: CarFront,
+                title: "At-fault accidents while uninsured",
+                desc: "Financial responsibility must be re-proven.",
+                size: "lg:col-span-2",
+                accent: "from-[#00913f] to-[#007a35]",
+              },
+              {
+                icon: Gavel,
+                title: "Court or DMV orders",
+                desc: "When a judge or agency mandates proof of financial responsibility.",
+                size: "lg:col-span-6",
+                accent: "from-[#0079c2] via-[#00a651] to-[#0079c2]",
+              },
+            ].map((item, i) => (
               <motion.div
-                key={reason}
+                key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="group bg-white p-6 rounded-2xl border border-slate-100 hover:border-[#0079c2]/30 hover:shadow-xl hover:-translate-y-1 transition-all"
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className={`${item.size} group relative bg-white p-6 rounded-3xl border border-slate-100 hover:border-transparent shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all overflow-hidden`}
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0079c2] to-[#015093] flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform">
-                  <AlertTriangle className="w-6 h-6 text-white" />
+                {/* Number badge */}
+                <span className="absolute top-4 right-5 font-josefin font-bold text-5xl text-slate-100 group-hover:text-[#0079c2]/20 transition-colors">
+                  0{i + 1}
+                </span>
+                {/* Hover gradient bar */}
+                <span
+                  className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${item.accent} scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500`}
+                />
+                <div className="relative">
+                  <div
+                    className={`inline-flex w-14 h-14 rounded-2xl bg-gradient-to-br ${item.accent} items-center justify-center mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all`}
+                  >
+                    <item.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="font-josefin font-bold text-slate-900 text-lg md:text-xl mb-2 leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
                 </div>
-                <p className="text-slate-700 font-medium leading-relaxed">{reason}</p>
               </motion.div>
             ))}
           </div>
@@ -340,13 +414,19 @@ const SR22Insurance = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-10 max-w-4xl mx-auto bg-white border-l-4 border-[#00a651] p-6 rounded-r-2xl shadow-md"
+            className="mt-10 max-w-4xl mx-auto relative bg-gradient-to-br from-white to-blue-50 p-7 rounded-3xl shadow-lg border border-slate-100 overflow-hidden"
           >
-            <p className="text-slate-700 leading-relaxed">
-              <span className="font-bold text-[#0079c2]">Note:</span> Some states may also require proof of future
-              financial responsibility after insurance-related suspensions. Indiana's BMV, for example, notes that
-              SR-22 filing may be required to regain driving privileges after certain suspensions.
-            </p>
+            <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#0079c2] to-[#00a651]" />
+            <div className="flex items-start gap-4 pl-3">
+              <div className="w-11 h-11 rounded-xl bg-[#0079c2]/10 flex items-center justify-center flex-shrink-0">
+                <FileText className="w-5 h-5 text-[#0079c2]" />
+              </div>
+              <p className="text-slate-700 leading-relaxed">
+                <span className="font-bold text-[#0079c2]">State note:</span> Some states also require proof of
+                future financial responsibility after insurance-related suspensions. Indiana's BMV, for example,
+                notes that SR-22 filing may be required to regain driving privileges after certain suspensions.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
