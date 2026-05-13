@@ -46,7 +46,6 @@ const COPY = {
       { label: "🚗 Auto Insurance", action: "service_auto", href: "/auto-insurance" },
       { label: "🏠 Home Insurance", action: "service_home", href: "/home-insurance" },
       { label: "❤️ Life Insurance", action: "service_life", href: "/life-insurance" },
-      { label: "🌊 Flood Insurance", action: "service_flood", href: "/flood-insurance" },
       { label: "⬅️ Go Back", action: "restart" },
     ] as QuickReply[],
     business: [
