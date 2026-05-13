@@ -167,25 +167,78 @@ const SR22Insurance = () => {
       </section>
 
       {/* INTRO */}
-      <section className="py-16 lg:py-20 bg-slate-50">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
-              Being told you need an SR-22 can feel stressful — especially if you're trying to reinstate your
-              license, keep your job, or simply get back to your normal routine. The good news? With the right
-              auto insurance policy and proper state filing, you can meet your requirement and move forward with
-              confidence.
-            </p>
-            <p className="mt-6 text-lg text-slate-700 leading-relaxed">
-              At <span className="font-bold text-[#0079c2]">Bringas Insurance Group</span>, we help drivers find
-              affordable auto insurance options that include SR-22 filing when required.
-            </p>
-          </motion.div>
+      <section className="relative py-20 lg:py-24 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+        <div className="absolute inset-0 opacity-40 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-10 left-10 w-72 h-72 bg-[#0079c2]/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-72 h-72 bg-[#00a651]/10 rounded-full blur-3xl" />
+        </div>
+
+        <div className="relative container mx-auto px-4 max-w-6xl">
+          <div className="grid lg:grid-cols-5 gap-10 items-center">
+            {/* Left: message */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-3"
+            >
+              <div className="inline-flex items-center gap-2 bg-white border border-slate-200 shadow-sm px-4 py-2 rounded-full mb-5">
+                <Sparkles className="w-4 h-4 text-[#00a651]" />
+                <span className="text-xs uppercase tracking-widest font-bold text-slate-700">
+                  We've Got You Covered
+                </span>
+              </div>
+              <h2 className="font-josefin font-bold text-slate-900 text-3xl md:text-4xl leading-tight mb-5">
+                Stressed about an SR-22?{" "}
+                <span className="bg-gradient-to-r from-[#0079c2] to-[#00a651] bg-clip-text text-transparent">
+                  You're not alone — and you have options.
+                </span>
+              </h2>
+              <p className="text-slate-600 text-lg leading-relaxed mb-4">
+                Whether you're trying to reinstate your license, keep your job, or get back to your normal
+                routine, the right auto policy and proper state filing can move you forward with confidence.
+              </p>
+              <p className="text-slate-700 text-lg leading-relaxed">
+                At <span className="font-bold text-[#0079c2]">Bringas Insurance Group</span>, we help drivers find
+                affordable auto insurance that includes SR-22 filing — fast.
+              </p>
+            </motion.div>
+
+            {/* Right: stats card */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-2"
+            >
+              <div className="relative bg-white rounded-3xl p-7 shadow-2xl border border-slate-100">
+                <div className="absolute -top-4 -right-4 bg-[#00a651] text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg uppercase tracking-wider">
+                  Why us
+                </div>
+                <div className="space-y-4">
+                  {[
+                    { icon: Clock, title: "Fast Filing", text: "Same-day SR-22 submission" },
+                    { icon: ShieldCheck, title: "State Compliant", text: "Meets every requirement" },
+                    { icon: DollarSign, title: "Affordable", text: "Multiple carriers compared" },
+                    { icon: User, title: "Personal Help", text: "Real agents, real answers" },
+                  ].map((item) => (
+                    <div
+                      key={item.title}
+                      className="flex items-start gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors"
+                    >
+                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0079c2] to-[#015093] flex items-center justify-center flex-shrink-0 shadow-md">
+                        <item.icon className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <p className="font-josefin font-bold text-slate-900">{item.title}</p>
+                        <p className="text-sm text-slate-500 leading-snug">{item.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
