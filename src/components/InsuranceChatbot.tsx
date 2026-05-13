@@ -59,7 +59,6 @@ const COPY = {
       service_auto: { text: "Auto Insurance protects you against financial loss in the event of an accident or theft. We work with top carriers to find you the best rate!", href: "/auto-insurance" },
       service_home: { text: "Homeowners Insurance covers your home and belongings against damage, theft, and liability. Let us find the perfect policy for your family.", href: "/home-insurance" },
       service_life: { text: "Life Insurance provides financial security for your loved ones. We offer term, whole life, and universal options to fit your needs.", href: "/life-insurance" },
-      service_flood: { text: "Flood Insurance protects your property from flood damage — standard homeowners policies don't cover it. Don't wait until it's too late!", href: "/flood-insurance" },
       service_gl: { text: "General Liability Insurance protects your business from third-party claims of bodily injury, property damage, and more.", href: "/general-liability" },
       service_ca: { text: "Commercial Auto Insurance covers vehicles used for business purposes, protecting your fleet and drivers on the road.", href: "/commercial-auto" },
       service_contractors: { text: "Contractors Insurance provides comprehensive coverage for construction professionals, from liability to tools and equipment.", href: "/contractors-insurance" },
