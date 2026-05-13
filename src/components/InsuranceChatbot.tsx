@@ -298,7 +298,15 @@ const InsuranceChatbot = () => {
       setUserName(name);
       localStorage.setItem("owlin_user_name", name);
       setFlowStep("main");
-      await addBotMessage(t.niceToMeet(name), t.main, 1200);
+      const officeOpen = isOfficeHours();
+      const callBtn: QuickReply = { label: t.callNow, action: "call", href: "tel:+14254057111" };
+      const main = officeOpen ? [callBtn, ...t.main] : t.main;
+      await addBotMessage(t.niceToMeet(name), main, 1200);
+      if (officeOpen) {
+        addBotMessage(t.officeOpenNudge(name), [callBtn], 900);
+      } else {
+        addBotMessage(t.officeClosedNudge(name), undefined, 900);
+      }
       return;
     }
 
