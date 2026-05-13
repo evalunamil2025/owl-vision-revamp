@@ -217,9 +217,18 @@ const InsuranceChatbot = () => {
   useEffect(() => {
     if (open && !initRef.current) {
       initRef.current = true;
+      const officeOpen = isOfficeHours();
+      const callBtn: QuickReply = { label: t.callNow, action: "call", href: "tel:+14254057111" };
       if (userName) {
         setFlowStep("main");
-        addBotMessage(t.welcomeBack(userName), t.main, 800);
+        const main = officeOpen ? [callBtn, ...t.main] : t.main;
+        addBotMessage(t.welcomeBack(userName), main, 800).then(() => {
+          if (officeOpen) {
+            addBotMessage(t.officeOpenNudge(userName), [callBtn], 900);
+          } else {
+            addBotMessage(t.officeClosedNudge(userName), undefined, 900);
+          }
+        });
       } else {
         setFlowStep("wait_name");
         addBotMessage(t.askName, undefined, 1000);
@@ -234,6 +243,11 @@ const InsuranceChatbot = () => {
   const handleAction = (action: string, label: string, href?: string) => {
     setMessages((prev) => [...prev, { id: uid(), role: "user", text: label }]);
     scrollToBottom();
+
+    if (action === "call" && href) {
+      window.location.href = href;
+      return;
+    }
 
     if (action === "contact" && href) {
       addBotMessage(t.contactReply(userName || t.friend));
