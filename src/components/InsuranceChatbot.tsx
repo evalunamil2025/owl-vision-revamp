@@ -70,6 +70,9 @@ const COPY = {
     goBack: "⬅️ Go Back",
     startOver: "⬅️ Start Over",
     talkAgent: "📞 Talk to an Agent",
+    callNow: "📞 Call Now: (425) 405-7111",
+    officeOpenNudge: (n: string) => `Good news, ${n} — our office is open right now! 🎉 The fastest way to get a tailored answer is a quick call with one of our licensed agents. Tap below to call us instantly:`,
+    officeClosedNudge: (n: string) => `Heads up, ${n}: our office is currently closed (Mon–Fri, 9am–6pm PT). Leave your question here and we'll follow up first thing — or tap below to schedule a callback.`,
   },
   es: {
     headerTitle: "Owlin — Tu Asistente Virtual",
@@ -119,10 +122,31 @@ const COPY = {
     goBack: "⬅️ Volver",
     startOver: "⬅️ Empezar de nuevo",
     talkAgent: "📞 Hablar con un Agente",
+    callNow: "📞 Llamar ahora: (425) 405-7111",
+    officeOpenNudge: (n: string) => `¡Buenas noticias, ${n}! Nuestra oficina está abierta en este momento 🎉 La forma más rápida de obtener una respuesta personalizada es una llamada con uno de nuestros agentes licenciados. Toca abajo para llamarnos al instante:`,
+    officeClosedNudge: (n: string) => `Atención, ${n}: nuestra oficina está cerrada por ahora (Lun–Vie, 9am–6pm PT). Déjanos tu pregunta y te contactamos a primera hora — o toca abajo para agendar una llamada.`,
   },
 };
 
 const uid = () => Math.random().toString(36).slice(2, 9);
+
+// Office hours: Mon–Fri, 9am–6pm Pacific Time
+const isOfficeHours = (): boolean => {
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Los_Angeles",
+      weekday: "short",
+      hour: "numeric",
+      hour12: false,
+    }).formatToParts(new Date());
+    const weekday = parts.find((p) => p.type === "weekday")?.value ?? "";
+    const hour = parseInt(parts.find((p) => p.type === "hour")?.value ?? "0", 10);
+    const isWeekday = ["Mon", "Tue", "Wed", "Thu", "Fri"].includes(weekday);
+    return isWeekday && hour >= 9 && hour < 18;
+  } catch {
+    return false;
+  }
+};
 
 const TypingIndicator = () => (
   <motion.div
@@ -193,9 +217,18 @@ const InsuranceChatbot = () => {
   useEffect(() => {
     if (open && !initRef.current) {
       initRef.current = true;
+      const officeOpen = isOfficeHours();
+      const callBtn: QuickReply = { label: t.callNow, action: "call", href: "tel:+14254057111" };
       if (userName) {
         setFlowStep("main");
-        addBotMessage(t.welcomeBack(userName), t.main, 800);
+        const main = officeOpen ? [callBtn, ...t.main] : t.main;
+        addBotMessage(t.welcomeBack(userName), main, 800).then(() => {
+          if (officeOpen) {
+            addBotMessage(t.officeOpenNudge(userName), [callBtn], 900);
+          } else {
+            addBotMessage(t.officeClosedNudge(userName), undefined, 900);
+          }
+        });
       } else {
         setFlowStep("wait_name");
         addBotMessage(t.askName, undefined, 1000);
@@ -210,6 +243,11 @@ const InsuranceChatbot = () => {
   const handleAction = (action: string, label: string, href?: string) => {
     setMessages((prev) => [...prev, { id: uid(), role: "user", text: label }]);
     scrollToBottom();
+
+    if (action === "call" && href) {
+      window.location.href = href;
+      return;
+    }
 
     if (action === "contact" && href) {
       addBotMessage(t.contactReply(userName || t.friend));
@@ -260,7 +298,15 @@ const InsuranceChatbot = () => {
       setUserName(name);
       localStorage.setItem("owlin_user_name", name);
       setFlowStep("main");
-      await addBotMessage(t.niceToMeet(name), t.main, 1200);
+      const officeOpen = isOfficeHours();
+      const callBtn: QuickReply = { label: t.callNow, action: "call", href: "tel:+14254057111" };
+      const main = officeOpen ? [callBtn, ...t.main] : t.main;
+      await addBotMessage(t.niceToMeet(name), main, 1200);
+      if (officeOpen) {
+        addBotMessage(t.officeOpenNudge(name), [callBtn], 900);
+      } else {
+        addBotMessage(t.officeClosedNudge(name), undefined, 900);
+      }
       return;
     }
 
