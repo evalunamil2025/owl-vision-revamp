@@ -109,7 +109,6 @@ const COPY = {
       service_auto: { text: "El Seguro de Auto te protege contra pérdidas financieras en caso de accidente o robo. ¡Trabajamos con las mejores aseguradoras para conseguirte la mejor tarifa!", href: "/auto-insurance" },
       service_home: { text: "El Seguro de Hogar cubre tu casa y pertenencias contra daños, robo y responsabilidad. Déjanos encontrar la póliza perfecta para tu familia.", href: "/home-insurance" },
       service_life: { text: "El Seguro de Vida brinda seguridad financiera para tus seres queridos. Ofrecemos opciones de término, vida entera y universal para tus necesidades.", href: "/life-insurance" },
-      service_flood: { text: "El Seguro de Inundación protege tu propiedad contra daños por inundación — las pólizas estándar de hogar no lo cubren. ¡No esperes a que sea tarde!", href: "/flood-insurance" },
       service_gl: { text: "El Seguro de Responsabilidad General protege a tu negocio de reclamos de terceros por lesiones, daños materiales y más.", href: "/general-liability" },
       service_ca: { text: "El Seguro de Auto Comercial cubre vehículos usados para negocios, protegiendo tu flota y conductores en la carretera.", href: "/commercial-auto" },
       service_contractors: { text: "El Seguro para Contratistas brinda cobertura integral para profesionales de la construcción, desde responsabilidad hasta herramientas y equipo.", href: "/contractors-insurance" },
