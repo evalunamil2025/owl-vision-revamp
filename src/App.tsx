@@ -32,6 +32,7 @@ const BuildingOwners = lazy(() => import("./pages/BuildingOwners"));
 const BondsSurety = lazy(() => import("./pages/BondsSurety"));
 const PayMyBill = lazy(() => import("./pages/PayMyBill"));
 const ClientCenter = lazy(() => import("./pages/ClientCenter"));
+const Carriers = lazy(() => import("./pages/Carriers"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const InsuranceChatbot = lazy(() => import("./components/InsuranceChatbot"));
 const WhatsAppButton = lazy(() => import("./components/WhatsAppButton"));
@@ -102,6 +103,7 @@ const App = () => (
             <Route path="/bonds-surety" element={<BondsSurety />} />
             <Route path="/pay-my-bill" element={<PayMyBill />} />
             <Route path="/client-center" element={<ClientCenter />} />
+            <Route path="/carriers" element={<Carriers />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

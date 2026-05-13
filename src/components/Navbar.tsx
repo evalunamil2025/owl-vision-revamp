@@ -195,6 +195,16 @@ const Navbar = () => {
                     <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all" />
                   </Link>
                   <Link
+                    to="/carriers"
+                    className="group flex items-center justify-between px-3 py-2 text-sm text-slate-600 hover:text-[#0079c2] hover:bg-blue-50 rounded-xl transition-all"
+                  >
+                    <span className="flex items-center gap-2">
+                      <ShieldCheck className="w-4 h-4" />
+                      Carriers
+                    </span>
+                    <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all" />
+                  </Link>
+                  <Link
                     to="/client-center"
                     className="group flex items-center justify-between px-3 py-2 text-sm text-slate-600 hover:text-[#0079c2] hover:bg-blue-50 rounded-xl transition-all"
                   >
@@ -299,6 +309,14 @@ const Navbar = () => {
                 >
                   <CreditCard className="w-5 h-5 text-[#00a651]" />
                   {t("payBill.navLabel")}
+                </Link>
+                <Link
+                  to="/carriers"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2 p-3 text-lg font-bold text-slate-800 bg-slate-50 rounded-xl"
+                >
+                  <ShieldCheck className="w-5 h-5 text-[#00a651]" />
+                  Carriers
                 </Link>
                 <Link
                   to="/client-center"
