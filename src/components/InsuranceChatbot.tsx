@@ -70,6 +70,9 @@ const COPY = {
     goBack: "⬅️ Go Back",
     startOver: "⬅️ Start Over",
     talkAgent: "📞 Talk to an Agent",
+    callNow: "📞 Call Now: (425) 405-7111",
+    officeOpenNudge: (n: string) => `Good news, ${n} — our office is open right now! 🎉 The fastest way to get a tailored answer is a quick call with one of our licensed agents. Tap below to call us instantly:`,
+    officeClosedNudge: (n: string) => `Heads up, ${n}: our office is currently closed (Mon–Fri, 9am–6pm PT). Leave your question here and we'll follow up first thing — or tap below to schedule a callback.`,
   },
   es: {
     headerTitle: "Owlin — Tu Asistente Virtual",
