@@ -8,7 +8,7 @@ import nationwide from "@/assets/images/carriers/nationwide.webp";
 import dairyland from "@/assets/images/carriers/dairyland.webp";
 import bristolWest from "@/assets/images/carriers/bristol-west.webp";
 import progressive from "@/assets/images/carriers/progressive.webp";
-import safeco from "@/assets/images/carriers/safeco.webp";
+import libertyMutual from "@/assets/images/carriers/liberty-mutual.webp";
 import nationalGeneral from "@/assets/images/carriers/national-general.webp";
 
 const carriers = [
@@ -19,7 +19,7 @@ const carriers = [
   { name: "Dairyland", logo: dairyland },
   { name: "Bristol West", logo: bristolWest },
   { name: "Progressive", logo: progressive },
-  { name: "Safeco Insurance", logo: safeco },
+  { name: "Liberty Mutual", logo: libertyMutual },
   { name: "National General", logo: nationalGeneral },
 ];
 
