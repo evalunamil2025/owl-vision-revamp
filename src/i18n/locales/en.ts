@@ -83,7 +83,7 @@ const en = {
     openInNewTab: "Open quote tool in a new tab",
     sidebar: {
       getInTouch: "Get in Touch",
-      hours: "Mon–Fri: 9am–5pm",
+      hours: "Mon–Fri: 9am–6pm",
       address: "Address",
       hablamos:
         "🦉 Hablamos Español. We promise to explain everything without jargon and, if possible, with a smile.",
