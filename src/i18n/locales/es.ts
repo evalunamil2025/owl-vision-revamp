@@ -85,7 +85,7 @@ const es: Translation = {
     openInNewTab: "Abrir el cotizador en una nueva pestaña",
     sidebar: {
       getInTouch: "Ponte en contacto",
-      hours: "Lun–Vie: 9am–5pm",
+      hours: "Lun–Vie: 9am–6pm",
       address: "Dirección",
       hablamos:
         "🦉 Hablamos Español. Te prometemos explicarte todo sin tecnicismos y, si se puede, con una sonrisa.",
