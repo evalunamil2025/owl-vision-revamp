@@ -8,7 +8,7 @@ import contactHeroBg from "@/assets/seattle-hero-bg.jpg";
 import progressive from "@/assets/images/carriers/progressive.jpg";
 import nationalGeneral from "@/assets/images/carriers/national-general.jpg";
 import dairyland from "@/assets/images/carriers/dairyland.png";
-import safeco from "@/assets/images/carriers/safeco.jpg";
+import libertyMutual from "@/assets/images/carriers/liberty-mutual.png";
 import travelers from "@/assets/images/carriers/travelers.jpg";
 import bristolWest from "@/assets/images/carriers/bristol-west.png";
 import foremost from "@/assets/images/carriers/foremost.png";
@@ -57,12 +57,12 @@ const carriers: Carrier[] = [
     claims: { phone: "800-334-0090", phoneHref: "tel:+18003340090", linkLabel: "Submit Claim", linkHref: "https://www.dairylandinsurance.com/contact-us/file-claim" },
   },
   {
-    name: "Safeco",
-    logo: safeco,
-    website: "https://www.safeco.com/",
-    service: { phone: "800-332-3226", phoneHref: "tel:+18003323226", linkLabel: "Customer Service", linkHref: "https://customer.safeco.com/accountservices/login.aspx" },
-    billing: { phone: "888-723-3260", phoneHref: "tel:+18887233260", linkLabel: "Make Payment", linkHref: "https://www.safeco.com/customer-resources/customer-support/billing-and-payment" },
-    claims: { phone: "800-332-3226", phoneHref: "tel:+18003323226", linkLabel: "Submit Claim", linkHref: "https://www.safeco.com/claims" },
+    name: "Liberty Mutual",
+    logo: libertyMutual,
+    website: "https://www.libertymutual.com/",
+    service: { phone: "800-290-8711", phoneHref: "tel:+18002908711", linkLabel: "Customer Service", linkHref: "https://www.libertymutual.com/customer-support" },
+    billing: { phone: "800-295-2820", phoneHref: "tel:+18002952820", linkLabel: "Make Payment", linkHref: "https://www.libertymutual.com/log-in" },
+    claims: { phone: "800-225-2467", phoneHref: "tel:+18002252467", linkLabel: "Submit Claim", linkHref: "https://www.libertymutual.com/customer-support/claims-support" },
   },
   {
     name: "Travelers",
