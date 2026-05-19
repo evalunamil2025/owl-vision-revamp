@@ -6,15 +6,15 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import contactHeroBg from "@/assets/seattle-hero-bg.jpg";
 
-import kemperAuto from "@/assets/images/carriers/kemper-auto.png";
-import oregonMutual from "@/assets/images/carriers/oregon-mutual.png";
-import travelers from "@/assets/images/carriers/travelers.jpg";
-import nationwide from "@/assets/images/carriers/nationwide.jpg";
-import dairyland from "@/assets/images/carriers/dairyland.png";
-import bristolWest from "@/assets/images/carriers/bristol-west.png";
 import progressive from "@/assets/images/carriers/progressive.jpg";
-import libertyMutual from "@/assets/images/carriers/liberty-mutual.png";
 import nationalGeneral from "@/assets/images/carriers/national-general.jpg";
+import dairyland from "@/assets/images/carriers/dairyland.png";
+import libertyMutual from "@/assets/images/carriers/liberty-mutual.png";
+import travelers from "@/assets/images/carriers/travelers.jpg";
+import bristolWest from "@/assets/images/carriers/bristol-west.png";
+import foremost from "@/assets/images/carriers/foremost.png";
+import btis from "@/assets/images/carriers/btis.png";
+import nationwide from "@/assets/images/carriers/nationwide.jpg";
 
 interface Carrier {
   name: string;
@@ -26,11 +26,11 @@ interface Carrier {
 
 const carriers: Carrier[] = [
   {
-    name: "Kemper",
-    logo: kemperAuto,
-    website: "https://myaccount.kemper.com/us/home/index.cfm/go/payments.home/",
-    phone: "800-456-0448",
-    phoneHref: "tel:+18004560448",
+    name: "Progressive",
+    logo: progressive,
+    website: "https://account.progressive.com/access/ez-payment/policy-info",
+    phone: "877-776-2436",
+    phoneHref: "tel:+18777762436",
   },
   {
     name: "National General",
@@ -40,6 +40,13 @@ const carriers: Carrier[] = [
     phoneHref: "tel:+18774683466",
   },
   {
+    name: "Dairyland",
+    logo: dairyland,
+    website: "https://account.progressive.com/access/ez-payment/policy-info",
+    phone: "800-334-0090",
+    phoneHref: "tel:+18003340090",
+  },
+  {
     name: "Liberty Mutual",
     logo: libertyMutual,
     website: "https://www.libertymutual.com/log-in",
@@ -47,11 +54,11 @@ const carriers: Carrier[] = [
     phoneHref: "tel:+18002952820",
   },
   {
-    name: "Progressive",
-    logo: progressive,
-    website: "https://account.progressive.com/access/ez-payment/policy-info",
-    phone: "877-776-2436",
-    phoneHref: "tel:+18777762436",
+    name: "Travelers",
+    logo: travelers,
+    website: "https://www.travelers.com/personal-insurance/other-payment-options",
+    phone: "877-878-2486",
+    phoneHref: "tel:+18778782486",
   },
   {
     name: "Bristol West",
@@ -61,32 +68,25 @@ const carriers: Carrier[] = [
     phoneHref: "tel:+18553197763",
   },
   {
-    name: "Dairyland",
-    logo: dairyland,
-    website: "https://account.progressive.com/access/ez-payment/policy-info",
-    phone: "800-334-0090",
-    phoneHref: "tel:+18003340090",
+    name: "Foremost Insurance",
+    logo: foremost,
+    website: "https://www.foremost.com/payonline/",
+    phone: "888-383-4244",
+    phoneHref: "tel:+18883834244",
   },
   {
-    name: "Nationwide / Allied",
+    name: "BTIS",
+    logo: btis,
+    website: "https://btisinc.com/contact/",
+    phone: "877-585-2853",
+    phoneHref: "tel:+18775852853",
+  },
+  {
+    name: "Nationwide Insurance",
     logo: nationwide,
     website: "https://myservicing.nationwide.com/#/personal/quickpay/search",
     phone: "800-282-1446",
     phoneHref: "tel:+18002821446",
-  },
-  {
-    name: "Oregon Mutual",
-    logo: oregonMutual,
-    website: "https://www.ormutual.com/",
-    phone: "800-888-2141",
-    phoneHref: "tel:+18008882141",
-  },
-  {
-    name: "Travelers",
-    logo: travelers,
-    website: "https://www.travelers.com/personal-insurance/other-payment-options",
-    phone: "877-878-2486",
-    phoneHref: "tel:+18778782486",
   },
 ];
 
