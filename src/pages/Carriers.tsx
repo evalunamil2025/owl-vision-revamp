@@ -138,7 +138,7 @@ const Carriers = () => {
       <title>Insurance Carriers | Bringas Insurance Group</title>
       <meta
         name="description"
-        content="Carrier library for Bringas Insurance Group. Contact, billing and claims information for Progressive, National General, Dairyland, Safeco, Travelers, Bristol West, Foremost, BTIS and Nationwide."
+        content="Carrier library for Bringas Insurance Group. Contact, billing and claims information for Progressive, National General, Dairyland, Liberty Mutual, Travelers, Bristol West, Foremost, BTIS and Nationwide."
       />
 
       <Navbar />

@@ -13,7 +13,7 @@ import nationwide from "@/assets/images/carriers/nationwide.jpg";
 import dairyland from "@/assets/images/carriers/dairyland.png";
 import bristolWest from "@/assets/images/carriers/bristol-west.png";
 import progressive from "@/assets/images/carriers/progressive.jpg";
-import safeco from "@/assets/images/carriers/safeco.jpg";
+import libertyMutual from "@/assets/images/carriers/liberty-mutual.png";
 import nationalGeneral from "@/assets/images/carriers/national-general.jpg";
 
 interface Carrier {
@@ -40,11 +40,11 @@ const carriers: Carrier[] = [
     phoneHref: "tel:+18774683466",
   },
   {
-    name: "Safeco",
-    logo: safeco,
-    website: "https://customer.safeco.com/accountmanager/Login/login.aspx",
-    phone: "877-566-6001",
-    phoneHref: "tel:+18775666001",
+    name: "Liberty Mutual",
+    logo: libertyMutual,
+    website: "https://www.libertymutual.com/log-in",
+    phone: "800-295-2820",
+    phoneHref: "tel:+18002952820",
   },
   {
     name: "Progressive",
