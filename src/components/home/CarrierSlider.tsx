@@ -1,26 +1,26 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-import kemperAuto from "@/assets/images/carriers/kemper-auto.webp";
-import oregonMutual from "@/assets/images/carriers/oregon-mutual.webp";
-import travelers from "@/assets/images/carriers/travelers.webp";
-import nationwide from "@/assets/images/carriers/nationwide.webp";
-import dairyland from "@/assets/images/carriers/dairyland.webp";
-import bristolWest from "@/assets/images/carriers/bristol-west.webp";
 import progressive from "@/assets/images/carriers/progressive.webp";
-import libertyMutual from "@/assets/images/carriers/liberty-mutual.webp";
 import nationalGeneral from "@/assets/images/carriers/national-general.webp";
+import dairyland from "@/assets/images/carriers/dairyland.webp";
+import libertyMutual from "@/assets/images/carriers/liberty-mutual.webp";
+import travelers from "@/assets/images/carriers/travelers.webp";
+import bristolWest from "@/assets/images/carriers/bristol-west.webp";
+import foremost from "@/assets/images/carriers/foremost.png";
+import btis from "@/assets/images/carriers/btis.png";
+import nationwide from "@/assets/images/carriers/nationwide.webp";
 
 const carriers = [
-  { name: "Kemper Auto", logo: kemperAuto },
-  { name: "Oregon Mutual", logo: oregonMutual },
-  { name: "Travelers", logo: travelers },
-  { name: "Nationwide", logo: nationwide },
-  { name: "Dairyland", logo: dairyland },
-  { name: "Bristol West", logo: bristolWest },
   { name: "Progressive", logo: progressive },
-  { name: "Liberty Mutual", logo: libertyMutual },
   { name: "National General", logo: nationalGeneral },
+  { name: "Dairyland", logo: dairyland },
+  { name: "Liberty Mutual", logo: libertyMutual },
+  { name: "Travelers", logo: travelers },
+  { name: "Bristol West", logo: bristolWest },
+  { name: "Foremost Insurance", logo: foremost },
+  { name: "BTIS", logo: btis },
+  { name: "Nationwide Insurance", logo: nationwide },
 ];
 
 // Duplicate for seamless loop
