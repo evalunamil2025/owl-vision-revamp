@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import contactHeroBg from "@/assets/seattle-hero-bg.jpg";
+import SEO from "@/components/SEO";
 
 const QUOTE_URL =
   "https://www.agentinsure.com/compare/auto-insurance-home-insurance/bringasins/quote.aspx";
@@ -14,7 +15,11 @@ const Quote = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <title>Get a Quote | Bringas Insurance Group</title>
+      <SEO
+        title="Get an Insurance Quote | Bringas Insurance Group"
+        description="Request a free auto, home, life, or business insurance quote from Bringas Insurance Group. Fast, personalized guidance from a licensed local agency."
+        path="/quote"
+      />
 
       <Navbar />
 

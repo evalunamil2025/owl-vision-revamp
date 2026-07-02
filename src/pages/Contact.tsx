@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import contactHeroBg from "@/assets/seattle-hero-bg.jpg";
+import SEO from "@/components/SEO";
 
 const FacebookIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -39,7 +40,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <title>Contact | Bringas Insurance Group</title>
+      <SEO
+        title="Contact Bringas Insurance Group | Get an Insurance Quote"
+        description="Contact Bringas Insurance Group to ask about auto, home, life, or business insurance coverage and request personalized guidance."
+        path="/contact"
+      />
 
       <Navbar />
 
