@@ -1,10 +1,17 @@
 import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
+import SEO from "@/components/SEO";
 import heroHome from "@/assets/hero-home-insurance.webp";
 
 const HomeInsurance = () => {
   const { t } = useTranslation();
   return (
+    <>
+    <SEO
+      title="Home Insurance Coverage | Bringas Insurance Group"
+      description="Protect your home and belongings with home insurance coverage options from Bringas Insurance Group."
+      path="/home-insurance"
+    />
     <ServicePageLayout
       title={t("home.title")}
       subtitle={t("home.subtitle")}
@@ -50,6 +57,7 @@ const HomeInsurance = () => {
         closing: t("home.approach.closing"),
       }}
     />
+    </>
   );
 };
 

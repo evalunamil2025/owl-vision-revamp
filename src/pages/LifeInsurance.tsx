@@ -1,10 +1,17 @@
 import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
+import SEO from "@/components/SEO";
 import heroLife from "@/assets/hero-life-insurance.webp";
 
 const LifeInsurance = () => {
   const { t } = useTranslation();
   return (
+    <>
+    <SEO
+      title="Life Insurance Options | Bringas Insurance Group"
+      description="Explore life insurance options with Bringas Insurance Group and help protect your loved ones' financial future."
+      path="/life-insurance"
+    />
     <ServicePageLayout
       title={t("life.title")}
       subtitle={t("life.subtitle")}
@@ -34,6 +41,7 @@ const LifeInsurance = () => {
       importantNote={{ title: t("life.importantNote.title"), content: t("life.importantNote.content") }}
       approach={{ intro: t("life.approach.intro"), items: [t("life.approach.i1"), t("life.approach.i2"), t("life.approach.i3")] }}
     />
+    </>
   );
 };
 
