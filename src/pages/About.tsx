@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import mascot from "@/assets/owlie-mascot.webp";
 import aboutHeroBg from "@/assets/seattle-hero-bg.jpg";
+import SEO from "@/components/SEO";
 
 const About = () => {
   const { t } = useTranslation();
@@ -14,6 +15,11 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="About Bringas Insurance Group | Trusted Insurance Guidance"
+        description="Learn about Bringas Insurance Group and our commitment to helping clients find insurance coverage for personal and business needs."
+        path="/about"
+      />
       <Navbar />
 
       {/* --- HERO SECTION (Estilo Aquos con curvas profundas) --- */}
