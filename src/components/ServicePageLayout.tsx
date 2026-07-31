@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import {
@@ -14,6 +14,7 @@ import type { LucideIcon } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import RichText from "./RichText";
+import SEO from "./SEO";
 import heroBg from "@/assets/seattle-hero-bg.jpg";
 
 // Map coverage titles to contextual icons
@@ -95,8 +96,14 @@ const ServicePageLayout = ({
   heroImageAlt,
 }: ServicePageLayoutProps) => {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title={`${title} | Bringas Insurance Group`}
+        description={(heroDescription || subtitle || title).replace(/\s+/g, " ").trim().slice(0, 155)}
+        path={pathname}
+      />
       <Navbar />
 
       {/* ─── HERO (Blue Gradient + Buttons) ─── */}
