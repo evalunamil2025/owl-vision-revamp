@@ -3,6 +3,7 @@ import { Phone, ArrowRight, Sparkles, ExternalLink, FileText, CreditCard, Shield
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import contactHeroBg from "@/assets/seattle-hero-bg.jpg";
 
 import progressive from "@/assets/images/carriers/progressive.jpg";
@@ -135,10 +136,10 @@ const InfoCell = ({ item, accentIcon: Icon }: { item: InfoItem; accentIcon: type
 const Carriers = () => {
   return (
     <div className="min-h-screen bg-white">
-      <title>Insurance Carriers | Bringas Insurance Group</title>
-      <meta
-        name="description"
-        content="Carrier library for Bringas Insurance Group. Contact, billing and claims information for Progressive, National General, Dairyland, Liberty Mutual, Travelers, Bristol West, Foremost, BTIS and Nationwide."
+      <SEO
+        title="Insurance Carriers | Bringas Insurance Group"
+        description="Contact, billing and claims information for Progressive, National General, Dairyland, Liberty Mutual, Travelers, Bristol West, Foremost, BTIS and Nationwide."
+        path="/carriers"
       />
 
       <Navbar />

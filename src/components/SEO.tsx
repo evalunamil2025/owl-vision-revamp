@@ -18,8 +18,9 @@ const SEO = ({ title, description, path, type = "website", jsonLd, noindex }: SE
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <link rel="canonical" href={url} />
+      {!noindex && <link rel="canonical" href={url} />}
       {noindex && <meta name="robots" content="noindex, nofollow" />}
+
       <meta property="og:type" content={type} />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />

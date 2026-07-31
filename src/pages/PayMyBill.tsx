@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import contactHeroBg from "@/assets/seattle-hero-bg.jpg";
 
 import progressive from "@/assets/images/carriers/progressive.jpg";
@@ -95,7 +96,11 @@ const PayMyBill = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <title>Pay My Bill | Bringas Insurance Group</title>
+      <SEO
+        title="Pay My Bill | Bringas Insurance Group"
+        description="Pay your insurance bill directly with Progressive, National General, Dairyland, Liberty Mutual, Travelers, Bristol West, Foremost, BTIS or Nationwide."
+        path="/pay-my-bill"
+      />
 
       <Navbar />
 

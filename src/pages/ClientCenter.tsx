@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import contactHeroBg from "@/assets/seattle-hero-bg.jpg";
 
 const PORTAL_URL =
@@ -20,7 +21,11 @@ const ClientCenter = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <title>Client Center | Bringas Insurance Group</title>
+      <SEO
+        title="Client Center | Bringas Insurance Group"
+        description="Access your policy documents, ID cards, certificates and service requests through the Bringas Insurance Group Client Center."
+        path="/client-center"
+      />
 
       <Navbar />
 
