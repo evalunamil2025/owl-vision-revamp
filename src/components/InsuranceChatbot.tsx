@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageSquare, X, Send, Bot, ArrowRight } from "lucide-react";
+import { MessageSquare, X, Send, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import owlinAvatar from "@/assets/owlin-avatar.png.asset.json";
+
 
 type Message = {
   id: string;
@@ -144,6 +146,14 @@ const isOfficeHours = (): boolean => {
   }
 };
 
+const Avatar = ({ className = "w-7 h-7" }: { className?: string }) => (
+  <img
+    src={owlinAvatar.url}
+    alt="Owlin"
+    className={`rounded-full object-cover border-2 border-white/40 shadow-sm ${className}`}
+  />
+);
+
 const TypingIndicator = () => (
   <motion.div
     initial={{ opacity: 0, y: 10 }}
@@ -151,8 +161,8 @@ const TypingIndicator = () => (
     exit={{ opacity: 0 }}
     className="flex items-end gap-2 mb-3"
   >
-    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00a651] to-[#00c853] flex items-center justify-center flex-shrink-0">
-      <Bot className="w-4 h-4 text-white" />
+    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00a651] to-[#00c853] flex items-center justify-center flex-shrink-0 overflow-hidden">
+      <Avatar className="w-6 h-6" />
     </div>
     <div className="bg-green-50 rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1.5">
       {[0, 1, 2].map((i) => (
@@ -166,6 +176,7 @@ const TypingIndicator = () => (
     </div>
   </motion.div>
 );
+
 
 const InsuranceChatbot = () => {
   const { i18n } = useTranslation();
