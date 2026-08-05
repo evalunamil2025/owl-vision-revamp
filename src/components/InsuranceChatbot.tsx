@@ -355,8 +355,8 @@ const InsuranceChatbot = () => {
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-[#00a651] to-[#00c853] p-4 flex items-center gap-3 flex-shrink-0">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                <Bot className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden p-0.5">
+                <Avatar className="w-9 h-9" />
               </div>
               <div className="flex-1">
                 <h3 className="text-white font-bold text-sm">{t.headerTitle}</h3>
@@ -385,8 +385,8 @@ const InsuranceChatbot = () => {
                     className={`flex mb-3 ${msg.role === "user" ? "justify-end" : "items-end gap-2"}`}
                   >
                     {msg.role === "bot" && (
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00a651] to-[#00c853] flex items-center justify-center flex-shrink-0">
-                        <Bot className="w-4 h-4 text-white" />
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00a651] to-[#00c853] flex items-center justify-center flex-shrink-0 overflow-hidden p-0.5">
+                        <Avatar className="w-6 h-6" />
                       </div>
                     )}
                     <div className="flex flex-col gap-2 max-w-[80%]">
