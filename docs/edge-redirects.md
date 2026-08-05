@@ -10,12 +10,44 @@ status code. `NotFound.tsx` renders a page; it cannot produce 404/410.
 
 **Therefore requirements 2, 3, 4 and 10 cannot be satisfied from this
 repository.** They must be applied in front of the origin, at the domain/CDN
-layer. `bringasinsurance.com` resolves through Cloudflare, so a Worker on the
-route `bringasinsurance.com/*` is the recommended place. The complete,
-ready-to-paste rule set is below; the source of truth for the lists is
-`src/config/redirects.ts`.
+layer.
+
+## Who controls the Cloudflare in front of this domain (verified)
+
+Measured on 2026-08-05:
+
+```
+bringasinsurance.com   NS   ns77.domaincontrol.com. / ns78.domaincontrol.com.   (GoDaddy)
+bringasinsurance.com   A    185.158.133.1                                       (Lovable hosting)
+response headers       server: cloudflare, cf-ray, __cf_bm
+```
+
+The domain is **not** on a Cloudflare zone. Authoritative DNS is GoDaddy, and
+the apex A record points straight at Lovable's hosting IP. The
+`server: cloudflare` / `cf-ray` / `__cf_bm` headers come from **Lovable's own
+Cloudflare account**, which fronts the Lovable hosting platform — it is shared
+infrastructure, not a per-customer zone. There is no zone dashboard for
+`bringasinsurance.com` that the domain owner or Lovable Support can attach a
+Worker Route to, and customers cannot deploy Workers into Lovable's
+infrastructure account.
+
+**Conclusion: the Worker below cannot be deployed as-is today.** Two ways
+forward:
+
+- **A — Move the zone to Cloudflare (domain owner action).** Create a free
+  Cloudflare account, add `bringasinsurance.com`, and change the nameservers
+  at GoDaddy to the two Cloudflare nameservers. Recreate the existing records
+  (apex A `185.158.133.1`, plus the current `www` record and any MX/TXT for
+  email — copy them from GoDaddy *before* switching). Then the zone is yours,
+  the records must be **Proxied (orange cloud)**, and the Worker + Routes below
+  apply exactly as written. This is a nameserver change and must not be done
+  without the owner's explicit confirmation.
+- **B — Host the site somewhere with real status-code control** (Vercel or
+  Netlify). See "Migration path" at the end of this document.
 
 ## Route, NOT Custom Domain
+
+*(Applies only after option A: the zone is on Cloudflare.)*
 
 Attach the Worker with a **Workers Route**, never with a **Custom Domain**.
 
@@ -27,9 +59,8 @@ Attach the Worker with a **Workers Route**, never with a **Custom Domain**.
   every `fetch(request)` pass-through in step 4 breaks (the site goes down or
   loops). Do not use it.
 
-Requirements for the Route to fire: the `bringasinsurance.com` DNS record must
-be **Proxied (orange cloud)** in Cloudflare DNS. It already is — production
-responses carry `server: cloudflare` and a `cf-ray` header.
+Requirement for the Route to fire: the `bringasinsurance.com` (and `www`)
+records must be **Proxied (orange cloud)** in *your* Cloudflare DNS.
 
 ### Which routes to add
 
@@ -40,6 +71,7 @@ responses carry `server: cloudflare` and a `cf-ray` header.
 
 Do not add routes for the `*.lovable.app` preview or published hostnames —
 those are not on this Cloudflare zone and must keep working untouched.
+
 
 ## Cloudflare Worker code
 
@@ -275,3 +307,88 @@ curl -sIL -o /dev/null -w '%{http_code} %{url_effective}\n' \
   https://bringasinsurance.com/payments/
 ```
 
+
+## Migration path — real 301/404/410 without Cloudflare
+
+This project is Vite + React (client-side SPA). Both providers below read a
+config file from the repo root and emit real status codes. Build stays
+`npm run build`, output dir `dist`.
+
+### Netlify (simplest)
+
+`public/_redirects` is ignored by Lovable hosting but honoured by Netlify.
+Create `netlify.toml` at the repo root:
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# 1) legacy WordPress URLs -> 301 (one line per entry in src/config/redirects.ts)
+[[redirects]]
+  from = "/seguros-para-autos-en-seattle-washington/*"
+  to   = "/auto-insurance"
+  status = 301
+  force = true
+# ... repeat for the other 16 entries ...
+
+# 2) deleted WordPress / spam -> 410
+[[redirects]]
+  from = "/wp-admin/*"
+  to   = "/410.html"
+  status = 410
+  force = true
+# ... /wp-content/*, /wp-includes/*, /wp-json/*, /wp-login*, /category/*,
+#     /tag/*, /feed/*, /author/*, /comments/*, /2024/*, /2025/*, /xmlrpc* ...
+
+# 3) SPA fallback for real routes -> 200
+[[redirects]]
+  from = "/*"
+  to   = "/index.html"
+  status = 200
+```
+
+Caveat: a catch-all SPA fallback at 200 means unknown URLs still return 200.
+To get a real **404** for unknown paths, replace rule 3 with one explicit
+200 rewrite per valid route (the 26 in `VALID_ROUTES`) and end with:
+
+```toml
+[[redirects]]
+  from = "/*"
+  to   = "/404.html"
+  status = 404
+```
+
+Add `public/404.html` and `public/410.html` (static, `<meta name="robots"
+content="noindex">`).
+
+### Vercel
+
+`vercel.json` at the repo root:
+
+```json
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/seguros-para-autos-en-seattle-washington", "destination": "/auto-insurance", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/auto-insurance", "destination": "/index.html" }
+  ],
+  "routes": [
+    { "src": "^/wp-(admin|content|includes|json|login)(/.*)?$", "status": 410, "dest": "/410.html" },
+    { "src": "^/\\d{4}(/.*)?$", "status": 410, "dest": "/410.html" }
+  ]
+}
+```
+
+Same principle: enumerate the valid routes as rewrites, everything unmatched
+falls through to Vercel's real 404.
+
+### Trade-offs
+
+- The Cloudflare Worker (option A) keeps hosting on Lovable and edits/publishes
+  keep working from the Lovable editor. Only the nameservers move.
+- Migrating to Netlify/Vercel means the live site is deployed from Git by that
+  provider; Lovable's Publish button no longer updates production, and DNS at
+  GoDaddy must point at the new provider.
