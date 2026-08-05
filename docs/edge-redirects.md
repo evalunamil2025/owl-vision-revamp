@@ -199,14 +199,79 @@ Notes:
 Deleted URLs are deliberately **not** disallowed, so Google can crawl them and
 record the 404/410. `robots.txt` only declares the sitemap.
 
-## Acceptance tests (run after the Worker is deployed)
+## What the Worker does NOT touch
+
+| Surface | Behaviour |
+| --- | --- |
+| Valid routes (the 26 in `VALID`) | Step 4 `fetch(request)` — original request forwarded to the Lovable origin unchanged: same headers, cookies, query string, status 200. |
+| Forms / POST / PUT / OPTIONS preflight | Step 0 returns `fetch(request)` before any rule runs. |
+| Analytics (GA4 `gtag`) | Loaded from `googletagmanager.com`, a different hostname — the Route never matches it. Beacons are POSTs to `google-analytics.com`, also off-zone. |
+| JS/CSS bundles, images, fonts | Matched by `ASSET` in step 1 and passed through. |
+| `robots.txt` | `.txt` matches `ASSET` — passed through, 200, unmodified. |
+| `sitemap.xml` | `.xml` matches `ASSET` — passed through, 200, unmodified. |
+| `favicon.ico`, `placeholder.svg` | Matched by `ASSET`. |
+| Preview / `*.lovable.app` URLs | Different zone, no Route, unaffected. |
+
+## Cloudflare dashboard deployment steps
+
+1. Sign in at <https://dash.cloudflare.com> and select the
+   **bringasinsurance.com** zone.
+2. **DNS → Records**: confirm the `bringasinsurance.com` (and `www`) records
+   show an **orange cloud / Proxied**. If grey, click it to proxy. A Worker
+   Route cannot fire on a DNS-only record.
+3. Left sidebar → **Workers & Pages → Create → Workers → Create Worker**.
+4. Name it `bringas-seo-status`, click **Deploy** (the placeholder code is
+   fine for now).
+5. Click **Edit code**, delete everything in `worker.js`, paste the full
+   Worker from the "Cloudflare Worker code" section above, then
+   **Deploy**.
+6. Go back to the Worker → **Settings → Domains & Routes → Add → Route**.
+   - Zone: `bringasinsurance.com`
+   - Route: `bringasinsurance.com/*`
+   - Failure mode: **Fail open** (if the Worker errors, traffic still reaches
+     the origin — the site never goes dark).
+   - Click **Add route**.
+   Do **not** pick **Custom Domain** in that dialog.
+7. Repeat step 6 for the route `www.bringasinsurance.com/*`.
+8. Zone → **Caching → Configuration → Purge Everything** so old cached 200s
+   for spam URLs are dropped.
+9. Wait ~30 seconds, then run the verification command below.
+
+Rollback: Worker → **Settings → Domains & Routes** → delete the two routes.
+Traffic returns to the current behaviour immediately; nothing in the Lovable
+project changes.
+
+## Final curl verification
 
 ```sh
 for p in / /auto-insurance /faq/ /2025/test-spam-page/ /wp-admin/ \
-         /random-nonexistent-url-12345/ /seguros-para-autos-en-seattle-washington/ /payments/; do
-  curl -s -o /dev/null -w "%{http_code} %{redirect_url} $p\n" "https://bringasinsurance.com$p"
+         /random-nonexistent-url-12345/ /seguros-para-autos-en-seattle-washington/ \
+         /payments/ /robots.txt /sitemap.xml; do
+  printf '%-58s ' "$p"
+  curl -s -o /dev/null -w '%{http_code} %{redirect_url}\n' "https://bringasinsurance.com$p"
 done
 ```
 
-Expected: `200`, `200`, `404`, `410`, `410`, `404`, `301 -> /auto-insurance`,
-`301 -> /pay-my-bill`.
+Expected output:
+
+```text
+/                                                          200
+/auto-insurance                                            200
+/faq/                                                      404
+/2025/test-spam-page/                                      410
+/wp-admin/                                                 410
+/random-nonexistent-url-12345/                             404
+/seguros-para-autos-en-seattle-washington/                 301 https://bringasinsurance.com/auto-insurance
+/payments/                                                 301 https://bringasinsurance.com/pay-my-bill
+/robots.txt                                                200
+/sitemap.xml                                               200
+```
+
+Single-hop check for every redirect (must print exactly one `301` line then a
+`200`):
+
+```sh
+curl -sIL -o /dev/null -w '%{http_code} %{url_effective}\n' \
+  https://bringasinsurance.com/payments/
+```
+
