@@ -15,7 +15,33 @@ route `bringasinsurance.com/*` is the recommended place. The complete,
 ready-to-paste rule set is below; the source of truth for the lists is
 `src/config/redirects.ts`.
 
-## Cloudflare Worker (paste into a Worker on route `bringasinsurance.com/*`)
+## Route, NOT Custom Domain
+
+Attach the Worker with a **Workers Route**, never with a **Custom Domain**.
+
+- A **Route** intercepts traffic for a hostname that already resolves through
+  Cloudflare and lets the Worker call `fetch()` back to the existing origin —
+  which stays **Lovable**. This is what we need.
+- A **Custom Domain** makes the Worker itself the origin: Cloudflare rewrites
+  the DNS record to point at the Worker, the Lovable origin is detached, and
+  every `fetch(request)` pass-through in step 4 breaks (the site goes down or
+  loops). Do not use it.
+
+Requirements for the Route to fire: the `bringasinsurance.com` DNS record must
+be **Proxied (orange cloud)** in Cloudflare DNS. It already is — production
+responses carry `server: cloudflare` and a `cf-ray` header.
+
+### Which routes to add
+
+| Route pattern | Add it? |
+| --- | --- |
+| `bringasinsurance.com/*` | **Yes** — this is the production hostname (HTTP 200). |
+| `www.bringasinsurance.com/*` | **Yes** — `www` is active today: it answers `302 -> https://bringasinsurance.com/`. Without the Worker, a legacy `www` URL costs two hops (302 to apex, then 301). With the Worker on `www` too, `REDIRECTS` resolves against `CANON`, so it is a single 301 straight to the final apex URL. |
+
+Do not add routes for the `*.lovable.app` preview or published hostnames —
+those are not on this Cloudflare zone and must keep working untouched.
+
+## Cloudflare Worker code
 
 ```js
 const REDIRECTS = {
@@ -57,13 +83,22 @@ const GONE = [
   /^\/xmlrpc/i,
 ];
 
-// Static assets that must always pass through untouched.
+// Static assets that must always pass through untouched
+// (includes robots.txt, sitemap.xml, favicon, JS/CSS bundles, images, fonts).
 const ASSET = /\.(js|mjs|css|png|jpe?g|webp|avif|gif|svg|ico|woff2?|ttf|txt|xml|json|map|webmanifest|mp4|pdf)$/i;
 
-async function shell(url, request, status) {
+// Canonical host. Redirect targets always land on the apex so a www hit is
+// still a single hop, and the shell fetch never depends on the incoming host.
+const CANON = "https://bringasinsurance.com";
+
+async function shell(status) {
   // Reuse the SPA shell as the body so users still see a branded page,
   // but with the correct status code and X-Robots-Tag.
-  const res = await fetch(new Request(url.origin + "/", request));
+  // Plain GET: never replays the original method/body/cookies.
+  const res = await fetch(CANON + "/", {
+    headers: { accept: "text/html" },
+    cf: { cacheTtl: 300 },
+  });
   return new Response(await res.text(), {
     status,
     headers: {
@@ -80,31 +115,49 @@ export default {
     const raw = url.pathname;
     const path = raw.length > 1 ? raw.replace(/\/+$/, "").toLowerCase() : "/";
 
-    // 1) Single-hop 301 for legitimate migrated URLs
-    if (REDIRECTS[path]) {
-      return Response.redirect(url.origin + REDIRECTS[path] + url.search, 301);
-    }
-
-    // 2) 410 Gone for deleted WordPress / spam / hacked paths
-    if (GONE.some((re) => re.test(path))) {
-      return shell(url, request, 410);
-    }
-
-    // 3) 200 for real assets and valid app routes
-    if (ASSET.test(raw) || VALID.has(path)) {
+    // 0) Anything that is not a plain page read (form POST, preflight, API
+    //    call, beacon) goes straight to the origin, untouched.
+    if (request.method !== "GET" && request.method !== "HEAD") {
       return fetch(request);
     }
 
-    // 4) Everything else: real 404 — never a redirect to "/"
-    return shell(url, request, 404);
+    // 1) Static assets, robots.txt and sitemap.xml: never rewritten.
+    if (ASSET.test(raw)) return fetch(request);
+
+    // 2) Single-hop 301 for legitimate migrated URLs.
+    //    Query string is preserved here only (campaign params must survive).
+    if (REDIRECTS[path]) {
+      const target = CANON + REDIRECTS[path] + url.search;
+      // Loop guard: never redirect a URL to itself.
+      if (target !== url.origin + raw + url.search) {
+        return Response.redirect(target, 301);
+      }
+    }
+
+    // 3) 410 Gone for deleted WordPress / spam / hacked paths.
+    //    No query string is carried: the resource is gone.
+    if (GONE.some((re) => re.test(path))) {
+      return shell(410);
+    }
+
+    // 4) 200 for valid app routes — fetched from the Lovable origin as-is.
+    if (VALID.has(path)) return fetch(request);
+
+    // 5) Everything else: real 404 — never a redirect to "/".
+    return shell(404);
   },
 };
 ```
 
 Notes:
 - Trailing slashes are normalised, so `/payments/` and `/payments` both match.
-- Redirect targets are all in `VALID`, so every redirect is single-hop.
+- Every redirect target is a member of `VALID`, so no chained redirects; the
+  explicit loop guard also blocks a self-redirect if the table is edited badly.
 - No rule maps an unknown URL to `/` with a 200 or a redirect.
+- `fetch(CANON + "/")` from inside the Worker is a subrequest to the origin;
+  Cloudflare does not re-invoke the same Worker script on it, so there is no
+  recursion.
+
 
 ## Redirect table (301, single-hop)
 
@@ -146,14 +199,79 @@ Notes:
 Deleted URLs are deliberately **not** disallowed, so Google can crawl them and
 record the 404/410. `robots.txt` only declares the sitemap.
 
-## Acceptance tests (run after the Worker is deployed)
+## What the Worker does NOT touch
+
+| Surface | Behaviour |
+| --- | --- |
+| Valid routes (the 26 in `VALID`) | Step 4 `fetch(request)` — original request forwarded to the Lovable origin unchanged: same headers, cookies, query string, status 200. |
+| Forms / POST / PUT / OPTIONS preflight | Step 0 returns `fetch(request)` before any rule runs. |
+| Analytics (GA4 `gtag`) | Loaded from `googletagmanager.com`, a different hostname — the Route never matches it. Beacons are POSTs to `google-analytics.com`, also off-zone. |
+| JS/CSS bundles, images, fonts | Matched by `ASSET` in step 1 and passed through. |
+| `robots.txt` | `.txt` matches `ASSET` — passed through, 200, unmodified. |
+| `sitemap.xml` | `.xml` matches `ASSET` — passed through, 200, unmodified. |
+| `favicon.ico`, `placeholder.svg` | Matched by `ASSET`. |
+| Preview / `*.lovable.app` URLs | Different zone, no Route, unaffected. |
+
+## Cloudflare dashboard deployment steps
+
+1. Sign in at <https://dash.cloudflare.com> and select the
+   **bringasinsurance.com** zone.
+2. **DNS → Records**: confirm the `bringasinsurance.com` (and `www`) records
+   show an **orange cloud / Proxied**. If grey, click it to proxy. A Worker
+   Route cannot fire on a DNS-only record.
+3. Left sidebar → **Workers & Pages → Create → Workers → Create Worker**.
+4. Name it `bringas-seo-status`, click **Deploy** (the placeholder code is
+   fine for now).
+5. Click **Edit code**, delete everything in `worker.js`, paste the full
+   Worker from the "Cloudflare Worker code" section above, then
+   **Deploy**.
+6. Go back to the Worker → **Settings → Domains & Routes → Add → Route**.
+   - Zone: `bringasinsurance.com`
+   - Route: `bringasinsurance.com/*`
+   - Failure mode: **Fail open** (if the Worker errors, traffic still reaches
+     the origin — the site never goes dark).
+   - Click **Add route**.
+   Do **not** pick **Custom Domain** in that dialog.
+7. Repeat step 6 for the route `www.bringasinsurance.com/*`.
+8. Zone → **Caching → Configuration → Purge Everything** so old cached 200s
+   for spam URLs are dropped.
+9. Wait ~30 seconds, then run the verification command below.
+
+Rollback: Worker → **Settings → Domains & Routes** → delete the two routes.
+Traffic returns to the current behaviour immediately; nothing in the Lovable
+project changes.
+
+## Final curl verification
 
 ```sh
 for p in / /auto-insurance /faq/ /2025/test-spam-page/ /wp-admin/ \
-         /random-nonexistent-url-12345/ /seguros-para-autos-en-seattle-washington/ /payments/; do
-  curl -s -o /dev/null -w "%{http_code} %{redirect_url} $p\n" "https://bringasinsurance.com$p"
+         /random-nonexistent-url-12345/ /seguros-para-autos-en-seattle-washington/ \
+         /payments/ /robots.txt /sitemap.xml; do
+  printf '%-58s ' "$p"
+  curl -s -o /dev/null -w '%{http_code} %{redirect_url}\n' "https://bringasinsurance.com$p"
 done
 ```
 
-Expected: `200`, `200`, `404`, `410`, `410`, `404`, `301 -> /auto-insurance`,
-`301 -> /pay-my-bill`.
+Expected output:
+
+```text
+/                                                          200
+/auto-insurance                                            200
+/faq/                                                      404
+/2025/test-spam-page/                                      410
+/wp-admin/                                                 410
+/random-nonexistent-url-12345/                             404
+/seguros-para-autos-en-seattle-washington/                 301 https://bringasinsurance.com/auto-insurance
+/payments/                                                 301 https://bringasinsurance.com/pay-my-bill
+/robots.txt                                                200
+/sitemap.xml                                               200
+```
+
+Single-hop check for every redirect (must print exactly one `301` line then a
+`200`):
+
+```sh
+curl -sIL -o /dev/null -w '%{http_code} %{url_effective}\n' \
+  https://bringasinsurance.com/payments/
+```
+
