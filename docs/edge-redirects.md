@@ -307,3 +307,88 @@ curl -sIL -o /dev/null -w '%{http_code} %{url_effective}\n' \
   https://bringasinsurance.com/payments/
 ```
 
+
+## Migration path — real 301/404/410 without Cloudflare
+
+This project is Vite + React (client-side SPA). Both providers below read a
+config file from the repo root and emit real status codes. Build stays
+`npm run build`, output dir `dist`.
+
+### Netlify (simplest)
+
+`public/_redirects` is ignored by Lovable hosting but honoured by Netlify.
+Create `netlify.toml` at the repo root:
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# 1) legacy WordPress URLs -> 301 (one line per entry in src/config/redirects.ts)
+[[redirects]]
+  from = "/seguros-para-autos-en-seattle-washington/*"
+  to   = "/auto-insurance"
+  status = 301
+  force = true
+# ... repeat for the other 16 entries ...
+
+# 2) deleted WordPress / spam -> 410
+[[redirects]]
+  from = "/wp-admin/*"
+  to   = "/410.html"
+  status = 410
+  force = true
+# ... /wp-content/*, /wp-includes/*, /wp-json/*, /wp-login*, /category/*,
+#     /tag/*, /feed/*, /author/*, /comments/*, /2024/*, /2025/*, /xmlrpc* ...
+
+# 3) SPA fallback for real routes -> 200
+[[redirects]]
+  from = "/*"
+  to   = "/index.html"
+  status = 200
+```
+
+Caveat: a catch-all SPA fallback at 200 means unknown URLs still return 200.
+To get a real **404** for unknown paths, replace rule 3 with one explicit
+200 rewrite per valid route (the 26 in `VALID_ROUTES`) and end with:
+
+```toml
+[[redirects]]
+  from = "/*"
+  to   = "/404.html"
+  status = 404
+```
+
+Add `public/404.html` and `public/410.html` (static, `<meta name="robots"
+content="noindex">`).
+
+### Vercel
+
+`vercel.json` at the repo root:
+
+```json
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/seguros-para-autos-en-seattle-washington", "destination": "/auto-insurance", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/auto-insurance", "destination": "/index.html" }
+  ],
+  "routes": [
+    { "src": "^/wp-(admin|content|includes|json|login)(/.*)?$", "status": 410, "dest": "/410.html" },
+    { "src": "^/\\d{4}(/.*)?$", "status": 410, "dest": "/410.html" }
+  ]
+}
+```
+
+Same principle: enumerate the valid routes as rewrites, everything unmatched
+falls through to Vercel's real 404.
+
+### Trade-offs
+
+- The Cloudflare Worker (option A) keeps hosting on Lovable and edits/publishes
+  keep working from the Lovable editor. Only the nameservers move.
+- Migrating to Netlify/Vercel means the live site is deployed from Git by that
+  provider; Lovable's Publish button no longer updates production, and DNS at
+  GoDaddy must point at the new provider.
