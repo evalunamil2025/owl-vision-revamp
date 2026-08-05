@@ -15,7 +15,33 @@ route `bringasinsurance.com/*` is the recommended place. The complete,
 ready-to-paste rule set is below; the source of truth for the lists is
 `src/config/redirects.ts`.
 
-## Cloudflare Worker (paste into a Worker on route `bringasinsurance.com/*`)
+## Route, NOT Custom Domain
+
+Attach the Worker with a **Workers Route**, never with a **Custom Domain**.
+
+- A **Route** intercepts traffic for a hostname that already resolves through
+  Cloudflare and lets the Worker call `fetch()` back to the existing origin —
+  which stays **Lovable**. This is what we need.
+- A **Custom Domain** makes the Worker itself the origin: Cloudflare rewrites
+  the DNS record to point at the Worker, the Lovable origin is detached, and
+  every `fetch(request)` pass-through in step 4 breaks (the site goes down or
+  loops). Do not use it.
+
+Requirements for the Route to fire: the `bringasinsurance.com` DNS record must
+be **Proxied (orange cloud)** in Cloudflare DNS. It already is — production
+responses carry `server: cloudflare` and a `cf-ray` header.
+
+### Which routes to add
+
+| Route pattern | Add it? |
+| --- | --- |
+| `bringasinsurance.com/*` | **Yes** — this is the production hostname (HTTP 200). |
+| `www.bringasinsurance.com/*` | **Yes** — `www` is active today: it answers `302 -> https://bringasinsurance.com/`. Without the Worker, a legacy `www` URL costs two hops (302 to apex, then 301). With the Worker on `www` too, `REDIRECTS` resolves against `CANON`, so it is a single 301 straight to the final apex URL. |
+
+Do not add routes for the `*.lovable.app` preview or published hostnames —
+those are not on this Cloudflare zone and must keep working untouched.
+
+## Cloudflare Worker code
 
 ```js
 const REDIRECTS = {
