@@ -41,7 +41,9 @@ forward:
   email — copy them from GoDaddy *before* switching). Then the zone is yours,
   the records must be **Proxied (orange cloud)**, and the Worker + Routes below
   apply exactly as written. This is a nameserver change and must not be done
-  without the owner's explicit confirmation.
+  without the owner's explicit confirmation. **Full inventory, checklist and
+  rollback: [`docs/dns-migration-cloudflare.md`](./dns-migration-cloudflare.md).**
+
 - **B — Host the site somewhere with real status-code control** (Vercel or
   Netlify). See "Migration path" at the end of this document.
 
