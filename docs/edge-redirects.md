@@ -10,12 +10,44 @@ status code. `NotFound.tsx` renders a page; it cannot produce 404/410.
 
 **Therefore requirements 2, 3, 4 and 10 cannot be satisfied from this
 repository.** They must be applied in front of the origin, at the domain/CDN
-layer. `bringasinsurance.com` resolves through Cloudflare, so a Worker on the
-route `bringasinsurance.com/*` is the recommended place. The complete,
-ready-to-paste rule set is below; the source of truth for the lists is
-`src/config/redirects.ts`.
+layer.
+
+## Who controls the Cloudflare in front of this domain (verified)
+
+Measured on 2026-08-05:
+
+```
+bringasinsurance.com   NS   ns77.domaincontrol.com. / ns78.domaincontrol.com.   (GoDaddy)
+bringasinsurance.com   A    185.158.133.1                                       (Lovable hosting)
+response headers       server: cloudflare, cf-ray, __cf_bm
+```
+
+The domain is **not** on a Cloudflare zone. Authoritative DNS is GoDaddy, and
+the apex A record points straight at Lovable's hosting IP. The
+`server: cloudflare` / `cf-ray` / `__cf_bm` headers come from **Lovable's own
+Cloudflare account**, which fronts the Lovable hosting platform — it is shared
+infrastructure, not a per-customer zone. There is no zone dashboard for
+`bringasinsurance.com` that the domain owner or Lovable Support can attach a
+Worker Route to, and customers cannot deploy Workers into Lovable's
+infrastructure account.
+
+**Conclusion: the Worker below cannot be deployed as-is today.** Two ways
+forward:
+
+- **A — Move the zone to Cloudflare (domain owner action).** Create a free
+  Cloudflare account, add `bringasinsurance.com`, and change the nameservers
+  at GoDaddy to the two Cloudflare nameservers. Recreate the existing records
+  (apex A `185.158.133.1`, plus the current `www` record and any MX/TXT for
+  email — copy them from GoDaddy *before* switching). Then the zone is yours,
+  the records must be **Proxied (orange cloud)**, and the Worker + Routes below
+  apply exactly as written. This is a nameserver change and must not be done
+  without the owner's explicit confirmation.
+- **B — Host the site somewhere with real status-code control** (Vercel or
+  Netlify). See "Migration path" at the end of this document.
 
 ## Route, NOT Custom Domain
+
+*(Applies only after option A: the zone is on Cloudflare.)*
 
 Attach the Worker with a **Workers Route**, never with a **Custom Domain**.
 
@@ -27,9 +59,8 @@ Attach the Worker with a **Workers Route**, never with a **Custom Domain**.
   every `fetch(request)` pass-through in step 4 breaks (the site goes down or
   loops). Do not use it.
 
-Requirements for the Route to fire: the `bringasinsurance.com` DNS record must
-be **Proxied (orange cloud)** in Cloudflare DNS. It already is — production
-responses carry `server: cloudflare` and a `cf-ray` header.
+Requirement for the Route to fire: the `bringasinsurance.com` (and `www`)
+records must be **Proxied (orange cloud)** in *your* Cloudflare DNS.
 
 ### Which routes to add
 
@@ -40,6 +71,7 @@ responses carry `server: cloudflare` and a `cf-ray` header.
 
 Do not add routes for the `*.lovable.app` preview or published hostnames —
 those are not on this Cloudflare zone and must keep working untouched.
+
 
 ## Cloudflare Worker code
 
