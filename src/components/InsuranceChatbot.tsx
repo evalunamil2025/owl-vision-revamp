@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageSquare, X, Send, ArrowRight } from "lucide-react";
+import { X, Send, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -336,10 +336,11 @@ const InsuranceChatbot = () => {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             onClick={() => setOpen(true)}
-            className="fixed bottom-6 right-6 z-[100] w-16 h-16 rounded-full bg-[#00a651] text-white shadow-2xl flex items-center justify-center hover:scale-110 transition-transform"
+            className="fixed bottom-6 right-6 z-[100] w-16 h-16 rounded-full bg-[#00a651] shadow-2xl flex items-center justify-center hover:scale-110 transition-transform overflow-hidden p-1"
+            aria-label="Open chat"
           >
             <span className="absolute inset-0 rounded-full bg-[#00a651]/30 animate-ping" />
-            <MessageSquare className="w-7 h-7 relative z-10" />
+            <Avatar className="w-full h-full relative z-10" />
           </motion.button>
         )}
       </AnimatePresence>
