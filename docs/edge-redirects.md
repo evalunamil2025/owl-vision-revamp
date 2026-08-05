@@ -57,13 +57,22 @@ const GONE = [
   /^\/xmlrpc/i,
 ];
 
-// Static assets that must always pass through untouched.
+// Static assets that must always pass through untouched
+// (includes robots.txt, sitemap.xml, favicon, JS/CSS bundles, images, fonts).
 const ASSET = /\.(js|mjs|css|png|jpe?g|webp|avif|gif|svg|ico|woff2?|ttf|txt|xml|json|map|webmanifest|mp4|pdf)$/i;
 
-async function shell(url, request, status) {
+// Canonical host. Redirect targets always land on the apex so a www hit is
+// still a single hop, and the shell fetch never depends on the incoming host.
+const CANON = "https://bringasinsurance.com";
+
+async function shell(status) {
   // Reuse the SPA shell as the body so users still see a branded page,
   // but with the correct status code and X-Robots-Tag.
-  const res = await fetch(new Request(url.origin + "/", request));
+  // Plain GET: never replays the original method/body/cookies.
+  const res = await fetch(CANON + "/", {
+    headers: { accept: "text/html" },
+    cf: { cacheTtl: 300 },
+  });
   return new Response(await res.text(), {
     status,
     headers: {
@@ -80,31 +89,49 @@ export default {
     const raw = url.pathname;
     const path = raw.length > 1 ? raw.replace(/\/+$/, "").toLowerCase() : "/";
 
-    // 1) Single-hop 301 for legitimate migrated URLs
-    if (REDIRECTS[path]) {
-      return Response.redirect(url.origin + REDIRECTS[path] + url.search, 301);
-    }
-
-    // 2) 410 Gone for deleted WordPress / spam / hacked paths
-    if (GONE.some((re) => re.test(path))) {
-      return shell(url, request, 410);
-    }
-
-    // 3) 200 for real assets and valid app routes
-    if (ASSET.test(raw) || VALID.has(path)) {
+    // 0) Anything that is not a plain page read (form POST, preflight, API
+    //    call, beacon) goes straight to the origin, untouched.
+    if (request.method !== "GET" && request.method !== "HEAD") {
       return fetch(request);
     }
 
-    // 4) Everything else: real 404 — never a redirect to "/"
-    return shell(url, request, 404);
+    // 1) Static assets, robots.txt and sitemap.xml: never rewritten.
+    if (ASSET.test(raw)) return fetch(request);
+
+    // 2) Single-hop 301 for legitimate migrated URLs.
+    //    Query string is preserved here only (campaign params must survive).
+    if (REDIRECTS[path]) {
+      const target = CANON + REDIRECTS[path] + url.search;
+      // Loop guard: never redirect a URL to itself.
+      if (target !== url.origin + raw + url.search) {
+        return Response.redirect(target, 301);
+      }
+    }
+
+    // 3) 410 Gone for deleted WordPress / spam / hacked paths.
+    //    No query string is carried: the resource is gone.
+    if (GONE.some((re) => re.test(path))) {
+      return shell(410);
+    }
+
+    // 4) 200 for valid app routes — fetched from the Lovable origin as-is.
+    if (VALID.has(path)) return fetch(request);
+
+    // 5) Everything else: real 404 — never a redirect to "/".
+    return shell(404);
   },
 };
 ```
 
 Notes:
 - Trailing slashes are normalised, so `/payments/` and `/payments` both match.
-- Redirect targets are all in `VALID`, so every redirect is single-hop.
+- Every redirect target is a member of `VALID`, so no chained redirects; the
+  explicit loop guard also blocks a self-redirect if the table is edited badly.
 - No rule maps an unknown URL to `/` with a 200 or a redirect.
+- `fetch(CANON + "/")` from inside the Worker is a subrequest to the origin;
+  Cloudflare does not re-invoke the same Worker script on it, so there is no
+  recursion.
+
 
 ## Redirect table (301, single-hop)
 
