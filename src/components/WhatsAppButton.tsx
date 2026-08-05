@@ -11,10 +11,14 @@ const WhatsAppButton = () => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-6 left-6 z-[60] flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300"
+      className="fixed bottom-6 left-6 z-[60] flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 overflow-hidden"
     >
       <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30" />
-      <WhatsAppIcon className="w-8 h-8 relative z-10" />
+      <img
+        src={owlinAvatar.url}
+        alt="Owlin"
+        className="w-full h-full object-cover relative z-10"
+      />
     </a>
   );
 };
