@@ -1,20 +1,40 @@
-import { useLocation } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { Navigate, useLocation } from "react-router-dom";
 import SEO from "@/components/SEO";
+import { isGone, resolveLegacyRedirect } from "@/config/redirects";
 
-// Legacy paths from the previous (compromised) WordPress site: dated archives
-// like /2025/08/05/... and *.php endpoints. They are permanently gone, so we
-// signal that explicitly instead of presenting them as a generic missing page.
-const GONE_PATTERNS = [/^\/\d{4}\/\d{2}(\/|$)/, /\.php$/i, /^\/wp-(admin|content|includes)(\/|$)/i];
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
 
 const NotFound = () => {
   const location = useLocation();
-  const isGone = GONE_PATTERNS.some((re) => re.test(location.pathname));
+  const gone = isGone(location.pathname);
+  const redirectTo = resolveLegacyRedirect(location.pathname);
+  const tracked = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (redirectTo) return;
+    // Avoid duplicate events for the same path (StrictMode / re-renders)
+    if (tracked.current === location.pathname) return;
+    tracked.current = location.pathname;
+    window.gtag?.("event", "page_not_found", {
+      page_path: location.pathname + location.search,
+      page_location: window.location.href,
+      page_referrer: document.referrer || undefined,
+    });
+  }, [location.pathname, location.search, redirectTo]);
+
+  // Client-side fallback for migrated URLs; the real 301 is issued at the edge.
+  if (redirectTo) return <Navigate to={redirectTo} replace />;
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted">
       <SEO
         title={
-          isGone
+          gone
             ? "Page Removed | Bringas Insurance Group"
             : "Page Not Found | Bringas Insurance Group"
         }
@@ -23,9 +43,9 @@ const NotFound = () => {
         noindex
       />
       <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">{isGone ? "410" : "404"}</h1>
+        <h1 className="mb-4 text-4xl font-bold">{gone ? "410" : "404"}</h1>
         <p className="mb-4 text-xl text-muted-foreground">
-          {isGone
+          {gone
             ? "This page has been permanently removed."
             : "Oops! Page not found"}
         </p>
