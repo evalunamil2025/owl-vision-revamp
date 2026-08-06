@@ -12,7 +12,11 @@ interface SEOProps {
 const SITE = "https://bringasinsurance.com";
 
 const SEO = ({ title, description, path, type = "website", jsonLd, noindex }: SEOProps) => {
-  const url = `${SITE}${path === "/" ? "/" : path.replace(/\/$/, "")}`;
+  // Canonicals are always emitted without query string or hash, so tracking
+  // variants (?v=, ?tid=, ?lang=) collapse into a single indexable URL.
+  const cleanPath = path.split(/[?#]/)[0];
+  const url = `${SITE}${cleanPath === "/" ? "/" : cleanPath.replace(/\/$/, "")}`;
+
   const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
   return (
     <Helmet>
