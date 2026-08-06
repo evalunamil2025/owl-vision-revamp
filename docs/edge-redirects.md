@@ -12,40 +12,81 @@ status code. `NotFound.tsx` renders a page; it cannot produce 404/410.
 repository.** They must be applied in front of the origin, at the domain/CDN
 layer.
 
-## Who controls the Cloudflare in front of this domain (verified)
+## Status 2026-08-06 — DNS migrated, Worker deployed, Worker NOT firing
 
-Measured on 2026-08-05:
+Verified today:
 
 ```
-bringasinsurance.com   NS   ns77.domaincontrol.com. / ns78.domaincontrol.com.   (GoDaddy)
-bringasinsurance.com   A    185.158.133.1                                       (Lovable hosting)
-response headers       server: cloudflare, cf-ray, __cf_bm
+NS                       james.ns.cloudflare.com / serenity.ns.cloudflare.com   (customer zone ✔)
+A @ / www                188.114.96.0 / 188.114.97.0                            (Proxied ✔)
+MX                       bringasinsurance-com.mail.protection.outlook.com       (intact ✔)
+Worker on workers.dev    /wp-admin/ → 410   /payments/ → 301   /nope → 404      (code works ✔)
+Worker on the domain     /wp-admin/ → 200 (Lovable HTML, x-deployment-id)       (NOT firing ✘)
+Worker metrics           0 req/sec, 0% errors                                   (0 invocations ✘)
 ```
 
-The domain is **not** on a Cloudflare zone. Authoritative DNS is GoDaddy, and
-the apex A record points straight at Lovable's hosting IP. The
-`server: cloudflare` / `cf-ray` / `__cf_bm` headers come from **Lovable's own
-Cloudflare account**, which fronts the Lovable hosting platform — it is shared
-infrastructure, not a per-customer zone. There is no zone dashboard for
-`bringasinsurance.com` that the domain owner or Lovable Support can attach a
-Worker Route to, and customers cannot deploy Workers into Lovable's
-infrastructure account.
+The Worker code is correct and deployed. The Routes exist. The Worker simply
+never receives the requests.
 
-**Conclusion: the Worker below cannot be deployed as-is today.** Two ways
-forward:
+### Root cause: orange-to-orange (O2O)
 
-- **A — Move the zone to Cloudflare (domain owner action).** Create a free
-  Cloudflare account, add `bringasinsurance.com`, and change the nameservers
-  at GoDaddy to the two Cloudflare nameservers. Recreate the existing records
-  (apex A `185.158.133.1`, plus the current `www` record and any MX/TXT for
-  email — copy them from GoDaddy *before* switching). Then the zone is yours,
-  the records must be **Proxied (orange cloud)**, and the Worker + Routes below
-  apply exactly as written. This is a nameserver change and must not be done
-  without the owner's explicit confirmation. **Full inventory, checklist and
-  rollback: [`docs/dns-migration-cloudflare.md`](./dns-migration-cloudflare.md).**
+Lovable serves this domain through **Cloudflare for SaaS** (a custom hostname
+inside Lovable's own Cloudflare zone). Our proxied record therefore points at
+another Cloudflare zone — the "orange-to-orange" configuration. Under O2O the
+**downstream (SaaS) zone takes over request handling, and Workers Routes in the
+customer zone are bypassed.** That is exactly what the metrics show: routes
+matched by pattern, but no invocations.
 
-- **B — Host the site somewhere with real status-code control** (Vercel or
-  Netlify). See "Migration path" at the end of this document.
+Making the Worker a **Custom Domain** instead would fix execution but detach
+the Lovable origin: the Worker would have to `fetch()` the site back, and the
+Lovable published origin (`owl-vision-revamp.lovable.app`) 302-redirects to
+`bringasinsurance.com`, so a proxy Worker would loop. **Do not do this.**
+
+### Solution: Redirect Rules + WAF custom response (no Worker)
+
+Rules Engine features run at the customer zone edge and **do** apply under O2O.
+Replace the Worker with two native Cloudflare features:
+
+**1. 301s → Bulk Redirects** (Account Home → Bulk Redirects → Create list
+`bringas-legacy`, then a Bulk Redirect Rule using it)
+
+For every pair in the "Redirect table" section below, add a list item:
+
+| Source URL | Target URL | Status |
+| --- | --- | --- |
+| `bringasinsurance.com/payments` | `https://bringasinsurance.com/pay-my-bill` | 301 |
+| `bringasinsurance.com/pagos` | `https://bringasinsurance.com/pay-my-bill` | 301 |
+| ... (all rows from the table below, plus the `www.` variant of each) | | |
+
+Enable *Preserve query string* = off, *Subpath matching* = off,
+*Include subdomains* = on (covers `www.` without duplicating rows).
+
+**2. 410s → WAF Custom Rule** (Security → WAF → Custom rules → Create rule
+`spam-410`, Action = **Block**, then set the custom response to status **410**
+with content type `text/html`)
+
+Expression:
+
+```
+(http.request.uri.path matches "^/wp-(admin|content|includes|json|login)(/|$)")
+or (http.request.uri.path matches "^/(category|tag|feed|author|comments)(/|$)")
+or (http.request.uri.path matches "^/\\d{4}(/|$)")
+or (http.request.uri.path matches "\\.(php|htm|asp|aspx)$")
+or (http.request.uri.path matches "^/(shopdetail|shopping|cart|checkout|myaccount|order)(/|$)")
+```
+
+**3. Verification** — after both are live, run the curl block in
+"Final curl verification" below. Expect `301` for legacy paths, `410` for spam
+paths, `200` for the 26 valid routes.
+
+Keep the Worker deployed but **remove its two Routes** once the rules are live,
+so there is only one source of truth.
+
+### If Redirect Rules also turn out to be bypassed
+
+Then the only remaining option is **B — host the site somewhere with real
+status-code control** (Vercel or Netlify). See "Migration path" at the end of
+this document.
 
 ## Route, NOT Custom Domain
 
