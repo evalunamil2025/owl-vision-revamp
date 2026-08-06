@@ -195,25 +195,43 @@ Notes:
 
 ## Redirect table (301, single-hop)
 
+The authoritative table is `LEGACY_REDIRECTS` in `src/config/redirects.ts` —
+copy it verbatim into the Worker's `REDIRECTS` constant. It currently covers
+every legacy URL reported by Search Console on 2026-08-06 (404, soft 404 and
+"crawled – currently not indexed"):
+
 | Old URL | New URL |
 | --- | --- |
-| /seguros-para-autos-en-seattle-washington/ | /auto-insurance |
-| /car-insurance-in-seattle-washington/ | /auto-insurance |
-| /seguros-de-vida-en-seattle-washington/ | /life-insurance |
-| /life-insurance-in-seattle-washington/ | /life-insurance |
-| /seguros-para-propiedad-comercial-en-seattle-washington/ | /commercial-property |
-| /commercial-property-insurance-in-seattle-washington/ | /commercial-property |
-| /restaurant-insurance-in-seattle-washington/ | /restaurant-insurance |
-| /renters-insurance-in-seattle-washington/ | /renters-insurance |
-| /recreational-vehicle-insurance-in-seattle-washington/ | /rv-insurance |
-| /contractors-insurance-in-seattle-washington/ | /contractors-insurance |
-| /payments/ | /pay-my-bill |
-| /pagos/ | /pay-my-bill |
+| /seguros-para-autos-en-seattle-washington/, /car-insurance-in-seattle-washington/, /auto-insurance-in-seattle-washington/ | /auto-insurance |
+| /seguros-de-hogar-…/, /seguros-de-propietarios-…/, /home-insurance-in-…/, /homeowners-insurance-in-…/ | /home-insurance |
+| /seguro-para-casas-prefabricadas/, /mobile-home-insurance-in-…/ | /mobile-home-insurance |
+| /landlord-insurance-in-…/, /seguros-para-arrendadores-…/ | /landlord-insurance |
+| /renters-insurance-in-…/, /seguros-para-inquilinos-…/ | /renters-insurance |
+| /seguros-de-vida-…/, /life-insurance-in-…/ | /life-insurance |
+| /motorcycle-insurance-in-…/, /seguros-para-motocicleta-…/ | /motorcycle-insurance |
+| /boat-insurance-in-…/, /seguros-para-botes-…/ | /boat-insurance |
+| /recreational-vehicle-insurance/, /recreational-vehicle-insurance-in-…/, /seguro-para-vehiculos-recreativos-…/ | /rv-insurance |
+| /personal-umbrella-in-…/, /paraguas-personal-…/ | /personal-umbrella |
+| /commercial-property-insurance-in-…/, /seguros-para-propiedad-comercial-…/ | /commercial-property |
+| /commercial-auto-insurance-in-…/, /seguro-auto-comercial-…/ | /commercial-auto |
+| /business-owners-insurance-in-…/, /seguros-para-propietarios-de-negocios-…/ | /bop-insurance |
+| /building-insurance-in-…/, /seguros-para-propietarios-de-edificios-…/ | /building-owners |
+| /general-insurance-in-…/, /general-liability-insurance-in-…/, /seguros-de-responsabilidad-general-…/ | /general-liability |
+| /restaurant-insurance-in-…/, /seguros-para-restaurantes-…/ | /restaurant-insurance |
+| /contractors-insurance-in-…/, /seguros-para-contratistas-…/ | /contractors-insurance |
 | /fianzas-para-seguros-en-seattle-washington/ | /bonds-surety |
-| /agentes-de-seguros-en-seattle-washington/ | /about |
-| /customer-quoting/ | /quote |
-| /es/seguros-para-autos-en-seattle-washington/ | /auto-insurance |
-| /es/seguros-para-inquilinos-en-seattle-washington/ | /renters-insurance |
+| /agentes-de-seguros-…/, /agentes/, /best-insurance-agents-in-houston/ | /about |
+| /contacto/ | /contact |
+| /payments/, /pagos/ | /pay-my-bill |
+| /customer-quoting/, /cotizacion/ | /quote |
+| /privacy/, /privacidad/ | / |
+
+Two generic fallbacks run before a 404 is issued (implemented in
+`resolveLegacyRedirect`, mirror them in the Worker):
+
+1. Strip a leading `/es` locale prefix and look the path up again.
+2. Strip a trailing `-in-seattle-washington` / `-en-seattle-washington` suffix
+   and redirect when the remainder is a valid route.
 
 ## Sent to 410 Gone
 
@@ -222,16 +240,35 @@ Notes:
 - Dated WordPress archives `/YYYY/*` (the new app has no dated or blog routes,
   so this prefix is safe to treat as gone globally)
 - `*.php`, `*.htm`, `*.asp`, `*.aspx`
+- The defunct storefront: `/shop/*`, `/shopdetail/*`, `/cart/*`, `/shopping/*`
+- Injected spam slugs: `/vvip…-<hash>-…`, `/claim-…`, `/match-…`, `/reward-…`,
+  `/mega-…`, `/prime-…`, `/grab-…`, `/win-…`, `/boost-…`
+- Random 8-character alphanumeric hash paths (e.g. `/w22zmd5m`, `/g1ajkimh`)
 - Any path containing casino / gambling / betting / slots / poker /
   game-coins / free-spins / bonus-code
 - `/xmlrpc*`
 - Explicitly:
   `/2025/08/05/experience-englishspeaking-online-casinos-in-canada-play-at-gigadats-toprated-gambling-platform/`
 
+## Query-string duplicates (`?v=`, `?tid=`, `?p=`, `?lang=`)
+
+Search Console reports ~45 of these as "alternate page with proper canonical
+tag" — that is not an error. `src/components/SEO.tsx` strips any query string
+and hash before emitting the canonical, so every variant collapses onto the
+clean URL. The Worker needs no rule for them.
+
 ## robots.txt
 
-Deleted URLs are deliberately **not** disallowed, so Google can crawl them and
-record the 404/410. `robots.txt` only declares the sitemap.
+`public/robots.txt` currently disallows the dead WordPress / storefront
+prefixes (`/2025/`, `/shopdetail/`, `/shop/`, `/cart/`, `/category/`, `/tag/`,
+`/feed/`, `/author/`, `/wp-*`, `/xmlrpc.php`). This is a **temporary** measure
+while the origin still answers `200` on every URL: it stops Google wasting
+crawl budget on ~4,800 dead URLs.
+
+**Remove those `Disallow` lines the day the Worker goes live.** Once real
+404/410 codes are returned, Google must be able to crawl the URLs in order to
+drop them from the index.
+
 
 ## What the Worker does NOT touch
 
