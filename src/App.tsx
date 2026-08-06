@@ -1,11 +1,12 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index";
 import ScrollToTop from "./components/ScrollToTop";
+import { trackIndexablePageView } from "@/lib/analytics";
 
 // Lazy-load non-critical routes for faster initial load
 const About = lazy(() => import("./pages/About"));
@@ -70,6 +71,20 @@ const DeferredWidgets = () => {
   );
 };
 
+const AnalyticsPageViews = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Wait until the route's SEO component has updated document.title.
+    const id = window.setTimeout(() => {
+      trackIndexablePageView(location.pathname, location.search);
+    }, 0);
+    return () => window.clearTimeout(id);
+  }, [location.pathname, location.search]);
+
+  return null;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -77,6 +92,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <AnalyticsPageViews />
         <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<Index />} />

@@ -117,7 +117,7 @@ export const GONE_PATTERNS: RegExp[] = [
   /^\/(?=[a-z0-9]{8}$)(?:[a-z0-9]*\d){2}[a-z0-9]*$/,
 ];
 
-const normalize = (p: string) => (p.length > 1 ? p.replace(/\/+$/, "") : p).toLowerCase();
+export const normalizePath = (p: string) => (p.length > 1 ? p.replace(/\/+$/, "") : p).toLowerCase();
 
 /**
  * Resolves a legacy path to its modern equivalent.
@@ -125,7 +125,7 @@ const normalize = (p: string) => (p.length > 1 ? p.replace(/\/+$/, "") : p).toLo
  * Spanish mirror of every old URL resolves without duplicating the table.
  */
 export const resolveLegacyRedirect = (pathname: string): string | null => {
-  const from = normalize(pathname);
+  const from = normalizePath(pathname);
   const candidates = [from];
   if (from.startsWith("/es/")) candidates.push(from.slice(3));
   else if (from === "/es") candidates.push("/");
@@ -143,7 +143,7 @@ export const resolveLegacyRedirect = (pathname: string): string | null => {
 };
 
 export const isGone = (pathname: string): boolean => {
-  const p = normalize(pathname);
+  const p = normalizePath(pathname);
   if (VALID_ROUTES.includes(p) || resolveLegacyRedirect(p)) return false;
   return GONE_PATHS.includes(p) || GONE_PATTERNS.some((re) => re.test(p));
 };
