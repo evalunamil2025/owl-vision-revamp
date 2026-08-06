@@ -114,7 +114,7 @@ export const GONE_PATTERNS: RegExp[] = [
   // Injected spam slugs: "vvipbest-xxxxxx-...", "claim-...-hash", etc.
   /^\/(vvip|claim|match|reward|mega|prime|new|grab|win|boost)[a-z]*-[a-z0-9]{5,}-/i,
   // Random 8-character hash paths injected by the hack (e.g. /w22zmd5m)
-  /^\/[a-z0-9]{8}$/,
+  /^\/(?=[a-z0-9]{8}$)(?:[a-z0-9]*\d){2}[a-z0-9]*$/,
 ];
 
 const normalize = (p: string) => (p.length > 1 ? p.replace(/\/+$/, "") : p).toLowerCase();
