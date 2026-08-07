@@ -77,11 +77,14 @@
           s.src = 'https://www.googletagmanager.com/gtag/js?id=G-5QM8V0WQ00';
           document.head.appendChild(s);
         }
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadGA, { timeout: 4000 });
+        // Load soon after first paint so short sessions are still counted.
+        if (document.readyState === 'complete') {
+          setTimeout(loadGA, 300);
         } else {
-          window.addEventListener('load', function(){ setTimeout(loadGA, 2000); });
+          window.addEventListener('load', function(){ setTimeout(loadGA, 300); });
         }
+        // Safety net: never wait more than 2s, even if load fires late.
+        setTimeout(loadGA, 2000);
       })();
     </script>
   </head>
