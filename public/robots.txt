@@ -1,23 +1,4 @@
 User-agent: *
 Allow: /
 
-# Legacy WordPress / hacked-shop paths that no longer exist.
-# Temporary: remove these Disallow lines once the edge Worker returns real
-# 404/410 status codes (docs/edge-redirects.md), so Google can crawl them once
-# more and drop them from the index.
-Disallow: /2025/
-Disallow: /shopdetail/
-Disallow: /shop/
-Disallow: /cart/
-Disallow: /category/
-Disallow: /tag/
-Disallow: /feed/
-Disallow: /author/
-Disallow: /wp-admin/
-Disallow: /wp-content/
-Disallow: /wp-includes/
-Disallow: /wp-json/
-Disallow: /wp-login.php
-Disallow: /xmlrpc.php
-
 Sitemap: https://bringasinsurance.com/sitemap.xml
