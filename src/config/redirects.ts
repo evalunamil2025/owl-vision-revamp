@@ -47,6 +47,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/home-insurance-in-seattle-washington": "/home-insurance",
   "/homeowners-insurance-in-seattle-washington": "/home-insurance",
   "/seguro-para-casas-prefabricadas": "/mobile-home-insurance",
+  "/seguro-para-casas-prefabricadas-en-seattle-washington": "/mobile-home-insurance",
   "/mobile-home-insurance-in-seattle-washington": "/mobile-home-insurance",
   "/landlord-insurance-in-seattle-washington": "/landlord-insurance",
   "/seguros-para-arrendadores-en-seattle-washington": "/landlord-insurance",
@@ -135,8 +136,10 @@ export const resolveLegacyRedirect = (pathname: string): string | null => {
     if (target && target !== from) return target;
     // Old WordPress pattern: "/<slug>-in-seattle-washington" -> "/<slug>"
     const stripped = candidate.replace(/-(in|en)-seattle-washington$/, "");
-    if (stripped !== candidate && VALID_ROUTES.includes(stripped) && stripped !== from) {
-      return stripped;
+    if (stripped !== candidate) {
+      const strippedTarget = LEGACY_REDIRECTS[stripped];
+      if (strippedTarget && strippedTarget !== from) return strippedTarget;
+      if (VALID_ROUTES.includes(stripped) && stripped !== from) return stripped;
     }
   }
   return null;
