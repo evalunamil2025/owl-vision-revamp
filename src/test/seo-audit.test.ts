@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
+import { GONE_PATHS, LEGACY_REDIRECTS, VALID_ROUTES, isGone, normalizePath, resolveLegacyRedirect } from "@/config/redirects";
 
 const root = process.cwd();
 const appSource = fs.readFileSync(path.join(root, "src/App.tsx"), "utf8");
@@ -71,12 +72,12 @@ describe("SEO routing contract", () => {
   it("has an explicit wildcard route and a client-side noindex fallback", () => {
     expect(appSource).toContain('<Route path="*" element={<NotFound />} />');
     expect(notFoundSource).toContain("noindex");
-    expect(notFoundSource).toContain("GONE_PATTERNS");
+    expect(notFoundSource).toContain("isGone");
   });
 
   it("generates self-referencing canonicals for indexable routes and omits them for noindex", () => {
     expect(seoSource).toContain("<link rel=\"canonical\" href={url} />");
-    expect(seoSource).toContain('<meta name="robots" content="noindex, nofollow" />');
+    expect(seoSource).toContain('<meta name="robots" content="noindex, follow" />');
     expect(seoSource).toContain("!noindex");
   });
 
@@ -90,6 +91,42 @@ describe("SEO routing contract", () => {
     expect(analyticsSource).toContain("VALID_ROUTES.includes(cleanPath)");
     expect(analyticsSource).toContain('"page_view"');
     expect(notFoundSource).toContain('"page_not_found"');
+  });
+});
+
+describe("Authoritative URL policy invariants", () => {
+  it("keeps App routes, VALID_ROUTES and sitemap exactly synchronized", () => {
+    const routes = appRoutes().filter((route) => route !== "*").map(normalizePath).sort();
+    expect(routes).toEqual([...VALID_ROUTES].sort());
+    expect(sitemapUrls().map(normalizePath).sort()).toEqual([...VALID_ROUTES].sort());
+  });
+
+  it("resolves the manufactured-home legacy slug and its Spanish variant", () => {
+    expect(resolveLegacyRedirect("/seguro-para-casas-prefabricadas-en-seattle-washington/"))
+      .toBe("/mobile-home-insurance");
+    expect(resolveLegacyRedirect("/es/seguro-para-casas-prefabricadas-en-seattle-washington/"))
+      .toBe("/mobile-home-insurance");
+  });
+
+  it("has only single-hop, loop-free redirects to valid routes", () => {
+    for (const [source, target] of Object.entries(LEGACY_REDIRECTS)) {
+      expect(source).not.toBe(target);
+      expect(VALID_ROUTES).toContain(target);
+      expect(LEGACY_REDIRECTS[target]).toBeUndefined();
+    }
+  });
+
+  it("never marks a valid or redirected path Gone", () => {
+    expect(VALID_ROUTES.some(isGone)).toBe(false);
+    expect(Object.keys(LEGACY_REDIRECTS).some(isGone)).toBe(false);
+    expect(GONE_PATHS.some((path) => VALID_ROUTES.includes(path))).toBe(false);
+  });
+
+  it("emits clean, consistently slashless canonical paths", () => {
+    for (const route of VALID_ROUTES) {
+      expect(route).not.toMatch(/[?#]/);
+      if (route !== "/") expect(route).not.toMatch(/\/$/);
+    }
   });
 });
 
