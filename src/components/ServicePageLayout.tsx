@@ -103,6 +103,20 @@ const ServicePageLayout = ({
         title={`${title} | Bringas Insurance Group`}
         description={(heroDescription || subtitle || title).replace(/\s+/g, " ").trim().slice(0, 155)}
         path={pathname}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: title,
+          description: (heroDescription || subtitle || title).replace(/\s+/g, " ").trim(),
+          url: `https://bringasinsurance.com${pathname}`,
+          provider: {
+            "@type": "InsuranceAgency",
+            name: "Bringas Insurance Group",
+            url: "https://bringasinsurance.com/",
+            telephone: "+1-425-405-7111",
+          },
+          areaServed: ["Washington", "Oregon"],
+        }}
       />
       <Navbar />
 
