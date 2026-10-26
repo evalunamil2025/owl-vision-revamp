@@ -1,11 +1,15 @@
+import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Sparkles, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Sparkles, ArrowRight, CheckCircle2, AlertCircle, LoaderCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import contactHeroBg from "@/assets/seattle-hero-bg.jpg";
 import SEO from "@/components/SEO";
+
+const CONTACT_API_URL =
+  import.meta.env.VITE_CONTACT_API_URL || "https://bringas-insurance-router.seo-41a.workers.dev/api/contact";
 
 const FacebookIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -22,8 +26,42 @@ const TwitterIcon = () => (
 
 const Contact = () => {
   const { t } = useTranslation();
+  const [submissionState, setSubmissionState] = useState<"idle" | "sending" | "success" | "error">("idle");
   const inputClasses =
     "w-full bg-[#0079c2]/5 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-[#00a651] transition-all outline-none text-[#015093] placeholder:text-[#015093]/40 font-body";
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmissionState("sending");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(CONTACT_API_URL, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          interest: formData.get("interest"),
+          message: formData.get("message"),
+          website: formData.get("website"),
+          locale: document.documentElement.lang || "en",
+          submissionId: crypto.randomUUID(),
+        }),
+      });
+
+      const result = await response.json().catch(() => null);
+      if (!response.ok || result?.ok !== true) throw new Error("Contact request failed");
+
+      form.reset();
+      setSubmissionState("success");
+    } catch {
+      setSubmissionState("error");
+    }
+  };
 
   const infoItems = [
     { icon: Phone, label: t("contact.callUs"), val: t("common.phone"), href: "tel:+14254057111" },
@@ -133,34 +171,38 @@ const Contact = () => {
                 {t("contact.fillForm")}
               </p>
 
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+                  <label htmlFor="contact-website">Website</label>
+                  <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
+                  <label htmlFor="contact-name" className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
                     {t("contact.fullName")}
                   </label>
-                  <input type="text" placeholder={t("contact.placeholders.fullName")} className={inputClasses} />
+                  <input id="contact-name" name="name" type="text" autoComplete="name" required maxLength={100} placeholder={t("contact.placeholders.fullName")} className={inputClasses} />
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
+                    <label htmlFor="contact-email" className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
                       {t("contact.emailAddress")}
                     </label>
-                    <input type="email" placeholder={t("contact.placeholders.email")} className={inputClasses} />
+                    <input id="contact-email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder={t("contact.placeholders.email")} className={inputClasses} />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
+                    <label htmlFor="contact-phone" className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
                       {t("contact.phoneNumber")}
                     </label>
-                    <input type="tel" placeholder={t("contact.placeholders.phone")} className={inputClasses} />
+                    <input id="contact-phone" name="phone" type="tel" autoComplete="tel" required maxLength={30} placeholder={t("contact.placeholders.phone")} className={inputClasses} />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
+                  <label htmlFor="contact-interest" className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
                     {t("contact.insuranceInterest")}
                   </label>
-                  <select className={inputClasses} defaultValue="">
+                  <select id="contact-interest" name="interest" className={inputClasses} defaultValue="" required>
                     <option value="" disabled>
                       {t("common.selectOption")}
                     </option>
@@ -172,20 +214,43 @@ const Contact = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
+                  <label htmlFor="contact-message" className="text-[10px] font-black uppercase tracking-widest text-[#015093]/60 ml-4">
                     {t("contact.howCanWeHelp")}
                   </label>
                   <textarea
+                    id="contact-message"
+                    name="message"
                     rows={4}
+                    required
+                    maxLength={3000}
                     placeholder={t("contact.placeholders.message")}
                     className={`${inputClasses} resize-none`}
                   />
                 </div>
 
-                <button className="w-full py-5 bg-[#015093] text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-[#015093]/20 hover:bg-[#00a651] transition-all flex items-center justify-center gap-3 group">
-                  <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  {t("contact.sendInquiry")}
+                <button type="submit" disabled={submissionState === "sending"} className="w-full py-5 bg-[#015093] text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-[#015093]/20 hover:bg-[#00a651] disabled:cursor-not-allowed disabled:opacity-60 transition-all flex items-center justify-center gap-3 group">
+                  {submissionState === "sending" ? (
+                    <LoaderCircle className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  )}
+                  {submissionState === "sending" ? t("contact.sending") : t("contact.sendInquiry")}
                 </button>
+
+                <div aria-live="polite" aria-atomic="true">
+                  {submissionState === "success" && (
+                    <p role="status" className="flex items-center gap-2 rounded-2xl bg-[#00a651]/10 px-5 py-4 text-sm font-semibold text-[#007a3c]">
+                      <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
+                      {t("contact.successMessage")}
+                    </p>
+                  )}
+                  {submissionState === "error" && (
+                    <p role="alert" className="flex items-center gap-2 rounded-2xl bg-red-50 px-5 py-4 text-sm font-semibold text-red-700">
+                      <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                      {t("contact.errorMessage")}
+                    </p>
+                  )}
+                </div>
               </form>
             </motion.div>
 

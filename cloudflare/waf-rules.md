@@ -2,6 +2,21 @@
 
 Status: **prepared, not deployed**. `src/config/redirects.ts` is authoritative; run `npm run seo:generate` after every policy change and import `bringas-redirects.csv` as a Bulk Redirect List.
 
+## Contact form email setup
+
+The generated Worker handles `POST /api/contact` and sends every valid inquiry to both `raul@bringasinsurance.com` and `info@bringasinsurance.com` through Resend. Because the domain currently uses GoDaddy nameservers rather than a Cloudflare zone, the Worker is published at `https://bringas-insurance-router.seo-41a.workers.dev`; CORS is restricted to the production apex and `www` origins.
+
+Before deployment:
+
+1. Verify `bringasinsurance.com` as a sending domain in Resend.
+2. Authenticate Wrangler with `npx wrangler login`.
+3. Add a newly generated key as an encrypted secret with `npx wrangler secret put RESEND_API_KEY`. Enter it only at Wrangler's secure prompt; never place it in a command, file, commit, or chat.
+4. `CONTACT_FROM_EMAIL` is configured as `website@bringasinsurance.com` in `wrangler.jsonc`.
+5. If a staging or preview frontend calls this Worker, add its exact origin to `CONTACT_ALLOWED_ORIGINS`; separate multiple origins with commas.
+6. Deploy with `npx wrangler deploy`, then submit one test inquiry and confirm receipt in both inboxes.
+
+Never add the Resend API key to Vite variables or frontend code. Cloudflare exposes Worker secrets through the handler's `env` binding.
+
 `worker.js` is also generated from that source and provides a test implementation with GET/HEAD-only 301/410/404 handling and pass-through for valid routes, assets, APIs and non-page methods. Use it only where Cloudflare Workers Routes actually execute for the origin; the native-rule order below still applies to Bulk Redirect deployments.
 
 ## Execution order

@@ -1,0 +1,9 @@
+{
+  "name": "bringas-insurance-router",
+  "main": "cloudflare/worker.js",
+  "compatibility_date": "2026-10-26",
+  "workers_dev": true,
+  "vars": {
+    "CONTACT_FROM_EMAIL": "website@bringasinsurance.com"
+  }
+}
