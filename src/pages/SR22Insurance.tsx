@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ServiceLeadForm from "@/components/ServiceLeadForm";
 
 const reasons = [
   "Driving without valid auto insurance",
@@ -130,10 +131,17 @@ const SR22Insurance = () => {
               </Link>
               <a
                 href="tel:+14254057111"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur border border-white/30 text-white font-bold px-8 py-4 rounded-full transition-all"
+                aria-label="Call now: (425) 405-7111"
+                className="group relative inline-flex items-center gap-4 overflow-hidden rounded-2xl border-2 border-[#6ee7a7] bg-gradient-to-r from-[#00a651] to-[#008f45] px-7 py-3.5 text-white shadow-[0_0_0_6px_rgba(0,166,81,0.18),0_18px_45px_-12px_rgba(0,0,0,0.65)] transition-all hover:-translate-y-1 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
               >
-                <Phone className="w-5 h-5" />
-                (425) 405-7111
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" aria-hidden="true" />
+                <span className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-white text-[#00a651] shadow-lg">
+                  <Phone className="h-5 w-5" strokeWidth={3} />
+                </span>
+                <span className="relative flex flex-col items-start leading-none">
+                  <span className="mb-1 text-[9px] font-black uppercase tracking-[0.24em] text-white/75">Call now</span>
+                  <span className="text-lg font-black tracking-tight">(425) 405-7111</span>
+                </span>
               </a>
             </div>
           </motion.div>
@@ -171,6 +179,8 @@ const SR22Insurance = () => {
           </motion.div>
         </div>
       </section>
+
+      <ServiceLeadForm serviceTitle="SR-22 Insurance" pathname="/sr22-insurance" />
 
       {/* INTRO */}
       <section className="relative py-20 lg:py-24 bg-gradient-to-b from-slate-50 to-white overflow-hidden">

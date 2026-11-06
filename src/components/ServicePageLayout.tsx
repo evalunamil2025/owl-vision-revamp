@@ -15,6 +15,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import RichText from "./RichText";
 import SEO from "./SEO";
+import ServiceLeadForm from "./ServiceLeadForm";
 import heroBg from "@/assets/seattle-hero-bg.jpg";
 
 // Map coverage titles to contextual icons
@@ -161,9 +162,17 @@ const ServicePageLayout = ({
               </Link>
               <a
                 href="tel:+14254057111"
-                className="px-10 py-5 bg-transparent border-2 border-white/30 text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-sm"
+                aria-label={`${t("service.callNow")}: ${t("common.phone")}`}
+                className="group relative flex items-center justify-center gap-4 overflow-hidden rounded-2xl border-2 border-[#6ee7a7] bg-gradient-to-r from-[#00a651] to-[#008f45] px-8 py-4 text-white shadow-[0_0_0_6px_rgba(0,166,81,0.18),0_18px_45px_-12px_rgba(0,0,0,0.65)] transition-all hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_0_8px_rgba(0,166,81,0.24),0_24px_55px_-12px_rgba(0,0,0,0.7)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
               >
-                <Phone className="w-4 h-4 text-[#00a651]" /> {t("common.phone")}
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" aria-hidden="true" />
+                <span className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-white text-[#00a651] shadow-lg">
+                  <Phone className="h-5 w-5" strokeWidth={3} />
+                </span>
+                <span className="relative flex flex-col items-start leading-none">
+                  <span className="mb-1 text-[9px] font-black uppercase tracking-[0.24em] text-white/75">{t("service.callNow")}</span>
+                  <span className="text-lg font-black tracking-tight font-heading">{t("common.phone")}</span>
+                </span>
               </a>
             </div>
           </motion.div>
@@ -179,6 +188,8 @@ const ServicePageLayout = ({
           </svg>
         </div>
       </section>
+
+      <ServiceLeadForm serviceTitle={title} pathname={pathname} />
 
       {/* ─── INTRODUCTION SECTION — Premium Blue Statement ─── */}
       <section className="relative py-24 md:py-32 bg-white overflow-hidden">
