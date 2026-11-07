@@ -1,18 +1,11 @@
 import { useTranslation } from "react-i18next";
 import ServicePageLayout from "@/components/ServicePageLayout";
-import SEO from "@/components/SEO";
 import owlieDriving from "@/assets/owlie-driving.webp";
 
 const AutoInsurance = () => {
   const { t } = useTranslation();
 
   return (
-    <>
-    <SEO
-      title="Auto Insurance Coverage | Bringas Insurance Group"
-      description="Get auto insurance guidance from Bringas Insurance Group and find coverage options designed to help protect you on the road."
-      path="/auto-insurance"
-    />
     <ServicePageLayout
       heroImage={owlieDriving}
       heroImageAlt={t("auto.heroImageAlt")}
@@ -112,7 +105,6 @@ const AutoInsurance = () => {
         closing: t("auto.approach.closing"),
       }}
     />
-    </>
   );
 };
 

@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
   ShieldCheck,
@@ -31,6 +30,7 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceLeadForm from "@/components/ServiceLeadForm";
+import SEO from "@/components/SEO";
 
 const reasons = [
   "Driving without valid auto insurance",
@@ -78,21 +78,25 @@ const compliance = [
 const SR22Insurance = () => {
   return (
     <div className="min-h-screen bg-white">
-      <Helmet>
-        <title>SR-22 Insurance: Fast Filing, Affordable Coverage & License Reinstatement</title>
-        <meta
-          name="description"
-          content="Need SR-22 insurance? Learn what an SR-22 is, when it's required, how filing works, and how to find affordable coverage to get back on the road legally."
-        />
-        <link rel="canonical" href="https://bringasinsurance.com/sr22-insurance" />
-        <meta property="og:title" content="SR-22 Insurance: Fast Filing, Affordable Coverage & License Reinstatement" />
-        <meta
-          property="og:description"
-          content="Need SR-22 insurance? Learn what an SR-22 is, when it's required, how filing works, and how to find affordable coverage to get back on the road legally."
-        />
-        <meta property="og:url" content="https://bringasinsurance.com/sr22-insurance" />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <SEO
+        title="SR-22 Insurance in Washington | Bringas Insurance Group"
+        description="Learn what an SR-22 filing is, when it may be required, and how Bringas Insurance Group can help Washington drivers find coverage."
+        path="/sr22-insurance"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "SR-22 Insurance",
+          description: "Help for Washington drivers who need auto insurance with an SR-22 filing.",
+          url: "https://bringasinsurance.com/sr22-insurance",
+          areaServed: { "@type": "State", name: "Washington" },
+          provider: {
+            "@type": "InsuranceAgency",
+            name: "Bringas Insurance Group",
+            url: "https://bringasinsurance.com/",
+            telephone: "+1-425-405-7111",
+          },
+        }}
+      />
 
       <Navbar />
 

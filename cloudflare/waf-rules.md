@@ -41,7 +41,7 @@ Limit the rule to `GET` and `HEAD`, and exclude every redirect source before thi
   http.request.uri.path matches "^/2025(/|$)" or
   http.request.uri.path matches "\\.(php|asp|aspx)$" or
   http.request.uri.path matches "^/(shop|shopdetail|cart|checkout|myaccount|order|shopping)(/|$)" or
-  lower(http.request.uri.path) matches "(casino|gambling|betting|slots?|poker|game-?coins?|free-?spins?|bonus-?code)" or
+  lower(http.request.uri.path) matches "(casino|gambling|betting|slots?|poker|jackpot|pin-?up|hondubet|betiro|game-?coins?|free-?(coins?|spins?)|bonus-?code)" or
   lower(http.request.uri.path) matches "^/(vvip|claim|match|reward|mega|prime|new|grab|win|boost)[a-z]*-[a-z0-9]{5,}-"
 )
 ```
@@ -59,3 +59,19 @@ Do not implement this as a broad WAF block until its allowlist is tested. Allow 
 5. Roll back by disabling the 404 rule, then 410, then Single/Bulk Redirect rules in that order. No DNS change is required by these artifacts.
 
 If Cloudflare rules do not intercept the Lovable origin, deploy the GitHub-synced `dist` build to a platform with edge middleware/SSR. Lovable remains the editor through GitHub sync; production deploys from Git. Enumerate valid paths and end unmatched requests with a real 404.
+
+## Query duplicate normalization
+
+Create a Cloudflare Redirect Rule for valid page paths when the query contains
+`v`, `tid`, or `lang`. Redirect permanently to the same clean apex path and
+discard the query string. These parameters do not select distinct indexable
+content in the current application. Preserve unrelated campaign parameters.
+
+The generated Worker implements the same policy, but production checks on
+2026-11-06 still showed the Lovable O2O origin bypassing Workers Routes. Treat
+the Worker as a tested reference/staging implementation, not proof that the
+rule is active on `bringasinsurance.com`.
+
+Also add a single redirect from `https://www.bringasinsurance.com/*` to the
+equivalent apex URL. The public `www` hostname currently responds `200` rather
+than redirecting, so canonical host normalization is incomplete.

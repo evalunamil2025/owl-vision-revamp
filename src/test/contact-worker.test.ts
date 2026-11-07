@@ -99,3 +99,82 @@ describe("contact form Worker", () => {
     expect(blocked.status).toBe(403);
   });
 });
+
+describe("SEO query normalization Worker", () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it.each([
+    ["https://bringasinsurance.com/?v=0096738646fe59e", "https://bringasinsurance.com/"],
+    ["https://bringasinsurance.com/?tid=EPD86ss00Q0J9dndxqr3gD_wZWINOybdBeO", "https://bringasinsurance.com/"],
+    ["https://bringasinsurance.com/?lang=es", "https://bringasinsurance.com/"],
+    ["https://bringasinsurance.com/home-insurance?v=cache", "https://bringasinsurance.com/home-insurance"],
+    ["https://bringasinsurance.com/home-insurance/", "https://bringasinsurance.com/home-insurance"],
+    ["https://bringasinsurance.com/HOME-INSURANCE", "https://bringasinsurance.com/home-insurance"],
+  ])("permanently redirects a duplicate %s to its clean canonical", async (source, destination) => {
+    vi.stubGlobal("fetch", vi.fn());
+
+    const response = await worker.fetch(new Request(source), {});
+
+    expect(response.status).toBe(301);
+    expect(response.headers.get("location")).toBe(destination);
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it("removes only legacy noise and keeps campaign attribution parameters", async () => {
+    vi.stubGlobal("fetch", vi.fn());
+
+    const response = await worker.fetch(new Request(
+      "https://bringasinsurance.com/?utm_source=newsletter&v=cache",
+    ), {});
+
+    expect(response.status).toBe(301);
+    expect(response.headers.get("location")).toBe("https://bringasinsurance.com/?utm_source=newsletter");
+  });
+
+  it("continues serving valid URLs with non-noise query parameters", async () => {
+    const originResponse = new Response("app", { status: 200 });
+    const originFetch = vi.fn().mockResolvedValue(originResponse);
+    vi.stubGlobal("fetch", originFetch);
+
+    const response = await worker.fetch(new Request(
+      "https://bringasinsurance.com/?utm_source=newsletter",
+    ), {});
+
+    expect(response).toBe(originResponse);
+    expect(originFetch).toHaveBeenCalledOnce();
+  });
+
+  it("returns a real 404 for an unknown route without calling the SPA origin", async () => {
+    const originFetch = vi.fn();
+    vi.stubGlobal("fetch", originFetch);
+
+    const response = await worker.fetch(new Request(
+      "https://bringasinsurance.com/this-page-does-not-exist-seo-test",
+    ), {});
+
+    expect(response.status).toBe(404);
+    expect(response.headers.get("x-robots-tag")).toBe("noindex");
+    expect(originFetch).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    "/2025/08/test-spam-url",
+    "/random-casino-test-url",
+    "/jackpot-bonus",
+    "/pin-up-casino",
+    "/hondubet-offer",
+    "/betiro-slots",
+    "/free-coins-promo",
+  ])("returns 410 for historical spam pattern %s", async (pathname) => {
+    const originFetch = vi.fn();
+    vi.stubGlobal("fetch", originFetch);
+
+    const response = await worker.fetch(new Request(`https://bringasinsurance.com${pathname}`), {});
+
+    expect(response.status).toBe(410);
+    expect(response.headers.get("x-robots-tag")).toBe("noindex");
+    expect(originFetch).not.toHaveBeenCalled();
+  });
+});

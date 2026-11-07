@@ -11,6 +11,11 @@ const analyticsSource = fs.readFileSync(path.join(root, "src/lib/analytics.ts"),
 const indexSource = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const sitemapSource = fs.readFileSync(path.join(root, "public/sitemap.xml"), "utf8");
 const auditCsv = fs.readFileSync(path.join(root, "seo/reports/gsc-url-audit.csv"), "utf8");
+const seoRoutes = JSON.parse(fs.readFileSync(path.join(root, "src/config/seo-routes.json"), "utf8")) as Record<string, {
+  title: string;
+  description: string;
+  kind?: string;
+}>;
 
 function parseCsvLine(line: string): string[] {
   const values: string[] = [];
@@ -79,6 +84,33 @@ describe("SEO routing contract", () => {
     expect(seoSource).toContain("<link rel=\"canonical\" href={url} />");
     expect(seoSource).toContain('<meta name="robots" content="noindex, follow" />');
     expect(seoSource).toContain("!noindex");
+  });
+
+  it("normalizes legacy query duplicates at the edge", () => {
+    const workerTemplate = fs.readFileSync(path.join(root, "cloudflare/worker.template.js"), "utf8");
+    expect(workerTemplate).toContain('new Set(["v", "tid", "lang"])');
+    expect(workerTemplate).toContain("stripNoiseQuery(url)");
+    expect(workerTemplate).toContain("Response.redirect");
+  });
+
+  it("defines unique, bounded metadata for every indexable route", () => {
+    expect(Object.keys(seoRoutes).sort()).toEqual([...VALID_ROUTES].sort());
+    const titles = Object.values(seoRoutes).map((entry) => entry.title);
+    const descriptions = Object.values(seoRoutes).map((entry) => entry.description);
+    expect(new Set(titles).size).toBe(titles.length);
+    expect(new Set(descriptions).size).toBe(descriptions.length);
+    expect(titles.every((title) => title.length >= 40 && title.length <= 65)).toBe(true);
+    expect(descriptions.every((description) => description.length >= 105 && description.length <= 160)).toBe(true);
+  });
+
+  it("injects route metadata and structured data into initial HTML at the edge", () => {
+    const workerTemplate = fs.readFileSync(path.join(root, "cloudflare/worker.template.js"), "utf8");
+    expect(workerTemplate).toContain("new HTMLRewriter()")
+    expect(workerTemplate).toContain('link rel="canonical"');
+    expect(workerTemplate).toContain('meta name="robots"');
+    expect(workerTemplate).toContain('"@type": "Service"');
+    expect(workerTemplate).toContain('"@type": "InsuranceAgency"');
+    expect(workerTemplate).toContain('"@type": "WebSite"');
   });
 
   it("does not contain repository-level redirect rules that could create mass redirects", () => {

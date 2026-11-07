@@ -108,7 +108,7 @@ export const GONE_PATTERNS: RegExp[] = [
   /^\/(category|tag|feed|author|comments)(\/|$)/i,
   /^\/\d{4}(\/|$)/,
   /\.(php|htm|asp|aspx)$/i,
-  /(casino|gambling|betting|slots?|poker|game-?coins?|free-?spins?|bonus-?code)/i,
+  /(casino|gambling|betting|slots?|poker|jackpot|pin-?up|hondubet|betiro|game-?coins?|free-?(coins?|spins?)|bonus-?code)/i,
   /^\/xmlrpc/i,
   // Legacy e-commerce platform that no longer exists
   /^\/(shop|shopdetail|cart|shopping)(\/|$)/i,

@@ -293,10 +293,16 @@ Two generic fallbacks run before a 404 is issued (implemented in
 
 ## Query-string duplicates (`?v=`, `?tid=`, `?p=`, `?lang=`)
 
-Search Console reports ~45 of these as "alternate page with proper canonical
-tag" — that is not an error. `src/components/SEO.tsx` strips any query string
-and hash before emitting the canonical, so every variant collapses onto the
-clean URL. The Worker needs no rule for them.
+Search Console reports these as alternate canonical URLs. The canonical is a
+valid fallback, but repeated crawl discovery wastes resources and caused GSC
+validation to remain open. The generated Worker now removes `v`, `tid`, and
+`lang` with a permanent redirect to the clean route while preserving unrelated
+campaign parameters. Do not blanket-redirect every query parameter: `p` and
+unknown parameters remain review items unless their semantics are proven.
+
+Because Workers Routes are still bypassed by the Lovable O2O setup, reproduce
+the same three-parameter policy with a native Cloudflare Redirect Rule or wait
+until an approved server-rendered deployment replaces the SPA origin.
 
 ## robots.txt
 

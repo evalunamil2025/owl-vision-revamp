@@ -4,6 +4,7 @@ import path from "node:path";
 const root = process.cwd();
 const redirectsSource = fs.readFileSync(path.join(root, "src/config/redirects.ts"), "utf8");
 const gscFile = path.join(root, "seo/reports/gsc-url-audit.csv");
+const seoRoutes = JSON.parse(fs.readFileSync(path.join(root, "src/config/seo-routes.json"), "utf8"));
 const SITE = "https://bringasinsurance.com";
 
 const block = (name, end) => redirectsSource.match(new RegExp(`export const ${name}[^=]*= ([\\s\\S]*?)${end}`))?.[1] ?? "";
@@ -36,7 +37,7 @@ const gone = (p) => gonePaths.includes(p)
   || /^\/(category|tag|feed|author|comments)(\/|$)/i.test(p)
   || /^\/\d{4}(\/|$)/.test(p)
   || /\.(php|htm|asp|aspx)$/i.test(p)
-  || /(casino|gambling|betting|slots?|poker|game-?coins?|free-?spins?|bonus-?code)/i.test(p)
+  || /(casino|gambling|betting|slots?|poker|jackpot|pin-?up|hondubet|betiro|game-?coins?|free-?(coins?|spins?)|bonus-?code)/i.test(p)
   || /^\/xmlrpc/i.test(p)
   || /^\/(shop|shopdetail|cart|checkout|myaccount|order|shopping)(\/|$)/i.test(p)
   || /^\/(vvip|claim|match|reward|mega|prime|new|grab|win|boost)[a-z]*-[a-z0-9]{5,}-/i.test(p);
@@ -48,7 +49,10 @@ function add(sourceUrl, source, lastCrawl = "") {
   let classification = "MANUAL_REVIEW", target = "", status = "review", canonical = "", reason = "No equivalent destination proven; manual review required.", layer = "manual";
   const plain = p.startsWith("/es/") ? p.slice(3) : p;
   const redirectTarget = redirects[p] || redirects[plain];
-  if (validRoutes.includes(p) && url.search) { classification = "CANONICAL_ALTERNATE"; status = "200"; canonical = `${SITE}${p}`; reason = "Query-string duplicate of canonical route."; layer = "React SEO canonical"; }
+  const hasNoiseQuery = [...url.searchParams.keys()].some((key) => ["v", "tid", "lang"].includes(key.toLowerCase()));
+  const hasNonCanonicalPath = decodeURI(url.pathname) !== p;
+  if (validRoutes.includes(p) && (hasNoiseQuery || hasNonCanonicalPath)) { classification = "REDIRECT_301"; status = "301"; target = `${SITE}${p}`; canonical = `${SITE}${p}`; reason = "URL variant is permanently normalized to the canonical route."; layer = "Cloudflare Worker"; }
+  else if (validRoutes.includes(p) && url.search) { classification = "CANONICAL_ALTERNATE"; status = "200"; canonical = `${SITE}${p}`; reason = "Query-string duplicate of canonical route."; layer = "React SEO canonical"; }
   else if (validRoutes.includes(p)) { classification = "KEEP_200"; status = "200"; canonical = `${SITE}${p}`; reason = "Current indexable canonical route."; layer = "origin/application"; }
   else if (redirectTarget) { classification = "REDIRECT_301"; status = "301"; target = `${SITE}${redirectTarget}`; reason = "Equivalent migrated content is explicitly mapped."; layer = "Cloudflare redirect"; }
   else if (p === "/es") { classification = "REDIRECT_301"; status = "301"; target = `${SITE}/`; reason = "Temporary locale redirect until approved Spanish content exists."; layer = "Cloudflare redirect"; }
@@ -76,6 +80,7 @@ const workerTemplate = fs.readFileSync(path.join(root, "cloudflare/worker.templa
 const worker = workerTemplate
   .replace("__SITE__", JSON.stringify(SITE))
   .replace("__VALID_ROUTES__", JSON.stringify(validRoutes))
-  .replace("__REDIRECTS__", JSON.stringify({ ...redirects, "/es": "/" }, null, 2));
+  .replace("__REDIRECTS__", JSON.stringify({ ...redirects, "/es": "/" }, null, 2))
+  .replace("__SEO_ROUTES__", JSON.stringify(seoRoutes, null, 2));
 fs.writeFileSync(path.join(root, "cloudflare/worker.js"), worker);
 console.log(`Generated ${policy.size} policy rows and ${redirectRows.length} Cloudflare redirect rows.`);

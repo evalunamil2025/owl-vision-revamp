@@ -16,29 +16,38 @@ const Index = () => {
         title="Bringas Insurance Group | Auto, Home, Life & Business Insurance"
         description="Bringas Insurance Group helps individuals, families, and businesses find auto, home, life, and business insurance coverage tailored to their needs."
         path="/"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "InsuranceAgency",
-          name: "Bringas Insurance Group",
-          url: "https://bringasinsurance.com/",
-          telephone: "+1-425-405-7111",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "9111 Evergreen Way",
-            addressLocality: "Everett",
-            addressRegion: "WA",
-            postalCode: "98204",
-            addressCountry: "US",
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Bringas Insurance Group",
+            url: "https://bringasinsurance.com/",
+            inLanguage: ["en", "es"],
           },
-          areaServed: ["Washington", "Oregon", "United States"],
-          openingHours: "Mo-Fr 09:00-18:00",
-          sameAs: [
-            "https://www.facebook.com/Bringas-Insurance-111132600590435/",
-            "https://www.linkedin.com/in/bringas-insurance-54111bb1/",
-            "https://twitter.com/BringasIns",
-            "https://www.instagram.com/bringas_insurance_group/",
-          ],
-        }}
+          {
+            "@context": "https://schema.org",
+            "@type": "InsuranceAgency",
+            name: "Bringas Insurance Group",
+            url: "https://bringasinsurance.com/",
+            telephone: "+1-425-405-7111",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "9111 Evergreen Way",
+              addressLocality: "Everett",
+              addressRegion: "WA",
+              postalCode: "98204",
+              addressCountry: "US",
+            },
+            areaServed: { "@type": "State", name: "Washington" },
+            knowsLanguage: ["English", "Spanish"],
+            sameAs: [
+              "https://www.facebook.com/Bringas-Insurance-111132600590435/",
+              "https://www.linkedin.com/in/bringas-insurance-54111bb1/",
+              "https://twitter.com/BringasIns",
+              "https://www.instagram.com/bringas_insurance_group/",
+            ],
+          },
+        ]}
       />
       <Navbar />
       <Hero />

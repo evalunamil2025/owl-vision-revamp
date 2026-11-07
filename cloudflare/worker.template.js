@@ -2,14 +2,29 @@
 const SITE = __SITE__;
 const VALID = new Set(__VALID_ROUTES__);
 const REDIRECTS = __REDIRECTS__;
+const SEO_ROUTES = __SEO_ROUTES__;
+const OG_IMAGE = `${SITE}/bringas-insurance-logo.png`;
 const CONTACT_PATH = "/api/contact";
 const CONTACT_RECIPIENTS = ["raul@bringasinsurance.com", "info@bringasinsurance.com"];
 const ASSET = /\.(?:js|mjs|css|png|jpe?g|webp|avif|gif|svg|ico|woff2?|ttf|txt|xml|json|map|webmanifest|mp4|pdf)$/i;
-const GONE = [/^\/wp-(admin|content|includes|json|login)(\/|$)/i, /^\/(category|tag|feed|author|comments)(\/|$)/i, /^\/\d{4}(\/|$)/, /\.(php|htm|asp|aspx)$/i, /(casino|gambling|betting|slots?|poker|game-?coins?|free-?spins?|bonus-?code)/i, /^\/xmlrpc/i, /^\/(shop|shopdetail|cart|checkout|myaccount|order|shopping)(\/|$)/i];
+// Legacy/cache identifiers found by Search Console. They do not change page
+// content, so remove them at the edge instead of serving crawlable duplicates.
+const NOISE_QUERY_PARAMS = new Set(["v", "tid", "lang"]);
+const GONE = [/^\/wp-(admin|content|includes|json|login)(\/|$)/i, /^\/(category|tag|feed|author|comments)(\/|$)/i, /^\/\d{4}(\/|$)/, /\.(php|htm|asp|aspx)$/i, /(casino|gambling|betting|slots?|poker|jackpot|pin-?up|hondubet|betiro|game-?coins?|free-?(coins?|spins?)|bonus-?code)/i, /^\/xmlrpc/i, /^\/(shop|shopdetail|cart|checkout|myaccount|order|shopping)(\/|$)/i];
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const INTERESTS = new Set(["auto", "home", "business", "life"]);
 
 const clean = (path) => path.length > 1 ? path.replace(/\/+$/, "").toLowerCase() : path;
+const stripNoiseQuery = (url) => {
+  let changed = false;
+  for (const key of [...url.searchParams.keys()]) {
+    if (NOISE_QUERY_PARAMS.has(key.toLowerCase())) {
+      url.searchParams.delete(key);
+      changed = true;
+    }
+  }
+  return changed;
+};
 const pageResponse = (status) => new Response(status === 410 ? "Gone" : "Not Found", {
   status,
   headers: { "content-type": "text/plain; charset=utf-8", "x-robots-tag": "noindex", "cache-control": "no-store" },
@@ -26,6 +41,93 @@ const escapeHtml = (value) => value.replace(/[&<>"']/g, (character) => ({
   "\"": "&quot;",
   "'": "&#039;",
 })[character]);
+
+const routeSchema = (path, seo) => {
+  if (seo.kind === "home") {
+    return [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Bringas Insurance Group",
+        url: `${SITE}/`,
+        inLanguage: ["en", "es"],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "InsuranceAgency",
+        name: "Bringas Insurance Group",
+        url: `${SITE}/`,
+        telephone: "+1-425-405-7111",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "9111 Evergreen Way",
+          addressLocality: "Everett",
+          addressRegion: "WA",
+          postalCode: "98204",
+          addressCountry: "US",
+        },
+        areaServed: { "@type": "State", name: "Washington" },
+        knowsLanguage: ["English", "Spanish"],
+      },
+    ];
+  }
+  if (seo.kind === "service") {
+    return [{
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: seo.serviceName,
+      description: seo.description,
+      url: `${SITE}${path}`,
+      areaServed: { "@type": "State", name: "Washington" },
+      provider: {
+        "@type": "InsuranceAgency",
+        name: "Bringas Insurance Group",
+        url: `${SITE}/`,
+        telephone: "+1-425-405-7111",
+      },
+    }];
+  }
+  return [];
+};
+
+const attributeHandler = (attribute, value) => ({
+  element(element) {
+    element.setAttribute(attribute, value);
+    element.setAttribute("data-rh", "true");
+  },
+});
+
+function withRouteSeo(response, path) {
+  const seo = SEO_ROUTES[path];
+  if (!seo || !response.headers.get("content-type")?.includes("text/html")) return response;
+  if (typeof HTMLRewriter === "undefined") return response;
+
+  const canonical = `${SITE}${path}`;
+  const schemas = routeSchema(path, seo)
+    .map((schema) => `<script type="application/ld+json" data-rh="true">${JSON.stringify(schema).replaceAll("<", "\\u003c")}</script>`)
+    .join("");
+  const additions = [
+    `<link rel="canonical" href="${canonical}" data-rh="true">`,
+    '<meta name="robots" content="index, follow" data-rh="true">',
+    schemas,
+  ].join("");
+
+  return new HTMLRewriter()
+    .on("title", { element(element) { element.setInnerContent(seo.title); } })
+    .on('meta[name="description"]', attributeHandler("content", seo.description))
+    .on('meta[property="og:type"]', attributeHandler("content", "website"))
+    .on('meta[property="og:url"]', attributeHandler("content", canonical))
+    .on('meta[property="og:title"]', attributeHandler("content", seo.title))
+    .on('meta[property="og:description"]', attributeHandler("content", seo.description))
+    .on('meta[property="og:image"]', attributeHandler("content", OG_IMAGE))
+    .on('meta[name="twitter:card"]', attributeHandler("content", "summary_large_image"))
+    .on('meta[name="twitter:title"]', attributeHandler("content", seo.title))
+    .on('meta[name="twitter:description"]', attributeHandler("content", seo.description))
+    .on('meta[name="twitter:image"]', attributeHandler("content", OG_IMAGE))
+    .on('script[type="application/ld+json"]', { element(element) { element.remove(); } })
+    .on("head", { element(element) { element.append(additions, { html: true }); } })
+    .transform(response);
+}
 
 function validateContact(payload) {
   const contact = {
@@ -161,7 +263,15 @@ export default {
     const target = REDIRECTS[path] || REDIRECTS[plain];
     if (target) return Response.redirect(SITE + target, 301);
     if (GONE.some((pattern) => pattern.test(path))) return pageResponse(410);
-    if (VALID.has(path)) return fetch(request);
+    if (VALID.has(path)) {
+      const removedNoiseQuery = stripNoiseQuery(url);
+      if (url.pathname !== path || removedNoiseQuery) {
+        const query = url.searchParams.toString();
+        return Response.redirect(`${SITE}${path}${query ? `?${query}` : ""}`, 301);
+      }
+      const response = await fetch(request);
+      return request.method === "HEAD" ? response : withRouteSeo(response, path);
+    }
     return pageResponse(404);
   },
 };

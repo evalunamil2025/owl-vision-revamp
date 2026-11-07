@@ -8,6 +8,7 @@ const Footer = () => {
 
   const personalLinks = [
     { label: t("services.auto"), href: "/auto-insurance" },
+    { label: "SR-22 Insurance", href: "/sr22-insurance" },
     { label: t("services.home"), href: "/home-insurance" },
     { label: t("services.life"), href: "/life-insurance" },
     
@@ -137,6 +138,26 @@ const Footer = () => {
                   className="text-white/70 hover:text-white transition-colors text-sm underline-offset-4 hover:underline"
                 >
                   {t("footer.getQuote")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-white/70 hover:text-white transition-colors text-sm underline-offset-4 hover:underline">
+                  {t("nav.contact")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/client-center" className="text-white/70 hover:text-white transition-colors text-sm underline-offset-4 hover:underline">
+                  {t("clientCenter.navLabel")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/pay-my-bill" className="text-white/70 hover:text-white transition-colors text-sm underline-offset-4 hover:underline">
+                  {t("payBill.navLabel")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/carriers" className="text-white/70 hover:text-white transition-colors text-sm underline-offset-4 hover:underline">
+                  Carriers
                 </Link>
               </li>
             </ul>

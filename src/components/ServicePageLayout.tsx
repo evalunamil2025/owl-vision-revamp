@@ -17,6 +17,7 @@ import RichText from "./RichText";
 import SEO from "./SEO";
 import ServiceLeadForm from "./ServiceLeadForm";
 import heroBg from "@/assets/seattle-hero-bg.jpg";
+import { getRouteSeo, SITE_URL } from "@/config/seo";
 
 // Map coverage titles to contextual icons
 const ICON_MAP: { test: RegExp; icon: LucideIcon }[] = [
@@ -98,12 +99,31 @@ const ServicePageLayout = ({
 }: ServicePageLayoutProps) => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
+  const routeSeo = getRouteSeo(pathname);
+  const canonicalUrl = `${SITE_URL}${pathname}`;
   return (
     <div className="min-h-screen bg-white">
       <SEO
         title={`${title} | Bringas Insurance Group`}
         description={(heroDescription || subtitle || title).replace(/\s+/g, " ").trim().slice(0, 155)}
         path={pathname}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: routeSeo?.serviceName || title,
+          description: routeSeo?.description || heroDescription,
+          url: canonicalUrl,
+          areaServed: {
+            "@type": "State",
+            name: "Washington",
+          },
+          provider: {
+            "@type": "InsuranceAgency",
+            name: "Bringas Insurance Group",
+            url: `${SITE_URL}/`,
+            telephone: "+1-425-405-7111",
+          },
+        }}
       />
       <Navbar />
 

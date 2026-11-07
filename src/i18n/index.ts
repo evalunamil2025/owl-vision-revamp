@@ -23,4 +23,13 @@ i18n
     },
   });
 
+const syncDocumentLanguage = (language: string) => {
+  if (typeof document !== "undefined") {
+    document.documentElement.lang = language.startsWith("es") ? "es" : "en";
+  }
+};
+
+i18n.on("initialized", () => syncDocumentLanguage(i18n.resolvedLanguage || "en"));
+i18n.on("languageChanged", syncDocumentLanguage);
+
 export default i18n;

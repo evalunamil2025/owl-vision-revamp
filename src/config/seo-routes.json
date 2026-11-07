@@ -1,0 +1,145 @@
+{
+  "/": {
+    "title": "Insurance Agency in Everett, WA | Bringas Insurance Group",
+    "description": "Bringas Insurance Group is an independent insurance agency in Everett, WA helping Washington families and businesses compare coverage options.",
+    "kind": "home"
+  },
+  "/about": {
+    "title": "About Bringas Insurance Group | Everett, WA",
+    "description": "Learn about Bringas Insurance Group and our commitment to helping Washington clients find insurance coverage for personal and business needs."
+  },
+  "/quote": {
+    "title": "Get an Insurance Quote | Bringas Insurance Group",
+    "description": "Request an auto, home, life, or business insurance quote from Bringas Insurance Group with personalized guidance from a local agency."
+  },
+  "/contact": {
+    "title": "Contact Bringas Insurance Group | Everett, WA",
+    "description": "Contact Bringas Insurance Group in Everett, WA for help with auto, home, life, or business insurance coverage and personalized guidance."
+  },
+  "/auto-insurance": {
+    "title": "Auto Insurance in Washington State | Bringas Insurance",
+    "description": "Explore auto insurance in Washington State with Bringas Insurance Group and compare coverage options that help protect you on the road.",
+    "kind": "service",
+    "serviceName": "Auto Insurance"
+  },
+  "/home-insurance": {
+    "title": "Home Insurance in Washington State | Bringas Insurance",
+    "description": "Protect your home and belongings with home insurance options for Washington homeowners from Bringas Insurance Group in Everett.",
+    "kind": "service",
+    "serviceName": "Home Insurance"
+  },
+  "/life-insurance": {
+    "title": "Life Insurance in Everett, WA | Bringas Insurance",
+    "description": "Explore life insurance options with Bringas Insurance Group in Everett, WA and plan financial protection for the people who depend on you.",
+    "kind": "service",
+    "serviceName": "Life Insurance"
+  },
+  "/boat-insurance": {
+    "title": "Boat Insurance in Washington State | Bringas Insurance",
+    "description": "Explore boat and watercraft insurance options in Washington for liability, physical damage, theft, and other risks on and off the water.",
+    "kind": "service",
+    "serviceName": "Boat and Watercraft Insurance"
+  },
+  "/motorcycle-insurance": {
+    "title": "Motorcycle Insurance in Washington | Bringas Insurance",
+    "description": "Compare motorcycle insurance coverage in Washington with guidance from Bringas Insurance Group for your bike, liability, and riding risks.",
+    "kind": "service",
+    "serviceName": "Motorcycle Insurance"
+  },
+  "/rv-insurance": {
+    "title": "RV Insurance in Washington State | Bringas Insurance",
+    "description": "Explore recreational vehicle insurance in Washington for your RV, personal belongings, liability, and travel-related risks.",
+    "kind": "service",
+    "serviceName": "Recreational Vehicle Insurance"
+  },
+  "/renters-insurance": {
+    "title": "Renters Insurance in Washington State | Bringas Insurance",
+    "description": "Explore renters insurance in Washington for personal belongings, liability, and additional living expenses with Bringas Insurance Group.",
+    "kind": "service",
+    "serviceName": "Renters Insurance"
+  },
+  "/landlord-insurance": {
+    "title": "Landlord Insurance in Washington | Bringas Insurance",
+    "description": "Protect a Washington rental property with landlord insurance options for the building, liability, lost income, and other ownership risks.",
+    "kind": "service",
+    "serviceName": "Landlord Insurance"
+  },
+  "/mobile-home-insurance": {
+    "title": "Mobile Home Insurance in Washington | Bringas Insurance",
+    "description": "Explore specialized insurance for mobile and manufactured homes in Washington with guidance from Bringas Insurance Group.",
+    "kind": "service",
+    "serviceName": "Mobile Home Insurance"
+  },
+  "/personal-umbrella": {
+    "title": "Personal Umbrella Insurance | Bringas Insurance Group",
+    "description": "Learn how personal umbrella insurance can add liability protection above eligible auto and home policy limits in Washington.",
+    "kind": "service",
+    "serviceName": "Personal Umbrella Insurance"
+  },
+  "/general-liability": {
+    "title": "General Liability Insurance in Washington | Bringas Insurance",
+    "description": "Explore general liability insurance in Washington for third-party injury, property damage, and other common business risks.",
+    "kind": "service",
+    "serviceName": "General Liability Insurance"
+  },
+  "/bop-insurance": {
+    "title": "Business Owners Policy (BOP) in Washington | Bringas Insurance",
+    "description": "Explore a Business Owners Policy in Washington that combines core property, liability, and business interruption protections.",
+    "kind": "service",
+    "serviceName": "Business Owners Policy"
+  },
+  "/commercial-auto": {
+    "title": "Commercial Auto Insurance in Washington | Bringas Insurance",
+    "description": "Explore commercial auto insurance in Washington for vehicles used to transport tools, products, employees, or serve customers.",
+    "kind": "service",
+    "serviceName": "Commercial Auto Insurance"
+  },
+  "/commercial-property": {
+    "title": "Commercial Property Insurance in Washington | Bringas Insurance",
+    "description": "Protect business buildings, equipment, inventory, and other physical assets with commercial property insurance in Washington.",
+    "kind": "service",
+    "serviceName": "Commercial Property Insurance"
+  },
+  "/contractors-insurance": {
+    "title": "Contractor Insurance in Washington | Bringas Insurance",
+    "description": "Explore contractor insurance in Washington for liability, tools, equipment, commercial vehicles, and construction-related risks.",
+    "kind": "service",
+    "serviceName": "Contractors Insurance"
+  },
+  "/restaurant-insurance": {
+    "title": "Restaurant Insurance in Washington | Bringas Insurance",
+    "description": "Explore restaurant insurance in Washington for property, liability, equipment, food-related risks, and business interruptions.",
+    "kind": "service",
+    "serviceName": "Restaurant Insurance"
+  },
+  "/building-owners": {
+    "title": "Building Owners Insurance in Washington | Bringas Insurance",
+    "description": "Explore insurance for apartment, mixed-use, and commercial building owners in Washington, including property and liability protection.",
+    "kind": "service",
+    "serviceName": "Building Owners Insurance"
+  },
+  "/bonds-surety": {
+    "title": "Surety Bonds in Washington State | Bringas Insurance",
+    "description": "Learn about license, permit, contract, and other surety bonds available for businesses and professionals in Washington State.",
+    "kind": "service",
+    "serviceName": "Surety Bonds"
+  },
+  "/pay-my-bill": {
+    "title": "Pay My Insurance Bill | Bringas Insurance Group",
+    "description": "Access direct billing links for insurance carriers represented by Bringas Insurance Group and find help with payment questions."
+  },
+  "/client-center": {
+    "title": "Insurance Client Center | Bringas Insurance Group",
+    "description": "Access policy documents, ID cards, certificates, and service requests through the Bringas Insurance Group Client Center."
+  },
+  "/carriers": {
+    "title": "Insurance Carriers | Bringas Insurance Group",
+    "description": "Find contact, billing, and claims information for insurance carriers represented by Bringas Insurance Group."
+  },
+  "/sr22-insurance": {
+    "title": "SR-22 Insurance in Washington | Bringas Insurance Group",
+    "description": "Learn what an SR-22 filing is, when it may be required, and how Bringas Insurance Group can help Washington drivers find coverage.",
+    "kind": "service",
+    "serviceName": "SR-22 Insurance"
+  }
+}
