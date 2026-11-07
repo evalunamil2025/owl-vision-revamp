@@ -56,3 +56,17 @@ rewritten because they are crawl evidence, not application configuration.
    `X-Robots-Tag: noindex`.
 6. Export the detailed broken-link and low-word-count tables, not only the
    issue summary, if either rule still fails.
+
+## Public spot check after implementation
+
+Checked from outside the workspace on 2026-11-06:
+
+- `https://bringasinsurance.com/llms.txt` → 404
+- `https://www.bringasinsurance.com/contact` → 200
+- `http://bringasinsurance.com/contact` → 301 to the HTTPS apex URL
+- `https://bringasinsurance.com/contractors-insurance` → 200
+- `https://bringasinsurance.com/this-page-does-not-exist-seo-test` → 200
+
+This proves the new repository behavior is not active on the public request
+path yet. Do not start Search Console validation until deployment and a repeat
+check show 200 for `llms.txt`, 301 for `www`, and 404 for the unknown URL.

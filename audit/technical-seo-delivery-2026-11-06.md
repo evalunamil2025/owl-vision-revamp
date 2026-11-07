@@ -207,7 +207,7 @@ existing styles.
 1. Publish the repository changes through the existing Lovable workflow.
 2. Decide between native Cloudflare rules (status/query only) and an approved
    server-rendered deployment for full initial metadata.
-3. Add `www` → apex single-hop redirect.
+3. Activate and verify the prepared `www`/HTTP → HTTPS apex single-hop redirect.
 4. Verify public 200/301/404/410 responses and initial HTML with curl/Googlebot.
 5. Verify form submission, GA4 DebugView, CTAs, assets, robots, and sitemap.
 6. Submit the clean sitemap in Search Console.
