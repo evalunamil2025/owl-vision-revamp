@@ -8,8 +8,8 @@ declare global {
 
 /**
  * Sends page views only for real application routes.
- * The hosting platform currently serves the SPA shell for unknown URLs, so
- * letting gtag auto-send a page_view would turn every soft 404 into a page.
+ * The production server rejects unknown URLs before React loads. Keeping this
+ * allowlist also prevents invalid client-side navigations from becoming views.
  */
 export const trackIndexablePageView = (pathname: string, search = "") => {
   const cleanPath = normalizePath(pathname);

@@ -51,13 +51,13 @@ function add(sourceUrl, source, lastCrawl = "") {
   const redirectTarget = redirects[p] || redirects[plain];
   const hasNoiseQuery = [...url.searchParams.keys()].some((key) => ["v", "tid", "lang"].includes(key.toLowerCase()));
   const hasNonCanonicalPath = decodeURI(url.pathname) !== p;
-  if (validRoutes.includes(p) && (hasNoiseQuery || hasNonCanonicalPath)) { classification = "REDIRECT_301"; status = "301"; target = `${SITE}${p}`; canonical = `${SITE}${p}`; reason = "URL variant is permanently normalized to the canonical route."; layer = "Cloudflare Worker"; }
+  if (validRoutes.includes(p) && (hasNoiseQuery || hasNonCanonicalPath)) { classification = "REDIRECT_301"; status = "301"; target = `${SITE}${p}`; canonical = `${SITE}${p}`; reason = "URL variant is permanently normalized to the canonical route."; layer = "Node production server"; }
   else if (validRoutes.includes(p) && url.search) { classification = "CANONICAL_ALTERNATE"; status = "200"; canonical = `${SITE}${p}`; reason = "Query-string duplicate of canonical route."; layer = "React SEO canonical"; }
   else if (validRoutes.includes(p)) { classification = "KEEP_200"; status = "200"; canonical = `${SITE}${p}`; reason = "Current indexable canonical route."; layer = "origin/application"; }
-  else if (redirectTarget) { classification = "REDIRECT_301"; status = "301"; target = `${SITE}${redirectTarget}`; reason = "Equivalent migrated content is explicitly mapped."; layer = "Cloudflare redirect"; }
-  else if (p === "/es") { classification = "REDIRECT_301"; status = "301"; target = `${SITE}/`; reason = "Temporary locale redirect until approved Spanish content exists."; layer = "Cloudflare redirect"; }
-  else if (gone(p)) { classification = "GONE_410"; status = "410"; reason = "Retired WordPress, commerce, or injected spam URL."; layer = "Cloudflare WAF custom response"; }
-  else if (p === "/random-nonexistent-url-12345") { classification = "NOT_FOUND_404"; status = "404"; reason = "Acceptance-test URL with no matching resource or redirect."; layer = "Cloudflare terminal 404"; }
+  else if (redirectTarget) { classification = "REDIRECT_301"; status = "301"; target = `${SITE}${redirectTarget}`; reason = "Equivalent migrated content is explicitly mapped."; layer = "Node production server"; }
+  else if (p === "/es") { classification = "REDIRECT_301"; status = "301"; target = `${SITE}/`; reason = "Temporary locale redirect until approved Spanish content exists."; layer = "Node production server"; }
+  else if (gone(p)) { classification = "GONE_410"; status = "410"; reason = "Retired WordPress, commerce, or injected spam URL."; layer = "Node production server"; }
+  else if (p === "/random-nonexistent-url-12345") { classification = "NOT_FOUND_404"; status = "404"; reason = "Acceptance-test URL with no matching resource or redirect."; layer = "Node production server"; }
   policy.set(sourceUrl, { source_url: sourceUrl, normalized_path: p, classification, target_url: target, expected_status: status, canonical, reason, source, last_crawl: lastCrawl, implementation_layer: layer, verified: "NO" });
 }
 for (const row of sourceRows) add(row.URL, `GSC: ${row["Categoría GSC"] || "export"}`, row["Último rastreo"] || "");
@@ -67,23 +67,8 @@ add(`${SITE}/es/`, "locale policy");
 add(`${SITE}/random-nonexistent-url-12345/`, "acceptance matrix");
 
 fs.mkdirSync(path.join(root, "audit"), { recursive: true });
-fs.mkdirSync(path.join(root, "cloudflare"), { recursive: true });
 fs.mkdirSync(path.join(root, "server"), { recursive: true });
 writeCsv(path.join(root, "audit/url-policy.csv"), ["source_url","normalized_path","classification","target_url","expected_status","canonical","reason","source","last_crawl","implementation_layer","verified"], [...policy.values()]);
-
-const redirectRows = [];
-for (const [from, to] of [...Object.entries(redirects), ["/es", "/"]]) {
-  for (const suffix of ["", "/"]) redirectRows.push({ source_url: `${SITE}${from}${from === "/" ? "" : suffix}`, target_url: `${SITE}${to}`, status_code: 301, include_subdomains: "true", preserve_query_string: "false", subpath_matching: "false" });
-  if (from !== "/es") for (const suffix of ["", "/"]) redirectRows.push({ source_url: `${SITE}/es${from}${suffix}`, target_url: `${SITE}${to}`, status_code: 301, include_subdomains: "true", preserve_query_string: "false", subpath_matching: "false" });
-}
-writeCsv(path.join(root, "cloudflare/bringas-redirects.csv"), ["source_url","target_url","status_code","include_subdomains","preserve_query_string","subpath_matching"], redirectRows);
-const workerTemplate = fs.readFileSync(path.join(root, "cloudflare/worker.template.js"), "utf8");
-const worker = workerTemplate
-  .replace("__SITE__", JSON.stringify(SITE))
-  .replace("__VALID_ROUTES__", JSON.stringify(validRoutes))
-  .replace("__REDIRECTS__", JSON.stringify({ ...redirects, "/es": "/" }, null, 2))
-  .replace("__SEO_ROUTES__", JSON.stringify(seoRoutes, null, 2));
-fs.writeFileSync(path.join(root, "cloudflare/worker.js"), worker);
 fs.writeFileSync(path.join(root, "server/seo-policy.json"), `${JSON.stringify({
   site: SITE,
   validRoutes,
@@ -91,4 +76,4 @@ fs.writeFileSync(path.join(root, "server/seo-policy.json"), `${JSON.stringify({
   gonePaths,
   seoRoutes,
 }, null, 2)}\n`);
-console.log(`Generated ${policy.size} policy rows and ${redirectRows.length} Cloudflare redirect rows.`);
+console.log(`Generated ${policy.size} policy rows and the Node production-server policy.`);

@@ -2,8 +2,8 @@
 //
 // The client-side entries below are only a UX fallback so a visitor landing on
 // an old link still reaches the right page. Real 301/410/404 status codes must
-// be configured at the edge (see docs/edge-redirects.md) — a React SPA cannot
-// set an HTTP status.
+// be emitted by server/production-server.mjs — a React SPA cannot set an HTTP
+// status after the response has already been sent.
 
 /** Valid application routes. Must stay in sync with src/App.tsx and public/sitemap.xml. */
 export const VALID_ROUTES: string[] = [
