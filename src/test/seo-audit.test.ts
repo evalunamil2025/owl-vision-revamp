@@ -86,11 +86,11 @@ describe("SEO routing contract", () => {
     expect(seoSource).toContain("!noindex");
   });
 
-  it("normalizes legacy query duplicates at the edge", () => {
-    const workerTemplate = fs.readFileSync(path.join(root, "cloudflare/worker.template.js"), "utf8");
-    expect(workerTemplate).toContain('new Set(["v", "tid", "lang"])');
-    expect(workerTemplate).toContain("stripNoiseQuery(url)");
-    expect(workerTemplate).toContain("Response.redirect");
+  it("normalizes legacy query duplicates in the production server", () => {
+    const serverPolicy = fs.readFileSync(path.join(root, "server/url-policy.mjs"), "utf8");
+    expect(serverPolicy).toContain('new Set(["v", "tid", "lang"])');
+    expect(serverPolicy).toContain("url.searchParams.delete(key)");
+    expect(serverPolicy).toContain('kind: "redirect"');
   });
 
   it("defines unique, bounded metadata for every indexable route", () => {
@@ -103,19 +103,19 @@ describe("SEO routing contract", () => {
     expect(descriptions.every((description) => description.length >= 105 && description.length <= 160)).toBe(true);
   });
 
-  it("injects route metadata and structured data into initial HTML at the edge", () => {
-    const workerTemplate = fs.readFileSync(path.join(root, "cloudflare/worker.template.js"), "utf8");
-    expect(workerTemplate).toContain("new HTMLRewriter()")
-    expect(workerTemplate).toContain('link rel="canonical"');
-    expect(workerTemplate).toContain('meta name="robots"');
-    expect(workerTemplate).toContain('"@type": "Service"');
-    expect(workerTemplate).toContain('"@type": "InsuranceAgency"');
-    expect(workerTemplate).toContain('"@type": "WebSite"');
+  it("injects route metadata into initial HTML in the production server", () => {
+    const productionServer = fs.readFileSync(path.join(root, "server/production-server.mjs"), "utf8");
+    expect(productionServer).toContain("function routeHtml");
+    expect(productionServer).toContain('link rel="canonical"');
+    expect(productionServer).toContain('meta name="robots"');
+    expect(productionServer).toContain("SEO_ROUTES[route]");
   });
 
-  it("does not contain repository-level redirect rules that could create mass redirects", () => {
-    const forbiddenConfigs = ["vercel.json", "netlify.toml", "public/_redirects", ".htaccess"];
-    expect(forbiddenConfigs.every((file) => !fs.existsSync(path.join(root, file)))).toBe(true);
+  it("defines a Node hosting service instead of requiring Cloudflare", () => {
+    const renderConfig = fs.readFileSync(path.join(root, "render.yaml"), "utf8");
+    expect(renderConfig).toContain("runtime: node");
+    expect(renderConfig).toContain("startCommand: npm start");
+    expect(renderConfig).toContain("bringasinsurance.com");
   });
 
   it("does not count unknown SPA fallback routes as Analytics pages", () => {

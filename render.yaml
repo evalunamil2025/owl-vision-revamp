@@ -1,0 +1,19 @@
+services:
+  - type: web
+    runtime: node
+    name: bringas-insurance
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    autoDeployTrigger: commit
+    domains:
+      - bringasinsurance.com
+    envVars:
+      - key: NODE_VERSION
+        value: 20.19.0
+      - key: CANONICAL_HOST
+        value: bringasinsurance.com
+      - key: CONTACT_FROM_EMAIL
+        value: website@bringasinsurance.com
+      - key: RESEND_API_KEY
+        sync: false
