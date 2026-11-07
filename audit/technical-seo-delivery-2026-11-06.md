@@ -1,5 +1,10 @@
 # Bringas Insurance Group — Technical SEO delivery
 
+> Update: Cloudflare is unavailable for this project. The production solution
+> has been replaced by `server/production-server.mjs` plus `render.yaml`; see
+> `docs/deploy-without-cloudflare.md`. Cloudflare sections below are retained
+> only as historical audit evidence and are no longer deployment instructions.
+
 Date: 2026-11-06 (America/Mexico_City). Production was audited read-only. No
 production, DNS, Cloudflare, Lovable, Search Console, analytics, form, or blog
 configuration was changed.
@@ -205,9 +210,9 @@ existing styles.
 ## 11. Required deployment and Search Console sequence
 
 1. Publish the repository changes through the existing Lovable workflow.
-2. Decide between native Cloudflare rules (status/query only) and an approved
-   server-rendered deployment for full initial metadata.
-3. Activate and verify the prepared `www`/HTTP → HTTPS apex single-hop redirect.
+2. Deploy the GitHub repository as the Node web service defined in `render.yaml`.
+3. Point the apex and `www` web records to that service and verify the prepared
+   `www`/HTTP → HTTPS apex single-hop redirect.
 4. Verify public 200/301/404/410 responses and initial HTML with curl/Googlebot.
 5. Verify form submission, GA4 DebugView, CTAs, assets, robots, and sitemap.
 6. Submit the clean sitemap in Search Console.

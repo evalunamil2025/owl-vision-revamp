@@ -1,5 +1,9 @@
 # Bringas indexation audit
 
+> Current implementation: `server/production-server.mjs` and `render.yaml`
+> replace the earlier Cloudflare plan. See `docs/deploy-without-cloudflare.md`.
+> Cloudflare references below describe the original diagnosis only.
+
 ## Executive summary
 
 - High: the current SPA origin has historically returned 200 for legacy, spam, and unknown paths, creating soft 404s. Correct status codes require an edge/hosting layer.

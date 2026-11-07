@@ -319,3 +319,10 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Production hosting
+
+Production SEO status codes and the contact endpoint run through the repository's
+Node server; no Cloudflare account or Worker is required. See
+[`docs/deploy-without-cloudflare.md`](docs/deploy-without-cloudflare.md) for the
+GitHub-to-Render deployment, DNS cutover, verification, and rollback steps.

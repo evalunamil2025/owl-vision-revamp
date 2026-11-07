@@ -22,7 +22,7 @@ rewritten because they are crawl evidence, not application configuration.
 
 | Finding | CSV evidence | Impact | Remediation | Status |
 | --- | ---: | --- | --- | --- |
-| Duplicate host/canonical variants | 22 `www` pages return 200 and canonicalize to apex | High | Worker now sends one 301 from HTTP/`www` to the HTTPS apex path | Prepared; production route activation required |
+| Duplicate host/canonical variants | 22 `www` pages return 200 and canonicalize to apex | High | Node production server sends one 301 from HTTP/`www` to the HTTPS apex path | Prepared; Node deployment required |
 | Duplicate meta descriptions | 22 failed groups; the same description appears on all 44 HTML rows | High | 26-route metadata manifest plus React and edge metadata output | Fixed in repository |
 | Duplicate titles | 2 failed checks; `/contractors-insurance` exposed the home title during one apex crawl | High | Route-specific title manifest and edge injection; host duplicate removed by 301 | Fixed in repository |
 | Orphaned sitemap pages | 4 of 26 sitemap URLs | High | Added crawlable footer links for `/sr22-insurance`, `/pay-my-bill`, `/client-center`, and `/carriers` | Fixed in repository |
@@ -68,5 +68,5 @@ Checked from outside the workspace on 2026-11-06:
 - `https://bringasinsurance.com/this-page-does-not-exist-seo-test` → 200
 
 This proves the new repository behavior is not active on the public request
-path yet. Do not start Search Console validation until deployment and a repeat
+path yet. Do not start Search Console validation until the Node deployment and a repeat
 check show 200 for `llms.txt`, 301 for `www`, and 404 for the unknown URL.
