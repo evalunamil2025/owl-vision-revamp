@@ -4,7 +4,7 @@ import { AlertCircle, CheckCircle2, LoaderCircle, Mail, Phone, Send, User } from
 import { useTranslation } from "react-i18next";
 
 const CONTACT_API_URL =
-  import.meta.env.VITE_CONTACT_API_URL || "https://bringas-insurance-router.seo-41a.workers.dev/api/contact";
+  import.meta.env.VITE_CONTACT_API_URL || "/api/contact";
 
 type SubmissionState = "idle" | "sending" | "success" | "error";
 

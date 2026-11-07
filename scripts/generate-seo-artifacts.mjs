@@ -68,6 +68,7 @@ add(`${SITE}/random-nonexistent-url-12345/`, "acceptance matrix");
 
 fs.mkdirSync(path.join(root, "audit"), { recursive: true });
 fs.mkdirSync(path.join(root, "cloudflare"), { recursive: true });
+fs.mkdirSync(path.join(root, "server"), { recursive: true });
 writeCsv(path.join(root, "audit/url-policy.csv"), ["source_url","normalized_path","classification","target_url","expected_status","canonical","reason","source","last_crawl","implementation_layer","verified"], [...policy.values()]);
 
 const redirectRows = [];
@@ -83,4 +84,11 @@ const worker = workerTemplate
   .replace("__REDIRECTS__", JSON.stringify({ ...redirects, "/es": "/" }, null, 2))
   .replace("__SEO_ROUTES__", JSON.stringify(seoRoutes, null, 2));
 fs.writeFileSync(path.join(root, "cloudflare/worker.js"), worker);
+fs.writeFileSync(path.join(root, "server/seo-policy.json"), `${JSON.stringify({
+  site: SITE,
+  validRoutes,
+  redirects: { ...redirects, "/es": "/" },
+  gonePaths,
+  seoRoutes,
+}, null, 2)}\n`);
 console.log(`Generated ${policy.size} policy rows and ${redirectRows.length} Cloudflare redirect rows.`);
