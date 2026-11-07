@@ -61,12 +61,13 @@ rewritten because they are crawl evidence, not application configuration.
 
 Checked from outside the workspace on 2026-11-06:
 
-- `https://bringasinsurance.com/llms.txt` → 404
+- `https://bringasinsurance.com/llms.txt` → 200
 - `https://www.bringasinsurance.com/contact` → 200
 - `http://bringasinsurance.com/contact` → 301 to the HTTPS apex URL
 - `https://bringasinsurance.com/contractors-insurance` → 200
 - `https://bringasinsurance.com/this-page-does-not-exist-seo-test` → 200
 
-This proves the new repository behavior is not active on the public request
-path yet. Do not start Search Console validation until the Node deployment and a repeat
-check show 200 for `llms.txt`, 301 for `www`, and 404 for the unknown URL.
+This proves only the static `llms.txt` change is public; the Node HTTP policy is
+not active on the public request path. Do not start Search Console validation
+until a repeat check shows 301 for `www`, 404 for the unknown URL, and 410 for
+confirmed spam.

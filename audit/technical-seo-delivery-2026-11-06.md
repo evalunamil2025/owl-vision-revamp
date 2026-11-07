@@ -1,9 +1,8 @@
 # Bringas Insurance Group — Technical SEO delivery
 
-> Update: Cloudflare is unavailable for this project. The production solution
-> has been replaced by `server/production-server.mjs` plus `render.yaml`; see
-> `docs/deploy-without-cloudflare.md`. Cloudflare sections below are retained
-> only as historical audit evidence and are no longer deployment instructions.
+> Cloudflare is unavailable for this project. The production solution is
+> `server/production-server.mjs` plus `render.yaml`; see
+> `docs/deploy-without-cloudflare.md`. No Cloudflare action is required.
 
 Date: 2026-11-06 (America/Mexico_City). Production was audited read-only. No
 production, DNS, Cloudflare, Lovable, Search Console, analytics, form, or blog
@@ -12,8 +11,8 @@ configuration was changed.
 ## Executive summary
 
 - Critical: production still returns the Lovable SPA shell with HTTP 200 for
-  unknown and historical spam URLs. The prepared Worker is bypassed by the
-  existing Cloudflare-for-SaaS O2O path and is not proof of a production fix.
+  unknown and historical spam URLs. The Node server fix is not yet on the
+  public request path and is not proof of a production fix until deployed.
 - Critical: every tested route initially returns the same home title and
   description with no canonical. Route metadata appears only after JavaScript.
 - Fixed in repository: one authoritative metadata manifest now covers all 26
@@ -22,10 +21,9 @@ configuration was changed.
 - Fixed in repository: all 26 legitimate routes are present as crawlable HTML
   links in the rendered footer/navigation; `/sr22-insurance`, `/pay-my-bill`,
   `/client-center`, and `/carriers` are no longer absent from the default DOM.
-- Requires external approval: server rendering (Lovable TanStack Start upgrade
-  or another SSR/edge deployment) and activation of the prepared Cloudflare
-  status/query/host rules. The Worker now includes `www`/HTTP to HTTPS apex
-  normalization, but production routing must be activated before it takes effect.
+- Requires external deployment: create the Render Node service, verify its
+  temporary hostname, and then change only the apex/`www` web records in
+  GoDaddy. Search Console validation must wait for public acceptance checks.
 
 ## 1. Confirmed baseline before changes
 
@@ -34,8 +32,8 @@ configuration was changed.
 | Framework | React 18 + TypeScript + Vite 5 SPA |
 | Router | React Router DOM 6, 26 explicit routes plus wildcard |
 | Metadata | `react-helmet-async`, client-side only |
-| Hosting | Lovable origin behind Cloudflare; `x-deployment-id` present |
-| Edge | Worker source exists, but public requests bypass its route under O2O |
+| Hosting | Lovable-managed SPA; `x-deployment-id` present |
+| Public DNS | GoDaddy nameservers; apex and `www` point to Lovable's current address |
 | Sitemap | `/sitemap.xml`, 26 clean canonical paths, no query URLs |
 | Robots | Allows crawling and references the main sitemap |
 | Canonical | Correct after React; absent from initial published HTML |
@@ -106,13 +104,13 @@ was preserved; no primary page content was replaced.
 - Added crawlable footer links for SR-22, Contact, Client Center, Pay My Bill,
   and Carriers without changing route URLs.
 - Synchronized `<html lang>` with the existing language toggle.
-- Extended generated Worker policy for `v`, `tid`, and `lang` normalization,
+- Added a Node production server for `v`, `tid`, and `lang` normalization,
   canonical host/protocol redirects, route metadata injection, 404/410 handling,
-  and additional spam vocabulary.
+  static assets, and contact-form delivery.
 - Added `public/llms.txt` with canonical business and service-page references.
 - Added a reusable social image copied from the existing brand asset; no image
   content was redesigned.
-- Expanded automated SEO and Worker tests.
+- Added `render.yaml`, deployment instructions, and Node/SEO tests.
 
 ## 4. Sitemap and robots
 
@@ -143,7 +141,7 @@ the external status policy is activated.
 
 ## 6. HTTP policy and production evidence
 
-Expected after external activation:
+Expected after deploying the Node service:
 
 | Class | Examples | Expected |
 | --- | --- | --- |
@@ -171,30 +169,25 @@ deployed** and must not be reported to Search Console as fixed yet.
 
 ## 8. Problems not resolvable safely from this repository alone
 
-1. **Initial HTML/server rendering:** the current Lovable Vite SPA sends one
-   shell. Lovable now documents an upgrade path to TanStack Start for server
-   rendering, but the request explicitly forbids framework migration solely
-   for SEO. Status: `REQUIRES_MANUAL_APPROVAL`.
-2. **Real 404/410:** production O2O bypasses Workers Routes. Activate native
-   Cloudflare Redirect/WAF rules or approve a hosting/SSR change.
-3. **Canonical host:** HTTPS `www` returns 200 in production. The generated
-   Worker now performs a single 301 to the equivalent HTTPS apex URL, including
-   assets and preserved query strings, but the production route is not active.
-4. **Route metadata at the edge:** Worker HTMLRewriter support is prepared and
-   tested structurally, but cannot affect the current O2O production request
-   path.
-5. **Search Console:** no authenticated GSC control was available; validation
+1. **Public deployment:** the current Lovable Vite SPA still sends one generic
+   HTML shell. The prepared Node service must be deployed before initial HTML,
+   redirects and terminal statuses change publicly.
+2. **DNS cutover:** apex and `www` must be changed in GoDaddy only after the
+   temporary Render hostname passes acceptance checks. Mail and blog records
+   must remain unchanged.
+3. **Search Console:** no authenticated GSC control was available; validation
    cannot be started safely before public HTTP checks pass.
 
 ## 9. Verification completed
 
-- `npm test -- --run`: 40 passed, 1 optional live test skipped.
+- `npm test -- --run`: 23 passed, 1 optional live test skipped with Node
+  production-server coverage.
 - `npm run typecheck`: passed.
 - `npm run build`: passed, 2,477 modules transformed.
 - Headless Chrome: all 26 routes passed title, description, canonical, robots,
   H1, OG, image, language, schema, and crawlable-link assertions; no console
   errors were observed.
-- Worker unit coverage verifies 301 query normalization, terminal 404, 410 for
+- Node unit coverage verifies 301 query normalization, terminal 404, 410 for
   dated and named spam patterns, and unchanged contact-form handling.
 - Repository-wide lint still has three pre-existing errors in generated UI/
   Tailwind files unrelated to this work; see final handoff.
