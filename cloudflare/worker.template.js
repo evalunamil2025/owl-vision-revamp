@@ -1,5 +1,6 @@
 // Generated into worker.js by scripts/generate-seo-artifacts.mjs.
 const SITE = __SITE__;
+const CANONICAL_HOST = new URL(SITE).hostname;
 const VALID = new Set(__VALID_ROUTES__);
 const REDIRECTS = __REDIRECTS__;
 const SEO_ROUTES = __SEO_ROUTES__;
@@ -258,6 +259,13 @@ export default {
     const url = new URL(request.url);
     const path = clean(url.pathname);
     if (path === CONTACT_PATH) return handleContact(request, env);
+    const isSiteHost = url.hostname === CANONICAL_HOST || url.hostname === `www.${CANONICAL_HOST}`;
+    if (["GET", "HEAD"].includes(request.method) && isSiteHost && (url.protocol !== "https:" || url.hostname !== CANONICAL_HOST)) {
+      url.protocol = "https:";
+      url.hostname = CANONICAL_HOST;
+      url.port = "";
+      return Response.redirect(url.toString(), 301);
+    }
     if (!["GET", "HEAD"].includes(request.method) || ASSET.test(url.pathname) || url.pathname.startsWith("/assets/") || url.pathname.startsWith("/.well-known/") || url.pathname.startsWith("/cdn-cgi/") || url.pathname.startsWith("/api/")) return fetch(request);
     const plain = path.startsWith("/es/") ? path.slice(3) : path;
     const target = REDIRECTS[path] || REDIRECTS[plain];

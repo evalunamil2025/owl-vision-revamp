@@ -1,0 +1,25 @@
+# Bringas Insurance Group
+
+Bringas Insurance Group is an independent insurance agency based in Everett, Washington. The site provides information about personal and business insurance and ways to contact the agency or request a quote.
+
+Canonical site: https://bringasinsurance.com/
+Sitemap: https://bringasinsurance.com/sitemap.xml
+Contact: https://bringasinsurance.com/contact
+Request a quote: https://bringasinsurance.com/quote
+
+## Main personal insurance pages
+
+- https://bringasinsurance.com/auto-insurance
+- https://bringasinsurance.com/home-insurance
+- https://bringasinsurance.com/life-insurance
+- https://bringasinsurance.com/sr22-insurance
+
+## Main business insurance pages
+
+- https://bringasinsurance.com/general-liability
+- https://bringasinsurance.com/bop-insurance
+- https://bringasinsurance.com/commercial-auto
+- https://bringasinsurance.com/commercial-property
+- https://bringasinsurance.com/contractors-insurance
+
+For coverage, pricing, eligibility, or legal requirements, contact the agency directly. Website content is general information and is not an insurance policy or binding coverage offer.

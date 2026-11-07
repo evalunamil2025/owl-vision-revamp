@@ -18,8 +18,9 @@ configuration was changed.
   links in the rendered footer/navigation; `/sr22-insurance`, `/pay-my-bill`,
   `/client-center`, and `/carriers` are no longer absent from the default DOM.
 - Requires external approval: server rendering (Lovable TanStack Start upgrade
-  or another SSR/edge deployment), native Cloudflare status/query rules, and
-  `www` to apex normalization.
+  or another SSR/edge deployment) and activation of the prepared Cloudflare
+  status/query/host rules. The Worker now includes `www`/HTTP to HTTPS apex
+  normalization, but production routing must be activated before it takes effect.
 
 ## 1. Confirmed baseline before changes
 
@@ -101,7 +102,9 @@ was preserved; no primary page content was replaced.
   and Carriers without changing route URLs.
 - Synchronized `<html lang>` with the existing language toggle.
 - Extended generated Worker policy for `v`, `tid`, and `lang` normalization,
-  route metadata injection, 404/410 handling, and additional spam vocabulary.
+  canonical host/protocol redirects, route metadata injection, 404/410 handling,
+  and additional spam vocabulary.
+- Added `public/llms.txt` with canonical business and service-page references.
 - Added a reusable social image copied from the existing brand asset; no image
   content was redesigned.
 - Expanded automated SEO and Worker tests.
@@ -169,8 +172,9 @@ deployed** and must not be reported to Search Console as fixed yet.
    for SEO. Status: `REQUIRES_MANUAL_APPROVAL`.
 2. **Real 404/410:** production O2O bypasses Workers Routes. Activate native
    Cloudflare Redirect/WAF rules or approve a hosting/SSR change.
-3. **Canonical host:** HTTPS `www` returns 200. Add a Cloudflare single redirect
-   to the equivalent apex path.
+3. **Canonical host:** HTTPS `www` returns 200 in production. The generated
+   Worker now performs a single 301 to the equivalent HTTPS apex URL, including
+   assets and preserved query strings, but the production route is not active.
 4. **Route metadata at the edge:** Worker HTMLRewriter support is prepared and
    tested structurally, but cannot affect the current O2O production request
    path.
@@ -179,7 +183,7 @@ deployed** and must not be reported to Search Console as fixed yet.
 
 ## 9. Verification completed
 
-- `npm test -- --run`: 37 passed, 1 optional live test skipped.
+- `npm test -- --run`: 40 passed, 1 optional live test skipped.
 - `npm run typecheck`: passed.
 - `npm run build`: passed, 2,477 modules transformed.
 - Headless Chrome: all 26 routes passed title, description, canonical, robots,

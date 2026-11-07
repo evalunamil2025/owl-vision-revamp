@@ -72,6 +72,8 @@ The generated Worker implements the same policy, but production checks on
 the Worker as a tested reference/staging implementation, not proof that the
 rule is active on `bringasinsurance.com`.
 
-Also add a single redirect from `https://www.bringasinsurance.com/*` to the
-equivalent apex URL. The public `www` hostname currently responds `200` rather
-than redirecting, so canonical host normalization is incomplete.
+The generated Worker also redirects `http://bringasinsurance.com/*`,
+`http://www.bringasinsurance.com/*`, and `https://www.bringasinsurance.com/*`
+to the equivalent HTTPS apex URL in one 301 while preserving the path and query.
+The public `www` hostname currently responds `200`, so this remains a prepared
+rule until the Worker/native rule is activated on the production request path.

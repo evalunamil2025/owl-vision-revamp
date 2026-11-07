@@ -106,6 +106,20 @@ describe("SEO query normalization Worker", () => {
   });
 
   it.each([
+    ["https://www.bringasinsurance.com/contact", "https://bringasinsurance.com/contact"],
+    ["http://bringasinsurance.com/contact?utm_source=test", "https://bringasinsurance.com/contact?utm_source=test"],
+    ["http://www.bringasinsurance.com/favicon.png", "https://bringasinsurance.com/favicon.png"],
+  ])("normalizes protocol and host for %s", async (source, destination) => {
+    vi.stubGlobal("fetch", vi.fn());
+
+    const response = await worker.fetch(new Request(source), {});
+
+    expect(response.status).toBe(301);
+    expect(response.headers.get("location")).toBe(destination);
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it.each([
     ["https://bringasinsurance.com/?v=0096738646fe59e", "https://bringasinsurance.com/"],
     ["https://bringasinsurance.com/?tid=EPD86ss00Q0J9dndxqr3gD_wZWINOybdBeO", "https://bringasinsurance.com/"],
     ["https://bringasinsurance.com/?lang=es", "https://bringasinsurance.com/"],
