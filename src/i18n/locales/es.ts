@@ -60,6 +60,34 @@ const es: Translation = {
     subtitle:
       "Auto • Hogar • Negocio • Vida — Comparamos múltiples aseguradoras para encontrar la opción perfecta. Protección real, sin complicaciones.",
   },
+  aiAnswers: {
+    eyebrow: "Respuestas claras",
+    title: "Acerca de Bringas Insurance Group",
+    intro:
+      "Bringas Insurance Group es una agencia de seguros independiente en Everett, Washington. Ayudamos a personas, familias y negocios a comparar opciones de seguros de varias compañías.",
+    items: {
+      what: {
+        question: "¿Qué es Bringas Insurance Group?",
+        answer:
+          "Bringas Insurance Group es una agencia de seguros independiente con sede en Everett, Washington. La agencia brinda orientación sobre seguros personales y comerciales a clientes de Washington.",
+      },
+      services: {
+        question: "¿Qué tipos de seguros ofrece Bringas?",
+        answer:
+          "Bringas ayuda con seguros de auto, hogar, inquilinos, arrendadores, vida, vehículos recreativos, responsabilidad personal, SR-22, responsabilidad comercial, BOP, auto y propiedad comercial, contratistas, restaurantes, edificios y fianzas.",
+      },
+      spanish: {
+        question: "¿Bringas ofrece atención en español?",
+        answer:
+          "Sí. Bringas Insurance Group brinda orientación sobre seguros en inglés y español para clientes en el estado de Washington.",
+      },
+      quote: {
+        question: "¿Cómo puedo solicitar una cotización?",
+        answer:
+          "Usa la página de cotización en línea o llama al (425) 405-7111. La cobertura no entra en vigor ni se modifica hasta que un agente de seguros con licencia la confirme directamente.",
+      },
+    },
+  },
   footer: {
     tagline:
       "Te traemos soluciones de seguros. Tu agencia independiente de confianza, sirviendo a familias y negocios con autenticidad y cercanía.",

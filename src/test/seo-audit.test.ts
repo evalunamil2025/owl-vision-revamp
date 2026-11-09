@@ -10,6 +10,11 @@ const seoSource = fs.readFileSync(path.join(root, "src/components/SEO.tsx"), "ut
 const analyticsSource = fs.readFileSync(path.join(root, "src/lib/analytics.ts"), "utf8");
 const indexSource = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const sitemapSource = fs.readFileSync(path.join(root, "public/sitemap.xml"), "utf8");
+const robotsSource = fs.readFileSync(path.join(root, "public/robots.txt"), "utf8");
+const normalizedRobotsSource = robotsSource.replace(/\r/g, "");
+const llmsSource = fs.readFileSync(path.join(root, "public/llms.txt"), "utf8");
+const homeSource = fs.readFileSync(path.join(root, "src/pages/Index.tsx"), "utf8");
+const aiAnswersSource = fs.readFileSync(path.join(root, "src/components/home/AIAnswers.tsx"), "utf8");
 const auditCsv = fs.readFileSync(path.join(root, "seo/reports/gsc-url-audit.csv"), "utf8");
 const seoRoutes = JSON.parse(fs.readFileSync(path.join(root, "src/config/seo-routes.json"), "utf8")) as Record<string, {
   title: string;
@@ -123,6 +128,26 @@ describe("SEO routing contract", () => {
     expect(analyticsSource).toContain("VALID_ROUTES.includes(cleanPath)");
     expect(analyticsSource).toContain('"page_view"');
     expect(notFoundSource).toContain('"page_not_found"');
+  });
+
+  it("allows AI search crawlers and exposes a useful llms.txt", () => {
+    for (const userAgent of [
+      "ChatGPT-User", "OAI-SearchBot", "GPTBot", "Perplexity-User",
+      "PerplexityBot", "Claude-User", "Claude-SearchBot", "ClaudeBot", "Google-Extended",
+    ]) {
+      expect(normalizedRobotsSource).toContain(`User-agent: ${userAgent}\nAllow: /`);
+    }
+    expect(llmsSource).toContain("Bringas Insurance Group is an independent insurance agency");
+    expect(llmsSource).toContain("## Questions this site answers");
+    expect(llmsSource).toContain("https://bringasinsurance.com/auto-insurance");
+  });
+
+  it("publishes visible, schema-backed answers for AI citation", () => {
+    expect(homeSource).toContain('"@type": "FAQPage"');
+    expect(homeSource).toContain("<AIAnswers />");
+    expect(aiAnswersSource).toContain('<dl className=');
+    expect(indexSource).toContain('"@id": "https://bringasinsurance.com/#organization"');
+    expect(indexSource).toContain('["InsuranceAgency", "Organization"]');
   });
 });
 

@@ -119,6 +119,7 @@ const ServicePageLayout = ({
           },
           provider: {
             "@type": "InsuranceAgency",
+            "@id": `${SITE_URL}/#organization`,
             name: "Bringas Insurance Group",
             url: `${SITE_URL}/`,
             telephone: "+1-425-405-7111",

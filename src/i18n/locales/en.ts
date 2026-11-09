@@ -58,6 +58,34 @@ const en = {
     subtitle:
       "Auto • Home • Business • Life — We compare multiple carriers to find the perfect fit. Real protection, no complications.",
   },
+  aiAnswers: {
+    eyebrow: "Straight answers",
+    title: "About Bringas Insurance Group",
+    intro:
+      "Bringas Insurance Group is an independent insurance agency in Everett, Washington. We help individuals, families, and businesses compare insurance options from multiple carriers.",
+    items: {
+      what: {
+        question: "What is Bringas Insurance Group?",
+        answer:
+          "Bringas Insurance Group is an independent insurance agency based in Everett, Washington. The agency serves Washington clients with personal and business insurance guidance.",
+      },
+      services: {
+        question: "What types of insurance does Bringas offer?",
+        answer:
+          "Bringas helps with auto, home, renters, landlord, life, recreational vehicle, umbrella, SR-22, general liability, BOP, commercial auto, commercial property, contractor, restaurant, building owner, and surety bond coverage.",
+      },
+      spanish: {
+        question: "Does Bringas provide service in Spanish?",
+        answer:
+          "Yes. Bringas Insurance Group provides insurance guidance in both English and Spanish for clients in Washington State.",
+      },
+      quote: {
+        question: "How can I request an insurance quote?",
+        answer:
+          "Use the online quote page or call (425) 405-7111. Coverage is not bound or changed until it is confirmed directly by a licensed insurance agent.",
+      },
+    },
+  },
   footer: {
     tagline:
       "We Bring You Insurance Solutions. Your trusted independent insurance agency serving families and businesses with authenticity and warmth.",
