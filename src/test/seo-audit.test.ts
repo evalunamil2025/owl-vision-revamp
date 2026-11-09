@@ -15,6 +15,7 @@ const normalizedRobotsSource = robotsSource.replace(/\r/g, "");
 const llmsSource = fs.readFileSync(path.join(root, "public/llms.txt"), "utf8");
 const homeSource = fs.readFileSync(path.join(root, "src/pages/Index.tsx"), "utf8");
 const aiAnswersSource = fs.readFileSync(path.join(root, "src/components/home/AIAnswers.tsx"), "utf8");
+const footerSource = fs.readFileSync(path.join(root, "src/components/Footer.tsx"), "utf8");
 const auditCsv = fs.readFileSync(path.join(root, "seo/reports/gsc-url-audit.csv"), "utf8");
 const seoRoutes = JSON.parse(fs.readFileSync(path.join(root, "src/config/seo-routes.json"), "utf8")) as Record<string, {
   title: string;
@@ -148,6 +149,12 @@ describe("SEO routing contract", () => {
     expect(aiAnswersSource).toContain('<dl className=');
     expect(indexSource).toContain('"@id": "https://bringasinsurance.com/#organization"');
     expect(indexSource).toContain('["InsuranceAgency", "Organization"]');
+  });
+
+  it("keeps every formerly orphaned sitemap route crawlable from the footer", () => {
+    for (const route of ["/sr22-insurance", "/pay-my-bill", "/client-center", "/carriers"]) {
+      expect(footerSource).toContain(route);
+    }
   });
 });
 

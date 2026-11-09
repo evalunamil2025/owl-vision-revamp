@@ -5,6 +5,7 @@ import type { Server } from "node:http";
 import { createProductionServer, validateContact } from "../../server/production-server.mjs";
 // @ts-expect-error generated JavaScript policy module
 import { classifyUrl } from "../../server/url-policy.mjs";
+import { VALID_ROUTES } from "@/config/redirects";
 
 describe("Node hosting URL policy", () => {
   it.each([
@@ -25,6 +26,17 @@ describe("Node hosting URL policy", () => {
       .toMatchObject({ kind: "error", status: 404 });
     expect(classifyUrl(new URL("https://bringasinsurance.com/random-casino-test-url")))
       .toMatchObject({ kind: "error", status: 410 });
+  });
+
+  it("redirects every www application route directly to the HTTPS apex", () => {
+    for (const route of VALID_ROUTES) {
+      const source = new URL(`https://www.bringasinsurance.com${route}`);
+      expect(classifyUrl(source, { host: source.host, protocol: source.protocol })).toMatchObject({
+        kind: "redirect",
+        status: 301,
+        location: `https://bringasinsurance.com${route}`,
+      });
+    }
   });
 });
 
