@@ -60,6 +60,18 @@ try {
     const html = result.stdout;
     const metas = [...html.matchAll(/<meta\b[^>]*>/gi)].map((match) => attributes(match[0]));
     const links = [...html.matchAll(/<link\b[^>]*>/gi)].map((match) => attributes(match[0]));
+    const internalPaths = new Set(
+      [...html.matchAll(/<a\b[^>]*href=["']([^"']+)["']/gi)]
+        .map((match) => {
+          try {
+            const url = new URL(match[1], base);
+            return url.origin === new URL(base).origin ? url.pathname : null;
+          } catch {
+            return null;
+          }
+        })
+        .filter(Boolean),
+    );
     console.log(JSON.stringify({
       phase: "POST_JAVASCRIPT_DOM",
       pathname,
@@ -69,6 +81,9 @@ try {
       robots: metas.find((meta) => meta.name === "robots")?.content || "",
       h1: content(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i),
       schema: schemaTypes(html),
+      internalPathCount: internalPaths.size,
+      criticalLinksPresent: ["/sr22-insurance", "/pay-my-bill", "/client-center", "/carriers"]
+        .filter((path) => internalPaths.has(path)),
     }));
   }
 } finally {
