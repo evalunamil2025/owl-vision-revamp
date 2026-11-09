@@ -5,6 +5,8 @@ const cases = [
   ["/seguro-para-casas-prefabricadas-en-seattle-washington/", 301, "/mobile-home-insurance"],
   ["/es/", 301, "/"], ["/wp-admin/", 410],
   ["/2025/08/05/experience-englishspeaking-online-casinos-in-canada-play-at-gigadats-toprated-gambling-platform/", 410],
+  ["/2025/08/12/wazamba-mobile-app-download-c98855a6/", 410],
+  ["/2025/08/20/uvlekatelnye-onlaynigry-v-kazino-ot-sultan-games-dlya-gracias-iz-kazakhstana/", 410],
   ["/random-nonexistent-url-12345/", 404], ["/robots.txt", 200], ["/sitemap.xml", 200],
 ];
 let failed = 0;
