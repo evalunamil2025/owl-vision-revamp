@@ -59,10 +59,6 @@ function auditedRows(): string[][] {
   return auditCsv.trim().split(/\r?\n/).slice(1).map(parseCsvLine);
 }
 
-function auditedRows(): string[][] {
-  return auditCsv.trim().split(/\r?\n/).slice(1).map(parseCsvLine);
-}
-
 describe("SEO routing contract", () => {
   it("keeps every audited CSV URL represented and the required columns intact", () => {
     const lines = auditCsv.trim().split(/\r?\n/);
@@ -192,17 +188,6 @@ describe("Authoritative URL policy invariants", () => {
     expect(VALID_ROUTES.some(isGone)).toBe(false);
     expect(Object.keys(LEGACY_REDIRECTS).some(isGone)).toBe(false);
     expect(GONE_PATHS.some((path) => VALID_ROUTES.includes(path))).toBe(false);
-  });
-
-  it("classifies every confirmed spam URL from Search Console as Gone", () => {
-    const spamRows = auditedRows().filter((row) => row[11] === "URL spam, hackeada o generada por error");
-    const datedSpamRows = spamRows.filter((row) => new URL(row[0]).pathname.startsWith("/2025/"));
-
-    expect(spamRows).toHaveLength(196);
-    expect(datedSpamRows).toHaveLength(163);
-    for (const row of spamRows) {
-      expect(isGone(new URL(row[0]).pathname), row[0]).toBe(true);
-    }
   });
 
   it("classifies every confirmed spam URL from Search Console as Gone", () => {
