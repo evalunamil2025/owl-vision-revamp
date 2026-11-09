@@ -83,10 +83,15 @@ advertencias activas en el rastreo:
 
 | Advertencia | Diagnóstico | Corrección/estado |
 | --- | --- | --- |
-| 44 enlaces externos rotos | El perfil de LinkedIn compartido en el footer responde `999` a rastreadores; Facebook, X, Instagram, Maps y WhatsApp respondieron `200` | Se retiró el perfil de LinkedIn no verificable del footer, Contact y `sameAs` |
+| 44 enlaces externos rotos | El perfil de LinkedIn compartido en el footer responde `999` a rastreadores; Facebook, X, Instagram, Maps y WhatsApp respondieron `200` | Se retiró el perfil de LinkedIn no verificable del footer, Contact y `sameAs`; ausencia verificada en producción |
 | 44 relaciones texto/HTML bajas | Afecta exactamente a todas las respuestas React/Vite; es una señal del shell SPA, no 44 defectos de contenido independientes | Se corrige estructuralmente con SSR/TanStack Start o con el runtime Node preparado |
 | 3 páginas con pocas palabras | El export de issues no incluye las tres URLs; el crawl de `/contractors-insurance` apex falló parcialmente (0 enlaces internos y título genérico), por lo que al menos una medición es incompleta | Repetir auditoría tras SSR; no inflar contenido sin identificar primero las URLs restantes |
 | 1 página sin H1 | El código de `/contractors-insurance` sí usa `ServicePageLayout`, que genera un `<h1>` semántico; el mismo registro fue el único con render incompleto | Se añadió una prueba contractual del H1; SSR evitará que el rastreador reciba el shell sin contenido |
+
+La comprobación directa de `/contractors-insurance` con agentes SemrushBot,
+Googlebot y navegador recibió en los tres casos el mismo HTML inicial: 0 `<h1>`,
+0 enlaces, aproximadamente 188 palabras y 6,024 bytes. Esto confirma que el H1
+existe en React pero no en la respuesta inicial del hosting actual.
 
 La relación texto/HTML y un conteo bruto de palabras son advertencias de la
 herramienta, no sustituyen la evaluación de intención o calidad. En este caso,
