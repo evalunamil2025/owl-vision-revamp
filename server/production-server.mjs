@@ -194,6 +194,7 @@ export function createProductionServer() {
       const host = request.headers.host || CANONICAL_HOST;
       const protocol = String(request.headers["x-forwarded-proto"] || "http").split(",")[0].trim();
       const url = new URL(request.url || "/", `http://${host}`);
+      if (url.pathname === "/healthz") return send(response, 200, "ok", { "cache-control": "no-store" });
       if (url.pathname === "/api/contact") return handleContact(request, response);
       if (!["GET", "HEAD"].includes(request.method || "")) return send(response, 405, "Method Not Allowed");
 

@@ -56,6 +56,14 @@ describe("Node production server", () => {
     await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
   });
 
+  it("exposes a health check without requiring the canonical host", async () => {
+    const response = await fetch(`${baseUrl}/healthz`, {
+      headers: { host: "bringas-insurance.onrender.com" },
+    });
+    expect(response.status).toBe(200);
+    expect(await response.text()).toBe("ok");
+  });
+
   it("returns real HTTP statuses and route-specific initial metadata", async () => {
     const page = await fetch(`${baseUrl}/contractors-insurance`, {
       headers: { host: "bringasinsurance.com", "x-forwarded-proto": "https" },

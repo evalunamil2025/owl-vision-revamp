@@ -4,10 +4,11 @@ services:
     name: bringas-insurance
     buildCommand: npm ci && npm run build
     startCommand: npm start
-    healthCheckPath: /
+    healthCheckPath: /healthz
     autoDeployTrigger: commit
     domains:
       - bringasinsurance.com
+      - www.bringasinsurance.com
     envVars:
       - key: NODE_VERSION
         value: 20.19.0
