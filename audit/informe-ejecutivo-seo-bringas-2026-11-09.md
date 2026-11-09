@@ -2,7 +2,7 @@
 
 **Sitio:** Bringas Insurance Group — bringasinsurance.com  
 **Fecha:** 9 de noviembre de 2026  
-**Estado:** Migración y correcciones técnicas terminadas y verificadas; publicación final pendiente
+**Estado:** Migración publicada y correcciones técnicas verificadas; reauditoría y validación de Google pendientes
 
 ## 1. Resumen para dirección
 
@@ -73,7 +73,7 @@ También se verificó que:
 2. las direcciones de spam se marcan como eliminadas de forma permanente;
 3. una dirección inexistente se identifica correctamente como no encontrada y se excluye de los buscadores.
 
-Estos cambios entrarán en la web pública cuando se publique la versión verificada desde Lovable.
+Estos cambios ya se encuentran publicados y fueron comprobados directamente en la web pública.
 
 ## 5. Trabajo completado y siguiente paso
 
@@ -104,11 +104,11 @@ Se comprobó:
 - una dirección de spam se identifica como eliminada;
 - sitemap, robots y datos para IA siguen disponibles.
 
-### Fase 3 — Publicación y comprobación externa — pendiente
+### Fase 3 — Publicación y comprobación externa — completada
 
-Después de publicar:
+Después de la publicación:
 
-- se repetirá la auditoría de Semrush;
+- se comprobó la web pública y queda pendiente repetir la auditoría de Semrush;
 - se enviará nuevamente el mismo sitemap a Google Search Console;
 - se solicitará la revisión de las páginas más importantes;
 - se iniciará la validación de los problemas realmente corregidos;
@@ -147,4 +147,3 @@ Se solicita autorización para:
 4. reenviar el mismo sitemap y solicitar la validación en Search Console.
 
 No se propone contratar Render ni configurar una cuenta externa de Cloudflare.
-

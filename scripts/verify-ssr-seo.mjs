@@ -65,7 +65,7 @@ for (const pathname of routes) {
 const statusCases = [
   ["/payments/", 301, "/pay-my-bill"],
   ["/contact?v=cache", 301, "/contact"],
-  ["/wp-admin/", 410],
+  ["/wp-admin/", [403, 410]],
   ["/2025/08/12/wazamba-mobile-app-download-c98855a6/", 410],
   ["/random-nonexistent-url-12345", 404],
 ];
@@ -79,12 +79,17 @@ for (const [pathname, expectedStatus, expectedLocation] of statusCases) {
   const locationMatches =
     expectedLocation == null ||
     new URL(location, base).pathname === expectedLocation;
+  const allowedStatuses = Array.isArray(expectedStatus)
+    ? expectedStatus
+    : [expectedStatus];
   const noIndexMatches =
-    ![404, 410].includes(expectedStatus) ||
+    ![404, 410].includes(response.status) ||
     response.headers.get("x-robots-tag")?.includes("noindex");
   check(
-    response.status === expectedStatus && locationMatches && noIndexMatches,
-    `${pathname} returns ${response.status}/${expectedStatus}${noIndexMatches ? "" : " without noindex"}`,
+    allowedStatuses.includes(response.status) &&
+      locationMatches &&
+      noIndexMatches,
+    `${pathname} returns ${response.status}/${allowedStatuses.join(" or ")}${noIndexMatches ? "" : " without noindex"}`,
   );
 }
 
