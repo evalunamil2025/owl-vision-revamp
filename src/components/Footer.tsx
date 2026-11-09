@@ -190,11 +190,6 @@ const Footer = () => {
                 url: "https://www.facebook.com/Bringas-Insurance-111132600590435/?modal=admin_todo_tour",
               },
               {
-                icon: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4z",
-                label: "LinkedIn",
-                url: "https://www.linkedin.com/in/bringas-insurance-54111bb1/",
-              },
-              {
                 icon: "M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z",
                 label: "Twitter",
                 url: "https://twitter.com/BringasIns",

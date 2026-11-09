@@ -155,6 +155,13 @@ describe("SEO routing contract", () => {
     expect(indexSource).toContain('["InsuranceAgency", "Organization"]');
   });
 
+  it("does not publish the crawler-blocked, unverified LinkedIn profile", () => {
+    expect(indexSource).not.toContain("linkedin.com/in/bringas-insurance-54111bb1");
+    expect(footerSource).not.toContain("linkedin.com/in/bringas-insurance-54111bb1");
+    expect(fs.readFileSync(path.join(root, "src/pages/Contact.tsx"), "utf8"))
+      .not.toContain("linkedin.com/in/bringas-insurance-54111bb1");
+  });
+
   it("keeps every formerly orphaned sitemap route crawlable from the footer", () => {
     for (const route of ["/sr22-insurance", "/pay-my-bill", "/client-center", "/carriers"]) {
       expect(footerSource).toContain(route);
