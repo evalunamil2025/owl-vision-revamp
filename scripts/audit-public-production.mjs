@@ -60,19 +60,27 @@ try {
   const home = await fetch(`${base}/`, { headers: { "user-agent": "Mozilla/5.0 Bringas public SEO audit" } });
   const homeHtml = await home.text();
   const entryScripts = [...homeHtml.matchAll(/<script[^>]*src=["']([^"']+\.js)["']/gi)].map((match) => new URL(match[1], base).href);
+  const queue = [...entryScripts];
+  const inspected = new Set();
   const sources = [];
-  for (const scriptUrl of entryScripts) {
-    const source = await (await fetch(scriptUrl)).text();
+  while (queue.length && inspected.size < 100) {
+    const scriptUrl = queue.shift();
+    if (!scriptUrl || inspected.has(scriptUrl) || new URL(scriptUrl).origin !== new URL(base).origin) continue;
+    inspected.add(scriptUrl);
+    const response = await fetch(scriptUrl);
+    if (!response.ok) continue;
+    const source = await response.text();
     sources.push(source);
-    for (const match of source.matchAll(/["'](\/assets\/[^"']+\.js)["']/g)) {
-      const childUrl = new URL(match[1], base).href;
-      if (!entryScripts.includes(childUrl)) entryScripts.push(childUrl);
+    for (const match of source.matchAll(/["']((?:\/assets\/|\.\.?\/)[^"']+\.js)["']/g)) {
+      const childUrl = new URL(match[1], scriptUrl).href;
+      if (!inspected.has(childUrl)) queue.push(childUrl);
     }
   }
   const bundle = sources.join("\n");
   console.log(JSON.stringify({
     phase: "DEPLOYMENT_SIGNATURE",
-    scriptsInspected: entryScripts.length,
+    entryScripts,
+    scriptsInspected: inspected.size,
     containsLegacyWorkerEndpoint: bundle.includes("bringas-insurance-router.seo-41a.workers.dev/api/contact"),
     containsRelativeContactEndpoint: bundle.includes("/api/contact"),
     containsCurrentHomeTitle: bundle.includes("Insurance Agency in Everett, WA | Bringas Insurance Group"),
