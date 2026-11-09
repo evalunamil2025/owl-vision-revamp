@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import {
   ShieldCheck,
   FileCheck2,
@@ -136,7 +136,7 @@ const SR22Insurance = () => {
               <a
                 href="tel:+14254057111"
                 aria-label="Call now: (425) 405-7111"
-                className="group relative inline-flex items-center gap-4 overflow-hidden rounded-2xl border-2 border-[#6ee7a7] bg-gradient-to-r from-[#00a651] to-[#008f45] px-7 py-3.5 text-white shadow-[0_0_0_6px_rgba(0,166,81,0.18),0_18px_45px_-12px_rgba(0,0,0,0.65)] transition-all hover:-translate-y-1 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
+                className="group relative inline-flex items-center gap-4 overflow-hidden rounded-2xl border-2 border-[#6ee7a7] bg-gradient-to-r from-[#00a651] to-[#008f45] px-7 py-3.5 text-white shadow-[0_0_0_6px_rgba(0,166,81,0.18),0_18px_45px_-12px_rgba(0,0,0,0.65)] transition-all hover:-translate-y-1 hover:scale-[1.02] focus-visible:outline-hidden focus-visible:ring-4 focus-visible:ring-white/60"
               >
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" aria-hidden="true" />
                 <span className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-white text-[#00a651] shadow-lg">
@@ -202,7 +202,7 @@ const SR22Insurance = () => {
               viewport={{ once: true }}
               className="lg:col-span-3"
             >
-              <div className="inline-flex items-center gap-2 bg-white border border-slate-200 shadow-sm px-4 py-2 rounded-full mb-5">
+              <div className="inline-flex items-center gap-2 bg-white border border-slate-200 shadow-xs px-4 py-2 rounded-full mb-5">
                 <Sparkles className="w-4 h-4 text-[#00a651]" />
                 <span className="text-xs uppercase tracking-widest font-bold text-slate-700">
                   We've Got You Covered
@@ -331,7 +331,7 @@ const SR22Insurance = () => {
             viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto mb-14"
           >
-            <div className="inline-flex items-center gap-2 bg-white border border-amber-200 shadow-sm text-amber-700 px-4 py-2 rounded-full mb-5">
+            <div className="inline-flex items-center gap-2 bg-white border border-amber-200 shadow-xs text-amber-700 px-4 py-2 rounded-full mb-5">
               <AlertTriangle className="w-4 h-4" />
               <span className="text-xs uppercase tracking-widest font-bold">Common Triggers</span>
             </div>
@@ -399,7 +399,7 @@ const SR22Insurance = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
-                className={`${item.size} group relative bg-white p-6 rounded-3xl border border-slate-100 hover:border-transparent shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all overflow-hidden`}
+                className={`${item.size} group relative bg-white p-6 rounded-3xl border border-slate-100 hover:border-transparent shadow-xs hover:shadow-2xl hover:-translate-y-1 transition-all overflow-hidden`}
               >
                 {/* Number badge */}
                 <span className="absolute top-4 right-5 font-josefin font-bold text-5xl text-slate-100 group-hover:text-[#0079c2]/20 transition-colors">

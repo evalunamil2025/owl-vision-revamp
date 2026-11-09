@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { X, Send, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "@/lib/router-compat";
 import { useTranslation } from "react-i18next";
 import owlinAvatar from "@/assets/owlin-avatar.png.asset.json";
 
@@ -150,7 +150,7 @@ const Avatar = ({ className = "w-7 h-7" }: { className?: string }) => (
   <img
     src={owlinAvatar.url}
     alt="Owlin"
-    className={`rounded-full object-cover border-2 border-white/40 shadow-sm ${className}`}
+    className={`rounded-full object-cover border-2 border-white/40 shadow-xs ${className}`}
   />
 );
 
@@ -206,7 +206,7 @@ const InsuranceChatbot = () => {
       scrollToBottom();
       setTimeout(() => {
         setTyping(false);
-        setMessages((prev) => [...prev, { id: uid(), role: "bot", text, buttons }]);
+        setMessages((prev) => [...prev, { id: uid(), role: "bot", text, ...(buttons ? { buttons } : {}) }]);
         scrollToBottom();
         resolve();
       }, delay);
@@ -301,7 +301,7 @@ const InsuranceChatbot = () => {
     scrollToBottom();
 
     if (flowStep === "wait_name") {
-      const name = text.split(" ")[0];
+      const name = text.split(" ")[0] ?? text;
       setUserName(name);
       localStorage.setItem("owlin_user_name", name);
       setFlowStep("main");
@@ -406,7 +406,7 @@ const InsuranceChatbot = () => {
                             <button
                               key={btn.label}
                               onClick={() => handleAction(btn.action, btn.label, btn.href)}
-                              className="px-3 py-1.5 text-xs font-semibold rounded-full border border-[#00a651]/20 text-[#00a651] bg-white hover:bg-[#00a651] hover:text-white transition-all flex items-center gap-1 shadow-sm"
+                              className="px-3 py-1.5 text-xs font-semibold rounded-full border border-[#00a651]/20 text-[#00a651] bg-white hover:bg-[#00a651] hover:text-white transition-all flex items-center gap-1 shadow-xs"
                             >
                               {btn.label}
                               <ArrowRight className="w-3 h-3" />
@@ -432,7 +432,7 @@ const InsuranceChatbot = () => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={flowStep === "wait_name" ? t.placeholderName : t.placeholderQuestion}
-                  className="flex-1 px-4 py-2.5 text-sm rounded-full bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#00a651]/40 focus:ring-2 focus:ring-[#00a651]/10 transition-all"
+                  className="flex-1 px-4 py-2.5 text-sm rounded-full bg-slate-50 border border-slate-200 focus:outline-hidden focus:border-[#00a651]/40 focus:ring-2 focus:ring-[#00a651]/10 transition-all"
                 />
                 <button
                   type="submit"

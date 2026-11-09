@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Languages } from "lucide-react";
 import { useTranslation } from "react-i18next";

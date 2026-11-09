@@ -1,0 +1,18 @@
+{
+  "customizations": [
+    { "token": "brand color palette (--primary/--secondary/--accent/--muted/--border etc., light + dark)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--brand-blue / --brand-blue-deep / --brand-green / --brand-green-deep", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--grad-blue-* / --grad-green-* gradient endpoints", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--body-text", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--shadow-card / --shadow-card-hover", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--radius 0.75rem", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "font-heading (Josefin Sans) / font-body (DM Sans)", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "brand-* and accent-light color utilities", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "shadow-brand / shadow-brand-lg / shadow-brand-xl", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "animate-fade-in-up", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "container (centered, 2rem padding, 1400px)", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "component classes (section-padding, gradient-blue/green, text-gradient-brand, elevated-card, glass-card, icon-circle(-sm), btn-primary, btn-outline, section-alt, owl-pattern)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "hero animation classes + keyframes", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "prefers-reduced-motion rule", "source": "src/index.css", "reappliedIn": "src/styles.css" }
+  ]
+}

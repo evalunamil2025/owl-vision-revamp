@@ -25,7 +25,7 @@ const AIAnswers = () => {
 
           <dl className="grid gap-5 md:grid-cols-2">
             {answerKeys.map((key) => (
-              <div key={key} className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
+              <div key={key} className="rounded-3xl border border-slate-200 bg-white p-7 shadow-xs">
                 <dt className="font-heading text-xl font-bold text-[#015093]">
                   {t(`aiAnswers.items.${key}.question`)}
                 </dt>

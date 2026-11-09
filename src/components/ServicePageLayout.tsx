@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "@/lib/router-compat";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import {
@@ -184,7 +184,7 @@ const ServicePageLayout = ({
               <a
                 href="tel:+14254057111"
                 aria-label={`${t("service.callNow")}: ${t("common.phone")}`}
-                className="group relative flex items-center justify-center gap-4 overflow-hidden rounded-2xl border-2 border-[#6ee7a7] bg-gradient-to-r from-[#00a651] to-[#008f45] px-8 py-4 text-white shadow-[0_0_0_6px_rgba(0,166,81,0.18),0_18px_45px_-12px_rgba(0,0,0,0.65)] transition-all hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_0_8px_rgba(0,166,81,0.24),0_24px_55px_-12px_rgba(0,0,0,0.7)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
+                className="group relative flex items-center justify-center gap-4 overflow-hidden rounded-2xl border-2 border-[#6ee7a7] bg-gradient-to-r from-[#00a651] to-[#008f45] px-8 py-4 text-white shadow-[0_0_0_6px_rgba(0,166,81,0.18),0_18px_45px_-12px_rgba(0,0,0,0.65)] transition-all hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_0_8px_rgba(0,166,81,0.24),0_24px_55px_-12px_rgba(0,0,0,0.7)] focus-visible:outline-hidden focus-visible:ring-4 focus-visible:ring-white/60"
               >
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" aria-hidden="true" />
                 <span className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-white text-[#00a651] shadow-lg">
@@ -338,7 +338,7 @@ const ServicePageLayout = ({
                   { bg: "bg-white", text: "text-[#015093]", sub: "text-[#015093]/70", accent: "#0079c2", chip: "bg-[#0079c2]/10 text-[#0079c2]" },
                   { bg: "bg-[#00a651]", text: "text-white", sub: "text-white/85", accent: "#ffffff", chip: "bg-white/15 text-white" },
                 ];
-                const t = themes[i % themes.length];
+                const t = themes[i % themes.length]!;
                 const isFeature = i % 5 === 0;
                 const span = isFeature ? "md:col-span-4" : "md:col-span-2";
 
@@ -512,7 +512,7 @@ const ServicePageLayout = ({
 
               <div className="grid md:grid-cols-3 gap-10 md:gap-6 relative">
                 {approach.items.map((item, i) => {
-                  const StepIcon = [Search, ClipboardCheck, Settings2][i % 3];
+                  const StepIcon = [Search, ClipboardCheck, Settings2][i % 3] ?? Search;
                   return (
                     <motion.div
                       key={i}

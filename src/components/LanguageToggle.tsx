@@ -12,7 +12,7 @@ const LanguageToggle = ({ compact = false }: { compact?: boolean }) => {
   return (
     <div
       className={`inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white/80 backdrop-blur-sm p-0.5 ${
-        compact ? "" : "shadow-sm"
+        compact ? "" : "shadow-xs"
       }`}
       role="group"
       aria-label={t("nav.languageLabel")}
@@ -26,7 +26,7 @@ const LanguageToggle = ({ compact = false }: { compact?: boolean }) => {
           aria-pressed={current === lng}
           className={`px-2.5 py-1 text-[11px] font-bold rounded-full transition-all ${
             current === lng
-              ? "bg-[#0079c2] text-white shadow-sm"
+              ? "bg-[#0079c2] text-white shadow-xs"
               : "text-slate-500 hover:text-[#0079c2]"
           }`}
         >

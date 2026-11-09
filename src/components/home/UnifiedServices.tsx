@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles, User, Building2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -27,7 +27,7 @@ const UnifiedServices = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-xs mb-8"
           >
             <Sparkles className="w-4 h-4 text-[#00a651] animate-pulse" />
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#015093]/70 font-heading">

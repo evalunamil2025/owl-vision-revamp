@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, ArrowRight, Sparkles, ExternalLink, FileText } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";

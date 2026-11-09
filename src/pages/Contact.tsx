@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Sparkles, ArrowRight, CheckCircle2, AlertCircle, LoaderCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,7 +9,7 @@ import contactHeroBg from "@/assets/seattle-hero-bg.jpg";
 import SEO from "@/components/SEO";
 
 const CONTACT_API_URL =
-  import.meta.env.VITE_CONTACT_API_URL || "/api/contact";
+  import.meta.env["VITE_CONTACT_API_URL"] || "/api/contact";
 
 const FacebookIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -25,7 +25,7 @@ const Contact = () => {
   const { t } = useTranslation();
   const [submissionState, setSubmissionState] = useState<"idle" | "sending" | "success" | "error">("idle");
   const inputClasses =
-    "w-full bg-[#0079c2]/5 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-[#00a651] transition-all outline-none text-[#015093] placeholder:text-[#015093]/40 font-body";
+    "w-full bg-[#0079c2]/5 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-[#00a651] transition-all outline-hidden text-[#015093] placeholder:text-[#015093]/40 font-body";
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -91,7 +91,7 @@ const Contact = () => {
           <div className="absolute inset-0 bg-[#001e2b]/40" />
         </div>
 
-        {/* Círculo decorativo blur */}
+        {/* Círculo decorativo blur-sm */}
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#00a651]/20 rounded-full blur-[120px] animate-pulse z-0" />
 
         <div className="container mx-auto px-6 relative z-10 text-center">

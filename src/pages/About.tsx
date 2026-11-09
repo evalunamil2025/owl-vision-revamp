@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { Eye, Heart, Users, Sparkles, ArrowRight, ShieldCheck, Headphones } from "lucide-react";
 import { useTranslation, Trans } from "react-i18next";
 import Navbar from "@/components/Navbar";

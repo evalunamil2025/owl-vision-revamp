@@ -13,6 +13,9 @@ i18n
       en: { translation: en },
       es: { translation: es },
     },
+    // Render English first (server and hydration); the root layout switches to the
+    // detected language after hydration so server and client HTML match.
+    lng: "en",
     fallbackLng: "en",
     supportedLngs: ["en", "es"],
     interpolation: { escapeValue: false },

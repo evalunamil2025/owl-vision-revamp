@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -58,7 +58,7 @@ const FinalCTA = () => {
                 {t("homePage.finalCta.speech")}
               </p>
               {/* Bubble tail */}
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 rounded-sm shadow-sm" />
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 rounded-sm shadow-xs" />
             </motion.div>
 
             <motion.img

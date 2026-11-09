@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { ArrowRight, Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import mascot from "@/assets/owlin-branch.webp";
@@ -18,7 +18,7 @@ const Hero = () => {
           className="w-full h-full object-cover object-center"
           decoding="async"
           loading="eager"
-          {...{ fetchpriority: "high" }}
+          fetchPriority="high"
         />
       </div>
 

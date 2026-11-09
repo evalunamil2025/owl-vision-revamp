@@ -4,7 +4,7 @@ import { AlertCircle, CheckCircle2, LoaderCircle, Mail, Phone, Send, User } from
 import { useTranslation } from "react-i18next";
 
 const CONTACT_API_URL =
-  import.meta.env.VITE_CONTACT_API_URL || "/api/contact";
+  import.meta.env["VITE_CONTACT_API_URL"] || "/api/contact";
 
 type SubmissionState = "idle" | "sending" | "success" | "error";
 
@@ -90,13 +90,13 @@ const ServiceLeadForm = ({ serviceTitle, pathname }: ServiceLeadFormProps) => {
                     <label htmlFor={`service-${field.name}`} className="ml-1 text-[10px] font-black uppercase tracking-[0.18em] text-[#015093]/70 font-heading">{field.label}</label>
                     <div className="group relative">
                       <Icon className="pointer-events-none absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-[#0079c2] transition-colors group-focus-within:text-[#00a651]" aria-hidden="true" />
-                      <input id={`service-${field.name}`} name={field.name} type={field.type} autoComplete={field.autoComplete} required maxLength={field.maxLength} placeholder={field.placeholder} className="h-16 w-full rounded-2xl border border-[#0079c2]/15 bg-[#f6f9fc] pl-14 pr-5 text-[#015093] outline-none transition-all placeholder:text-[#015093]/35 focus:border-[#00a651] focus:bg-white focus:ring-4 focus:ring-[#00a651]/10 font-body" />
+                      <input id={`service-${field.name}`} name={field.name} type={field.type} autoComplete={field.autoComplete} required maxLength={field.maxLength} placeholder={field.placeholder} className="h-16 w-full rounded-2xl border border-[#0079c2]/15 bg-[#f6f9fc] pl-14 pr-5 text-[#015093] outline-hidden transition-all placeholder:text-[#015093]/35 focus:border-[#00a651] focus:bg-white focus:ring-4 focus:ring-[#00a651]/10 font-body" />
                     </div>
                   </div>
                 ))}
               </div>
 
-              <button type="submit" disabled={submissionState === "sending"} className="group flex min-h-16 w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#00a651] to-[#008f45] px-8 py-5 text-[11px] font-black uppercase tracking-[0.22em] text-white shadow-[0_16px_35px_-12px_rgba(0,166,81,0.75)] transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_45px_-12px_rgba(0,166,81,0.85)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#00a651]/30 disabled:cursor-not-allowed disabled:opacity-60 md:ml-auto md:w-auto font-heading">
+              <button type="submit" disabled={submissionState === "sending"} className="group flex min-h-16 w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#00a651] to-[#008f45] px-8 py-5 text-[11px] font-black uppercase tracking-[0.22em] text-white shadow-[0_16px_35px_-12px_rgba(0,166,81,0.75)] transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_45px_-12px_rgba(0,166,81,0.85)] focus-visible:outline-hidden focus-visible:ring-4 focus-visible:ring-[#00a651]/30 disabled:cursor-not-allowed disabled:opacity-60 md:ml-auto md:w-auto font-heading">
                 {submissionState === "sending" ? <LoaderCircle className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />}
                 {submissionState === "sending" ? t("service.form.sending") : t("service.form.submit")}
               </button>

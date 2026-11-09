@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import { getRouteSeo, OG_IMAGE_URL, SITE_URL } from "@/config/seo";
 
 interface SEOProps {
@@ -13,7 +12,7 @@ interface SEOProps {
 const SEO = ({ title, description, path, type = "website", jsonLd, noindex }: SEOProps) => {
   // Canonicals are always emitted without query string or hash, so tracking
   // variants (?v=, ?tid=, ?lang=) collapse into a single indexable URL.
-  const cleanPath = path.split(/[?#]/)[0];
+  const cleanPath = path.split(/[?#]/)[0] ?? path;
   const normalizedPath = cleanPath === "/" ? "/" : cleanPath.replace(/\/$/, "");
   const url = `${SITE_URL}${normalizedPath}`;
   const configured = getRouteSeo(normalizedPath);
@@ -21,8 +20,9 @@ const SEO = ({ title, description, path, type = "website", jsonLd, noindex }: SE
   const resolvedDescription = configured?.description || description;
 
   const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+  // React 19 hoists <title>, <meta> and <link> into <head>, including in the server-rendered HTML.
   return (
-    <Helmet>
+    <>
       <title>{resolvedTitle}</title>
       <meta name="description" content={resolvedDescription} />
       {!noindex && <link rel="canonical" href={url} />}
@@ -42,7 +42,7 @@ const SEO = ({ title, description, path, type = "website", jsonLd, noindex }: SE
       {ld.map((obj, i) => (
         <script key={i} type="application/ld+json">{JSON.stringify(obj)}</script>
       ))}
-    </Helmet>
+    </>
   );
 };
 

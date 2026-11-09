@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Phone, HelpCircle } from "lucide-react";
 import mascot from "@/assets/owlie-mascot.webp";
@@ -101,7 +101,7 @@ const MidCTA = () => {
               <p className="text-sm font-semibold text-[#015093] font-['Josefin_Sans'] leading-snug">
                 Not sure which one you need? I'll help you figure it out 🦉
               </p>
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 rounded-sm shadow-sm" />
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 rounded-sm shadow-xs" />
             </motion.div>
 
             <motion.img
