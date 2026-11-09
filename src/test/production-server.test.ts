@@ -64,6 +64,9 @@ describe("Node production server", () => {
     const html = await page.text();
     expect(html).toContain("Contractor Insurance in Washington | Bringas Insurance");
     expect(html).toContain('rel="canonical" href="https://bringasinsurance.com/contractors-insurance"');
+    expect(html.match(/<h1\b/gi)).toHaveLength(1);
+    expect(html.match(/<a\b/gi)?.length).toBeGreaterThanOrEqual(20);
+    expect(html).toContain("G-5QM8V0WQ00");
 
     const unknown = await fetch(`${baseUrl}/unknown-seo-test`, {
       headers: { host: "bringasinsurance.com", "x-forwarded-proto": "https" },

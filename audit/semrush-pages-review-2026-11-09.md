@@ -97,3 +97,21 @@ La relación texto/HTML y un conteo bruto de palabras son advertencias de la
 herramienta, no sustituyen la evaluación de intención o calidad. En este caso,
 su coincidencia con el fallo de renderizado exige corregir primero la entrega
 del HTML inicial.
+
+## Corrección de HTML inicial preparada
+
+Se añadió prerenderizado durante el build para las 26 rutas indexables. La
+salida se valida automáticamente antes de aceptar la compilación:
+
+- 26 títulos y 26 descripciones únicos.
+- Exactamente un H1 y un canonical por ruta.
+- Entre 243 y 1,128 palabras visibles por página.
+- Entre 40 y 172 enlaces HTML rastreables por página.
+- GA4 `G-5QM8V0WQ00` y `send_page_view: false` presentes en todas las rutas.
+- Hidratación comprobada en Chrome sin pérdida de H1, canonical ni Analytics.
+
+Esto corrige en el HTML inicial los títulos y descripciones duplicados, H1
+ausente, conteo bajo de palabras, páginas huérfanas y gran parte de la baja
+relación texto/HTML. Las respuestas terminales `301/404/410` siguen requiriendo
+que el dominio ejecute `server/production-server.mjs` o una plataforma con
+reglas HTTP equivalentes.

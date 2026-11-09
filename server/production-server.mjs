@@ -158,6 +158,17 @@ function routeHtml(template, route) {
   return html.replace("</head>", `    <link rel="canonical" href="${canonical}" data-rh="true" />\n    <meta name="robots" content="index, follow" data-rh="true" />\n  </head>`);
 }
 
+async function readRouteHtml(route) {
+  const file = route === "/"
+    ? path.join(distDirectory, "index.html")
+    : path.join(distDirectory, route.slice(1), "index.html");
+  try {
+    return await readFile(file, "utf8");
+  } catch {
+    return routeHtml(await readFile(path.join(distDirectory, "index.html"), "utf8"), route);
+  }
+}
+
 async function serveAsset(request, response, pathname) {
   let decoded;
   try { decoded = decodeURIComponent(pathname); } catch { return send(response, 400, "Bad Request"); }
@@ -191,8 +202,7 @@ export function createProductionServer() {
       if (result.kind === "error") return send(response, result.status, result.status === 410 ? "Gone" : result.status === 404 ? "Not Found" : "Bad Request", { "x-robots-tag": "noindex", "cache-control": "no-store" });
       if (result.kind === "asset") return serveAsset(request, response, result.path);
 
-      const template = await readFile(path.join(distDirectory, "index.html"), "utf8");
-      const body = request.method === "HEAD" ? "" : routeHtml(template, result.path);
+      const body = request.method === "HEAD" ? "" : await readRouteHtml(result.path);
       return send(response, 200, body, { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=0, must-revalidate" });
     } catch (error) {
       console.error("Unhandled request error", error);

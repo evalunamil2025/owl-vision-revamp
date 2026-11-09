@@ -9,7 +9,9 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "npm run seo:generate",
-    "build": "vite build",
+    "build": "npm run build:client && npm run build:ssr && node scripts/prerender.mjs && node scripts/verify-prerender.mjs",
+    "build:client": "vite build",
+    "build:ssr": "vite build --ssr src/entry-server.tsx --outDir .prerender-server",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
