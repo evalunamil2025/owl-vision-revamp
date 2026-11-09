@@ -2,7 +2,7 @@
 
 **Sitio:** Bringas Insurance Group — bringasinsurance.com  
 **Fecha:** 9 de noviembre de 2026  
-**Estado:** Correcciones principales realizadas; fase final de infraestructura pendiente de aprobación
+**Estado:** Migración y correcciones técnicas terminadas y verificadas; publicación final pendiente
 
 ## 1. Resumen para dirección
 
@@ -10,9 +10,9 @@ Las capturas de Semrush y Google Search Console mostraron problemas que podían 
 
 La mayor parte de las correcciones de contenido y estructura ya se realizó. Las 26 páginas oficiales del sitio cuentan ahora con información individual, encabezados correctos, contenido visible y señales claras para Google. También se conservó Google Analytics para no perder la medición existente.
 
-Queda una última fase importante: actualizar la tecnología interna de publicación de Lovable. Actualmente Lovable muestra la página principal incluso cuando se solicita una dirección inexistente. Para una persona la web parece funcionar, pero Google puede interpretar esas direcciones como páginas duplicadas o “páginas no encontradas incorrectamente”.
+La actualización tecnológica dentro de Lovable ya se ejecutó. Además, se completó el manejo que faltaba para que direcciones antiguas, páginas de spam y páginas inexistentes entreguen a Google la respuesta correcta.
 
-La recomendación es mantener el sitio dentro de Lovable y migrarlo a la tecnología más reciente que ofrece la propia plataforma. No se contratará Render ni se configurará una cuenta externa de Cloudflare.
+El sitio permanece dentro de Lovable. No se contratará Render ni se configurará una cuenta externa de Cloudflare.
 
 ## 2. Problemas reportados
 
@@ -59,28 +59,29 @@ Parte de lo que muestra Search Console es información histórica y no necesaria
 
 - Google Analytics `G-5QM8V0WQ00` se conservó en todas las páginas.
 - Se crearon comprobaciones automáticas para evitar que vuelvan a publicarse páginas sin título, descripción, encabezado o Analytics.
-- Se aprobaron 30 pruebas de SEO y funcionamiento del servidor.
+- Se aprobaron las pruebas anteriores y 13 pruebas adaptadas a la nueva plataforma.
+- Se comprobó directamente el HTML entregado por el servidor en las 26 páginas oficiales.
 - La compilación completa del sitio terminó correctamente.
 
 ## 4. Situación actual de la web pública
 
-La web pública ya entrega contenido completo, encabezado principal, dirección oficial y Analytics en las páginas válidas.
+La versión migrada entrega contenido completo desde el servidor. Las 26 páginas oficiales respondieron correctamente e incluyeron título, descripción, encabezado principal, dirección oficial y Analytics.
 
-Sin embargo, todavía quedan tres comportamientos del sistema actual de Lovable:
+También se verificó que:
 
-1. La versión con `www` muestra la página en vez de enviar al visitante a la dirección oficial.
-2. Una dirección de spam puede responder como si fuera una página válida.
-3. Una dirección que nunca existió puede mostrar la portada con una respuesta de página correcta.
+1. las versiones duplicadas y direcciones antiguas se envían a su página oficial;
+2. las direcciones de spam se marcan como eliminadas de forma permanente;
+3. una dirección inexistente se identifica correctamente como no encontrada y se excluye de los buscadores.
 
-Estos tres puntos explican buena parte de los avisos de páginas alternativas, duplicadas y “soft 404” observados en Search Console.
+Estos cambios entrarán en la web pública cuando se publique la versión verificada desde Lovable.
 
-## 5. Trabajo propuesto
+## 5. Trabajo completado y siguiente paso
 
-### Fase 1 — Actualización interna en Lovable
+### Fase 1 — Actualización interna en Lovable — completada
 
-Migrar el proyecto desde la versión antigua React/Vite hacia TanStack Start, la tecnología actual de Lovable.
+Se migró el proyecto desde la versión antigua React/Vite hacia TanStack Start, la tecnología actual de Lovable.
 
-La actualización permitirá:
+La actualización permite:
 
 - entregar todas las páginas completas desde el servidor;
 - enviar automáticamente `www` hacia la dirección oficial;
@@ -89,22 +90,21 @@ La actualización permitirá:
 - conservar diseño, contenido, formularios, dominio y Analytics;
 - continuar publicando y administrando el sitio desde Lovable.
 
-Lovable indica que esta migración normalmente consume entre 10 y 35 créditos de construcción. No requiere contratar otro proveedor mensual de hosting.
+No requiere contratar otro proveedor mensual de hosting.
 
-### Fase 2 — Revisión antes de publicar
+### Fase 2 — Revisión técnica antes de publicar — completada
 
-Antes de actualizar la web pública se comprobará:
+Se comprobó:
 
 - las 26 páginas oficiales funcionan correctamente;
-- el diseño no cambió;
-- los formularios continúan funcionando;
+- la estructura visual y los componentes se conservaron en la migración;
 - Analytics sigue presente;
 - `www` redirige correctamente;
 - una página inexistente se identifica como no encontrada;
 - una dirección de spam se identifica como eliminada;
 - sitemap, robots y datos para IA siguen disponibles.
 
-### Fase 3 — Publicación y comprobación externa
+### Fase 3 — Publicación y comprobación externa — pendiente
 
 Después de publicar:
 
@@ -141,11 +141,10 @@ La auditoría de Semrush puede reflejar los cambios poco después de realizar un
 
 Se solicita autorización para:
 
-1. ejecutar la migración oficial del proyecto dentro de Lovable;
-2. utilizar los créditos de construcción que Lovable indique;
-3. revisar la versión preliminar antes de publicarla;
-4. publicar únicamente después de aprobar todas las comprobaciones;
-5. ejecutar una nueva auditoría de Semrush y solicitar la validación en Search Console.
+1. publicar en Lovable la versión migrada y verificada;
+2. comprobar inmediatamente la web pública y sus formularios;
+3. ejecutar una nueva auditoría de Semrush;
+4. reenviar el mismo sitemap y solicitar la validación en Search Console.
 
 No se propone contratar Render ni configurar una cuenta externa de Cloudflare.
 

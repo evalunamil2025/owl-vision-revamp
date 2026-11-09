@@ -3,9 +3,10 @@
 // The client-side entries below are only a UX fallback so a visitor landing on
 // an old link still reaches the right page. Real 301/410/404 status codes must
 // be emitted by server/production-server.mjs — a React SPA cannot set an HTTP
-// status after the response has already been sent.
+// status after the response has already been sent. The TanStack request
+// middleware in src/start.ts enforces this policy before route rendering.
 
-/** Valid application routes. Must stay in sync with src/App.tsx and public/sitemap.xml. */
+/** Valid application routes. Must stay in sync with src/routes and public/sitemap.xml. */
 export const VALID_ROUTES: string[] = [
   "/",
   "/about",
@@ -47,7 +48,8 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/home-insurance-in-seattle-washington": "/home-insurance",
   "/homeowners-insurance-in-seattle-washington": "/home-insurance",
   "/seguro-para-casas-prefabricadas": "/mobile-home-insurance",
-  "/seguro-para-casas-prefabricadas-en-seattle-washington": "/mobile-home-insurance",
+  "/seguro-para-casas-prefabricadas-en-seattle-washington":
+    "/mobile-home-insurance",
   "/mobile-home-insurance-in-seattle-washington": "/mobile-home-insurance",
   "/landlord-insurance-in-seattle-washington": "/landlord-insurance",
   "/seguros-para-arrendadores-en-seattle-washington": "/landlord-insurance",
@@ -68,17 +70,22 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/personal-umbrella-in-seattle-washington": "/personal-umbrella",
   "/paraguas-personal-en-seattle-washington": "/personal-umbrella",
   // Commercial
-  "/commercial-property-insurance-in-seattle-washington": "/commercial-property",
-  "/seguros-para-propiedad-comercial-en-seattle-washington": "/commercial-property",
+  "/commercial-property-insurance-in-seattle-washington":
+    "/commercial-property",
+  "/seguros-para-propiedad-comercial-en-seattle-washington":
+    "/commercial-property",
   "/commercial-auto-insurance-in-seattle-washington": "/commercial-auto",
   "/seguro-auto-comercial-en-seattle-washington": "/commercial-auto",
   "/business-owners-insurance-in-seattle-washington": "/bop-insurance",
-  "/seguros-para-propietarios-de-negocios-en-seattle-washington": "/bop-insurance",
+  "/seguros-para-propietarios-de-negocios-en-seattle-washington":
+    "/bop-insurance",
   "/building-insurance-in-seattle-washington": "/building-owners",
-  "/seguros-para-propietarios-de-edificios-en-seattle-washington": "/building-owners",
+  "/seguros-para-propietarios-de-edificios-en-seattle-washington":
+    "/building-owners",
   "/general-insurance-in-seattle-washington": "/general-liability",
   "/general-liability-insurance-in-seattle-washington": "/general-liability",
-  "/seguros-de-responsabilidad-general-en-seattle-washington": "/general-liability",
+  "/seguros-de-responsabilidad-general-en-seattle-washington":
+    "/general-liability",
   "/restaurant-insurance-in-seattle-washington": "/restaurant-insurance",
   "/seguros-para-restaurantes-en-seattle-washington": "/restaurant-insurance",
   "/contractors-insurance-in-seattle-washington": "/contractors-insurance",
@@ -118,7 +125,8 @@ export const GONE_PATTERNS: RegExp[] = [
   /^\/(?=[a-z0-9]{8}$)(?:[a-z0-9]*\d){2}[a-z0-9]*$/,
 ];
 
-export const normalizePath = (p: string) => (p.length > 1 ? p.replace(/\/+$/, "") : p).toLowerCase();
+export const normalizePath = (p: string) =>
+  (p.length > 1 ? p.replace(/\/+$/, "") : p).toLowerCase();
 
 /**
  * Resolves a legacy path to its modern equivalent.
@@ -150,4 +158,3 @@ export const isGone = (pathname: string): boolean => {
   if (VALID_ROUTES.includes(p) || resolveLegacyRedirect(p)) return false;
   return GONE_PATHS.includes(p) || GONE_PATTERNS.some((re) => re.test(p));
 };
-

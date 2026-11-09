@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit",
     "seo:generate": "node scripts/generate-seo-artifacts.mjs",
     "seo:verify": "node scripts/verify-seo-status.mjs",
+    "seo:verify:ssr": "node scripts/verify-ssr-seo.mjs",
     "preview": "vite preview",
     "start": "node server/production-server.mjs",
     "test": "vitest run",
