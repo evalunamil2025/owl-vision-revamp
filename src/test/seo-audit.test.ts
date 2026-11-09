@@ -16,6 +16,8 @@ const llmsSource = fs.readFileSync(path.join(root, "public/llms.txt"), "utf8");
 const homeSource = fs.readFileSync(path.join(root, "src/pages/Index.tsx"), "utf8");
 const aiAnswersSource = fs.readFileSync(path.join(root, "src/components/home/AIAnswers.tsx"), "utf8");
 const footerSource = fs.readFileSync(path.join(root, "src/components/Footer.tsx"), "utf8");
+const serviceLayoutSource = fs.readFileSync(path.join(root, "src/components/ServicePageLayout.tsx"), "utf8");
+const contractorsSource = fs.readFileSync(path.join(root, "src/pages/ContractorsInsurance.tsx"), "utf8");
 const auditCsv = fs.readFileSync(path.join(root, "seo/reports/gsc-url-audit.csv"), "utf8");
 const seoRoutes = JSON.parse(fs.readFileSync(path.join(root, "src/config/seo-routes.json"), "utf8")) as Record<string, {
   title: string;
@@ -160,6 +162,11 @@ describe("SEO routing contract", () => {
     expect(footerSource).not.toContain("linkedin.com/in/bringas-insurance-54111bb1");
     expect(fs.readFileSync(path.join(root, "src/pages/Contact.tsx"), "utf8"))
       .not.toContain("linkedin.com/in/bringas-insurance-54111bb1");
+  });
+
+  it("renders the contractors page with a semantic H1", () => {
+    expect(contractorsSource).toContain("<ServicePageLayout");
+    expect(serviceLayoutSource).toContain('as="h1"');
   });
 
   it("keeps every formerly orphaned sitemap route crawlable from the footer", () => {
