@@ -82,6 +82,7 @@ describe("SEO routing contract", () => {
     const urls = sitemapUrls();
 
     expect(urls).toHaveLength(26);
+    expect((sitemapSource.match(/<lastmod>2026-11-09<\/lastmod>/g) ?? [])).toHaveLength(urls.length);
     expect(new Set(urls).size).toBe(urls.length);
     expect(urls.every((url) => routes.has(url === "/" ? "/" : url.replace(/\/$/, "")))).toBe(true);
   });
