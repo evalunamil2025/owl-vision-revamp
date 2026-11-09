@@ -8,7 +8,6 @@ services:
     autoDeployTrigger: commit
     domains:
       - bringasinsurance.com
-      - www.bringasinsurance.com
     envVars:
       - key: NODE_VERSION
         value: 20.19.0
