@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { ENGLISH_TO_SPANISH_ROUTES } from "../config/localized-routes";
 import {
   addSpanishPrefix,
   canonicalizeSpanishPath,
@@ -36,8 +37,17 @@ describe("locale paths", () => {
     expect(canonicalizeSpanishPath("/es/seguro-para-botes")).toBe(
       "/es/seguro-para-botes",
     );
+    expect(stripSpanishPrefix("/es/auto-insurance")).toBe("/auto-insurance");
     expect(canonicalizeSpanishPath("/es/not-a-real-page")).toBeNull();
   });
+
+  it.each(Object.entries(ENGLISH_TO_SPANISH_ROUTES))(
+    "canonicalizes the temporary Spanish namespace route for %s",
+    (englishPath, spanishPath) => {
+      const temporaryPath = englishPath === "/" ? "/es" : `/es${englishPath}`;
+      expect(canonicalizeSpanishPath(temporaryPath)).toBe(spanishPath);
+    },
+  );
 
   it("does not rewrite English navigation or accept unknown Spanish paths", () => {
     expect(localizeInternalPath("/contact", "/auto-insurance")).toBe(

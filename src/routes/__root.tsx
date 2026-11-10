@@ -18,7 +18,11 @@ import { useLocation } from "@/lib/router-compat";
 import { trackIndexablePageView } from "@/lib/analytics";
 import { reportLovableError } from "@/lib/lovable-error-reporting";
 import i18n from "@/i18n";
-import { isSpanishPath } from "@/lib/locale-path";
+import {
+  canonicalizeSpanishPath,
+  hasSpanishPrefix,
+  isSpanishPath,
+} from "@/lib/locale-path";
 import appCss from "../styles.css?url";
 
 const InsuranceChatbot = lazy(() => import("@/components/InsuranceChatbot"));
@@ -113,7 +117,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   const location = useLocation();
-  const language = isSpanishPath(location.pathname) ? "es" : "en";
+  const language = hasSpanishPrefix(location.pathname) ? "es" : "en";
   return (
     <html lang={language} suppressHydrationWarning>
       <head>
@@ -193,8 +197,22 @@ function RootComponent() {
   // The URL is the language source of truth. This prevents Spanish content from
   // appearing under an English canonical URL because of a saved preference.
   useEffect(() => {
+    // Some static hosts can bypass TanStack's request middleware. Keep a
+    // client-side safety net so a temporary `/es/<english-slug>` URL never
+    // remains visible after hydration.
+    const canonicalSpanishPath = canonicalizeSpanishPath(location.pathname);
+    if (
+      canonicalSpanishPath &&
+      canonicalSpanishPath !== location.pathname.toLowerCase()
+    ) {
+      window.location.replace(
+        `${canonicalSpanishPath}${location.search}${location.hash}`,
+      );
+      return;
+    }
+
     void i18n.changeLanguage(isSpanishPath(location.pathname) ? "es" : "en");
-  }, [location.pathname]);
+  }, [location.hash, location.pathname, location.search]);
 
   return (
     <QueryClientProvider client={queryClient}>

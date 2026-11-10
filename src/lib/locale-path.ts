@@ -23,8 +23,21 @@ export function isSpanishPath(pathname: string): boolean {
 }
 
 export function stripSpanishPrefix(pathname: string): string {
-  if (!isSpanishPath(pathname)) return pathname;
-  return SPANISH_TO_ENGLISH_ROUTES[normalizePath(pathname)] ?? pathname;
+  const normalized = normalizePath(pathname);
+  const canonicalEnglishPath = SPANISH_TO_ENGLISH_ROUTES[normalized];
+  if (canonicalEnglishPath) return canonicalEnglishPath;
+
+  // Also recover from temporary `/es/<english-slug>` URLs so switching back
+  // to English cannot preserve a malformed Spanish namespace.
+  if (hasSpanishPrefix(normalized)) {
+    const englishCandidate =
+      normalized === SPANISH_PREFIX
+        ? "/"
+        : normalized.slice(SPANISH_PREFIX.length);
+    if (ENGLISH_TO_SPANISH_ROUTES[englishCandidate]) return englishCandidate;
+  }
+
+  return pathname;
 }
 
 export function addSpanishPrefix(pathname: string): string {

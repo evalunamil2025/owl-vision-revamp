@@ -3,7 +3,7 @@ import { Globe } from "lucide-react";
 import { useLocation, useUnlocalizedNavigate } from "@/lib/router-compat";
 import {
   addSpanishPrefix,
-  isSpanishPath,
+  hasSpanishPrefix,
   stripSpanishPrefix,
 } from "@/lib/locale-path";
 
@@ -11,7 +11,7 @@ const LanguageToggle = ({ compact = false }: { compact?: boolean }) => {
   const { i18n, t } = useTranslation();
   const location = useLocation();
   const navigate = useUnlocalizedNavigate();
-  const current = isSpanishPath(location.pathname) ? "es" : "en";
+  const current = hasSpanishPrefix(location.pathname) ? "es" : "en";
 
   const setLang = (lng: "en" | "es") => {
     if (lng === current) return;
