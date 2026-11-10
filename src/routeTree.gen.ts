@@ -22,7 +22,6 @@ import { Route as CommercialAutoRouteImport } from './routes/commercial-auto'
 import { Route as CommercialPropertyRouteImport } from './routes/commercial-property'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ContractorsInsuranceRouteImport } from './routes/contractors-insurance'
-import { Route as EsRouteImport } from './routes/es'
 import { Route as GeneralLiabilityRouteImport } from './routes/general-liability'
 import { Route as HomeInsuranceRouteImport } from './routes/home-insurance'
 import { Route as LandlordInsuranceRouteImport } from './routes/landlord-insurance'
@@ -101,11 +100,6 @@ const ContactRoute = ContactRouteImport.update({
 const ContractorsInsuranceRoute = ContractorsInsuranceRouteImport.update({
   id: '/contractors-insurance',
   path: '/contractors-insurance',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EsRoute = EsRouteImport.update({
-  id: '/es',
-  path: '/es',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GeneralLiabilityRoute = GeneralLiabilityRouteImport.update({
@@ -193,7 +187,6 @@ export interface FileRoutesByFullPath {
   '/commercial-property': typeof CommercialPropertyRoute
   '/contact': typeof ContactRoute
   '/contractors-insurance': typeof ContractorsInsuranceRoute
-  '/es': typeof EsRouteWithChildren
   '/general-liability': typeof GeneralLiabilityRoute
   '/home-insurance': typeof HomeInsuranceRoute
   '/landlord-insurance': typeof LandlordInsuranceRoute
@@ -223,7 +216,6 @@ export interface FileRoutesByTo {
   '/commercial-property': typeof CommercialPropertyRoute
   '/contact': typeof ContactRoute
   '/contractors-insurance': typeof ContractorsInsuranceRoute
-  '/es': typeof EsRouteWithChildren
   '/general-liability': typeof GeneralLiabilityRoute
   '/home-insurance': typeof HomeInsuranceRoute
   '/landlord-insurance': typeof LandlordInsuranceRoute
@@ -254,7 +246,6 @@ export interface FileRoutesById {
   '/commercial-property': typeof CommercialPropertyRoute
   '/contact': typeof ContactRoute
   '/contractors-insurance': typeof ContractorsInsuranceRoute
-  '/es': typeof EsRouteWithChildren
   '/general-liability': typeof GeneralLiabilityRoute
   '/home-insurance': typeof HomeInsuranceRoute
   '/landlord-insurance': typeof LandlordInsuranceRoute
@@ -286,7 +277,6 @@ export interface FileRouteTypes {
     | '/commercial-property'
     | '/contact'
     | '/contractors-insurance'
-    | '/es'
     | '/general-liability'
     | '/home-insurance'
     | '/landlord-insurance'
@@ -316,7 +306,6 @@ export interface FileRouteTypes {
     | '/commercial-property'
     | '/contact'
     | '/contractors-insurance'
-    | '/es'
     | '/general-liability'
     | '/home-insurance'
     | '/landlord-insurance'
@@ -346,7 +335,6 @@ export interface FileRouteTypes {
     | '/commercial-property'
     | '/contact'
     | '/contractors-insurance'
-    | '/es'
     | '/general-liability'
     | '/home-insurance'
     | '/landlord-insurance'
@@ -377,7 +365,6 @@ export interface RootRouteChildren {
   CommercialPropertyRoute: typeof CommercialPropertyRoute
   ContactRoute: typeof ContactRoute
   ContractorsInsuranceRoute: typeof ContractorsInsuranceRoute
-  EsRoute: typeof EsRouteWithChildren
   GeneralLiabilityRoute: typeof GeneralLiabilityRoute
   HomeInsuranceRoute: typeof HomeInsuranceRoute
   LandlordInsuranceRoute: typeof LandlordInsuranceRoute
@@ -486,13 +473,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContractorsInsuranceRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/es': {
-      id: '/es'
-      path: '/es'
-      fullPath: '/es'
-      preLoaderRoute: typeof EsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/general-liability': {
       id: '/general-liability'
       path: '/general-liability'
@@ -594,16 +574,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface EsRouteChildren {
-  EsSplatRoute: typeof EsSplatRoute
-}
-
-const EsRouteChildren: EsRouteChildren = {
-  EsSplatRoute: EsSplatRoute,
-}
-
-const EsRouteWithChildren = EsRoute._addFileChildren(EsRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -618,7 +588,6 @@ const rootRouteChildren: RootRouteChildren = {
   CommercialPropertyRoute: CommercialPropertyRoute,
   ContactRoute: ContactRoute,
   ContractorsInsuranceRoute: ContractorsInsuranceRoute,
-  EsRoute: EsRouteWithChildren,
   GeneralLiabilityRoute: GeneralLiabilityRoute,
   HomeInsuranceRoute: HomeInsuranceRoute,
   LandlordInsuranceRoute: LandlordInsuranceRoute,
