@@ -1,0 +1,32 @@
+export const ENGLISH_TO_SPANISH_ROUTES: Record<string, string> = {
+  "/": "/es",
+  "/about": "/es/nosotros",
+  "/quote": "/es/cotizacion",
+  "/contact": "/es/contacto",
+  "/auto-insurance": "/es/seguro-de-auto",
+  "/home-insurance": "/es/seguro-de-hogar",
+  "/life-insurance": "/es/seguro-de-vida",
+  "/boat-insurance": "/es/seguro-para-botes",
+  "/motorcycle-insurance": "/es/seguro-de-motocicleta",
+  "/rv-insurance": "/es/seguro-para-vehiculos-recreativos",
+  "/renters-insurance": "/es/seguro-para-inquilinos",
+  "/landlord-insurance": "/es/seguro-para-arrendadores",
+  "/mobile-home-insurance": "/es/seguro-para-casas-prefabricadas",
+  "/personal-umbrella": "/es/seguro-paraguas-personal",
+  "/general-liability": "/es/seguro-de-responsabilidad-general",
+  "/bop-insurance": "/es/seguro-para-propietarios-de-negocios",
+  "/commercial-auto": "/es/seguro-de-auto-comercial",
+  "/commercial-property": "/es/seguro-de-propiedad-comercial",
+  "/contractors-insurance": "/es/seguro-para-contratistas",
+  "/restaurant-insurance": "/es/seguro-para-restaurantes",
+  "/building-owners": "/es/seguro-para-propietarios-de-edificios",
+  "/bonds-surety": "/es/fianzas",
+  "/pay-my-bill": "/es/pagar-mi-factura",
+  "/client-center": "/es/centro-de-clientes",
+  "/carriers": "/es/aseguradoras",
+  "/sr22-insurance": "/es/seguro-sr22",
+};
+
+export const SPANISH_TO_ENGLISH_ROUTES: Record<string, string> = Object.fromEntries(
+  Object.entries(ENGLISH_TO_SPANISH_ROUTES).map(([english, spanish]) => [spanish, english]),
+);

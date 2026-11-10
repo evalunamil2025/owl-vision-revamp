@@ -1,23 +1,25 @@
-import { VALID_ROUTES, normalizePath } from "@/config/redirects";
+import { normalizePath } from "@/config/redirects";
+import {
+  ENGLISH_TO_SPANISH_ROUTES,
+  SPANISH_TO_ENGLISH_ROUTES,
+} from "@/config/localized-routes";
 
 export const SPANISH_PREFIX = "/es";
 
 export function isSpanishPath(pathname: string): boolean {
   const normalized = normalizePath(pathname);
-  if (normalized === SPANISH_PREFIX) return true;
-  if (!normalized.startsWith(`${SPANISH_PREFIX}/`)) return false;
-  return VALID_ROUTES.includes(normalized.slice(SPANISH_PREFIX.length) || "/");
+  return SPANISH_TO_ENGLISH_ROUTES[normalized] != null;
 }
 
 export function stripSpanishPrefix(pathname: string): string {
   if (!isSpanishPath(pathname)) return pathname;
-  return normalizePath(pathname).slice(SPANISH_PREFIX.length) || "/";
+  return SPANISH_TO_ENGLISH_ROUTES[normalizePath(pathname)] ?? pathname;
 }
 
 export function addSpanishPrefix(pathname: string): string {
   const normalized = normalizePath(pathname);
   if (isSpanishPath(normalized)) return normalized;
-  return normalized === "/" ? SPANISH_PREFIX : `${SPANISH_PREFIX}${normalized}`;
+  return ENGLISH_TO_SPANISH_ROUTES[normalized] ?? pathname;
 }
 
 export function localizeInternalPath(
