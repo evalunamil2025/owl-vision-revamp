@@ -99,16 +99,19 @@ const es: Translation = {
     weSpeak: "Hablamos",
     spanishEnglish: "Español e Inglés",
     licensed: "Licenciados en el estado de WA",
-    rights: "© {{year}} Bringas Insurance Group. Todos los derechos reservados.",
+    rights:
+      "© {{year}} Bringas Insurance Group. Todos los derechos reservados.",
     motto: "Te traemos soluciones de seguros 🦉",
     address: "Servimos al estado de Washington",
   },
   quote: {
     pageTitle: "Obtén tu cotización gratis",
-    pageSubtitle: "El primer paso para proteger lo que amas es más simple de lo que crees.",
+    pageSubtitle:
+      "El primer paso para proteger lo que amas es más simple de lo que crees.",
     heroBadge: "Cotización en línea rápida y gratis",
     heroTitle: "OBTENER UNA COTIZACIÓN",
-    heroSubtitle: "Compara tarifas de las mejores aseguradoras en minutos — sin compromiso ni complicaciones.",
+    heroSubtitle:
+      "Compara tarifas de las mejores aseguradoras en minutos — sin compromiso ni complicaciones.",
     iframeTitle: "Bringas Insurance — Cotización en línea",
     openInNewTab: "Abrir el cotizador en una nueva pestaña",
     sidebar: {
@@ -137,7 +140,8 @@ const es: Translation = {
     hoursValue: "Lun - Vie 9am - 6pm",
     getDirections: "Cómo llegar",
     sendMessage: "Envíanos un mensaje",
-    fillForm: "Completa el formulario y un agente se pondrá en contacto contigo pronto.",
+    fillForm:
+      "Completa el formulario y un agente se pondrá en contacto contigo pronto.",
     fullName: "Nombre completo",
     emailAddress: "Correo electrónico",
     phoneNumber: "Número de teléfono",
@@ -151,8 +155,10 @@ const es: Translation = {
     },
     sendInquiry: "Enviar consulta",
     sending: "Enviando...",
-    successMessage: "Gracias. Tu mensaje fue enviado y un agente se pondrá en contacto contigo pronto.",
-    errorMessage: "No pudimos enviar tu mensaje. Inténtalo de nuevo o llámanos al (425) 405-7111.",
+    successMessage:
+      "Gracias. Tu mensaje fue enviado y un agente se pondrá en contacto contigo pronto.",
+    errorMessage:
+      "No pudimos enviar tu mensaje. Inténtalo de nuevo o llámanos al (425) 405-7111.",
     connectWithUs: "Conéctate con nosotros",
     hablamos: "Hablamos Español",
     hablamosSub: "Estamos listos para asesorarte en tu idioma.",
@@ -174,11 +180,12 @@ const es: Translation = {
     visionP1:
       "Creemos que la tranquilidad financiera debería ser parte del día a día. Nuestra visión es simple: que tú y tu familia vivan con la confianza de estar protegidos, sin perder la alegría ni el buen humor.",
     visionQuote:
-      "\"Los estudios muestran que el 69% de las personas con seguro de vida se sienten menos estresadas sabiendo que su familia está protegida.\"",
+      '"Los estudios muestran que el 69% de las personas con seguro de vida se sienten menos estresadas sabiendo que su familia está protegida."',
     visionP2:
       "Convertimos los seguros en una herramienta para tu bienestar emocional, explicando cada detalle sin tecnicismos aburridos.",
     differentTitle: "Lo que nos hace diferentes",
-    differentSub: "Independencia, transparencia y una conexión profunda con nuestra comunidad.",
+    differentSub:
+      "Independencia, transparencia y una conexión profunda con nuestra comunidad.",
     values: {
       personalizedTitle: "Atención personalizada",
       personalizedDesc:
@@ -200,8 +207,7 @@ const es: Translation = {
     cta: {
       title1: "¿Listo para encontrar",
       title2: "tu tranquilidad?",
-      desc:
-        "Únete a los cientos de familias en Washington que han encontrado una forma más simple y humana de manejar sus seguros.",
+      desc: "Únete a los cientos de familias en Washington que han encontrado una forma más simple y humana de manejar sus seguros.",
       startQuote: "Iniciar mi cotización",
       contact: "Contáctanos",
     },
@@ -212,7 +218,8 @@ const es: Translation = {
     form: {
       badge: "Respuesta personalizada",
       title: "Recibe tu cotización",
-      description: "Déjanos tus datos y uno de nuestros agentes te contactará para ayudarte a encontrar la cobertura adecuada.",
+      description:
+        "Déjanos tus datos y uno de nuestros agentes te contactará para ayudarte a encontrar la cobertura adecuada.",
       name: "Nombre",
       phone: "Teléfono",
       email: "Correo electrónico",
@@ -221,14 +228,17 @@ const es: Translation = {
       emailPlaceholder: "tu@correo.com",
       submit: "Solicitar información",
       sending: "Enviando...",
-      success: "¡Gracias! Recibimos tus datos y un agente se pondrá en contacto contigo pronto.",
-      error: "No pudimos enviar tus datos. Inténtalo de nuevo o llámanos al (425) 405-7111.",
+      success:
+        "¡Gracias! Recibimos tus datos y un agente se pondrá en contacto contigo pronto.",
+      error:
+        "No pudimos enviar tus datos. Inténtalo de nuevo o llámanos al (425) 405-7111.",
       messagePrefix: "Solicitud desde la página de servicio",
     },
     coverageDetails: "Detalles de cobertura",
     whatsCoveredA: "¿Qué",
     whatsCoveredB: "cubre?",
-    coverageBreakdown: "Un desglose claro de cada capa de protección incluida en tu póliza.",
+    coverageBreakdown:
+      "Un desglose claro de cada capa de protección incluida en tu póliza.",
     important: "Importante",
     process: "El proceso",
     ourApproachA: "Nuestro",
@@ -240,23 +250,24 @@ const es: Translation = {
       "Como agencia independiente, comparamos múltiples aseguradoras para encontrar la mejor cobertura para tus necesidades.",
   },
   auto: {
-    heroImageAlt: "Owlie, la mascota, conduciendo por una pintoresca ruta de montaña",
+    heroImageAlt:
+      "Owlie, la mascota, conduciendo por una pintoresca ruta de montaña",
     title: "Seguro de Auto",
     subtitle: "Maneja con confianza — estás protegido",
     heroDescription:
       "Tu auto no es solo un medio de transporte. Te lleva al trabajo, a ver a tu familia, de vacaciones — a todos los momentos que forman parte de tu vida. Un accidente, un robo o incluso una tormenta pueden convertirse en un serio problema financiero sin la protección adecuada.",
     coverages: {
       liability: {
-        title: "**Liability Coverage** (Cobertura de Responsabilidad Civil)",
+        title: "Cobertura de Responsabilidad Civil",
         description:
           "Requerida por la ley del estado de Washington. Cubre las lesiones corporales y los daños a la propiedad que tú causes a otros en un accidente del cual seas responsable, además de tu defensa legal.",
-        i1: "**Bodily Injury Liability** (Responsabilidad por Lesiones Corporales)",
-        i2: "**Property Damage Liability** (Responsabilidad por Daños a la Propiedad)",
+        i1: "Responsabilidad por Lesiones Corporales",
+        i2: "Responsabilidad por Daños a la Propiedad",
         i3: "Gastos de defensa legal",
         i4: "Mínimo en WA: 25/50/10",
       },
       collision: {
-        title: "**Collision Coverage** (Cobertura de Colisión)",
+        title: "Cobertura de Colisión",
         description:
           "Cubre la reparación o el reemplazo de tu vehículo tras una colisión con otro vehículo u objeto — independientemente de quién tenga la culpa. Sujeto a tu deducible.",
         i1: "Accidentes de un solo vehículo",
@@ -265,7 +276,7 @@ const es: Translation = {
         i4: "Volcaduras",
       },
       comprehensive: {
-        title: "**Comprehensive Coverage** (Cobertura Integral)",
+        title: "Cobertura Integral",
         description:
           "Cubre los daños a tu vehículo por eventos que no son colisiones. A menudo es requerida por los prestamistas si estás financiando o arrendando el auto.",
         i1: "Robo y vandalismo",
@@ -275,25 +286,26 @@ const es: Translation = {
         i5: "Rotura de cristales",
       },
       umuim: {
-        title: "**Uninsured/Underinsured Motorist (UM/UIM)**",
+        title:
+          "Cobertura contra Conductores sin Seguro o con Seguro Insuficiente (UM/UIM)",
         description:
           "Aproximadamente 1 de cada 8 conductores en EE.UU. no tiene seguro (III). El **UM/UIM** cubre tus lesiones y daños cuando el conductor culpable no tiene seguro — o no tiene suficiente.",
-        i1: "Accidentes de fuga (hit-and-run)",
+        i1: "Accidentes con fuga del responsable",
         i2: "Conductores culpables sin seguro",
         i3: "Conductores con seguro insuficiente",
         i4: "Lesiones corporales y daños a la propiedad",
       },
       medpay: {
-        title: "**Medical Payments (MedPay)** (Pagos Médicos)",
+        title: "Pagos Médicos",
         description:
-          "Cobertura sin culpa (no-fault) que paga los gastos médicos tuyos y de tus pasajeros tras un accidente, sin importar quién lo haya causado.",
+          "Cobertura sin culpa que paga los gastos médicos tuyos y de tus pasajeros tras un accidente, sin importar quién lo haya causado.",
         i1: "Visitas al hospital y al médico",
         i2: "Cirugía y rayos X",
         i3: "Tratamiento dental",
         i4: "Gastos funerarios",
       },
       pip: {
-        title: "**Personal Injury Protection (PIP)** (Protección contra Lesiones Personales)",
+        title: "Protección contra Lesiones Personales (PIP)",
         description:
           "Opcional en Washington, pero altamente recomendada. Más amplia que **MedPay** — también cubre la pérdida de salario y servicios esenciales.",
         i1: "Gastos médicos",
@@ -303,11 +315,12 @@ const es: Translation = {
       },
       additional: {
         title: "Coberturas Adicionales",
-        description: "Coberturas opcionales que cierran brechas comunes y evitan sorpresas pagadas de tu bolsillo.",
+        description:
+          "Coberturas opcionales que cierran brechas comunes y evitan sorpresas pagadas de tu bolsillo.",
         i1: "Asistencia en el camino",
         i2: "Reembolso de auto de alquiler",
         i3: "Grúa y mano de obra",
-        i4: "**Gap Insurance** (préstamo/arrendamiento)",
+        i4: "Seguro de protección de saldo para préstamo o arrendamiento",
         i5: "Reemplazo por auto nuevo",
       },
     },
@@ -325,7 +338,8 @@ const es: Translation = {
       i1: "Comparar múltiples aseguradoras",
       i2: "Evaluar tu perfil real",
       i3: "Ajustar cobertura y costo a tu situación",
-      closing: "Una póliza barata que no protege bien puede terminar costando mucho más a la larga.",
+      closing:
+        "Una póliza barata que no protege bien puede terminar costando mucho más a la larga.",
     },
   },
   life: {
@@ -345,7 +359,7 @@ const es: Translation = {
           "El costo promedio de un funeral en EE.UU. es de $7,000 a $12,000 (NFDA). El seguro de vida evita que tu familia tenga que asumir estos gastos inmediatos e inesperados.",
         i1: "Servicios funerarios y de entierro",
         i2: "Cuentas médicas pendientes",
-        i3: "Honorarios legales y de sucesión (**probate**)",
+        i3: "Honorarios legales y de sucesión",
       },
       income: {
         title: "Reemplazo de Ingresos",
@@ -358,7 +372,7 @@ const es: Translation = {
           "Cancela la hipoteca, los préstamos de auto, los créditos estudiantiles y las tarjetas de crédito para que tu familia no herede tus deudas.",
       },
       term: {
-        title: "**Term Life** (Seguro de Vida a Plazo)",
+        title: "Seguro de Vida a Plazo",
         description:
           "Cobertura accesible por un período fijo (10, 20 o 30 años). Ideal para proteger los años de mayor ingreso, la hipoteca y a los hijos dependientes.",
         i1: "El menor costo por dólar de cobertura",
@@ -369,7 +383,7 @@ const es: Translation = {
       permanent: {
         title: "Seguro de Vida Permanente",
         description:
-          "Cobertura de por vida que acumula valor en efectivo con impuestos diferidos contra el cual puedes pedir prestado. Incluye **Whole Life**, **Universal Life** e **Indexed UL**.",
+          "Cobertura de por vida que acumula valor en efectivo con impuestos diferidos contra el cual puedes pedir prestado. Incluye vida entera, vida universal y vida universal indexada.",
         i1: "Cobertura que nunca expira",
         i2: "Acumula valor en efectivo con el tiempo",
         i3: "Crecimiento con ventajas fiscales",
@@ -396,16 +410,16 @@ const es: Translation = {
       "Tener un bote, jet ski o cualquier embarcación significa libertad. Pero en el agua también existen riesgos: accidentes, daños, robos o responsabilidad hacia terceros. El seguro no es solo un requisito en la mayoría de marinas — es una forma de proteger tu inversión.",
     coverages: {
       hull: {
-        title: "Daños Físicos (**Hull** / Casco)",
+        title: "Daños Físicos del Casco",
         description:
-          "Cubre tu embarcación, motor y equipo permanentemente instalado, ya sea en el agua, en un remolque o en bodega. Elige entre **Agreed Value** (Valor Acordado) o **Actual Cash Value** (Valor Real en Efectivo).",
+          "Cubre tu embarcación, motor y equipo permanentemente instalado, ya sea en el agua, en un remolque o en bodega. Elige entre valor acordado o valor real en efectivo.",
         i1: "Colisión y hundimiento",
         i2: "Robo y vandalismo",
         i3: "Incendio y explosión",
         i4: "Daños por tormenta y rayos",
       },
       liability: {
-        title: "**Liability Coverage** (Responsabilidad Civil)",
+        title: "Responsabilidad Civil",
         description:
           "Paga las lesiones corporales o daños a la propiedad que causes a otros — incluyendo daños a otras embarcaciones, muelles o derrames de combustible (a menudo regulados por ley federal).",
       },
@@ -415,18 +429,19 @@ const es: Translation = {
           "Muchos estados no exigen seguro para embarcaciones. Te protege a ti y a tus pasajeros si un navegante sin seguro causa lesiones o daños.",
       },
       medical: {
-        title: "**Medical Payments** (Pagos Médicos)",
+        title: "Pagos Médicos",
         description:
-          "Cobertura sin culpa (**no-fault**) que paga las cuentas médicas tuyas, de tu familia y de los pasajeros lesionados en un accidente náutico — sin importar quién tenga la culpa.",
+          "Cobertura sin culpa que paga las cuentas médicas tuyas, de tu familia y de los pasajeros lesionados en un accidente náutico — sin importar quién tenga la culpa.",
       },
       additional: {
         title: "Coberturas Adicionales",
-        description: "Opciones diseñadas para la realidad de la navegación y el remolque.",
+        description:
+          "Opciones diseñadas para la realidad de la navegación y el remolque.",
         i1: "Asistencia y remolque en el agua",
         i2: "Efectos personales (equipo, electrónicos)",
         i3: "Equipo de pesca",
         i4: "Responsabilidad por derrame de combustible",
-        i5: "Remoción de restos (**wreck removal**)",
+        i5: "Remoción de restos",
       },
     },
     importantNote: {
@@ -443,7 +458,7 @@ const es: Translation = {
     },
   },
   rv: {
-    title: "Seguro de Vehículos Recreativos (RV)",
+    title: "Seguro de Vehículos Recreativos",
     subtitle: "Disfruta tus aventuras — sin cargar con el riesgo",
     heroDescription:
       "Los vehículos recreativos están hechos para disfrutar: viajes, escapadas, fines de semana fuera de la rutina. Pero también implican riesgos diferentes a los de un auto normal — son más grandes, más caros, a menudo funcionan como vivienda temporal y transportan contenidos personales valiosos.",
@@ -459,7 +474,7 @@ const es: Translation = {
         i5: "Colisiones con animales",
       },
       liability: {
-        title: "**Liability Coverage** (Responsabilidad Civil)",
+        title: "Responsabilidad Civil",
         description:
           "Requerida para motorhomes (Clase A, B, C). Paga las lesiones y daños que causes a otros. Los travel trailers normalmente están cubiertos por la responsabilidad del vehículo que los remolca — pero solo mientras están enganchados.",
       },
@@ -473,12 +488,12 @@ const es: Translation = {
         i4: "Equipo para exteriores",
       },
       fullTimer: {
-        title: "**Full-Timer Coverage** (Cobertura de Tiempo Completo)",
+        title: "Cobertura para Vivienda Permanente",
         description:
           "Esencial si tu RV es tu residencia principal. Añade protecciones tipo seguro de hogar como responsabilidad personal en el campamento y evaluación de pérdidas.",
         i1: "Responsabilidad personal en el campamento",
         i2: "Pagos médicos a otros",
-        i3: "Evaluación de pérdidas (**loss assessment**)",
+        i3: "Evaluación de pérdidas",
         i4: "Cobertura de bodega de almacenamiento",
       },
       vacation: {
@@ -510,7 +525,7 @@ const es: Translation = {
       "Tu casa es probablemente la inversión más grande que has hecho. Pero más allá del dinero, es donde viven tus recuerdos, tu familia y todo lo que has construido con esfuerzo. Un incendio, robo, fuga de agua o incluso un accidente en tu propiedad pueden convertirse en un serio problema financiero sin la protección adecuada.",
     coverages: {
       dwelling: {
-        title: "**Dwelling Coverage** (Cobertura de la Vivienda — Coverage A)",
+        title: "Cobertura de la Vivienda (Cobertura A)",
         description:
           "Paga por reconstruir o reparar la estructura física de tu casa — incluyendo paredes, techo, cimientos y electrodomésticos empotrados — a los costos de construcción actuales.",
         i1: "Estructura de la casa",
@@ -519,25 +534,25 @@ const es: Translation = {
         i4: "Instalaciones permanentes",
       },
       otherStructures: {
-        title: "Otras Estructuras (Coverage B)",
+        title: "Otras Estructuras (Cobertura B)",
         description:
-          "Normalmente el 10% del límite de tu **Dwelling**. Cubre estructuras en tu propiedad que no están adheridas a la casa principal.",
+          "Normalmente el 10% del límite de cobertura de tu vivienda. Cubre estructuras en tu propiedad que no están adheridas a la casa principal.",
         i1: "Garaje independiente",
         i2: "Cercas y cobertizos",
         i3: "Caminos de entrada y gazebos",
         i4: "Casas de huéspedes",
       },
       personalProperty: {
-        title: "Propiedad Personal (Coverage C)",
+        title: "Propiedad Personal (Cobertura C)",
         description:
-          "Cubre tus pertenencias dentro (y a menudo fuera) de la casa. Las pólizas estándar cubren **Actual Cash Value** (Valor Real en Efectivo) — el **Replacement Cost** (Costo de Reemplazo) es una mejora inteligente.",
+          "Cubre tus pertenencias dentro (y a menudo fuera) de la casa. Las pólizas estándar cubren el valor real en efectivo; elegir costo de reemplazo es una mejora inteligente.",
         i1: "Muebles y electrónicos",
         i2: "Ropa y electrodomésticos",
         i3: "Joyas (aplican sublímites)",
         i4: "Artículos robados durante un viaje",
       },
       liability: {
-        title: "Responsabilidad Personal (Coverage E)",
+        title: "Responsabilidad Personal (Cobertura E)",
         description:
           "Te protege si alguien se lesiona en tu propiedad o si dañas accidentalmente la propiedad de otra persona. Incluye defensa legal aunque la demanda no tenga fundamento.",
         i1: "Reclamos por lesiones corporales",
@@ -546,12 +561,12 @@ const es: Translation = {
         i4: "Mordeduras de perro (varía)",
       },
       medical: {
-        title: "Pagos Médicos (Coverage F)",
+        title: "Pagos Médicos (Cobertura F)",
         description:
-          "Cobertura sin culpa (**no-fault**) para lesiones menores de invitados en tu propiedad. Usualmente $1,000–$5,000 — ayuda a evitar que pequeños incidentes se conviertan en demandas.",
+          "Cobertura sin culpa para lesiones menores de invitados en tu propiedad. Usualmente $1,000–$5,000 — ayuda a evitar que pequeños incidentes se conviertan en demandas.",
       },
       lossOfUse: {
-        title: "**Loss of Use** (Pérdida de Uso — Coverage D)",
+        title: "Pérdida de Uso (Cobertura D)",
         description:
           "Si una pérdida cubierta hace que tu casa no sea habitable, paga los gastos de vida adicionales por encima de tu costo de vida normal hasta que se completen las reparaciones.",
         i1: "Hotel o vivienda en alquiler",
@@ -563,7 +578,7 @@ const es: Translation = {
     importantNote: {
       title: "Lo Que Muchos Propietarios No Saben",
       content:
-        "Las pólizas estándar HO-3 excluyen inundaciones, terremotos, desgaste normal y respaldo del alcantarillado. Las inundaciones por sí solas requieren una póliza separada (NFIP o privada). La mayoría de los reclamos también se pagan a **Actual Cash Value** (depreciado) a menos que elijas **Replacement Cost**.",
+        "Las pólizas estándar HO-3 excluyen inundaciones, terremotos, desgaste normal y respaldo del alcantarillado. Las inundaciones por sí solas requieren una póliza separada (NFIP o privada). La mayoría de los reclamos también se pagan a valor real en efectivo, con depreciación, a menos que elijas costo de reemplazo.",
       i1: "Las inundaciones NO están cubiertas — se necesita póliza separada",
       i2: "Los terremotos requieren un endoso aparte",
       i3: "El respaldo del alcantarillado es una cobertura opcional",
@@ -575,12 +590,14 @@ const es: Translation = {
       i1: "Comparar múltiples aseguradoras",
       i2: "Identificar vacíos en tu cobertura",
       i3: "Ajustar tu póliza a tu realidad",
-      closing: "El objetivo no es venderte más — es asegurarnos de que tengas la cobertura correcta.",
+      closing:
+        "El objetivo no es venderte más — es asegurarnos de que tengas la cobertura correcta.",
     },
   },
   renters: {
     title: "Seguro de Inquilinos",
-    subtitle: "No eres dueño de la propiedad — pero sí de todo lo que hay dentro",
+    subtitle:
+      "No eres dueño de la propiedad — pero sí de todo lo que hay dentro",
     heroDescription:
       "Muchos inquilinos creen que el seguro del propietario los cubre. Pero la póliza del dueño solo cubre el edificio — NO tus pertenencias. Si ocurre un incendio, robo o una tubería rota, tus muebles, ropa y electrónicos son enteramente tu responsabilidad. Una póliza promedio de inquilino cuesta solo $15–$20 al mes.",
     coverages: {
@@ -603,14 +620,14 @@ const es: Translation = {
         i4: "Mordeduras de perro (varía por aseguradora)",
       },
       lossOfUse: {
-        title: "**Loss of Use** (Gastos de Vida Adicionales)",
+        title: "Gastos de Vida Adicionales",
         description:
           "Si una pérdida cubierta hace que tu unidad sea inhabitable, paga estancias en hotel, comidas en restaurantes y costos adicionales por encima de tus gastos normales.",
       },
       medical: {
         title: "Pagos Médicos a Otros",
         description:
-          "Cobertura sin culpa (**no-fault**), típicamente $1,000–$5,000, para lesiones menores de invitados — ayuda a evitar que pequeños incidentes se conviertan en reclamos de responsabilidad civil.",
+          "Cobertura sin culpa, típicamente $1,000–$5,000, para lesiones menores de invitados — ayuda a evitar que pequeños incidentes se conviertan en reclamos de responsabilidad civil.",
       },
     },
     importantNote: {
@@ -619,7 +636,7 @@ const es: Translation = {
         "La mayoría de los inquilinos subestima dramáticamente el valor de sus pertenencias. Un inventario rápido habitación por habitación suele revelar entre $20,000 y $40,000 en propiedad. Artículos de alto valor como joyas, armas de fuego y electrónicos suelen tener sublímites y pueden necesitar cobertura programada.",
       i1: "Documenta con fotos y video",
       i2: "Guarda recibos de los artículos importantes",
-      i3: "Considera **Replacement Cost** vs **Actual Cash Value**",
+      i3: "Compara costo de reemplazo con valor real en efectivo",
       i4: "Programa joyas, armas y coleccionables por separado",
     },
     approach: {
@@ -639,7 +656,7 @@ const es: Translation = {
       "Las inundaciones no avisan. Cuando ocurren, no solo afectan tu casa — afectan todo lo que hay dentro: muebles, recuerdos, electrodomésticos y, a menudo, tu estabilidad financiera. Según FEMA, solo una pulgada de agua puede causar más de $25,000 en daños — y las pólizas estándar de hogar NO cubren daños por inundación.",
     coverages: {
       building: {
-        title: "Cobertura de Edificio (**Building Property**)",
+        title: "Cobertura del Edificio",
         description:
           "A través del Programa Nacional de Seguros contra Inundaciones (**NFIP**), cubre hasta $250,000 para la estructura de un edificio residencial. Las pólizas privadas pueden ofrecer límites mayores.",
         i1: "Cimientos y elementos estructurales",
@@ -683,20 +700,20 @@ const es: Translation = {
       "Andar en motocicleta no es lo mismo que conducir un auto. Es más libertad, más adrenalina — pero también más exposición. Datos de la NHTSA muestran que los motociclistas tienen 24× más probabilidades que los ocupantes de un auto de morir en un choque por milla recorrida. La póliza correcta es esencial.",
     coverages: {
       liability: {
-        title: "**Liability Coverage** (Responsabilidad Civil)",
+        title: "Responsabilidad Civil",
         description:
           "Requerida en Washington (mínimo 25/50/10). Paga las lesiones y daños a la propiedad que causes a otros en un choque del que seas responsable.",
-        i1: "**Bodily Injury Liability** (Responsabilidad por Lesiones Corporales)",
-        i2: "**Property Damage Liability** (Responsabilidad por Daños a la Propiedad)",
+        i1: "Responsabilidad por Lesiones Corporales",
+        i2: "Responsabilidad por Daños a la Propiedad",
         i3: "Defensa legal",
       },
       collision: {
-        title: "**Collision Coverage** (Cobertura de Colisión)",
+        title: "Cobertura de Colisión",
         description:
           "Paga por reparar o reemplazar tu motocicleta tras un choque con otro vehículo u objeto — sin importar quién tenga la culpa.",
       },
       comprehensive: {
-        title: "**Comprehensive Coverage** (Cobertura Integral)",
+        title: "Cobertura Integral",
         description:
           "Cubre pérdidas distintas a colisión. Especialmente importante dada la frecuencia con la que se roban motocicletas.",
         i1: "Robo",
@@ -706,18 +723,20 @@ const es: Translation = {
         i5: "Colisiones con animales",
       },
       medical: {
-        title: "**Medical Payments** (Pagos Médicos)",
+        title: "Pagos Médicos",
         description:
           "Paga gastos médicos y funerarios para ti y tu pasajero después de un accidente — sin requerir culpa.",
       },
       umuim: {
-        title: "**Uninsured/Underinsured Motorist (UM/UIM)**",
+        title:
+          "Cobertura contra Conductores sin Seguro o con Seguro Insuficiente (UM/UIM)",
         description:
           "Crucial para motociclistas. Te protege cuando un conductor sin seguro o con seguro insuficiente causa un choque que te lesiona o daña tu motocicleta.",
       },
       additional: {
         title: "Coberturas Adicionales",
-        description: "Opciones que cubren lo que las pólizas estándar suelen omitir.",
+        description:
+          "Opciones que cubren lo que las pólizas estándar suelen omitir.",
         i1: "Partes y accesorios personalizados",
         i2: "Asistencia en carretera y remolque",
         i3: "Reemplazo por pérdida total (motocicleta nueva)",
@@ -739,7 +758,7 @@ const es: Translation = {
     },
   },
   mobileHome: {
-    title: "Seguro de Casa Móvil (**Mobile Home**)",
+    title: "Seguro de Casa Móvil",
     subtitle: "Tu hogar, sin importar cómo esté construido, merece protección",
     heroDescription:
       "Para muchas familias, una casa manufacturada o móvil representa una forma accesible e inteligente de tener vivienda propia. Pero estas casas tienen características únicas — distinta construcción, riesgo de tránsito y exposición al viento — que requieren una póliza especializada HO-7. Una HO-3 estándar no aplica.",
@@ -752,7 +771,7 @@ const es: Translation = {
       property: {
         title: "Propiedad Personal",
         description:
-          "Protege tus pertenencias dentro de la casa — muebles, electrónicos, ropa y electrodomésticos — ya sea bajo **Actual Cash Value** o **Replacement Cost**.",
+          "Protege tus pertenencias dentro de la casa — muebles, electrónicos, ropa y electrodomésticos — ya sea por su valor real en efectivo o por su costo de reemplazo.",
       },
       liability: {
         title: "Responsabilidad Personal",
@@ -764,19 +783,19 @@ const es: Translation = {
         i4: "Costos de defensa legal",
       },
       lossOfUse: {
-        title: "**Loss of Use** (Pérdida de Uso)",
+        title: "Pérdida de Uso",
         description:
           "Si tu casa queda inhabitable por una pérdida cubierta, paga gastos de vida adicionales (hotel, comidas, almacenamiento) durante las reparaciones.",
       },
       transit: {
-        title: "**Trip Collision** (En Tránsito)",
+        title: "Cobertura durante el Traslado",
         description:
           "Específica para casas móviles — cubre los daños que ocurren mientras la casa está siendo transportada a una nueva ubicación.",
       },
       addOns: {
         title: "Endosos Opcionales",
         description: "Endosos comunes para casas móviles.",
-        i1: "Cobertura de costo de reemplazo (**Replacement Cost**)",
+        i1: "Cobertura de costo de reemplazo",
         i2: "Seguro contra inundaciones (póliza **NFIP** separada)",
         i3: "Endoso de terremoto",
         i4: "Estructuras adyacentes (cobertizos, cercas)",
@@ -785,7 +804,7 @@ const es: Translation = {
     importantNote: {
       title: "Lo Que Muchos Dueños de Casa Móvil No Saben",
       content:
-        "Las casas móviles necesitan un formato HO-7 — no el HO-3 que se usa para casas construidas en sitio. Muchas aseguradoras requieren anclajes (**tie-downs**) o faldones (**skirting**) para calificar. La cobertura **Replacement Cost** es esencial porque el **Actual Cash Value** deprecia mucho la casa, dejándote muy por debajo del costo de reemplazo al momento del reclamo.",
+        "Las casas móviles necesitan un formato HO-7 — no el HO-3 que se usa para casas construidas en sitio. Muchas aseguradoras requieren anclajes o faldones para calificar. La cobertura de costo de reemplazo es esencial porque el valor real en efectivo deprecia mucho la casa, dejándote muy por debajo del costo de reemplazo al momento del reclamo.",
     },
     approach: {
       intro: "No se trata solo de asegurarte. Se trata de asegurarte bien.",
@@ -795,27 +814,27 @@ const es: Translation = {
     },
   },
   landlord: {
-    title: "Seguro para Arrendadores (**Landlord**)",
+    title: "Seguro para Arrendadores",
     subtitle: "Una propiedad de renta es un negocio — protégela como tal",
     heroDescription:
-      "Ser dueño de una propiedad de renta no es solo cobrar pagos mensuales. Es una inversión que implica riesgos constantes: daños a la propiedad, problemas con inquilinos, pérdida de ingresos y responsabilidad legal. Una póliza estándar de hogar puede invalidarse en el momento en que comienzas a rentar — una póliza dedicada DP-3 o de **landlord** es esencial.",
+      "Ser dueño de una propiedad de renta no es solo cobrar pagos mensuales. Es una inversión que implica riesgos constantes: daños a la propiedad, problemas con inquilinos, pérdida de ingresos y responsabilidad legal. Una póliza estándar de hogar puede invalidarse en el momento en que comienzas a rentar — una póliza dedicada DP-3 para arrendadores es esencial.",
     coverages: {
       dwelling: {
-        title: "**Dwelling** y Otras Estructuras",
+        title: "Vivienda y Otras Estructuras",
         description:
-          "Cubre el edificio en alquiler, estructuras adheridas y estructuras independientes (garajes, cercas, cobertizos) bajo formato Especial (DP-3) — típicamente **open peril**.",
+          "Cubre el edificio en alquiler, estructuras adheridas y estructuras independientes (garajes, cercas, cobertizos) bajo formato Especial (DP-3), normalmente con cobertura de riesgos abiertos.",
         i1: "Incendio y rayos",
         i2: "Viento y granizo",
         i3: "Vandalismo y robo",
         i4: "Daños por agua de plomería",
       },
       rentalIncome: {
-        title: "Pérdida de Ingresos por Renta (**Fair Rental Value**)",
+        title: "Pérdida de Ingresos por Renta",
         description:
           "Si una pérdida cubierta hace que la unidad sea inhabitable, reembolsa los ingresos de renta que habrías cobrado durante las reparaciones — típicamente hasta 12 meses.",
       },
       premises: {
-        title: "Responsabilidad del Inmueble (**Premises Liability**)",
+        title: "Responsabilidad del Inmueble",
         description:
           "Te protege si un inquilino, visitante o contratista se lesiona en la propiedad o demanda por un asunto relacionado con ella.",
         i1: "Reclamos por lesiones corporales",
@@ -826,11 +845,11 @@ const es: Translation = {
       endorsements: {
         title: "Endosos Opcionales",
         description: "Refuerza tu protección según tu situación.",
-        i1: "Ordenanza y ley de construcción (**building ordinance & law**)",
-        i2: "Ruptura de equipo (**equipment breakdown**)",
+        i1: "Ordenanza y ley de construcción",
+        i2: "Ruptura de equipo",
         i3: "Vandalismo y daño malicioso",
         i4: "Contenidos del arrendador (electrodomésticos, mobiliario)",
-        i5: "**Umbrella Liability**",
+        i5: "Responsabilidad civil adicional",
       },
     },
     importantNote: {
@@ -847,11 +866,11 @@ const es: Translation = {
     },
   },
   personalUmbrella: {
-    title: "**Personal Umbrella** (Seguro Sombrilla Personal)",
+    title: "Seguro Paraguas Personal",
     subtitle:
       "Cuando lo básico no es suficiente — necesitas una capa extra de protección",
     heroDescription:
-      "La mayoría de la gente piensa que su seguro de auto u hogar es suficiente. Pero ¿qué pasa cuando un solo veredicto del jurado supera esos límites? El seguro **Umbrella** añade entre $1M y $5M de protección de responsabilidad por encima de tus pólizas existentes — y típicamente cuesta solo $200–$400 al año por el primer millón.",
+      "La mayoría de la gente piensa que su seguro de auto u hogar es suficiente. Pero ¿qué pasa cuando un solo veredicto del jurado supera esos límites? El seguro paraguas añade entre $1M y $5M de protección de responsabilidad por encima de tus pólizas existentes — y típicamente cuesta solo $200–$400 al año por el primer millón.",
     coverages: {
       extended: {
         title: "Responsabilidad Extendida",
@@ -859,7 +878,7 @@ const es: Translation = {
           "Entra en acción una vez que se agotan tus límites de responsabilidad de auto, hogar o embarcación. Protege contra reclamos por lesiones corporales y daños a la propiedad.",
       },
       personalInjury: {
-        title: "**Personal Injury Protection**",
+        title: "Protección por Daños Personales",
         description:
           "Cubre reclamos que las pólizas estándar suelen excluir, como difamación, libelo, calumnia, arresto falso e invasión a la privacidad.",
       },
@@ -871,7 +890,7 @@ const es: Translation = {
       multiPolicy: {
         title: "Protección Multi-Póliza",
         description:
-          "Una sola **Umbrella Policy** se posiciona sobre múltiples pólizas subyacentes para una protección unificada y de mayores límites.",
+          "Una sola póliza paraguas se posiciona sobre múltiples pólizas subyacentes para una protección unificada y de mayores límites.",
         i1: "Seguro de auto",
         i2: "Seguro de hogar o inquilinos",
         i3: "Embarcación y RV",
@@ -881,7 +900,7 @@ const es: Translation = {
     importantNote: {
       title: "Algo Que Muchos No Consideran",
       content:
-        "Los veredictos de responsabilidad de millones de dólares ya no son raros. Un accidente serio en el que seas responsable, una mordedura de perro, una lesión en una piscina o un choque de un conductor adolescente pueden producir sentencias muy por encima de los límites estándar. El seguro **Umbrella** protege ingresos futuros y bienes — incluyendo salarios embargados después de una sentencia.",
+        "Los veredictos de responsabilidad de millones de dólares ya no son raros. Un accidente serio en el que seas responsable, una mordedura de perro, una lesión en una piscina o un choque de un conductor adolescente pueden producir sentencias muy por encima de los límites estándar. El seguro paraguas protege ingresos futuros y bienes — incluyendo salarios embargados después de una sentencia.",
       i1: "Si eres dueño de una casa o propiedades de renta",
       i2: "Si tienes ahorros, retiro o inversiones",
       i3: "Si tienes conductores adolescentes en el hogar",
@@ -890,30 +909,30 @@ const es: Translation = {
     },
     approach: {
       intro:
-        "No recomendamos el seguro **Umbrella** a todo el mundo. Primero analizamos tu nivel de riesgo, tus bienes y tus coberturas actuales.",
+        "No recomendamos el seguro paraguas a todo el mundo. Primero analizamos tu nivel de riesgo, tus bienes y tus coberturas actuales.",
       i1: "Analizar tu nivel de riesgo",
       i2: "Revisar tus coberturas actuales",
       i3: "Diseñar una solución complementaria",
     },
   },
   bop: {
-    title: "**Business Owners Policy (BOP)**",
+    title: "Póliza para Propietarios de Negocios (BOP)",
     subtitle: "Todo tu negocio en una sola póliza bien estructurada",
     heroDescription:
-      "Cuando tienes un negocio, necesitas múltiples protecciones: propiedad, responsabilidad, ingresos y operaciones. Manejar pólizas separadas puede ser complejo, costoso y dejar vacíos de cobertura. Una **BOP** agrupa **General Liability**, **Commercial Property** e Interrupción del Negocio a una tarifa con descuento — diseñada para negocios pequeños y medianos.",
+      "Cuando tienes un negocio, necesitas múltiples protecciones: propiedad, responsabilidad, ingresos y operaciones. Manejar pólizas separadas puede ser complejo, costoso y dejar vacíos de cobertura. Una **BOP** agrupa responsabilidad civil general, propiedad comercial e interrupción del negocio a una tarifa con descuento — diseñada para negocios pequeños y medianos.",
     coverages: {
       property: {
-        title: "**Commercial Property**",
+        title: "Seguro de Propiedad Comercial",
         description:
-          "Cubre los activos físicos de tu negocio bajo formato Especial (**open peril**) — ya sea que rentes o seas dueño del espacio.",
+          "Cubre los activos físicos de tu negocio bajo un formato especial de riesgos abiertos — ya sea que rentes o seas dueño del espacio.",
         i1: "Edificio (si eres dueño)",
-        i2: "Mejoras del inquilino (**tenant improvements**)",
+        i2: "Mejoras del inquilino",
         i3: "Muebles, accesorios y equipo",
         i4: "Inventario y suministros",
         i5: "Letreros exteriores",
       },
       liability: {
-        title: "**General Liability**",
+        title: "Responsabilidad Civil General",
         description:
           "Misma protección que una **CGL** independiente — lesiones corporales, daños a la propiedad, productos/operaciones y reclamos por lesión personal y publicitaria de terceros.",
       },
@@ -924,19 +943,20 @@ const es: Translation = {
       },
       endorsements: {
         title: "Endosos Comunes",
-        description: "Una **BOP** no es rígida — se adapta a tu industria con add-ons opcionales.",
+        description:
+          "Una **BOP** no es rígida — se adapta a tu industria con coberturas opcionales.",
         i1: "Ruptura de equipo",
-        i2: "**Cyber Liability**",
+        i2: "Responsabilidad cibernética",
         i3: "Deshonestidad de empleados",
         i4: "Echamiento a perder (productos refrigerados)",
-        i5: "**Hired & Non-Owned Auto**",
+        i5: "Vehículos alquilados y no propios",
         i6: "Responsabilidad profesional",
       },
     },
     importantNote: {
       title: "Importante Saber",
       content:
-        "Una **BOP** no reemplaza todo. **Workers' Comp**, **Commercial Auto** (vehículos propios), responsabilidad profesional (**E&O**) y beneficios para empleados se venden por separado. Las **BOP** también están diseñadas para negocios bajo ciertos umbrales de tamaño — operaciones más grandes necesitan una **Commercial Package Policy (CPP)**.",
+        "Una **BOP** no reemplaza todo. La compensación laboral, el seguro de auto comercial para vehículos propios, la responsabilidad profesional (**E&O**) y los beneficios para empleados se venden por separado. Las **BOP** también están diseñadas para negocios bajo ciertos umbrales de tamaño — las operaciones más grandes necesitan una póliza comercial integral (**CPP**).",
     },
     approach: {
       intro:
@@ -947,10 +967,11 @@ const es: Translation = {
     },
   },
   generalLiability: {
-    title: "**General Liability** (Responsabilidad Civil General)",
-    subtitle: "Un accidente puede ocurrir en segundos — sus consecuencias pueden durar años",
+    title: "Seguro de Responsabilidad Civil General",
+    subtitle:
+      "Un accidente puede ocurrir en segundos — sus consecuencias pueden durar años",
     heroDescription:
-      "No importa qué tipo de negocio tengas, siempre existe el riesgo de que alguien se lesione o algo salga mal. Un cliente se resbala en tu local, un servicio causa daños o un producto genera un problema. Según The Hartford, los reclamos por resbalones y caídas promedian $20,000 — y la **Commercial General Liability (CGL)** es la base de la protección de un negocio.",
+      "No importa qué tipo de negocio tengas, siempre existe el riesgo de que alguien se lesione o algo salga mal. Un cliente se resbala en tu local, un servicio causa daños o un producto genera un problema. Según The Hartford, los reclamos por resbalones y caídas promedian $20,000 — y la responsabilidad civil general comercial (**CGL**) es la base de la protección de un negocio.",
     coverages: {
       bodily: {
         title: "Lesiones Corporales (Terceros)",
@@ -1006,38 +1027,39 @@ const es: Translation = {
     },
   },
   commercialAuto: {
-    title: "**Commercial Auto** (Seguro de Auto Comercial)",
+    title: "Seguro de Auto Comercial",
     subtitle:
       "Si tu vehículo trabaja para tu negocio — necesitas más que un seguro personal",
     heroDescription:
       "Muchos negocios usan vehículos a diario para transportar herramientas, entregar productos, visitar clientes u operar servicios. Aquí hay un error crítico: una póliza personal de auto excluye el uso comercial. Si ocurre un accidente mientras usas tu vehículo para trabajar, tu reclamo puede ser negado — y quedas personalmente expuesto.",
     coverages: {
       liability: {
-        title: "**Liability Coverage** (Responsabilidad Civil)",
+        title: "Responsabilidad Civil",
         description:
-          "Paga las lesiones corporales y los daños a la propiedad causados por los vehículos de tu negocio. Muchos estados y contratos requieren un mínimo de $1M de **Combined Single Limit** para uso comercial.",
-        i1: "**Bodily Injury Liability**",
-        i2: "**Property Damage Liability**",
-        i3: "**Combined Single Limit (CSL)**",
+          "Paga las lesiones corporales y los daños a la propiedad causados por los vehículos de tu negocio. Muchos estados y contratos requieren un límite único combinado mínimo de $1M para uso comercial.",
+        i1: "Responsabilidad por lesiones corporales",
+        i2: "Responsabilidad por daños a la propiedad",
+        i3: "Límite único combinado (CSL)",
         i4: "Defensa legal",
       },
       physical: {
-        title: "Daños Físicos (**Collision** y **Comprehensive**)",
+        title: "Daños Físicos por Colisión y Otros Riesgos",
         description:
-          "Repara o reemplaza tus vehículos tras una pérdida cubierta — colisión (impacto) y comprehensive (robo, incendio, clima, vandalismo).",
+          "Repara o reemplaza tus vehículos tras una pérdida cubierta — por colisión u otros riesgos como robo, incendio, clima y vandalismo.",
       },
       medical: {
-        title: "**Medical Payments** / **PIP**",
+        title: "Pagos Médicos y Protección contra Lesiones Personales",
         description:
           "Cubre las cuentas médicas del conductor y los pasajeros sin importar la culpa. El tipo de cobertura varía por estado.",
       },
       umuim: {
-        title: "**Uninsured/Underinsured Motorist**",
+        title:
+          "Cobertura contra Conductores sin Seguro o con Seguro Insuficiente",
         description:
           "Protege a tu negocio cuando un conductor sin seguro o con seguro insuficiente lesiona a tu conductor o daña tu vehículo.",
       },
       hired: {
-        title: "**Hired & Non-Owned Auto**",
+        title: "Vehículos Alquilados y no Propios",
         description:
           "Cobertura a menudo pasada por alto. Protege a tu negocio cuando los empleados rentan vehículos para trabajar o usan su auto personal para diligencias del negocio.",
         i1: "Vehículos rentados para el negocio",
@@ -1048,7 +1070,7 @@ const es: Translation = {
     importantNote: {
       title: "¿Cuándo Necesitas Seguro Comercial?",
       content:
-        "Si usas tu vehículo para actividades comerciales, transportas herramientas o mercancía, tienes empleados que conducen, o el vehículo está titulado a una empresa — necesitas **Commercial Auto**. Las pólizas personales típicamente excluyen el uso comercial por completo, incluso si solo usas el vehículo ocasionalmente para trabajar.",
+        "Si usas tu vehículo para actividades comerciales, transportas herramientas o mercancía, tienes empleados que conducen, o el vehículo está titulado a una empresa — necesitas seguro de auto comercial. Las pólizas personales típicamente excluyen el uso comercial por completo, incluso si solo usas el vehículo ocasionalmente para trabajar.",
       i1: "Vehículo usado para actividades del negocio",
       i2: "Transporte de herramientas, equipo o inventario",
       i3: "Empleados conduciendo el vehículo",
@@ -1064,22 +1086,23 @@ const es: Translation = {
     },
   },
   commercialProperty: {
-    title: "**Commercial Property** (Seguro de Propiedad Comercial)",
-    subtitle: "Tu negocio necesita un espacio — protégelo como el activo que es",
+    title: "Seguro de Propiedad Comercial",
+    subtitle:
+      "Tu negocio necesita un espacio — protégelo como el activo que es",
     heroDescription:
       "Tu oficina, bodega, edificio o local comercial no es solo una ubicación física. Es donde ocurre tu operación, donde generas ingresos y donde está mucho de tu inversión. El Insurance Institute reporta que el 40% de los negocios nunca reabre después de un desastre mayor — la cobertura adecuada de propiedad hace la diferencia.",
     coverages: {
       building: {
         title: "Edificio y Estructuras",
         description:
-          "Cubre el edificio (si eres dueño) más las mejoras permanentes, accesorios y estructuras exteriores bajo formato Especial (**open peril**).",
+          "Cubre el edificio (si eres dueño) más las mejoras permanentes, accesorios y estructuras exteriores bajo un formato especial de riesgos abiertos.",
         i1: "Estructura del edificio",
-        i2: "Mejoras y mejoras del inquilino (**tenant improvements & betterments**)",
+        i2: "Mejoras y adaptaciones del inquilino",
         i3: "Equipo permanentemente instalado",
         i4: "Letreros y cercas exteriores",
       },
       bpp: {
-        title: "**Business Personal Property (BPP)**",
+        title: "Bienes Muebles Comerciales (BPP)",
         description:
           "Cubre todo lo que usas para operar el negocio — muebles, computadoras, maquinaria, herramientas y suministros — incluso propiedad de otros bajo tu cuidado.",
       },
@@ -1118,22 +1141,22 @@ const es: Translation = {
     },
   },
   bondsSurety: {
-    title: "**Bonds (Surety Bonds)** (Fianzas)",
+    title: "Fianzas",
     subtitle: "No es un seguro — es una garantía de que cumples",
     heroDescription:
-      "Las fianzas (**bonds**) funcionan diferente a los seguros tradicionales. Una **surety bond** es un acuerdo entre tres partes: el principal (tú), el obligatario (la parte que requiere la fianza) y el fiador (la compañía que garantiza el cumplimiento). El seguro te protege a ti — una fianza protege al tercero contra tu incumplimiento.",
+      "Las fianzas funcionan diferente a los seguros tradicionales. Una fianza de garantía es un acuerdo entre tres partes: el principal (tú), el obligatario (la parte que requiere la fianza) y el fiador (la compañía que garantiza el cumplimiento). El seguro te protege a ti — una fianza protege al tercero contra tu incumplimiento.",
     coverages: {
       contract: {
-        title: "**Contract Bonds** (Fianzas de Contrato)",
+        title: "Fianzas de Contrato",
         description:
           "Usadas en proyectos de construcción para garantizar que un contratista presente ofertas honestas, complete el trabajo y pague a subcontratistas y proveedores.",
-        i1: "**Bid Bonds** (garantía de propuesta)",
-        i2: "**Performance Bonds** (cumplimiento del proyecto)",
-        i3: "**Payment Bonds** (pagos a subs y proveedores)",
-        i4: "**Maintenance Bonds** (período de garantía)",
+        i1: "Fianzas de propuesta",
+        i2: "Fianzas de cumplimiento del proyecto",
+        i3: "Fianzas de pago a subcontratistas y proveedores",
+        i4: "Fianzas de mantenimiento durante el período de garantía",
       },
       license: {
-        title: "**License & Permit Bonds** (Fianzas de Licencia y Permiso)",
+        title: "Fianzas de Licencia y Permiso",
         description:
           "Requeridas por agencias federales, estatales o locales para que los negocios operen legalmente. Comunes para contratistas, concesionarios de autos, corredores hipotecarios y muchos oficios.",
         i1: "WA Contractor Bond ($12K-$30K)",
@@ -1142,17 +1165,17 @@ const es: Translation = {
         i4: "Mortgage Broker Bond",
       },
       commercial: {
-        title: "**Commercial Surety**",
+        title: "Fianzas Comerciales",
         description:
           "Cubre una amplia gama de obligaciones comerciales y financieras requeridas por contratos, estatutos o reguladores.",
       },
       court: {
-        title: "**Court Bonds** (Fianzas Judiciales)",
+        title: "Fianzas Judiciales",
         description:
           "Requeridas por los tribunales en procedimientos legales — incluyen fianzas judiciales (apelaciones, embargos) y fiduciarias (albaceas, tutores, administradores).",
       },
       subdivision: {
-        title: "**Subdivision (Site Improvement) Bonds**",
+        title: "Fianzas para Subdivisiones y Mejoras de Terreno",
         description:
           "Requeridas por los municipios para garantizar que los desarrolladores completen mejoras públicas — calles, banquetas, alcantarillas, alumbrado — como parte de un nuevo desarrollo.",
       },
@@ -1176,26 +1199,27 @@ const es: Translation = {
   },
   buildingOwners: {
     title: "Seguro para Dueños de Edificios",
-    subtitle: "Tu edificio no es solo una propiedad — es una fuente de ingresos",
+    subtitle:
+      "Tu edificio no es solo una propiedad — es una fuente de ingresos",
     heroDescription:
       "Ser dueño de un edificio — ya sea de apartamentos, de uso mixto o propiedad comercial de alquiler — es una inversión significativa. Pero también implica riesgos constantes que pueden afectar directamente tus ingresos. Un incendio, daño estructural, reclamo por responsabilidad de un inquilino o una sola demanda mayor pueden detener tu flujo de efectivo. La mayoría de los prestamistas requieren cobertura de propiedad completa como condición del préstamo.",
     coverages: {
       buildingProperty: {
-        title: "Propiedad del Edificio (**Special Form**)",
+        title: "Propiedad del Edificio con Cobertura Especial",
         description:
-          "Cobertura **open-peril** para la estructura del edificio, los accesorios adheridos y las instalaciones permanentes contra todo lo que no esté específicamente excluido.",
+          "Cobertura de riesgos abiertos para la estructura del edificio, los accesorios adheridos y las instalaciones permanentes contra todo lo que no esté específicamente excluido.",
         i1: "Estructura del edificio",
         i2: "Techo y cimientos",
         i3: "HVAC y plomería empotrada",
         i4: "Mejoras de áreas comunes",
       },
       bpp: {
-        title: "**Business Personal Property**",
+        title: "Bienes Muebles Comerciales",
         description:
           "Cubre el equipo propiedad del arrendador en áreas comunes — muebles del lobby, equipo de lavandería, herramientas de mantenimiento y suministros.",
       },
       premises: {
-        title: "**Premises Liability**",
+        title: "Responsabilidad del Inmueble",
         description:
           "Te protege cuando inquilinos, invitados o contratistas se lesionan en la propiedad o demandan por un asunto relacionado con el edificio.",
         i1: "Reclamos por lesiones corporales",
@@ -1210,12 +1234,13 @@ const es: Translation = {
       },
       endorsements: {
         title: "Endosos Comunes",
-        description: "Cerrando los vacíos de las pólizas de propiedad estándar.",
+        description:
+          "Cerrando los vacíos de las pólizas de propiedad estándar.",
         i1: "Ruptura de equipo (calderas, elevadores)",
         i2: "Ordenanza o ley (actualizaciones de código)",
         i3: "Respaldo de alcantarillado y drenaje",
         i4: "Terremoto e inundación (separados)",
-        i5: "**Commercial Umbrella**",
+        i5: "Seguro paraguas comercial",
         i6: "Deshonestidad de empleados",
       },
     },
@@ -1237,10 +1262,10 @@ const es: Translation = {
     subtitle:
       "En la construcción, el riesgo es parte del trabajo — la protección debe ser parte del plan",
     heroDescription:
-      "Si trabajas en construcción, sabes que cada proyecto tiene variables que no puedes controlar: accidentes en el sitio, daños a terceros, equipo costoso en uso constante y errores humanos. En Washington, los contratistas deben registrarse con L&I y la mayoría de los clientes requieren prueba de $1M+ en **General Liability** antes de firmar un contrato.",
+      "Si trabajas en construcción, sabes que cada proyecto tiene variables que no puedes controlar: accidentes en el sitio, daños a terceros, equipo costoso en uso constante y errores humanos. En Washington, los contratistas deben registrarse con L&I y la mayoría de los clientes requieren prueba de más de $1M en responsabilidad civil general antes de firmar un contrato.",
     coverages: {
       liability: {
-        title: "**General Liability**",
+        title: "Responsabilidad Civil General",
         description:
           "Cobertura fundamental requerida por la mayoría de los contratistas generales y dueños de proyectos. Paga lesiones corporales a terceros, daños a la propiedad y reclamos por operaciones completadas.",
         i1: "Lesiones a terceros",
@@ -1249,7 +1274,7 @@ const es: Translation = {
         i4: "Responsabilidad del subcontratista (varía)",
       },
       tools: {
-        title: "Herramientas y Equipo (**Inland Marine**)",
+        title: "Herramientas y Equipo",
         description:
           "Cubre herramientas y equipo portátil donde sea que vayan — en el taller, en tránsito, en la obra o en tu camión durante la noche. Las pólizas estándar de propiedad suelen excluir esto.",
         i1: "Herramientas manuales y eléctricas",
@@ -1258,7 +1283,7 @@ const es: Translation = {
         i4: "Equipo prestado/arrendado",
       },
       builders: {
-        title: "**Builders Risk** (Curso de Construcción)",
+        title: "Riesgo del Constructor",
         description:
           "Una póliza especializada que cubre un proyecto en construcción — incluyendo materiales en sitio, en tránsito o en almacenamiento temporal.",
         i1: "Construcción nueva",
@@ -1267,12 +1292,12 @@ const es: Translation = {
         i4: "Estructuras temporales",
       },
       auto: {
-        title: "**Commercial Auto**",
+        title: "Seguro de Auto Comercial",
         description:
           "Requerido si usas vehículos para el negocio — transportar herramientas, hauling materiales o mover cuadrillas. Las pólizas personales excluyen el uso comercial.",
       },
       workers: {
-        title: "**Workers' Compensation**",
+        title: "Compensación Laboral",
         description:
           "Obligatorio en Washington para contratistas con empleados. Paga las cuentas médicas y los salarios perdidos por lesiones en el trabajo — y te protege de demandas de empleados.",
       },
@@ -1280,12 +1305,12 @@ const es: Translation = {
     importantNote: {
       title: "Lo Que Muchos Contratistas Subestiman",
       content:
-        "Un Certificado de Seguro (**COI**) no es solo papeleo — a menudo es un requisito contractual antes de poder pisar la obra. La mayoría de los clientes requieren estatus de **Additional Insured** y endosos de **Waiver of Subrogation**. Si faltan, puedes retrasar el pago o terminar el contrato por completo.",
+        "Un certificado de seguro (**COI**) no es solo papeleo — a menudo es un requisito contractual antes de poder pisar la obra. La mayoría de los clientes requieren estatus de asegurado adicional y endosos de renuncia de subrogación. Si faltan, puedes retrasar el pago o terminar el contrato por completo.",
       i1: "Tipo de trabajo (residencial, comercial, industrial)",
       i2: "Tamaño del proyecto y valor en dólares",
       i3: "Número de empleados y subcontratistas",
       i4: "Valores de herramientas y equipo",
-      i5: "Requisitos de **Additional Insured** y **Waiver**",
+      i5: "Requisitos de asegurado adicional y renuncia de subrogación",
     },
     approach: {
       intro:
@@ -1297,7 +1322,8 @@ const es: Translation = {
   },
   restaurant: {
     title: "Seguro para Restaurantes",
-    subtitle: "Tu restaurante no solo sirve comida — administra riesgos todos los días",
+    subtitle:
+      "Tu restaurante no solo sirve comida — administra riesgos todos los días",
     heroDescription:
       "Un restaurante es uno de los negocios más dinámicos que existen. Todo pasa al mismo tiempo: clientes entrando y saliendo, cocina en operación constante, personal bajo presión, equipo funcionando todo el día. La NRA reporta que el incendio es la principal causa de pérdidas en restaurantes — y una sola demanda por enfermedad transmitida por alimentos puede superar los $100,000.",
     coverages: {
@@ -1307,7 +1333,7 @@ const es: Translation = {
           "Cubre el edificio (si eres dueño), las mejoras del inquilino, el equipo de cocina, el mobiliario del comedor y el inventario contra incendio, daños por agua, robo y vandalismo.",
       },
       liability: {
-        title: "**General Liability**",
+        title: "Responsabilidad Civil General",
         description:
           "Cubre resbalones y caídas, reclamos por enfermedades transmitidas por alimentos y otras lesiones a terceros. Requerido en casi cualquier contrato de arrendamiento comercial y por la mayoría de los arrendadores.",
       },
@@ -1317,22 +1343,23 @@ const es: Translation = {
           "Si un evento cubierto cierra tu restaurante, reemplaza los ingresos perdidos y paga los gastos continuos (renta, nómina, pagos de préstamos) hasta que reabras — típicamente hasta 12 meses.",
       },
       liquor: {
-        title: "**Liquor Liability** (Responsabilidad por Licor)",
+        title: "Responsabilidad por Venta de Alcohol",
         description:
           "Requerido por la WSLCB de Washington y la mayoría de los arrendadores si sirves alcohol. Te protege cuando un cliente intoxicado causa lesiones o daños después de haber sido sobre-servido.",
         i1: "Requerido si sirves alcohol",
         i2: "Obligatorio en muchos contratos de arrendamiento",
-        i3: "Protección de la ley **Dram Shop**",
+        i3: "Protección ante la responsabilidad por venta de alcohol",
         i4: "A menudo excluido de la **CGL** estándar",
       },
       workers: {
-        title: "**Workers' Compensation**",
+        title: "Compensación Laboral",
         description:
           "Obligatorio en Washington para cualquier negocio con empleados. Cubre cortaduras, quemaduras, resbalones y lesiones de espalda — comunes en cocinas de ritmo acelerado.",
       },
       endorsements: {
         title: "Endosos Comunes",
-        description: "Coberturas diseñadas para la realidad del servicio de alimentos.",
+        description:
+          "Coberturas diseñadas para la realidad del servicio de alimentos.",
         i1: "Echamiento a perder de alimentos (corte de luz)",
         i2: "Ruptura de equipo",
         i3: "Deshonestidad de empleados",
@@ -1400,25 +1427,79 @@ const es: Translation = {
       business: "Negocios",
       learnMore: "Saber más",
       items: {
-        auto: { label: "Seguro de Auto", desc: "Protege tu vehículo y tu tranquilidad." },
-        home: { label: "Seguro de Hogar", desc: "Resguarda tu mayor inversión." },
-        life: { label: "Seguro de Vida", desc: "Protege a quienes más importan." },
-        flood: { label: "Seguro contra Inundaciones", desc: "No dejes que el agua te tome por sorpresa." },
-        boat: { label: "Botes y Embarcaciones", desc: "Disfruta el agua sin preocupaciones." },
-        motorcycle: { label: "Motocicleta", desc: "Maneja con la cobertura adecuada." },
+        auto: {
+          label: "Seguro de Auto",
+          desc: "Protege tu vehículo y tu tranquilidad.",
+        },
+        home: {
+          label: "Seguro de Hogar",
+          desc: "Resguarda tu mayor inversión.",
+        },
+        life: {
+          label: "Seguro de Vida",
+          desc: "Protege a quienes más importan.",
+        },
+        flood: {
+          label: "Seguro contra Inundaciones",
+          desc: "No dejes que el agua te tome por sorpresa.",
+        },
+        boat: {
+          label: "Botes y Embarcaciones",
+          desc: "Disfruta el agua sin preocupaciones.",
+        },
+        motorcycle: {
+          label: "Motocicleta",
+          desc: "Maneja con la cobertura adecuada.",
+        },
         rv: { label: "Casas Rodantes (RV)", desc: "Aventuras protegidas." },
-        renters: { label: "Seguro de Inquilino", desc: "Tus pertenencias merecen protección." },
-        landlord: { label: "Seguro de Arrendador", desc: "Protege tu inversión de alquiler." },
-        mobileHome: { label: "Casas Móviles", desc: "Cobertura diseñada para tu tipo de hogar." },
-        personalUmbrella: { label: "Paraguas Personal", desc: "Protección extra cuando la necesitas." },
-        generalLiability: { label: "Responsabilidad Civil General", desc: "Protección esencial para cualquier negocio." },
-        bop: { label: "Dueños de Negocio (BOP)", desc: "Cobertura integral para tu empresa." },
-        commercialAuto: { label: "Auto Comercial", desc: "Cubre los vehículos usados para trabajar." },
-        commercialProperty: { label: "Propiedad Comercial", desc: "Protege el espacio de tu negocio." },
-        contractors: { label: "Seguro para Contratistas", desc: "Diseñado para la industria de la construcción." },
-        restaurant: { label: "Seguro para Restaurantes", desc: "Cobertura especializada para restaurantes." },
-        buildingOwners: { label: "Dueños de Edificios", desc: "Protege tu inversión inmobiliaria." },
-        bondsSurety: { label: "Fianzas y Garantías", desc: "Respalda tus compromisos." },
+        renters: {
+          label: "Seguro de Inquilino",
+          desc: "Tus pertenencias merecen protección.",
+        },
+        landlord: {
+          label: "Seguro de Arrendador",
+          desc: "Protege tu inversión de alquiler.",
+        },
+        mobileHome: {
+          label: "Casas Móviles",
+          desc: "Cobertura diseñada para tu tipo de hogar.",
+        },
+        personalUmbrella: {
+          label: "Paraguas Personal",
+          desc: "Protección extra cuando la necesitas.",
+        },
+        generalLiability: {
+          label: "Responsabilidad Civil General",
+          desc: "Protección esencial para cualquier negocio.",
+        },
+        bop: {
+          label: "Dueños de Negocio (BOP)",
+          desc: "Cobertura integral para tu empresa.",
+        },
+        commercialAuto: {
+          label: "Auto Comercial",
+          desc: "Cubre los vehículos usados para trabajar.",
+        },
+        commercialProperty: {
+          label: "Propiedad Comercial",
+          desc: "Protege el espacio de tu negocio.",
+        },
+        contractors: {
+          label: "Seguro para Contratistas",
+          desc: "Diseñado para la industria de la construcción.",
+        },
+        restaurant: {
+          label: "Seguro para Restaurantes",
+          desc: "Cobertura especializada para restaurantes.",
+        },
+        buildingOwners: {
+          label: "Dueños de Edificios",
+          desc: "Protege tu inversión inmobiliaria.",
+        },
+        bondsSurety: {
+          label: "Fianzas y Garantías",
+          desc: "Respalda tus compromisos.",
+        },
       },
     },
     community: {
@@ -1436,10 +1517,13 @@ const es: Translation = {
       paragraphPart1:
         "Nos tomamos muy en serio tu tranquilidad, pero no creemos que el proceso de asegurarte deba ser ",
       paragraphHighlight: "aburrido",
-      paragraphPart2: ". Nuestra meta es que te sientas seguro y sonrías al mismo tiempo.",
-      quotePart1: "Al pagar una prima relativamente pequeña, transfieres riesgos que podrían arruinar tus finanzas. Convertimos ese proceso en una ",
+      paragraphPart2:
+        ". Nuestra meta es que te sientas seguro y sonrías al mismo tiempo.",
+      quotePart1:
+        "Al pagar una prima relativamente pequeña, transfieres riesgos que podrían arruinar tus finanzas. Convertimos ese proceso en una ",
       quoteHighlight: "experiencia cercana y personalizada",
-      quotePart2: ", porque los seguros también pueden ser accesibles y humanos.",
+      quotePart2:
+        ", porque los seguros también pueden ser accesibles y humanos.",
     },
     finalCta: {
       title: "¿Listo para empezar?",
@@ -1457,7 +1541,8 @@ const es: Translation = {
     clients: "Clientes",
     heroBadge: "Pagos rápidos y seguros",
     heroTitle: "PAGO DE PÓLIZA",
-    heroSubtitle: "Paga tu póliza directamente con tu aseguradora en pocos clics.",
+    heroSubtitle:
+      "Paga tu póliza directamente con tu aseguradora en pocos clics.",
     infoTitle: "¿Dónde encuentro mi número de póliza?",
     infoDesc:
       "Todos los números de póliza aparecen en sus tarjetas de identificación de seguro y en cualquier carta enviada por la aseguradora. Haga clic en el enlace de abajo para ir al sitio de pago rápido de su operador.",
@@ -1480,11 +1565,14 @@ const es: Translation = {
       "Los clientes de Bringas Insurance Group pueden ver información de su póliza, imprimir documentos, solicitar cambios y más. Acceso 24/7, todos los días del año.",
     stepsTitle: "¡Usar el portal es muy fácil!",
     step1Title: "Ingresa tu correo registrado",
-    step1Desc: "Utiliza el correo electrónico que proporcionaste al firmar tu póliza.",
+    step1Desc:
+      "Utiliza el correo electrónico que proporcionaste al firmar tu póliza.",
     step2Title: "Recibe un PIN seguro",
-    step2Desc: "Te enviaremos un PIN de un solo uso a tu bandeja de entrada para verificar tu identidad.",
+    step2Desc:
+      "Te enviaremos un PIN de un solo uso a tu bandeja de entrada para verificar tu identidad.",
     step3Title: "Aplica tu PIN",
-    step3Desc: "Ingresa el PIN para acceder de forma segura al panel completo de tu póliza.",
+    step3Desc:
+      "Ingresa el PIN para acceder de forma segura al panel completo de tu póliza.",
     note: "<1>Importante:</1> No se pueden realizar cambios hasta que sean procesados por nuestro equipo licenciado.",
     iframeTitle: "Bringas Insurance — Portal de Servicio al Cliente",
     openInNewTab: "Abrir portal en una nueva pestaña",
@@ -1495,4 +1583,3 @@ const es: Translation = {
 };
 
 export default es;
-
