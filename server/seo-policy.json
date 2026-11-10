@@ -26,7 +26,33 @@
     "/pay-my-bill",
     "/client-center",
     "/carriers",
-    "/sr22-insurance"
+    "/sr22-insurance",
+    "/es",
+    "/es/about",
+    "/es/quote",
+    "/es/contact",
+    "/es/auto-insurance",
+    "/es/home-insurance",
+    "/es/life-insurance",
+    "/es/boat-insurance",
+    "/es/motorcycle-insurance",
+    "/es/rv-insurance",
+    "/es/renters-insurance",
+    "/es/landlord-insurance",
+    "/es/mobile-home-insurance",
+    "/es/personal-umbrella",
+    "/es/general-liability",
+    "/es/bop-insurance",
+    "/es/commercial-auto",
+    "/es/commercial-property",
+    "/es/contractors-insurance",
+    "/es/restaurant-insurance",
+    "/es/building-owners",
+    "/es/bonds-surety",
+    "/es/pay-my-bill",
+    "/es/client-center",
+    "/es/carriers",
+    "/es/sr22-insurance"
   ],
   "redirects": {
     "/seguros-para-autos-en-seattle-washington": "/auto-insurance",
@@ -79,8 +105,7 @@
     "/customer-quoting": "/quote",
     "/cotizacion": "/quote",
     "/privacy": "/",
-    "/privacidad": "/",
-    "/es": "/"
+    "/privacidad": "/"
   },
   "gonePaths": [
     "/2025/08/05/experience-englishspeaking-online-casinos-in-canada-play-at-gigadats-toprated-gambling-platform"
