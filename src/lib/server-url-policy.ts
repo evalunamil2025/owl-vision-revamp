@@ -62,7 +62,6 @@ export function classifyServerUrl(url: URL): ServerUrlDecision {
     routeTarget != null &&
     (routeTarget !== url.pathname ||
       legacyTarget != null ||
-      localeTarget != null ||
       hasNoiseQuery);
   const needsCanonicalOrigin =
     isProductionHost &&
