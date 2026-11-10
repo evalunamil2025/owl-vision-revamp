@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   addSpanishPrefix,
+  canonicalizeSpanishPath,
+  hasSpanishPrefix,
   isSpanishPath,
   localizeInternalPath,
   stripSpanishPrefix,
@@ -20,6 +22,21 @@ describe("locale paths", () => {
         "/es/seguro-de-auto",
       ),
     ).toBe("/es/cotizacion?utm_source=google#form");
+
+    expect(localizeInternalPath("/boat-insurance", "/es/boat-insurance")).toBe(
+      "/es/seguro-para-botes",
+    );
+  });
+
+  it("canonicalizes temporary English slugs without losing Spanish context", () => {
+    expect(hasSpanishPrefix("/es/boat-insurance")).toBe(true);
+    expect(canonicalizeSpanishPath("/es/boat-insurance")).toBe(
+      "/es/seguro-para-botes",
+    );
+    expect(canonicalizeSpanishPath("/es/seguro-para-botes")).toBe(
+      "/es/seguro-para-botes",
+    );
+    expect(canonicalizeSpanishPath("/es/not-a-real-page")).toBeNull();
   });
 
   it("does not rewrite English navigation or accept unknown Spanish paths", () => {

@@ -61,17 +61,24 @@ describe("server URL SEO policy", () => {
     });
   });
 
-  it("redirects the temporary English slug under /es to the translated canonical slug", () => {
-    expect(
-      classifyServerUrl(
-        new URL("https://bringasinsurance.com/es/renters-insurance"),
-      ),
-    ).toEqual({
-      kind: "redirect",
-      status: 301,
-      location: "https://bringasinsurance.com/es/seguro-para-inquilinos",
-    });
-  });
+  it.each([
+    ["renters-insurance", "seguro-para-inquilinos"],
+    ["boat-insurance", "seguro-para-botes"],
+    ["mobile-home-insurance", "seguro-para-casas-prefabricadas"],
+  ])(
+    "redirects temporary /es/%s to the translated canonical slug",
+    (englishSlug, spanishSlug) => {
+      expect(
+        classifyServerUrl(
+          new URL(`https://bringasinsurance.com/es/${englishSlug}`),
+        ),
+      ).toEqual({
+        kind: "redirect",
+        status: 301,
+        location: `https://bringasinsurance.com/es/${spanishSlug}`,
+      });
+    },
+  );
 
   it("keeps the mobile-home English and Spanish SEO routes separate", () => {
     expect(

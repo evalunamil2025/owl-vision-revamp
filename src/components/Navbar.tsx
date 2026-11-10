@@ -1,10 +1,22 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "@/lib/router-compat";
-import { Menu, X, ChevronDown, Phone, ShieldCheck, Briefcase, ArrowRight, CreditCard, Users, UserCircle } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Phone,
+  ShieldCheck,
+  Briefcase,
+  ArrowRight,
+  CreditCard,
+  Users,
+  UserCircle,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/bringas-insurance-logo-big.webp";
 import LanguageToggle from "./LanguageToggle";
+import { stripSpanishPrefix } from "@/lib/locale-path";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -17,7 +29,7 @@ const Navbar = () => {
     { label: t("services.auto"), href: "/auto-insurance" },
     { label: t("services.home"), href: "/home-insurance" },
     { label: t("services.life"), href: "/life-insurance" },
-    
+
     { label: t("services.boat"), href: "/boat-insurance" },
     { label: t("services.motorcycle"), href: "/motorcycle-insurance" },
     { label: t("services.rv"), href: "/rv-insurance" },
@@ -45,18 +57,31 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (href: string) => location.pathname === href;
+  const isActive = (href: string) =>
+    stripSpanishPrefix(location.pathname) === href;
 
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 backdrop-blur-md py-2 shadow-lg" : "bg-white py-4"
+        scrolled
+          ? "bg-white/95 backdrop-blur-md py-2 shadow-lg"
+          : "bg-white py-4"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4">
         {/* Logo */}
-        <Link to="/" className="flex-shrink-0 transition-transform hover:scale-105">
-          <img src={logo} alt="Bringas Insurance Group" width={220} height={56} decoding="async" className="h-10 lg:h-14 w-auto object-contain" />
+        <Link
+          to="/"
+          className="flex-shrink-0 transition-transform hover:scale-105"
+        >
+          <img
+            src={logo}
+            alt="Bringas Insurance Group"
+            width={220}
+            height={56}
+            decoding="async"
+            className="h-10 lg:h-14 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -64,7 +89,9 @@ const Navbar = () => {
           <Link
             to="/"
             className={`px-4 py-2 text-sm font-bold transition-all ${
-              isActive("/") ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
+              isActive("/")
+                ? "text-[#0079c2]"
+                : "text-slate-600 hover:text-[#0079c2]"
             }`}
           >
             {t("nav.home")}
@@ -78,7 +105,9 @@ const Navbar = () => {
           >
             <button
               className={`flex items-center gap-1 px-4 py-2 text-sm font-bold transition-all ${
-                activeDropdown === "personal" ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
+                activeDropdown === "personal"
+                  ? "text-[#0079c2]"
+                  : "text-slate-600 hover:text-[#0079c2]"
               }`}
             >
               {t("nav.personal")}{" "}
@@ -96,7 +125,8 @@ const Navbar = () => {
                 >
                   <div className="grid grid-cols-2 gap-x-8 gap-y-2">
                     <div className="col-span-2 mb-4 flex items-center gap-2 text-[#00a651] font-bold text-xs uppercase tracking-widest">
-                      <ShieldCheck className="w-4 h-4" /> {t("nav.personalProtection")}
+                      <ShieldCheck className="w-4 h-4" />{" "}
+                      {t("nav.personalProtection")}
                     </div>
                     {personalLinks.map((l) => (
                       <Link
@@ -122,7 +152,9 @@ const Navbar = () => {
           >
             <button
               className={`flex items-center gap-1 px-4 py-2 text-sm font-bold transition-all ${
-                activeDropdown === "business" ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
+                activeDropdown === "business"
+                  ? "text-[#0079c2]"
+                  : "text-slate-600 hover:text-[#0079c2]"
               }`}
             >
               {t("nav.business")}{" "}
@@ -140,7 +172,8 @@ const Navbar = () => {
                 >
                   <div className="grid grid-cols-2 gap-x-8 gap-y-2">
                     <div className="col-span-2 mb-4 flex items-center gap-2 text-[#00a651] font-bold text-xs uppercase tracking-widest">
-                      <Briefcase className="w-4 h-4" /> {t("nav.commercialSolutions")}
+                      <Briefcase className="w-4 h-4" />{" "}
+                      {t("nav.commercialSolutions")}
                     </div>
                     {businessLinks.map((l) => (
                       <Link
@@ -166,7 +199,9 @@ const Navbar = () => {
           >
             <button
               className={`flex items-center gap-1 px-4 py-2 text-sm font-bold transition-all ${
-                activeDropdown === "clients" ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
+                activeDropdown === "clients"
+                  ? "text-[#0079c2]"
+                  : "text-slate-600 hover:text-[#0079c2]"
               }`}
             >
               {t("payBill.clients")}{" "}
@@ -223,7 +258,9 @@ const Navbar = () => {
           <Link
             to="/about"
             className={`px-4 py-2 text-sm font-bold transition-all ${
-              isActive("/about") ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
+              isActive("/about")
+                ? "text-[#0079c2]"
+                : "text-slate-600 hover:text-[#0079c2]"
             }`}
           >
             {t("nav.about")}
@@ -232,7 +269,9 @@ const Navbar = () => {
           <Link
             to="/contact"
             className={`px-4 py-2 text-sm font-bold transition-all ${
-              isActive("/contact") ? "text-[#0079c2]" : "text-slate-600 hover:text-[#0079c2]"
+              isActive("/contact")
+                ? "text-[#0079c2]"
+                : "text-slate-600 hover:text-[#0079c2]"
             }`}
           >
             {t("nav.contact")}
@@ -243,12 +282,16 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           <LanguageToggle />
 
-          <a href="tel:+14254057111" className="hidden sm:flex flex-col items-end group">
+          <a
+            href="tel:+14254057111"
+            className="hidden sm:flex flex-col items-end group"
+          >
             <span className="text-[10px] uppercase text-slate-400 font-bold group-hover:text-[#00a651] transition-colors">
               {t("common.callAgent")}
             </span>
             <span className="flex items-center gap-1 text-sm font-bold text-[#0079c2]">
-              <Phone className="w-3.5 h-3.5 text-[#00a651]" /> {t("common.phone")}
+              <Phone className="w-3.5 h-3.5 text-[#00a651]" />{" "}
+              {t("common.phone")}
             </span>
           </a>
 
@@ -263,7 +306,11 @@ const Navbar = () => {
             onClick={() => setMobileOpen(!mobileOpen)}
             className="lg:hidden p-2 rounded-xl bg-slate-50 text-[#0079c2] hover:bg-blue-100 transition-all"
           >
-            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
       </div>
