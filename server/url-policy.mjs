@@ -1,6 +1,7 @@
 import policy from "./seo-policy.json" with { type: "json" };
 
 const validRoutes = new Set(policy.validRoutes);
+const englishRoutes = new Set(Object.keys(policy.localeRoutes));
 const noiseQueryParams = new Set(["v", "tid", "lang"]);
 const assetPattern =
   /\.(?:js|mjs|css|png|jpe?g|webp|avif|gif|svg|ico|woff2?|ttf|txt|xml|json|map|webmanifest|mp4|pdf)$/i;
@@ -50,12 +51,24 @@ export function classifyUrl(input, { host, protocol = "https:" } = {}) {
     return { kind: "error", status: 400 };
   }
 
-  const plain =
+  const temporaryPlain =
     path === "/es" ? "/" : path.startsWith("/es/") ? path.slice(3) : path;
+  const plain = policy.spanishToEnglishRoutes[path] || temporaryPlain;
+  if (
+    path.startsWith("/es/") &&
+    englishRoutes.has(temporaryPlain) &&
+    !policy.spanishToEnglishRoutes[path]
+  ) {
+    return {
+      kind: "redirect",
+      status: 301,
+      location: `${SITE}${policy.localeRoutes[temporaryPlain]}`,
+    };
+  }
   const redirectTarget = policy.redirects[path] || policy.redirects[plain];
   if (redirectTarget) {
     const localizedTarget = path.startsWith("/es/")
-      ? `/es${redirectTarget}`
+      ? policy.localeRoutes[redirectTarget]
       : redirectTarget;
     const destination = new URL(`${SITE}${localizedTarget}`);
     for (const [key, value] of url.searchParams)
@@ -75,7 +88,7 @@ export function classifyUrl(input, { host, protocol = "https:" } = {}) {
     let targetPath = path;
     const requestedLanguage = url.searchParams.get("lang")?.toLowerCase();
     if (requestedLanguage === "es" && !path.startsWith("/es")) {
-      targetPath = path === "/" ? "/es" : `/es${path}`;
+      targetPath = policy.localeRoutes[path];
       changed = true;
     } else if (
       requestedLanguage === "en" &&

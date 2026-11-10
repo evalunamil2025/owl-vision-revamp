@@ -4,6 +4,11 @@ import {
   normalizePath,
   resolveLegacyRedirect,
 } from "../config/redirects";
+import {
+  ENGLISH_TO_SPANISH_ROUTES,
+  SPANISH_TO_ENGLISH_ROUTES,
+} from "../config/localized-routes";
+import { addSpanishPrefix, stripSpanishPrefix } from "./locale-path";
 
 const CANONICAL_ORIGIN = "https://bringasinsurance.com";
 const PRODUCTION_HOSTS = new Set([
@@ -19,11 +24,11 @@ export type ServerUrlDecision =
 
 function canonicalSpanishRoute(pathname: string): string | null {
   const normalized = normalizePath(pathname);
-  if (normalized === "/es") return "/es";
+  if (SPANISH_TO_ENGLISH_ROUTES[normalized]) return normalized;
   if (!normalized.startsWith("/es/")) return null;
 
   const candidate = normalized.slice(3) || "/";
-  return VALID_ROUTES.includes(candidate) ? `/es${candidate}` : null;
+  return VALID_ROUTES.includes(candidate) ? addSpanishPrefix(candidate) : null;
 }
 
 function removeNoiseQueryParams(url: URL): void {
@@ -39,10 +44,11 @@ function removeNoiseQueryParams(url: URL): void {
 export function classifyServerUrl(url: URL): ServerUrlDecision {
   const normalizedPath = normalizePath(url.pathname);
   const rawLegacyTarget = resolveLegacyRedirect(normalizedPath);
-  const legacyTarget =
+  const localizedLegacyTarget =
     rawLegacyTarget && normalizedPath.startsWith("/es/")
-      ? `/es${rawLegacyTarget}`
+      ? addSpanishPrefix(rawLegacyTarget)
       : rawLegacyTarget;
+  const legacyTarget = localizedLegacyTarget === normalizedPath ? null : localizedLegacyTarget;
   const localeTarget = canonicalSpanishRoute(normalizedPath);
   const validTarget = VALID_ROUTES.includes(normalizedPath)
     ? normalizedPath
@@ -51,10 +57,10 @@ export function classifyServerUrl(url: URL): ServerUrlDecision {
   const languageTarget =
     requestedLanguage === "es" && validTarget
       ? validTarget === "/"
-        ? "/es"
-        : `/es${validTarget}`
+        ? ENGLISH_TO_SPANISH_ROUTES["/"]
+        : addSpanishPrefix(validTarget)
       : requestedLanguage === "en" && localeTarget
-        ? localeTarget.slice(3) || "/"
+        ? stripSpanishPrefix(localeTarget)
         : null;
   const routeTarget =
     legacyTarget ?? languageTarget ?? localeTarget ?? validTarget;

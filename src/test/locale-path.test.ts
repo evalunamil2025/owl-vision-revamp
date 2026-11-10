@@ -9,17 +9,17 @@ import {
 describe("locale paths", () => {
   it("maps every canonical page between English and Spanish", () => {
     expect(addSpanishPrefix("/")).toBe("/es");
-    expect(addSpanishPrefix("/auto-insurance")).toBe("/es/auto-insurance");
-    expect(stripSpanishPrefix("/es/auto-insurance")).toBe("/auto-insurance");
+    expect(addSpanishPrefix("/auto-insurance")).toBe("/es/seguro-de-auto");
+    expect(stripSpanishPrefix("/es/seguro-de-auto")).toBe("/auto-insurance");
   });
 
   it("keeps navigation inside the Spanish URL tree, including campaign queries", () => {
     expect(
       localizeInternalPath(
         "/quote?utm_source=google#form",
-        "/es/auto-insurance",
+        "/es/seguro-de-auto",
       ),
-    ).toBe("/es/quote?utm_source=google#form");
+    ).toBe("/es/cotizacion?utm_source=google#form");
   });
 
   it("does not rewrite English navigation or accept unknown Spanish paths", () => {

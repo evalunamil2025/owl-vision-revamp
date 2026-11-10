@@ -16,6 +16,47 @@ interface SEOProps {
   noindex?: boolean;
 }
 
+const SPANISH_HOME_FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${SITE_URL}/es/#preguntas-frecuentes`,
+  inLanguage: "es",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "¿Qué es Bringas Insurance Group?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Bringas Insurance Group es una agencia de seguros independiente en Everett, Washington, que ayuda a familias y negocios a comparar opciones de cobertura.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Qué tipos de seguros ofrece Bringas Insurance Group?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Bringas ofrece orientación sobre seguros personales y comerciales, incluyendo auto, hogar, vida, inquilinos, negocios, contratistas y fianzas.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Bringas Insurance Group ofrece atención en español?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sí. Bringas Insurance Group brinda atención en inglés y español a clientes en el estado de Washington.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Cómo puedo solicitar una cotización de seguro?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Solicita una cotización en la página de cotización o llama al (425) 405-7111. La cobertura debe ser confirmada por un agente con licencia.",
+      },
+    },
+  ],
+};
+
 const SEO = ({
   title,
   description,
@@ -48,6 +89,7 @@ const SEO = ({
   const localizedLd = ld.map((entry) => {
     if (!routeIsSpanish) return entry;
     const schema = entry as Record<string, unknown>;
+    if (schema["@type"] === "FAQPage") return SPANISH_HOME_FAQ_SCHEMA;
     if (schema["@type"] === "Service") {
       return {
         ...schema,

@@ -40,7 +40,8 @@ describe("server URL SEO policy", () => {
 
   it.each([
     "https://bringasinsurance.com/es",
-    "https://bringasinsurance.com/es/auto-insurance",
+    "https://bringasinsurance.com/es/seguro-de-auto",
+    "https://bringasinsurance.com/es/seguro-para-inquilinos",
   ])("allows canonical Spanish pages through to SSR: %s", (source) => {
     expect(classifyServerUrl(new URL(source))).toEqual({ kind: "continue" });
   });
@@ -56,7 +57,19 @@ describe("server URL SEO policy", () => {
       kind: "redirect",
       status: 301,
       location:
-        "https://bringasinsurance.com/es/auto-insurance?utm_source=google&utm_campaign=autos",
+        "https://bringasinsurance.com/es/seguro-de-auto?utm_source=google&utm_campaign=autos",
+    });
+  });
+
+  it("redirects the temporary English slug under /es to the translated canonical slug", () => {
+    expect(
+      classifyServerUrl(
+        new URL("https://bringasinsurance.com/es/renters-insurance"),
+      ),
+    ).toEqual({
+      kind: "redirect",
+      status: 301,
+      location: "https://bringasinsurance.com/es/seguro-para-inquilinos",
     });
   });
 

@@ -6,6 +6,14 @@ const redirectsSource = fs.readFileSync(
   path.join(root, "src/config/redirects.ts"),
   "utf8",
 );
+const localizedRoutesSource = fs.readFileSync(
+  path.join(root, "src/config/localized-routes.ts"),
+  "utf8",
+);
+const spanishSeoSource = fs.readFileSync(
+  path.join(root, "src/config/seo-es.ts"),
+  "utf8",
+);
 const gscFile = path.join(root, "seo/reports/gsc-url-audit.csv");
 const seoRoutes = JSON.parse(
   fs.readFileSync(path.join(root, "src/config/seo-routes.json"), "utf8"),
@@ -19,10 +27,31 @@ const block = (name, end) =>
 const validRoutes = [
   ...block("VALID_ROUTES", "];").matchAll(/"([^"\r\n]+)"/g),
 ].map((m) => m[1]);
-const spanishRoutes = validRoutes.map((route) =>
-  route === "/" ? "/es" : `/es${route}`,
+const localeRoutes = Object.fromEntries(
+  [...localizedRoutesSource.matchAll(/^\s*"([^"]+)":\s*"([^"]+)",?$/gm)].map(
+    (match) => [match[1], match[2]],
+  ),
 );
+const spanishToEnglishRoutes = Object.fromEntries(
+  Object.entries(localeRoutes).map(([english, spanish]) => [spanish, english]),
+);
+const spanishRoutes = Object.values(localeRoutes);
 const allValidRoutes = [...validRoutes, ...spanishRoutes];
+const spanishSeoRoutes = Object.fromEntries(
+  [...spanishSeoSource.matchAll(/^\s*"([^"]+)":\s*\{([\s\S]*?)^\s*\},?$/gm)].map(
+    (match) => {
+      const body = match[2];
+      return [
+        match[1],
+        {
+          title: body.match(/title:\s*"([^"]+)"/)?.[1] ?? "",
+          description: body.match(/description:\s*"([^"]+)"/)?.[1] ?? "",
+          serviceName: body.match(/serviceName:\s*"([^"]+)"/)?.[1],
+        },
+      ];
+    },
+  ),
+);
 const redirects = Object.fromEntries(
   [
     ...block("LEGACY_REDIRECTS", "};").matchAll(
@@ -104,14 +133,15 @@ function add(sourceUrl, source, lastCrawl = "") {
     canonical = "",
     reason = "No equivalent destination proven; manual review required.",
     layer = "manual";
-  const plain = p === "/es" ? "/" : p.startsWith("/es/") ? p.slice(3) : p;
+  const temporaryPlain = p === "/es" ? "/" : p.startsWith("/es/") ? p.slice(3) : p;
+  const plain = spanishToEnglishRoutes[p] || temporaryPlain;
   const redirectTarget = redirects[p] || redirects[plain];
   const requestedLanguage = url.searchParams.get("lang")?.toLowerCase();
   const languageTarget =
     requestedLanguage === "es" && validRoutes.includes(p)
       ? p === "/"
-        ? "/es"
-        : `/es${p}`
+        ? localeRoutes["/"]
+        : localeRoutes[p]
       : requestedLanguage === "en" && spanishRoutes.includes(p)
         ? plain
         : "";
@@ -151,7 +181,7 @@ function add(sourceUrl, source, lastCrawl = "") {
     layer = "origin/application";
   } else if (redirectTarget) {
     const localizedTarget = p.startsWith("/es/")
-      ? `/es${redirectTarget}`
+      ? localeRoutes[redirectTarget]
       : redirectTarget;
     classification = "REDIRECT_301";
     status = "301";
@@ -223,6 +253,9 @@ fs.writeFileSync(
       redirects,
       gonePaths,
       seoRoutes,
+      localeRoutes,
+      spanishToEnglishRoutes,
+      spanishSeoRoutes,
     },
     null,
     2,

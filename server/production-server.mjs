@@ -3,6 +3,7 @@ import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { CANONICAL_HOST, classifyUrl, SEO_ROUTES, SITE } from "./url-policy.mjs";
+import policy from "./seo-policy.json" with { type: "json" };
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distDirectory = path.join(root, "dist");
@@ -145,7 +146,8 @@ const setMeta = (html, selector, value) => {
 };
 
 function routeHtml(template, route) {
-  const seo = SEO_ROUTES[route];
+  const englishRoute = policy.spanishToEnglishRoutes[route];
+  const seo = englishRoute ? policy.spanishSeoRoutes[englishRoute] : SEO_ROUTES[route];
   if (!seo) return template;
   const canonical = `${SITE}${route}`;
   let html = template.replace(/<title>[^<]*<\/title>/i, `<title>${escapeHtml(seo.title)}</title>`);

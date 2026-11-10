@@ -18,7 +18,7 @@ describe("App routing", () => {
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
 
-  it.each(["/es", "/es/auto-insurance", "/es/contact"])(
+  it.each(["/es", "/es/seguro-de-auto", "/es/contacto"])(
     "matches the Spanish campaign route %s",
     (pathname) => {
       const router = createRouter({
