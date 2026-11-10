@@ -27,6 +27,10 @@ export const ENGLISH_TO_SPANISH_ROUTES: Record<string, string> = {
   "/sr22-insurance": "/es/seguro-sr22",
 };
 
-export const SPANISH_TO_ENGLISH_ROUTES: Record<string, string> = Object.fromEntries(
-  Object.entries(ENGLISH_TO_SPANISH_ROUTES).map(([english, spanish]) => [spanish, english]),
-);
+export const SPANISH_TO_ENGLISH_ROUTES: Record<string, string> =
+  Object.fromEntries(
+    Object.entries(ENGLISH_TO_SPANISH_ROUTES).map(([english, spanish]) => [
+      spanish,
+      english,
+    ]),
+  );

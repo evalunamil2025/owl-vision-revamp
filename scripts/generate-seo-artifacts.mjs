@@ -38,19 +38,19 @@ const spanishToEnglishRoutes = Object.fromEntries(
 const spanishRoutes = Object.values(localeRoutes);
 const allValidRoutes = [...validRoutes, ...spanishRoutes];
 const spanishSeoRoutes = Object.fromEntries(
-  [...spanishSeoSource.matchAll(/^\s*"([^"]+)":\s*\{([\s\S]*?)^\s*\},?$/gm)].map(
-    (match) => {
-      const body = match[2];
-      return [
-        match[1],
-        {
-          title: body.match(/title:\s*"([^"]+)"/)?.[1] ?? "",
-          description: body.match(/description:\s*"([^"]+)"/)?.[1] ?? "",
-          serviceName: body.match(/serviceName:\s*"([^"]+)"/)?.[1],
-        },
-      ];
-    },
-  ),
+  [
+    ...spanishSeoSource.matchAll(/^\s*"([^"]+)":\s*\{([\s\S]*?)^\s*\},?$/gm),
+  ].map((match) => {
+    const body = match[2];
+    return [
+      match[1],
+      {
+        title: body.match(/title:\s*"([^"]+)"/)?.[1] ?? "",
+        description: body.match(/description:\s*"([^"]+)"/)?.[1] ?? "",
+        serviceName: body.match(/serviceName:\s*"([^"]+)"/)?.[1],
+      },
+    ];
+  }),
 );
 const redirects = Object.fromEntries(
   [
@@ -133,7 +133,8 @@ function add(sourceUrl, source, lastCrawl = "") {
     canonical = "",
     reason = "No equivalent destination proven; manual review required.",
     layer = "manual";
-  const temporaryPlain = p === "/es" ? "/" : p.startsWith("/es/") ? p.slice(3) : p;
+  const temporaryPlain =
+    p === "/es" ? "/" : p.startsWith("/es/") ? p.slice(3) : p;
   const plain = spanishToEnglishRoutes[p] || temporaryPlain;
   const redirectTarget = redirects[p] || redirects[plain];
   const requestedLanguage = url.searchParams.get("lang")?.toLowerCase();

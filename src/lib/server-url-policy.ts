@@ -48,7 +48,8 @@ export function classifyServerUrl(url: URL): ServerUrlDecision {
     rawLegacyTarget && normalizedPath.startsWith("/es/")
       ? addSpanishPrefix(rawLegacyTarget)
       : rawLegacyTarget;
-  const legacyTarget = localizedLegacyTarget === normalizedPath ? null : localizedLegacyTarget;
+  const legacyTarget =
+    localizedLegacyTarget === normalizedPath ? null : localizedLegacyTarget;
   const localeTarget = canonicalSpanishRoute(normalizedPath);
   const validTarget = VALID_ROUTES.includes(normalizedPath)
     ? normalizedPath

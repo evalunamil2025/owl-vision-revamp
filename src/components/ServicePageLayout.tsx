@@ -3,12 +3,54 @@ import { Link, useLocation } from "@/lib/router-compat";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import {
-  ArrowRight, Phone, Shield, Sparkles, CheckCircle2, Search, ClipboardCheck, Settings2,
-  Car, ShieldAlert, Users, HeartPulse, UserX, Stethoscope, LifeBuoy, Home, Sofa,
-  Hotel, Scale, FileText, HandCoins, Coins, Building2, Briefcase, AlertTriangle,
-  Wrench, Droplets, Anchor, Bike, Truck, Flame, Umbrella, Package, Cpu,
-  Hammer, HardHat, Construction, UtensilsCrossed, Wine, BadgeCheck, Gavel, ScrollText,
-  TrendingDown, Map, Zap, FileCheck, Award, LayoutGrid,
+  ArrowRight,
+  Phone,
+  Shield,
+  Sparkles,
+  CheckCircle2,
+  Search,
+  ClipboardCheck,
+  Settings2,
+  Car,
+  ShieldAlert,
+  Users,
+  HeartPulse,
+  UserX,
+  Stethoscope,
+  LifeBuoy,
+  Home,
+  Sofa,
+  Hotel,
+  Scale,
+  FileText,
+  HandCoins,
+  Coins,
+  Building2,
+  Briefcase,
+  AlertTriangle,
+  Wrench,
+  Droplets,
+  Anchor,
+  Bike,
+  Truck,
+  Flame,
+  Umbrella,
+  Package,
+  Cpu,
+  Hammer,
+  HardHat,
+  Construction,
+  UtensilsCrossed,
+  Wine,
+  BadgeCheck,
+  Gavel,
+  ScrollText,
+  TrendingDown,
+  Map,
+  Zap,
+  FileCheck,
+  Award,
+  LayoutGrid,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Navbar from "./Navbar";
@@ -29,22 +71,37 @@ const ICON_MAP: { test: RegExp; icon: LucideIcon }[] = [
   { test: /personal injury|pip/i, icon: Stethoscope },
   { test: /medical pay|medical exp/i, icon: HeartPulse },
   { test: /liquor/i, icon: Wine },
-  { test: /liability|legal defense|legal cost|extended liability/i, icon: Scale },
+  {
+    test: /liability|legal defense|legal cost|extended liability/i,
+    icon: Scale,
+  },
   { test: /roadside|road protection|additional cover/i, icon: LifeBuoy },
-  { test: /property protection|building protection|building cover|building &|building and/i, icon: Home },
+  {
+    test: /property protection|building protection|building cover|building &|building and/i,
+    icon: Home,
+  },
   { test: /personal belong|contents|extras protection/i, icon: Sofa },
   { test: /temporary living|loss of use|living expense/i, icon: Hotel },
   { test: /family protection/i, icon: Users },
   { test: /final expense/i, icon: ScrollText },
-  { test: /income replacement|loss of income|business interrupt/i, icon: TrendingDown },
+  {
+    test: /income replacement|loss of income|business interrupt/i,
+    icon: TrendingDown,
+  },
   { test: /legacy/i, icon: HandCoins },
   { test: /term life/i, icon: FileText },
   { test: /permanent life/i, icon: Award },
   { test: /flood|water/i, icon: Droplets },
-  { test: /physical damage|vehicle damage|structure protection|natural hazard|accidental damage/i, icon: ShieldAlert },
+  {
+    test: /physical damage|vehicle damage|structure protection|natural hazard|accidental damage/i,
+    icon: ShieldAlert,
+  },
   { test: /tools|equipment|builders risk/i, icon: Wrench },
   { test: /commercial auto/i, icon: Truck },
-  { test: /general liability|third-party injur|third-party prop/i, icon: Shield },
+  {
+    test: /general liability|third-party injur|third-party prop/i,
+    icon: Shield,
+  },
   { test: /inventory/i, icon: Package },
   { test: /systems|technology/i, icon: Cpu },
   { test: /equipment & furniture|business contents/i, icon: Briefcase },
@@ -110,7 +167,10 @@ const ServicePageLayout = ({
     <div className="min-h-screen bg-white">
       <SEO
         title={`${title} | Bringas Insurance Group`}
-        description={(heroDescription || subtitle || title).replace(/\s+/g, " ").trim().slice(0, 155)}
+        description={(heroDescription || subtitle || title)
+          .replace(/\s+/g, " ")
+          .trim()
+          .slice(0, 155)}
         path={pathname}
         jsonLd={{
           "@context": "https://schema.org",
@@ -138,7 +198,7 @@ const ServicePageLayout = ({
         <div className="absolute inset-0 z-0">
           <img
             src={heroImage || heroBg}
-            alt={heroImage ? (heroImageAlt || "") : ""}
+            alt={heroImage ? heroImageAlt || "" : ""}
             className={`w-full h-full object-cover ${heroImage ? "object-[85%_center]" : "object-center"}`}
           />
           {heroImage ? (
@@ -191,13 +251,20 @@ const ServicePageLayout = ({
                 aria-label={`${t("service.callNow")}: ${t("common.phone")}`}
                 className="group relative flex items-center justify-center gap-4 overflow-hidden rounded-2xl border-2 border-[#6ee7a7] bg-gradient-to-r from-[#00a651] to-[#008f45] px-8 py-4 text-white shadow-[0_0_0_6px_rgba(0,166,81,0.18),0_18px_45px_-12px_rgba(0,0,0,0.65)] transition-all hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_0_8px_rgba(0,166,81,0.24),0_24px_55px_-12px_rgba(0,0,0,0.7)] focus-visible:outline-hidden focus-visible:ring-4 focus-visible:ring-white/60"
               >
-                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" aria-hidden="true" />
+                <span
+                  className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full"
+                  aria-hidden="true"
+                />
                 <span className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-white text-[#00a651] shadow-lg">
                   <Phone className="h-5 w-5" strokeWidth={3} />
                 </span>
                 <span className="relative flex flex-col items-start leading-none">
-                  <span className="mb-1 text-[9px] font-black uppercase tracking-[0.24em] text-white/75">{t("service.callNow")}</span>
-                  <span className="text-lg font-black tracking-tight font-heading">{t("common.phone")}</span>
+                  <span className="mb-1 text-[9px] font-black uppercase tracking-[0.24em] text-white/75">
+                    {t("service.callNow")}
+                  </span>
+                  <span className="text-lg font-black tracking-tight font-heading">
+                    {t("common.phone")}
+                  </span>
                 </span>
               </a>
             </div>
@@ -206,7 +273,11 @@ const ServicePageLayout = ({
 
         {/* SVG Wave divisor */}
         <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] transform rotate-180 z-10">
-          <svg className="relative block w-full h-[80px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg
+            className="relative block w-full h-[80px]"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
             <path
               d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V120C0,120,321.39,56.44,321.39,56.44Z"
               fill="white"
@@ -312,14 +383,20 @@ const ServicePageLayout = ({
               <div>
                 <div className="inline-flex items-center gap-3 pl-2 pr-5 py-2 rounded-full bg-gradient-to-r from-[#00a651] to-[#0079c2] shadow-[0_12px_30px_-10px_rgba(0,166,81,0.55)] mb-7">
                   <span className="w-8 h-8 rounded-full bg-white/95 flex items-center justify-center shadow-inner">
-                    <Shield className="w-4 h-4 text-[#00a651]" strokeWidth={2.4} />
+                    <Shield
+                      className="w-4 h-4 text-[#00a651]"
+                      strokeWidth={2.4}
+                    />
                   </span>
                   <span className="text-sm md:text-[15px] font-black uppercase tracking-[0.28em] text-white font-heading">
                     {t("service.coverageDetails")}
                   </span>
                 </div>
                 <h2 className="text-4xl md:text-6xl font-bold text-[#015093] tracking-tighter leading-[0.95] font-heading">
-                  {t("service.whatsCoveredA")} <span className="text-[#00a651] italic font-light">{t("service.whatsCoveredB")}</span>
+                  {t("service.whatsCoveredA")}{" "}
+                  <span className="text-[#00a651] italic font-light">
+                    {t("service.whatsCoveredB")}
+                  </span>
                 </h2>
               </div>
               <div className="md:max-w-sm md:text-right">
@@ -338,10 +415,34 @@ const ServicePageLayout = ({
             <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
               {coverages.map((c, i) => {
                 const themes = [
-                  { bg: "bg-white", text: "text-[#015093]", sub: "text-[#015093]/70", accent: "#00a651", chip: "bg-[#00a651]/10 text-[#00a651]" },
-                  { bg: "bg-[#015093]", text: "text-white", sub: "text-white/75", accent: "#ffffff", chip: "bg-white/15 text-white" },
-                  { bg: "bg-white", text: "text-[#015093]", sub: "text-[#015093]/70", accent: "#0079c2", chip: "bg-[#0079c2]/10 text-[#0079c2]" },
-                  { bg: "bg-[#00a651]", text: "text-white", sub: "text-white/85", accent: "#ffffff", chip: "bg-white/15 text-white" },
+                  {
+                    bg: "bg-white",
+                    text: "text-[#015093]",
+                    sub: "text-[#015093]/70",
+                    accent: "#00a651",
+                    chip: "bg-[#00a651]/10 text-[#00a651]",
+                  },
+                  {
+                    bg: "bg-[#015093]",
+                    text: "text-white",
+                    sub: "text-white/75",
+                    accent: "#ffffff",
+                    chip: "bg-white/15 text-white",
+                  },
+                  {
+                    bg: "bg-white",
+                    text: "text-[#015093]",
+                    sub: "text-[#015093]/70",
+                    accent: "#0079c2",
+                    chip: "bg-[#0079c2]/10 text-[#0079c2]",
+                  },
+                  {
+                    bg: "bg-[#00a651]",
+                    text: "text-white",
+                    sub: "text-white/85",
+                    accent: "#ffffff",
+                    chip: "bg-white/15 text-white",
+                  },
                 ];
                 const t = themes[i % themes.length]!;
                 const isFeature = i % 5 === 0;
@@ -353,7 +454,11 @@ const ServicePageLayout = ({
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
-                    transition={{ delay: (i % 4) * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{
+                      delay: (i % 4) * 0.08,
+                      duration: 0.5,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
                     whileHover={{ scale: 1.03, y: -6 }}
                     className={`${span} ${t.bg} relative overflow-hidden rounded-[2rem] p-8 md:p-10 border border-black/5 shadow-[0_20px_50px_-25px_rgba(1,80,147,0.25)] hover:shadow-[0_40px_80px_-20px_rgba(1,80,147,0.45)] transition-shadow duration-500 group cursor-pointer`}
                   >
@@ -370,14 +475,20 @@ const ServicePageLayout = ({
                           className="absolute inset-0 rounded-2xl blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-500"
                           style={{ backgroundColor: t.accent }}
                         />
-                        <div className={`relative w-14 h-14 rounded-2xl ${t.chip} flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:scale-110 group-hover:rotate-[-6deg] transition-transform duration-500`}>
+                        <div
+                          className={`relative w-14 h-14 rounded-2xl ${t.chip} flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:scale-110 group-hover:rotate-[-6deg] transition-transform duration-500`}
+                        >
                           {(() => {
                             const Ico = getIcon(c.title);
-                            return <Ico className="w-6 h-6" strokeWidth={1.8} />;
+                            return (
+                              <Ico className="w-6 h-6" strokeWidth={1.8} />
+                            );
                           })()}
                         </div>
                       </div>
-                      <span className={`text-[10px] font-black uppercase tracking-[0.3em] font-heading ${t.sub}`}>
+                      <span
+                        className={`text-[10px] font-black uppercase tracking-[0.3em] font-heading ${t.sub}`}
+                      >
                         / {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>
@@ -458,7 +569,10 @@ const ServicePageLayout = ({
                 {importantNote.items && (
                   <ul className="space-y-3">
                     {importantNote.items.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-sm text-[#015093]/80 font-body">
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-sm text-[#015093]/80 font-body"
+                      >
                         <span className="w-2 h-2 rounded-full bg-[#00a651] mt-1.5 flex-shrink-0" />
                         <RichText text={item} />
                       </li>
@@ -496,9 +610,14 @@ const ServicePageLayout = ({
                 </span>
               </div>
               <h2 className="text-4xl md:text-6xl font-bold text-white font-heading mb-6 tracking-tighter leading-[0.95]">
-                {t("service.ourApproachA")} <span className="text-[#00a651] italic font-light">{t("service.ourApproachB")}</span>
+                {t("service.ourApproachA")}{" "}
+                <span className="text-[#00a651] italic font-light">
+                  {t("service.ourApproachB")}
+                </span>
               </h2>
-              <p className="text-white/70 font-body text-lg leading-relaxed">{approach.intro}</p>
+              <p className="text-white/70 font-body text-lg leading-relaxed">
+                {approach.intro}
+              </p>
             </div>
 
             {/* Timeline */}
@@ -517,14 +636,19 @@ const ServicePageLayout = ({
 
               <div className="grid md:grid-cols-3 gap-10 md:gap-6 relative">
                 {approach.items.map((item, i) => {
-                  const StepIcon = [Search, ClipboardCheck, Settings2][i % 3] ?? Search;
+                  const StepIcon =
+                    [Search, ClipboardCheck, Settings2][i % 3] ?? Search;
                   return (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{
+                        delay: i * 0.15,
+                        duration: 0.6,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
                       whileHover={{ y: -8 }}
                       className="group relative flex flex-col items-center text-center"
                     >
@@ -586,7 +710,10 @@ const ServicePageLayout = ({
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#015093]/10 blur-[60px] rounded-full" />
             <div className="relative z-10 max-w-3xl mx-auto">
               <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter mb-8 leading-[0.95] font-heading">
-                {t("service.finalCtaTitleA")} <br /> <span className="text-white/80 italic font-light">{t("service.finalCtaTitleB")}</span>
+                {t("service.finalCtaTitleA")} <br />{" "}
+                <span className="text-white/80 italic font-light">
+                  {t("service.finalCtaTitleB")}
+                </span>
               </h2>
               <p className="text-white/90 text-lg font-body font-light mb-12 max-w-2xl mx-auto leading-relaxed">
                 {t("service.finalCtaDesc")}

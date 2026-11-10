@@ -117,7 +117,10 @@ const SEO = ({
 
       <meta property="og:type" content={type} />
       <meta property="og:locale" content={routeIsSpanish ? "es_US" : "en_US"} />
-      <meta property="og:locale:alternate" content={routeIsSpanish ? "en_US" : "es_US"} />
+      <meta
+        property="og:locale:alternate"
+        content={routeIsSpanish ? "en_US" : "es_US"}
+      />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={resolvedTitle} />
       <meta property="og:description" content={resolvedDescription} />

@@ -4,7 +4,8 @@ import { stripSpanishPrefix } from "@/lib/locale-path";
 
 export const Route = createFileRoute("/es/$")({
   beforeLoad: ({ params }) => {
-    const spanishPath = `/es/${params._splat ?? ""}`.replace(/\/+$/, "") || "/es";
+    const spanishPath =
+      `/es/${params._splat ?? ""}`.replace(/\/+$/, "") || "/es";
     const path = stripSpanishPrefix(spanishPath);
     if (!SPANISH_ROUTE_PAGES[path]) throw notFound();
   },
