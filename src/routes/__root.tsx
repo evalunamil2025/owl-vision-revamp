@@ -18,6 +18,7 @@ import { useLocation } from "@/lib/router-compat";
 import { trackIndexablePageView } from "@/lib/analytics";
 import { reportLovableError } from "@/lib/lovable-error-reporting";
 import i18n from "@/i18n";
+import { isSpanishPath } from "@/lib/locale-path";
 import appCss from "../styles.css?url";
 
 const InsuranceChatbot = lazy(() => import("@/components/InsuranceChatbot"));
@@ -164,11 +165,12 @@ const AnalyticsPageViews = () => {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
 
   // Pages render in English on the server; switch to the visitor's saved/browser language after hydration.
   useEffect(() => {
-    void i18n.changeLanguage();
-  }, []);
+    void i18n.changeLanguage(isSpanishPath(location.pathname) ? "es" : undefined);
+  }, [location.pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>

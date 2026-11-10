@@ -14,4 +14,13 @@ describe("App routing", () => {
 
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
+
+  it.each(["/es", "/es/auto-insurance", "/es/contact"])(
+    "matches the Spanish campaign route %s",
+    (pathname) => {
+      const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+      const matches = router.matchRoutes(pathname);
+      expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
+    },
+  );
 });

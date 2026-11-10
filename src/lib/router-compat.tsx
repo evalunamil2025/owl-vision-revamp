@@ -14,6 +14,7 @@ import {
   Outlet as TSOutlet,
 } from "@tanstack/react-router";
 import { useMemo, useCallback, forwardRef, type ComponentProps, type ReactNode } from "react";
+import { localizeInternalPath } from "@/lib/locale-path";
 
 // ---------- shared URL parsing ----------
 
@@ -46,7 +47,8 @@ export function useNavigate(): NavigateFn {
       router.history.go(to);
       return;
     }
-    const { pathname, search, hash } = parseTo(to);
+    const localizedTo = localizeInternalPath(to, router.state.location.pathname);
+    const { pathname, search, hash } = parseTo(localizedTo);
     tsNav({
       to: pathname,
       search: search as never,
@@ -125,7 +127,9 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   { to, replace, state, children, ...rest },
   ref,
 ) {
-  const { pathname, search, hash } = parseTo(to);
+  const location = tsLocation();
+  const localizedTo = localizeInternalPath(to, location.pathname);
+  const { pathname, search, hash } = parseTo(localizedTo);
   return (
     <TSLink
       ref={ref as never}
@@ -145,7 +149,9 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
 // ---------- Navigate ----------
 
 export function Navigate({ to, replace, state }: { to: string; replace?: boolean; state?: unknown }) {
-  const { pathname, search, hash } = parseTo(to);
+  const location = tsLocation();
+  const localizedTo = localizeInternalPath(to, location.pathname);
+  const { pathname, search, hash } = parseTo(localizedTo);
   return <TSNavigate to={pathname as never} search={search as never} {...(hash !== undefined ? { hash } : {})} state={state as never} {...(replace !== undefined ? { replace } : {})} />;
 }
 

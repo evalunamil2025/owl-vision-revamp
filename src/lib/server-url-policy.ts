@@ -17,13 +17,19 @@ export type ServerUrlDecision =
   | { kind: "redirect"; location: string; status: 301 }
   | { kind: "gone"; status: 410 };
 
-function routeWithoutLocale(pathname: string): string | null {
+function canonicalSpanishRoute(pathname: string): string | null {
   const normalized = normalizePath(pathname);
-  if (normalized === "/es") return "/";
+  if (normalized === "/es") return "/es";
   if (!normalized.startsWith("/es/")) return null;
 
   const candidate = normalized.slice(3) || "/";
-  return VALID_ROUTES.includes(candidate) ? candidate : null;
+  return VALID_ROUTES.includes(candidate) ? `/es${candidate}` : null;
+}
+
+function removeNoiseQueryParams(url: URL): void {
+  for (const key of [...url.searchParams.keys()]) {
+    if (NOISE_QUERY_KEYS.has(key.toLowerCase())) url.searchParams.delete(key);
+  }
 }
 
 /**
@@ -32,12 +38,21 @@ function routeWithoutLocale(pathname: string): string | null {
  */
 export function classifyServerUrl(url: URL): ServerUrlDecision {
   const normalizedPath = normalizePath(url.pathname);
-  const legacyTarget = resolveLegacyRedirect(normalizedPath);
-  const localeTarget = routeWithoutLocale(normalizedPath);
+  const rawLegacyTarget = resolveLegacyRedirect(normalizedPath);
+  const legacyTarget = rawLegacyTarget && normalizedPath.startsWith("/es/")
+    ? `/es${rawLegacyTarget}`
+    : rawLegacyTarget;
+  const localeTarget = canonicalSpanishRoute(normalizedPath);
   const validTarget = VALID_ROUTES.includes(normalizedPath)
     ? normalizedPath
     : null;
-  const routeTarget = legacyTarget ?? localeTarget ?? validTarget;
+  const requestedLanguage = url.searchParams.get("lang")?.toLowerCase();
+  const languageTarget = requestedLanguage === "es" && validTarget
+    ? validTarget === "/" ? "/es" : `/es${validTarget}`
+    : requestedLanguage === "en" && localeTarget
+      ? localeTarget.slice(3) || "/"
+      : null;
+  const routeTarget = legacyTarget ?? languageTarget ?? localeTarget ?? validTarget;
   const isProductionHost = PRODUCTION_HOSTS.has(url.hostname.toLowerCase());
   const hasNoiseQuery = [...url.searchParams.keys()].some((key) =>
     NOISE_QUERY_KEYS.has(key.toLowerCase()),
@@ -63,9 +78,7 @@ export function classifyServerUrl(url: URL): ServerUrlDecision {
     }
 
     if (routeTarget != null) destination.pathname = routeTarget;
-    if (hasNoiseQuery || legacyTarget != null || localeTarget != null) {
-      destination.search = "";
-    }
+    if (hasNoiseQuery) removeNoiseQueryParams(destination);
 
     return { kind: "redirect", location: destination.toString(), status: 301 };
   }

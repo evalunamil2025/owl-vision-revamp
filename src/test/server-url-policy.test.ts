@@ -26,7 +26,7 @@ describe("server URL SEO policy", () => {
     ],
     [
       "https://bringasinsurance.com/es/auto-insurance",
-      "https://bringasinsurance.com/auto-insurance",
+      "https://bringasinsurance.com/es/auto-insurance",
     ],
   ])("redirects %s in one hop", (source, target) => {
     expect(classifyServerUrl(new URL(source))).toEqual({
@@ -40,6 +40,23 @@ describe("server URL SEO policy", () => {
     expect(
       classifyServerUrl(new URL("https://bringasinsurance.com/auto-insurance")),
     ).toEqual({ kind: "continue" });
+  });
+
+  it.each([
+    "https://bringasinsurance.com/es",
+    "https://bringasinsurance.com/es/auto-insurance",
+  ])("allows canonical Spanish pages through to SSR: %s", (source) => {
+    expect(classifyServerUrl(new URL(source))).toEqual({ kind: "continue" });
+  });
+
+  it("turns the old lang parameter into a Spanish campaign URL and preserves UTM attribution", () => {
+    expect(classifyServerUrl(new URL(
+      "https://bringasinsurance.com/auto-insurance?lang=es&utm_source=google&utm_campaign=autos",
+    ))).toEqual({
+      kind: "redirect",
+      status: 301,
+      location: "https://bringasinsurance.com/es/auto-insurance?utm_source=google&utm_campaign=autos",
+    });
   });
 
   it("leaves unknown paths to TanStack so they become 404", () => {
