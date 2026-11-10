@@ -73,6 +73,21 @@ describe("server URL SEO policy", () => {
     });
   });
 
+  it("keeps the mobile-home English and Spanish SEO routes separate", () => {
+    expect(
+      classifyServerUrl(
+        new URL("https://bringasinsurance.com/mobile-home-insurance"),
+      ),
+    ).toEqual({ kind: "continue" });
+    expect(
+      classifyServerUrl(
+        new URL(
+          "https://bringasinsurance.com/es/seguro-para-casas-prefabricadas",
+        ),
+      ),
+    ).toEqual({ kind: "continue" });
+  });
+
   it("leaves unknown paths to TanStack so they become 404", () => {
     expect(
       classifyServerUrl(

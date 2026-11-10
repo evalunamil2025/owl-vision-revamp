@@ -190,11 +190,10 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
 
-  // Pages render in English on the server; switch to the visitor's saved/browser language after hydration.
+  // The URL is the language source of truth. This prevents Spanish content from
+  // appearing under an English canonical URL because of a saved preference.
   useEffect(() => {
-    void i18n.changeLanguage(
-      isSpanishPath(location.pathname) ? "es" : undefined,
-    );
+    void i18n.changeLanguage(isSpanishPath(location.pathname) ? "es" : "en");
   }, [location.pathname]);
 
   return (

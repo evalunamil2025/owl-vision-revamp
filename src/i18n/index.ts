@@ -1,30 +1,21 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
 
 import en from "./locales/en";
 import es from "./locales/es";
 
-i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en: { translation: en },
-      es: { translation: es },
-    },
-    // Render English first (server and hydration); the root layout switches to the
-    // detected language after hydration so server and client HTML match.
-    lng: "en",
-    fallbackLng: "en",
-    supportedLngs: ["en", "es"],
-    interpolation: { escapeValue: false },
-    detection: {
-      order: ["localStorage", "navigator", "htmlTag"],
-      lookupLocalStorage: "bringas_lang",
-      caches: ["localStorage"],
-    },
-  });
+i18n.use(initReactI18next).init({
+  resources: {
+    en: { translation: en },
+    es: { translation: es },
+  },
+  // Render English first on the server and first client render. After hydration,
+  // the root layout selects the language strictly from the URL.
+  lng: "en",
+  fallbackLng: "en",
+  supportedLngs: ["en", "es"],
+  interpolation: { escapeValue: false },
+});
 
 const syncDocumentLanguage = (language: string) => {
   if (typeof document !== "undefined") {
@@ -32,7 +23,9 @@ const syncDocumentLanguage = (language: string) => {
   }
 };
 
-i18n.on("initialized", () => syncDocumentLanguage(i18n.resolvedLanguage || "en"));
+i18n.on("initialized", () =>
+  syncDocumentLanguage(i18n.resolvedLanguage || "en"),
+);
 i18n.on("languageChanged", syncDocumentLanguage);
 
 export default i18n;

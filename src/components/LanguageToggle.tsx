@@ -1,13 +1,17 @@
 import { useTranslation } from "react-i18next";
 import { Globe } from "lucide-react";
 import { useLocation, useUnlocalizedNavigate } from "@/lib/router-compat";
-import { addSpanishPrefix, stripSpanishPrefix } from "@/lib/locale-path";
+import {
+  addSpanishPrefix,
+  isSpanishPath,
+  stripSpanishPrefix,
+} from "@/lib/locale-path";
 
 const LanguageToggle = ({ compact = false }: { compact?: boolean }) => {
   const { i18n, t } = useTranslation();
   const location = useLocation();
   const navigate = useUnlocalizedNavigate();
-  const current = i18n.resolvedLanguage?.startsWith("es") ? "es" : "en";
+  const current = isSpanishPath(location.pathname) ? "es" : "en";
 
   const setLang = (lng: "en" | "es") => {
     if (lng === current) return;
