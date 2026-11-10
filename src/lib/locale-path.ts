@@ -26,6 +26,6 @@ export function localizeInternalPath(target: string, currentPathname: string): s
   const [pathname, search = ""] = (beforeHash ?? target).split("?", 2);
   const localizedPath = isSpanishPath(currentPathname)
     ? addSpanishPrefix(pathname || "/")
-    : stripSpanishPrefix(pathname || "/");
+    : pathname || "/";
   return `${localizedPath}${search ? `?${search}` : ""}${hash ? `#${hash}` : ""}`;
 }

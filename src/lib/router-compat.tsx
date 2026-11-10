@@ -59,6 +59,26 @@ export function useNavigate(): NavigateFn {
   }, [tsNav, router]) as NavigateFn;
 }
 
+/** Navigation escape hatch for the language switcher, which intentionally changes locale. */
+export function useUnlocalizedNavigate(): NavigateFn {
+  const tsNav = tsNavigate();
+  const router = useRouter();
+  return useCallback((to: string | number, options?: NavigateOptions) => {
+    if (typeof to === "number") {
+      router.history.go(to);
+      return;
+    }
+    const { pathname, search, hash } = parseTo(to);
+    tsNav({
+      to: pathname,
+      search: search as never,
+      ...(hash !== undefined ? { hash } : {}),
+      state: options?.state as never,
+      ...(options?.replace !== undefined ? { replace: options.replace } : {}),
+    });
+  }, [tsNav, router]) as NavigateFn;
+}
+
 // ---------- useLocation ----------
 
 export function useLocation() {

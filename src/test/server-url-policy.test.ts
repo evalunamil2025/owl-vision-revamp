@@ -24,10 +24,6 @@ describe("server URL SEO policy", () => {
       "https://bringasinsurance.com/contacto",
       "https://bringasinsurance.com/contact",
     ],
-    [
-      "https://bringasinsurance.com/es/auto-insurance",
-      "https://bringasinsurance.com/es/auto-insurance",
-    ],
   ])("redirects %s in one hop", (source, target) => {
     expect(classifyServerUrl(new URL(source))).toEqual({
       kind: "redirect",
