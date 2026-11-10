@@ -3,7 +3,6 @@ import { QueryClientProvider, type QueryClient } from "@tanstack/react-query";
 import {
   createRootRouteWithContext,
   HeadContent,
-  Link,
   Outlet,
   Scripts,
   useRouter,
@@ -14,7 +13,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "@/components/ScrollToTop";
 import NotFound from "@/pages/NotFound";
-import { useLocation } from "@/lib/router-compat";
+import { Link, useLocation } from "@/lib/router-compat";
 import { trackIndexablePageView } from "@/lib/analytics";
 import { reportLovableError } from "@/lib/lovable-error-reporting";
 import i18n from "@/i18n";
