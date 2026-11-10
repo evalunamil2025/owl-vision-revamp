@@ -1,4 +1,5 @@
 import { getRouteSeo, OG_IMAGE_URL, SITE_URL } from "@/config/seo";
+import { getSpanishRouteSeo } from "@/config/seo-es";
 import { useLocation } from "@/lib/router-compat";
 import {
   addSpanishPrefix,
@@ -33,14 +34,31 @@ const SEO = ({
   const url = `${SITE_URL}${normalizedPath}`;
   const englishPath = stripSpanishPrefix(normalizedPath);
   const configured = getRouteSeo(englishPath);
-  const resolvedTitle = routeIsSpanish ? title : configured?.title || title;
+  const spanishConfigured = getSpanishRouteSeo(englishPath);
+  const resolvedTitle = routeIsSpanish
+    ? spanishConfigured?.title || title
+    : configured?.title || title;
   const resolvedDescription = routeIsSpanish
-    ? description
+    ? spanishConfigured?.description || description
     : configured?.description || description;
   const englishUrl = `${SITE_URL}${englishPath}`;
   const spanishUrl = `${SITE_URL}${addSpanishPrefix(englishPath)}`;
 
   const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+  const localizedLd = ld.map((entry) => {
+    if (!routeIsSpanish) return entry;
+    const schema = entry as Record<string, unknown>;
+    if (schema["@type"] === "Service") {
+      return {
+        ...schema,
+        name: spanishConfigured?.serviceName || resolvedTitle,
+        description: resolvedDescription,
+        url,
+        inLanguage: "es",
+      };
+    }
+    return { ...schema, inLanguage: "es", url };
+  });
   // React 19 hoists <title>, <meta> and <link> into <head>, including in the server-rendered HTML.
   return (
     <>
@@ -56,6 +74,8 @@ const SEO = ({
       {noindex && <meta name="robots" content="noindex, follow" />}
 
       <meta property="og:type" content={type} />
+      <meta property="og:locale" content={routeIsSpanish ? "es_US" : "en_US"} />
+      <meta property="og:locale:alternate" content={routeIsSpanish ? "en_US" : "es_US"} />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={resolvedTitle} />
       <meta property="og:description" content={resolvedDescription} />
@@ -65,7 +85,7 @@ const SEO = ({
       <meta name="twitter:title" content={resolvedTitle} />
       <meta name="twitter:description" content={resolvedDescription} />
       <meta name="twitter:image" content={OG_IMAGE_URL} />
-      {ld.map((obj, i) => (
+      {localizedLd.map((obj, i) => (
         <script key={i} type="application/ld+json">
           {JSON.stringify(obj)}
         </script>

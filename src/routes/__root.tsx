@@ -112,8 +112,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 );
 
 function RootShell({ children }: { children: ReactNode }) {
+  const location = useLocation();
+  const language = isSpanishPath(location.pathname) ? "es" : "en";
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={language} suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>

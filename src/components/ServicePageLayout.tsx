@@ -18,6 +18,8 @@ import SEO from "./SEO";
 import ServiceLeadForm from "./ServiceLeadForm";
 import heroBg from "@/assets/seattle-hero-bg.jpg";
 import { getRouteSeo, SITE_URL } from "@/config/seo";
+import { getSpanishRouteSeo } from "@/config/seo-es";
+import { isSpanishPath, stripSpanishPrefix } from "@/lib/locale-path";
 
 // Map coverage titles to contextual icons
 const ICON_MAP: { test: RegExp; icon: LucideIcon }[] = [
@@ -99,7 +101,10 @@ const ServicePageLayout = ({
 }: ServicePageLayoutProps) => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  const routeSeo = getRouteSeo(pathname);
+  const englishPath = stripSpanishPrefix(pathname);
+  const routeSeo = isSpanishPath(pathname)
+    ? getSpanishRouteSeo(englishPath)
+    : getRouteSeo(englishPath);
   const canonicalUrl = `${SITE_URL}${pathname}`;
   return (
     <div className="min-h-screen bg-white">
