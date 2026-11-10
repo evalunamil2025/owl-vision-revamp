@@ -46,12 +46,17 @@ describe("server URL SEO policy", () => {
   });
 
   it("turns the old lang parameter into a Spanish campaign URL and preserves UTM attribution", () => {
-    expect(classifyServerUrl(new URL(
-      "https://bringasinsurance.com/auto-insurance?lang=es&utm_source=google&utm_campaign=autos",
-    ))).toEqual({
+    expect(
+      classifyServerUrl(
+        new URL(
+          "https://bringasinsurance.com/auto-insurance?lang=es&utm_source=google&utm_campaign=autos",
+        ),
+      ),
+    ).toEqual({
       kind: "redirect",
       status: 301,
-      location: "https://bringasinsurance.com/es/auto-insurance?utm_source=google&utm_campaign=autos",
+      location:
+        "https://bringasinsurance.com/es/auto-insurance?utm_source=google&utm_campaign=autos",
     });
   });
 

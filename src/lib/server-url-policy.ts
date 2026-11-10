@@ -39,20 +39,25 @@ function removeNoiseQueryParams(url: URL): void {
 export function classifyServerUrl(url: URL): ServerUrlDecision {
   const normalizedPath = normalizePath(url.pathname);
   const rawLegacyTarget = resolveLegacyRedirect(normalizedPath);
-  const legacyTarget = rawLegacyTarget && normalizedPath.startsWith("/es/")
-    ? `/es${rawLegacyTarget}`
-    : rawLegacyTarget;
+  const legacyTarget =
+    rawLegacyTarget && normalizedPath.startsWith("/es/")
+      ? `/es${rawLegacyTarget}`
+      : rawLegacyTarget;
   const localeTarget = canonicalSpanishRoute(normalizedPath);
   const validTarget = VALID_ROUTES.includes(normalizedPath)
     ? normalizedPath
     : null;
   const requestedLanguage = url.searchParams.get("lang")?.toLowerCase();
-  const languageTarget = requestedLanguage === "es" && validTarget
-    ? validTarget === "/" ? "/es" : `/es${validTarget}`
-    : requestedLanguage === "en" && localeTarget
-      ? localeTarget.slice(3) || "/"
-      : null;
-  const routeTarget = legacyTarget ?? languageTarget ?? localeTarget ?? validTarget;
+  const languageTarget =
+    requestedLanguage === "es" && validTarget
+      ? validTarget === "/"
+        ? "/es"
+        : `/es${validTarget}`
+      : requestedLanguage === "en" && localeTarget
+        ? localeTarget.slice(3) || "/"
+        : null;
+  const routeTarget =
+    legacyTarget ?? languageTarget ?? localeTarget ?? validTarget;
   const isProductionHost = PRODUCTION_HOSTS.has(url.hostname.toLowerCase());
   const hasNoiseQuery = [...url.searchParams.keys()].some((key) =>
     NOISE_QUERY_KEYS.has(key.toLowerCase()),
@@ -60,9 +65,7 @@ export function classifyServerUrl(url: URL): ServerUrlDecision {
 
   const needsCanonicalRoute =
     routeTarget != null &&
-    (routeTarget !== url.pathname ||
-      legacyTarget != null ||
-      hasNoiseQuery);
+    (routeTarget !== url.pathname || legacyTarget != null || hasNoiseQuery);
   const needsCanonicalOrigin =
     isProductionHost &&
     (url.protocol !== "https:" ||

@@ -75,32 +75,41 @@ gtag('config', 'G-5QM8V0WQ00', { send_page_view: false });
 })();
 `;
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1.0" },
-      { name: "author", content: "Bringas Insurance Group" },
-      { name: "theme-color", content: "#0079c2" },
-    ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
-      { rel: "apple-touch-icon", href: "/favicon.png" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: FONTS_URL },
-    ],
-    scripts: [
-      { type: "application/ld+json", children: JSON.stringify(ORGANIZATION_JSON_LD) },
-      { children: GA_SNIPPET },
-    ],
-  }),
-  shellComponent: RootShell,
-  component: RootComponent,
-  notFoundComponent: NotFound,
-  errorComponent: RootErrorComponent,
-});
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
+  {
+    head: () => ({
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+        { name: "author", content: "Bringas Insurance Group" },
+        { name: "theme-color", content: "#0079c2" },
+      ],
+      links: [
+        { rel: "stylesheet", href: appCss },
+        { rel: "icon", href: "/favicon.png", type: "image/png" },
+        { rel: "apple-touch-icon", href: "/favicon.png" },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        {
+          rel: "preconnect",
+          href: "https://fonts.gstatic.com",
+          crossOrigin: "anonymous",
+        },
+        { rel: "stylesheet", href: FONTS_URL },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(ORGANIZATION_JSON_LD),
+        },
+        { children: GA_SNIPPET },
+      ],
+    }),
+    shellComponent: RootShell,
+    component: RootComponent,
+    notFoundComponent: NotFound,
+    errorComponent: RootErrorComponent,
+  },
+);
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
@@ -125,16 +134,28 @@ const DeferredWidgets = () => {
       if (!cancelled) setShow(true);
     };
     const w = window as Window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      requestIdleCallback?: (
+        cb: () => void,
+        opts?: { timeout: number },
+      ) => number;
     };
     const idleId = w.requestIdleCallback
       ? w.requestIdleCallback(reveal, { timeout: 3500 })
       : (window.setTimeout(reveal, 2500) as unknown as number);
-    const events: Array<keyof WindowEventMap> = ["pointerdown", "keydown", "scroll", "touchstart"];
-    events.forEach((e) => window.addEventListener(e, reveal, { once: true, passive: true }));
+    const events: Array<keyof WindowEventMap> = [
+      "pointerdown",
+      "keydown",
+      "scroll",
+      "touchstart",
+    ];
+    events.forEach((e) =>
+      window.addEventListener(e, reveal, { once: true, passive: true }),
+    );
     return () => {
       cancelled = true;
-      const wc = window as Window & { cancelIdleCallback?: (id: number) => void };
+      const wc = window as Window & {
+        cancelIdleCallback?: (id: number) => void;
+      };
       if (wc.cancelIdleCallback) wc.cancelIdleCallback(idleId);
       else clearTimeout(idleId);
       events.forEach((e) => window.removeEventListener(e, reveal));
@@ -169,7 +190,9 @@ function RootComponent() {
 
   // Pages render in English on the server; switch to the visitor's saved/browser language after hydration.
   useEffect(() => {
-    void i18n.changeLanguage(isSpanishPath(location.pathname) ? "es" : undefined);
+    void i18n.changeLanguage(
+      isSpanishPath(location.pathname) ? "es" : undefined,
+    );
   }, [location.pathname]);
 
   return (
@@ -212,7 +235,10 @@ function RootErrorComponent({ error, reset }: ErrorComponentProps) {
           >
             Try again
           </button>
-          <Link to="/" className="rounded-xl border border-border px-5 py-2.5 font-semibold text-primary">
+          <Link
+            to="/"
+            className="rounded-xl border border-border px-5 py-2.5 font-semibold text-primary"
+          >
             Go home
           </Link>
         </div>

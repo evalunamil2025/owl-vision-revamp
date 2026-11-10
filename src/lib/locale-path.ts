@@ -20,7 +20,10 @@ export function addSpanishPrefix(pathname: string): string {
   return normalized === "/" ? SPANISH_PREFIX : `${SPANISH_PREFIX}${normalized}`;
 }
 
-export function localizeInternalPath(target: string, currentPathname: string): string {
+export function localizeInternalPath(
+  target: string,
+  currentPathname: string,
+): string {
   if (!target.startsWith("/") || target.startsWith("//")) return target;
   const [beforeHash, hash = ""] = target.split("#", 2);
   const [pathname, search = ""] = (beforeHash ?? target).split("?", 2);

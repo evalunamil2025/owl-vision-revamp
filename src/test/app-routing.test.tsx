@@ -8,7 +8,10 @@ import { routeTree } from "@/routeTree.gen";
 // network the test run lacks, and jsdom never loads the stylesheets React waits on.
 describe("App routing", () => {
   it("matches a page for / instead of falling back to not found", () => {
-    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    const router = createRouter({
+      routeTree,
+      context: { queryClient: new QueryClient() },
+    });
 
     const matches = router.matchRoutes("/");
 
@@ -18,7 +21,10 @@ describe("App routing", () => {
   it.each(["/es", "/es/auto-insurance", "/es/contact"])(
     "matches the Spanish campaign route %s",
     (pathname) => {
-      const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+      const router = createRouter({
+        routeTree,
+        context: { queryClient: new QueryClient() },
+      });
       const matches = router.matchRoutes(pathname);
       expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
     },

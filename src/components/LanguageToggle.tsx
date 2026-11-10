@@ -12,9 +12,10 @@ const LanguageToggle = ({ compact = false }: { compact?: boolean }) => {
   const setLang = (lng: "en" | "es") => {
     if (lng === current) return;
     void i18n.changeLanguage(lng);
-    const pathname = lng === "es"
-      ? addSpanishPrefix(location.pathname)
-      : stripSpanishPrefix(location.pathname);
+    const pathname =
+      lng === "es"
+        ? addSpanishPrefix(location.pathname)
+        : stripSpanishPrefix(location.pathname);
     navigate(`${pathname}${location.search}${location.hash}`);
   };
 
@@ -26,7 +27,10 @@ const LanguageToggle = ({ compact = false }: { compact?: boolean }) => {
       role="group"
       aria-label={t("nav.languageLabel")}
     >
-      <Globe className="w-3.5 h-3.5 text-slate-400 ml-2 mr-0.5 hidden sm:block" aria-hidden />
+      <Globe
+        className="w-3.5 h-3.5 text-slate-400 ml-2 mr-0.5 hidden sm:block"
+        aria-hidden
+      />
       {(["en", "es"] as const).map((lng) => (
         <button
           key={lng}

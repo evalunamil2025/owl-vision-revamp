@@ -1,6 +1,10 @@
 import { getRouteSeo, OG_IMAGE_URL, SITE_URL } from "@/config/seo";
 import { useLocation } from "@/lib/router-compat";
-import { addSpanishPrefix, isSpanishPath, stripSpanishPrefix } from "@/lib/locale-path";
+import {
+  addSpanishPrefix,
+  isSpanishPath,
+  stripSpanishPrefix,
+} from "@/lib/locale-path";
 
 interface SEOProps {
   title: string;
@@ -11,7 +15,14 @@ interface SEOProps {
   noindex?: boolean;
 }
 
-const SEO = ({ title, description, path, type = "website", jsonLd, noindex }: SEOProps) => {
+const SEO = ({
+  title,
+  description,
+  path,
+  type = "website",
+  jsonLd,
+  noindex,
+}: SEOProps) => {
   const location = useLocation();
   // Canonicals are always emitted without query string or hash, so tracking
   // variants (?v=, ?tid=, ?lang=) collapse into a single indexable URL.
@@ -23,7 +34,9 @@ const SEO = ({ title, description, path, type = "website", jsonLd, noindex }: SE
   const englishPath = stripSpanishPrefix(normalizedPath);
   const configured = getRouteSeo(englishPath);
   const resolvedTitle = routeIsSpanish ? title : configured?.title || title;
-  const resolvedDescription = routeIsSpanish ? description : configured?.description || description;
+  const resolvedDescription = routeIsSpanish
+    ? description
+    : configured?.description || description;
   const englishUrl = `${SITE_URL}${englishPath}`;
   const spanishUrl = `${SITE_URL}${addSpanishPrefix(englishPath)}`;
 
@@ -36,7 +49,9 @@ const SEO = ({ title, description, path, type = "website", jsonLd, noindex }: SE
       {!noindex && <link rel="canonical" href={url} />}
       {!noindex && <link rel="alternate" hrefLang="en" href={englishUrl} />}
       {!noindex && <link rel="alternate" hrefLang="es" href={spanishUrl} />}
-      {!noindex && <link rel="alternate" hrefLang="x-default" href={englishUrl} />}
+      {!noindex && (
+        <link rel="alternate" hrefLang="x-default" href={englishUrl} />
+      )}
       {!noindex && <meta name="robots" content="index, follow" />}
       {noindex && <meta name="robots" content="noindex, follow" />}
 
@@ -51,7 +66,9 @@ const SEO = ({ title, description, path, type = "website", jsonLd, noindex }: SE
       <meta name="twitter:description" content={resolvedDescription} />
       <meta name="twitter:image" content={OG_IMAGE_URL} />
       {ld.map((obj, i) => (
-        <script key={i} type="application/ld+json">{JSON.stringify(obj)}</script>
+        <script key={i} type="application/ld+json">
+          {JSON.stringify(obj)}
+        </script>
       ))}
     </>
   );

@@ -14,14 +14,18 @@ describe("locale paths", () => {
   });
 
   it("keeps navigation inside the Spanish URL tree, including campaign queries", () => {
-    expect(localizeInternalPath(
-      "/quote?utm_source=google#form",
-      "/es/auto-insurance",
-    )).toBe("/es/quote?utm_source=google#form");
+    expect(
+      localizeInternalPath(
+        "/quote?utm_source=google#form",
+        "/es/auto-insurance",
+      ),
+    ).toBe("/es/quote?utm_source=google#form");
   });
 
   it("does not rewrite English navigation or accept unknown Spanish paths", () => {
-    expect(localizeInternalPath("/contact", "/auto-insurance")).toBe("/contact");
+    expect(localizeInternalPath("/contact", "/auto-insurance")).toBe(
+      "/contact",
+    );
     expect(isSpanishPath("/es/not-a-real-page")).toBe(false);
   });
 });
