@@ -62,6 +62,7 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 window.gtag = gtag;
 gtag('js', new Date());
+dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
 gtag('config', 'G-5QM8V0WQ00', { send_page_view: false });
 (function(){
   var loaded = false;
@@ -105,6 +106,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           children: JSON.stringify(ORGANIZATION_JSON_LD),
         },
         { children: GA_SNIPPET },
+        {
+          src: "https://www.googletagmanager.com/gtm.js?id=GTM-WMQJT3XL",
+          async: true,
+        },
       ],
     }),
     shellComponent: RootShell,
